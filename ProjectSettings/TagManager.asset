@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Platform
+  - SittingEnemy
+  - FlyingEnemy
+  - Background
+  - Screw
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Terrain
+  - Objects
+  - Background
+  - Enemies
+  - PlayerProjectiles
+  - 
+  - 
+  - 
+  - 
+  - GameObjectUI_Overlay
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2807182763
+    locked: 0
+  - name: Tutorial_Interfaces
+    uniqueID: 3378145991
+    locked: 0
+  - name: Objects
+    uniqueID: 3520322249
+    locked: 0
+  - name: Player Projectiles
+    uniqueID: 1527173563
+    locked: 0
+  - name: Enemy Beams
+    uniqueID: 4085576517
+    locked: 0
+  - name: Player
+    uniqueID: 2666761937
+    locked: 0
+  - name: Tutorial_Interfaces_2
+    uniqueID: 3300279247
+    locked: 0
+  - name: Items
+    uniqueID: 1811192453
+    locked: 0
+  - name: Enemies
+    uniqueID: 2680808813
+    locked: 0
+  - name: Player Projectiles Post Firing
+    uniqueID: 3519373995
+    locked: 0
+  - name: OverrideToFront
+    uniqueID: 341039319
+    locked: 0
+  - name: Water
+    uniqueID: 4034660217
+    locked: 0
