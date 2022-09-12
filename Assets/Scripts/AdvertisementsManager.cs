@@ -30,7 +30,12 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
     string GameID;
 
-    Action<bool> ActionCallback;
+    List<Action<bool>> ActionCallback;
+    void DoCallback(bool status)
+    {
+        ActionCallback[ActionCallback.Count - 1](status);
+        ActionCallback.RemoveAt(ActionCallback.Count - 1);
+    }
 
     public enum AdType
     {
@@ -61,6 +66,8 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         Advertisement.Initialize(GameID, TestMode, this);
 
         Advertisement.Banner.SetPosition(BannerAdPosition);
+
+        ActionCallback = new List<Action<bool>>();
 
         DontDestroyOnLoad(transform.gameObject);
 
@@ -124,7 +131,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         }
 #endif
 
-        ActionCallback = callback;
+        ActionCallback.Add(callback);
     }
     public void HideBannerAd()
     {
@@ -133,30 +140,53 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
-        Debug.Log("Ad Loaded: " + adUnitId);
+        //Debug.Log("Ad Loaded: " + adUnitId);
         Advertisement.Show(adUnitId, this);
     }
 
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
-        if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+        if (adUnitId ==
+#if UNITY_IOS
+            RewardedAd.IOS
+#elif UNITY_ANDROID
+            RewardedAd.Android
+#endif
+        )
         {
-            Debug.Log("Unity Ads Rewarded Ad Completed");
-
-            ActionCallback(true);
+            //rewarded ad
+            if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+            {
+                //Debug.Log("Rewarded Ad Completed");
+                DoCallback(true);
+            }
+            else
+            {
+                DoCallback(false);
+            }
+        } else
+        {
+            //non rewarded ad
+            if (showCompletionState.Equals(UnityAdsShowCompletionState.UNKNOWN))
+            {
+                DoCallback(false);
+            } else
+            {
+                DoCallback(true);
+            }
         }
     }
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        ActionCallback(false);
+        DoCallback(false);
     }
 
     // Implement Load and Show Listener error callbacks:
     public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        ActionCallback(false);
+        DoCallback(false);
     }
 
     public void OnUnityAdsShowStart(string adUnitId) { }

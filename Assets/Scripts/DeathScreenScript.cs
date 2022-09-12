@@ -35,6 +35,15 @@ public class DeathScreenScript : MonoBehaviour
                 PauseScreenCanvas.enabled = false;
             }
 
+            //banner ad at the bottom of the death screen
+            AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.BANNER, delegate (bool status) {
+                Debug.Log("Death banner Ad: " + status.ToString());
+            });
+            //evil video death ad
+            AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.INTERSTITIAL, delegate (bool status) {
+                Debug.Log("Death Interstitial Ad: " + status.ToString());
+            });
+
             gameCanvas.gameObject.SetActive(false);
             DeathScreenCanvas.enabled = true;
             DeathScreenCanvas.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
