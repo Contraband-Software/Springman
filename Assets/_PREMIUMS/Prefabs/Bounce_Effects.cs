@@ -322,9 +322,6 @@ public class Bounce_Effects : MonoBehaviour
         currentColour = premDetails.targetColor;
         int currentIndex = premDetails.colorChoices.IndexOf(currentColour);
 
-        print(currentIndex);
-        print(((currentIndex % (premDetails.colorChoices.Count - 1)) + 1));
-
         targetColour = premDetails.colorChoices[((currentIndex % (premDetails.colorChoices.Count - 1)) + 1)];
         
         LeanTween.value(gameObject, Neon_ColourShift_Callback, currentColour, targetColour, shiftSpeed).setOnComplete(Neon_ColourShift_SelectTarget).setEase(LeanTweenType.linear);
