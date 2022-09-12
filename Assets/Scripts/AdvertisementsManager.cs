@@ -27,6 +27,15 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
     string GameID;
 
+    Action<bool> ActionCallback;
+
+    public enum AdType
+    {
+        INTERSTITIAL,
+        REWARDED,
+        BANNER
+    }
+
     void Start()
     {
 #if UNITY_IOS
@@ -49,9 +58,43 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
     }
 
-    public void PlayAd(string AdItemID)
+    public void PlayAd(AdType type, Action<bool> callback)
     {
-        Advertisement.Load(AdItemID, this);
+        if (!Advertisement.isInitialized)
+        {
+            callback(false);
+            return;
+        }
+
+#if UNITY_IOS
+        switch (type)
+        {
+            case AdType.INTERSTITIAL:
+                Advertisement.Load(InterstitialAd.IOS, this);
+                break;
+            case AdType.REWARDED:
+                Advertisement.Load(RewardedAd.IOS, this);
+                break;
+            case AdType.BANNER:
+                Advertisement.Load(BannerAd.IOS, this);
+                break;
+        }
+#elif UNITY_ANDROID
+        switch (type)
+        {
+            case AdType.INTERSTITIAL:
+                Advertisement.Load(InterstitialAd.Android, this);
+                break;
+            case AdType.REWARDED:
+                Advertisement.Load(RewardedAd.Android, this);
+                break;
+            case AdType.BANNER:
+                Advertisement.Load(BannerAd.Android, this);
+                break;
+        }
+#endif
+
+        ActionCallback = callback;
     }
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
@@ -64,20 +107,21 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
+
+            ActionCallback(true);
         }
+    }
+    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
+    {
+        Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+        ActionCallback(false);
     }
 
     // Implement Load and Show Listener error callbacks:
     public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        // Use the error details to determine whether to try to load another ad.
-    }
-
-    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
-    {
-        Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        // Use the error details to determine whether to try to load another ad.
+        ActionCallback(false);
     }
 
     public void OnUnityAdsShowStart(string adUnitId) { }

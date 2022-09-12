@@ -147,11 +147,20 @@ public class BuyButtonSkin : MonoBehaviour
                 if (menuData.ads < cost)
                 {
                     //play an ad here
+                    Adman.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
+                    {
+                        if (success)
+                        {
+                            menuData.ads++;
+                            menuData.SaveGameData();
+                        } else
+                        {
+                            //show ad failed screen
+                        }
 
-                    Adman.PlayAd("Rewarded_Android");
-
-                    menuData.ads++; //when ad finishes
-                    menuData.SaveGameData();
+                        //probably best to update the price on the button regardless of the outcome to avoid bugs
+                        priceOnButton.text = (10 - menuData.ads).ToString();
+                    });
                 }
                 else
                 {
