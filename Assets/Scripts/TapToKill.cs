@@ -23,6 +23,7 @@ public class TapToKill : MonoBehaviour
     }
     void Update()
     {
+        //POR3 - EventSystem
         if (!gameData.Paused && pController.state == PlayerController.State.Alive)
         {
             if (Input.GetMouseButtonDown(0))

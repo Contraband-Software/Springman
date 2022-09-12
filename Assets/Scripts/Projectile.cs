@@ -48,6 +48,7 @@ public class Projectile : MonoBehaviour {
 		if (hitInfo.collider.name == "Player")
 		{
 			PlayerController pCon = hitInfo.gameObject.GetComponent<PlayerController>();
+			//POR1
 			if(pCon.state != PlayerController.State.Dead)
 			{
 				pCon.state = PlayerController.State.Dead;

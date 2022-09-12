@@ -44,7 +44,8 @@ public class WaterRise : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.name.ToLower() == "player" && pController.state != PlayerController.State.Dead)
+		//POR2
+		if (other.name.ToLower() == "player" && pController.state != PlayerController.State.Dead)
 		{
 			pController.state = PlayerController.State.Dead;
 			pController.deathBy = PlayerController.DeathBy.Water;

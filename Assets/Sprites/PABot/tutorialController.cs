@@ -100,6 +100,7 @@ public class tutorialController : MonoBehaviour
 
     void Update()
     {
+        //POR4
         if(pController.isGrounded && pController.state == PlayerController.State.Alive && tutorialComplete == false && tutorialPhase == -1)
         {
             TutorialInitiate();
