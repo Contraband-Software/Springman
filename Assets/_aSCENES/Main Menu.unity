@@ -49225,6 +49225,7 @@ MonoBehaviour:
   costText: {fileID: 1553102097}
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 0}
+  Adman: {fileID: 0}
   priceOnButton: {fileID: 0}
 --- !u!1 &1018327433
 GameObject:
@@ -81445,6 +81446,7 @@ MonoBehaviour:
   costText: {fileID: 1553102097}
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 2001802938}
+  Adman: {fileID: 1187147699}
   priceOnButton: {fileID: 1102670383}
 --- !u!114 &1689666385
 MonoBehaviour:
@@ -85498,7 +85500,7 @@ Transform:
   - {fileID: 1231490560}
   - {fileID: 794028600}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1782169664
 MonoBehaviour:
@@ -97740,6 +97742,7 @@ MonoBehaviour:
   costText: {fileID: 1553102097}
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 0}
+  Adman: {fileID: 0}
   priceOnButton: {fileID: 0}
 --- !u!114 &2003604383
 MonoBehaviour:
