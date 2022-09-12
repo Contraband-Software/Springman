@@ -173,6 +173,16 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    public void Revive()
+    {
+        //hide death screen
+        DeathScreenScript.instance.DeathScreenHide();
+
+        //reset player variables
+        state = PlayerController.State.Alive;
+
+    }
+
     void FixedUpdate()
     {
         Jump();
