@@ -70,9 +70,9 @@ public class DeathScreenScript : MonoBehaviour
                 Debug.Log("Death banner Ad: " + status.ToString());
             });
             //evil video death ad
-            AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.INTERSTITIAL, delegate (bool status) {
-                Debug.Log("Death Interstitial Ad: " + status.ToString());
-            });
+            //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.INTERSTITIAL, delegate (bool status) {
+            //    Debug.Log("Death Interstitial Ad: " + status.ToString());
+            //});
 
             gameCanvas.gameObject.SetActive(false);
             DeathScreenCanvas.enabled = true;
