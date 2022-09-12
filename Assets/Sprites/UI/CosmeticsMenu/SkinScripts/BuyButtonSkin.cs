@@ -170,29 +170,29 @@ public class BuyButtonSkin : MonoBehaviour
                         adsBuycon.stopTweens();
                         adsBuycon.StopLerping();
 
-                        menuData.ads = 0;
-                        canvasToOpen.enabled = true;
-                        cosMenuCon.buyCanvasOn = true;
-                        canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+                        //menuData.ads = 0;
+                        //canvasToOpen.enabled = true;
+                        //cosMenuCon.buyCanvasOn = true;
+                        //canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
 
-                        adsBuycon.UnlockAdSkin();
-                        adsBuycon.pressedOnce = false;
+                        //adsBuycon.UnlockAdSkin();
+                        //adsBuycon.pressedOnce = false;
                     }
                     else
                     {
                         adsBuycon.SetDefaults();
                         skinsCon.defaultsSetADS = true;
 
-                        menuData.ads = 0;
-                        canvasToOpen.enabled = true;
-                        cosMenuCon.buyCanvasOn = true;
-                        canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+                        //menuData.ads = 0;
+                        //canvasToOpen.enabled = true;
+                        //cosMenuCon.buyCanvasOn = true;
+                        //canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
 
-                        adsBuycon.UnlockAdSkin();
-                        adsBuycon.pressedOnce = false;
+                        //adsBuycon.UnlockAdSkin();
+                        //adsBuycon.pressedOnce = false;
                     }
 
-                    /*
+                    
                        menuData.ads = 0;
 
                        canvasToOpen.enabled = true;
@@ -202,7 +202,7 @@ public class BuyButtonSkin : MonoBehaviour
                        canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
 
                        adsBuycon.UnlockAdSkin();
-                     */
+                     
                 }
 
                 priceOnButton.text = (10 - menuData.ads).ToString();
