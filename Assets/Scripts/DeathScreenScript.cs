@@ -45,7 +45,7 @@ public class DeathScreenScript : MonoBehaviour
             DeathScreenCanvas.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnClose();
             filter.gameObject.GetComponent<FilterFade>().FadeToClear();
 
-            gameObject.GetComponent<DeathText>().OnDeath();
+            //gameObject.GetComponent<DeathText>().OnDeath();
 
             LeanTween.alphaCanvas(gameCanvas, 1f, 0.2f);
 
