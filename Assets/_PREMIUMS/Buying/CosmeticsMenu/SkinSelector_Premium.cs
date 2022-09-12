@@ -78,6 +78,15 @@ public class SkinSelector_Premium : MonoBehaviour
         cosmeticsData.specialColourModes = sCMgathered;
         //ALSO GATHERS SPECIAL COLOUR EFFECTS
     }
+    public void CollectSpecialColourSettings()
+    {
+        List<bool> hasSpecialColourGathered = new List<bool>();
+        for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
+        {
+            PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
+            hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
+        }
+    }
 
     private void CheckForClick()
     {

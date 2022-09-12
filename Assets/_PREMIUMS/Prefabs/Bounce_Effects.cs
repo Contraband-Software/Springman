@@ -38,6 +38,11 @@ public class Bounce_Effects : MonoBehaviour
     [Header("Charged Details")]
     public GameObject bounce_effect_charged;
 
+    [Header("Neon Details")]
+    private bool beganShifting = false;
+    private Color currentColour;
+    private Color targetColour;
+    public float shiftSpeed = 1f;
 
     public void Start()
     {
@@ -49,6 +54,14 @@ public class Bounce_Effects : MonoBehaviour
         playerCon.bounceSound.clip = loadedBounceSound.clip;
         playerCon.bounceSound.volume = loadedBounceSound.volume;
 
+    }
+
+    public void Update()
+    {
+        if(premium_name == "Neon" && premDetails.colourShift)
+        {
+            Neon_ColourShift();
+        }
     }
 
     //make list of functions
@@ -97,6 +110,10 @@ public class Bounce_Effects : MonoBehaviour
 
             case "Dual Cannon":
                 DualCannon();
+                break;
+
+            case "Neon":
+                Neon();
                 break;
 
             default:
@@ -278,5 +295,41 @@ public class Bounce_Effects : MonoBehaviour
         }
 
         playerCon.bounceDust.Play();
+    }
+
+    private void Neon()
+    {
+        bounce_animator.Play("bounce");
+        //Bounce Sound
+        if (gameData.soundsOn)
+        {
+            playerCon.bounceSound.Play();
+        }
+
+        playerCon.bounceDust.Play();
+    }
+
+    private void Neon_ColourShift()
+    {
+        if (!beganShifting)
+        {
+            beganShifting = true;
+            Neon_ColourShift_SelectTarget();
+        }
+    }
+    private void Neon_ColourShift_SelectTarget()
+    {
+        currentColour = premDetails.targetColor;
+        int currentIndex = premDetails.colorChoices.IndexOf(currentColour);
+
+        targetColour = premDetails.colorChoices[((currentIndex % (premDetails.colorChoices.Count - 1)) + 1)];
+        
+        LeanTween.value(gameObject, Neon_ColourShift_Callback, currentColour, targetColour, shiftSpeed).setOnComplete(Neon_ColourShift_SelectTarget).setEase(LeanTweenType.linear);
+    }
+
+    private void Neon_ColourShift_Callback(Color col)
+    {
+        premDetails.targetColor = col;
+        premDetails.UpdateGlow_Soft();
     }
 }
