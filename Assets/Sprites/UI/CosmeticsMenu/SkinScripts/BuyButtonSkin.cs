@@ -38,6 +38,7 @@ public class BuyButtonSkin : MonoBehaviour
 
     [Header("Alt Confirmer: Ads")]
     public BuyAdsSkinCon adsBuycon;
+    public AdvertisementsManager Adman;
 
     [Header("Price on Button")]
     public TextMeshProUGUI priceOnButton;
@@ -146,6 +147,9 @@ public class BuyButtonSkin : MonoBehaviour
                 if (menuData.ads < cost)
                 {
                     //play an ad here
+
+                    Adman.PlayAd("Rewarded_Android");
+
                     menuData.ads++; //when ad finishes
                     menuData.SaveGameData();
                 }
