@@ -6,6 +6,8 @@ using System;
 
 public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
+    public static AdvertisementsManager instance;
+
     [Serializable]
     public struct AdUnit
     {
@@ -23,7 +25,8 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
     [SerializeField] AdUnit BannerAd;
 
     [Header("Settings")]
-    [SerializeField] bool TestMode = false;
+    [SerializeField] BannerPosition BannerAdPosition;
+    [SerializeField, Tooltip("WARNING: THIS IS FOR FRAUD PREVENTION, IT MEANS NO REVENUE IS EARNED FROM ADS")] bool TestMode = false;
 
     string GameID;
 
@@ -36,7 +39,19 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         BANNER
     }
 
-    void Start()
+    BannerLoadOptions bannerOptions = new BannerLoadOptions
+    {
+        loadCallback = delegate()
+        {
+            Advertisement.Banner.Show("Banner_Android");
+        },
+        errorCallback = delegate(string err)
+        {
+            Debug.Log($"Banner Error: {err}");
+        }
+    };
+
+    void Awake()
     {
 #if UNITY_IOS
         GameID = AppleGameID;
@@ -45,13 +60,28 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 #endif
         Advertisement.Initialize(GameID, TestMode, this);
 
+        Advertisement.Banner.SetPosition(BannerAdPosition);
+
         DontDestroyOnLoad(transform.gameObject);
+
+        if (!instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     //Initialization callbacks
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads has initialized");
+
+        //PlayAd(AdType.BANNER, delegate (bool status) {});
     }
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
@@ -76,7 +106,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                 Advertisement.Load(RewardedAd.IOS, this);
                 break;
             case AdType.BANNER:
-                Advertisement.Load(BannerAd.IOS, this);
+                Advertisement.Banner.Load(BannerAd.IOS, bannerOptions);
                 break;
         }
 #elif UNITY_ANDROID
@@ -89,13 +119,18 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                 Advertisement.Load(RewardedAd.Android, this);
                 break;
             case AdType.BANNER:
-                Advertisement.Load(BannerAd.Android, this);
+                Advertisement.Banner.Load(BannerAd.Android, bannerOptions);
                 break;
         }
 #endif
 
         ActionCallback = callback;
     }
+    public void HideBannerAd()
+    {
+        Advertisement.Banner.Hide();
+    }
+
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         Debug.Log("Ad Loaded: " + adUnitId);

@@ -49225,7 +49225,6 @@ MonoBehaviour:
   costText: {fileID: 1553102097}
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 0}
-  Adman: {fileID: 0}
   priceOnButton: {fileID: 0}
 --- !u!1 &1018327433
 GameObject:
@@ -57129,7 +57128,8 @@ MonoBehaviour:
   BannerAd:
     Android: Banner_Android
     IOS: Banner_iOS
-  TestMode: 1
+  BannerAdPosition: 4
+  TestMode: 0
 --- !u!1 &1187865703
 GameObject:
   m_ObjectHideFlags: 0
@@ -81446,7 +81446,6 @@ MonoBehaviour:
   costText: {fileID: 1553102097}
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 2001802938}
-  Adman: {fileID: 1187147699}
   priceOnButton: {fileID: 1102670383}
 --- !u!114 &1689666385
 MonoBehaviour:
@@ -97742,7 +97741,6 @@ MonoBehaviour:
   costText: {fileID: 1553102097}
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 0}
-  Adman: {fileID: 0}
   priceOnButton: {fileID: 0}
 --- !u!114 &2003604383
 MonoBehaviour:

@@ -38,7 +38,6 @@ public class BuyButtonSkin : MonoBehaviour
 
     [Header("Alt Confirmer: Ads")]
     public BuyAdsSkinCon adsBuycon;
-    public AdvertisementsManager Adman;
 
     [Header("Price on Button")]
     public TextMeshProUGUI priceOnButton;
@@ -147,7 +146,7 @@ public class BuyButtonSkin : MonoBehaviour
                 if (menuData.ads < cost)
                 {
                     //play an ad here
-                    Adman.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
+                    AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
                     {
                         if (success)
                         {
@@ -155,7 +154,8 @@ public class BuyButtonSkin : MonoBehaviour
                             menuData.SaveGameData();
                         } else
                         {
-                            //show ad failed screen
+                            //ad failed, either because the user exited early, has no wifi or one couldnt be fetched for some reason
+                            //Show a failiure dialogue
                         }
 
                         //probably best to update the price on the button regardless of the outcome to avoid bugs
