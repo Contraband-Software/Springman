@@ -190,6 +190,9 @@ public class CosmeticsData : MonoBehaviour
 
             FileStream stream = new FileStream(path, FileMode.Create);
 
+            //control changes to skins
+            skinSelectorPremium.CollectSpecialColourSettings();
+
             CosSaveData data = new CosSaveData(ColorToString(topColor), ColorToString(bottomColor), ColorToString(springColor),
                 topObject, bottomObject, springObject, (int)playerCosmeticType, unlockedColours, unlockedSkins, currentSkin, unlockedPremiums, currentSkinPremium, glowColours, hasSpecialColour, specialColourModes);
 
