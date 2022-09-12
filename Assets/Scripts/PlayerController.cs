@@ -225,6 +225,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(state == State.Dead)
         {
+            DeathScreenScript.instance.DeathScreenShow();
 
             effectCon.DeathAllEffect();//_EFFECT
 

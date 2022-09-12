@@ -5,6 +5,8 @@ using TMPro;
 
 public class DeathScreenScript : MonoBehaviour
 {
+    public static DeathScreenScript instance;
+
     public Canvas DeathScreenCanvas;
     public PlayerController pcontroller;
     public CanvasGroup filter;
@@ -14,8 +16,15 @@ public class DeathScreenScript : MonoBehaviour
     public Canvas PauseScreenCanvas;
     public GameObject GameCanvas;
 
+    bool DeathScreenShowing = false;
+
     void Start()
     {
+        if (!instance)
+        {
+            instance = this;
+        }
+
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         DeathScreenCanvas.enabled = false;
     }
@@ -23,12 +32,33 @@ public class DeathScreenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DeathScreenShow();
+        //DeathScreenShow();
     }
 
-    void DeathScreenShow()
+    public void DeathScreenHide()
     {
-        if (DeathScreenCanvas.enabled == false && pcontroller.state == PlayerController.State.Dead)
+        if (DeathScreenShowing == true)
+        {
+            gameCanvas.gameObject.SetActive(true);
+            DeathScreenCanvas.enabled = false;
+
+            DeathScreenCanvas.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnClose();
+            filter.gameObject.GetComponent<FilterFade>().FadeToClear();
+
+            gameObject.GetComponent<DeathText>().OnDeath();
+
+            LeanTween.alphaCanvas(gameCanvas, 1f, 0.2f);
+
+            sstHighscore.Close();
+            sstScore.Close();
+        }
+
+        DeathScreenShowing = false;
+    }
+
+    public void DeathScreenShow()
+    {
+        if (DeathScreenShowing == false && DeathScreenCanvas.enabled == false)
         {
             if (PauseScreenCanvas.enabled)
             {
@@ -54,5 +84,7 @@ public class DeathScreenScript : MonoBehaviour
             sstHighscore.Open();
             sstScore.Open();
         }
+
+        DeathScreenShowing = true;
     }
 }

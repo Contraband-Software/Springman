@@ -154,7 +154,7 @@ public class BuyButtonSkin : MonoBehaviour
                             menuData.SaveGameData();
                         } else
                         {
-                            //ad failed, either because the user exited early, has no wifi or one couldnt be fetched for some reason
+                            //ad failed, either because the user exited early (skipped), has no wifi or one couldnt be fetched for some reason
                             //Show a failiure dialogue
                         }
 
@@ -191,6 +191,18 @@ public class BuyButtonSkin : MonoBehaviour
                         adsBuycon.UnlockAdSkin();
                         adsBuycon.pressedOnce = false;
                     }
+
+                    /*
+                       menuData.ads = 0;
+
+                       canvasToOpen.enabled = true;
+                       cosMenuCon.buyCanvasOn = true;
+                       adsBuycon.pressedOnce = false;
+                    
+                       canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+
+                       adsBuycon.UnlockAdSkin();
+                     */
                 }
 
                 priceOnButton.text = (10 - menuData.ads).ToString();
