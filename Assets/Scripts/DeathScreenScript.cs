@@ -16,6 +16,8 @@ public class DeathScreenScript : MonoBehaviour
     public Canvas PauseScreenCanvas;
     public GameObject GameCanvas;
 
+    AdvertisementsManager adManager;
+
     bool DeathScreenShowing = false;
 
     void Start()
@@ -24,6 +26,8 @@ public class DeathScreenScript : MonoBehaviour
         {
             instance = this;
         }
+
+        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
 
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         DeathScreenCanvas.enabled = false;
@@ -73,6 +77,7 @@ public class DeathScreenScript : MonoBehaviour
             //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.INTERSTITIAL, delegate (bool status) {
             //    Debug.Log("Death Interstitial Ad: " + status.ToString());
             //});
+            adManager.PlayAd("DeathBanner");
 
             gameCanvas.gameObject.SetActive(false);
             DeathScreenCanvas.enabled = true;

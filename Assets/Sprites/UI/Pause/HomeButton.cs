@@ -12,7 +12,7 @@ public class HomeButton : MonoBehaviour
     {
         gameData.SaveGameData();
 
-        //AdvertisementsManager.instance.HideBannerAd();
+        //AdvertisementsManager.HideBannerAd();
 
         LeanTween.alphaCanvas(curtainCG, 1f, 0.2f).setIgnoreTimeScale(true);
         StartCoroutine(LoadMainMenu());

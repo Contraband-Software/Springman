@@ -14,6 +14,8 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         public string Android;
         public string IOS;
         public bool Banner;
+        private BannerLoadOptions bannerLoadOptions;
+        private BannerOptions bannerShowOptions;
 
         private string AdID;
 
@@ -21,6 +23,16 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         public bool IsLoaded()
         {
             return Loaded;
+        }
+        private void Load()
+        {
+            if (Banner)
+            {
+                Advertisement.Banner.Load(AdID, bannerLoadOptions);
+            } else
+            {
+                Advertisement.Load(AdID, this);
+            }
         }
 
         public void Init()
@@ -30,8 +42,41 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 #elif UNITY_ANDROID
             AdID = Android;
 #endif
+
+            if (Banner)
+            {
+                bannerLoadOptions = new BannerLoadOptions
+                {
+                    loadCallback = () =>
+                    {
+                        Loaded = true;
+                    },
+                    errorCallback = (string err) =>
+                    {
+                        Debug.Log(err);
+                        Advertisement.Banner.Load(AdID);
+                    }
+                };
+
+                bannerShowOptions = new BannerOptions
+                {
+                    clickCallback = () =>
+                    {
+
+                    },
+                    hideCallback = () =>
+                    {
+                        AdvertisementsManager.HideBannerAd();
+                    },
+                    showCallback = () =>
+                    {
+
+                    }
+                };
+            }
+
             Loaded = false;
-            Advertisement.Load(AdID, this);
+            Load();
 
             LoadedCallback = () => {
                 Debug.Log(AdID + " has been loaded");
@@ -77,7 +122,14 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
         public void ShowAd()
         {
-            Advertisement.Show(AdID, this);
+            if (Banner)
+            {
+                Advertisement.Banner.Show(AdID, bannerShowOptions);
+            }
+            else
+            {
+                Advertisement.Show(AdID, this);
+            }
 
             Loaded = false;
         }
@@ -109,7 +161,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                 isPlaying = false;
 
                 // Load another ad:
-                Advertisement.Load(AdID, this);
+                Load();
             }
         }
 
@@ -120,7 +172,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
             {
                 Loaded = false;
                 Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
-                Advertisement.Load(AdID, this);
+                Load();
             }
         }
 
@@ -131,7 +183,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                 Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
                 // Use the error details to determine whether to try to load another ad.
                 CompleteCallback(false);
-                Advertisement.Load(AdID, this);
+                Load();
 
                 isPlaying = false;
             }
@@ -178,6 +230,10 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         GetAdUnitByName(name).ShowAd();
         //}
     }
+    public static void HideBannerAd()
+    {
+        Advertisement.Banner.Hide();
+    }
     public void RegisterLoadCallback(string name, Action callback)
     {
         //if (index > 0 && index < AdUnits.Count)
@@ -205,6 +261,9 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
     private void Awake()
     {
         InitializeManager();
+
+        Advertisement.Banner.SetPosition(BannerAdPosition);
+
         DontDestroyOnLoad(transform.gameObject);
     }
 
@@ -216,8 +275,6 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         GameID = GooglePlayGameID;
 #endif
         Advertisement.Initialize(GameID, TestMode, this);
-
-        Advertisement.Banner.SetPosition(BannerAdPosition);
     }
     private void InitializeAdUnits()
     {
