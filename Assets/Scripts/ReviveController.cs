@@ -7,6 +7,7 @@ public class ReviveController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Button button;
+    [SerializeField] PlayerController playerController;
     [Header("Settings")]
     [SerializeField] int MaxRevives = 1;
 
@@ -41,6 +42,11 @@ public class ReviveController : MonoBehaviour
                 //DeathScreenScript.instance.DeathScreenHide();
 
                 //player.revive();
+                playerController.Revive();
+                DeathScreenScript.instance.DeathScreenHide();
+            } else
+            {
+                Debug.Log("Unsuccessful revive");
             }
         });
     }

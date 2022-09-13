@@ -5,7 +5,6 @@ using System.Resources;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-
     [Header("Important References")]
     public EffectController effectCon;
 
@@ -175,12 +174,8 @@ public class PlayerController : MonoBehaviour {
 
     public void Revive()
     {
-        //hide death screen
-        DeathScreenScript.instance.DeathScreenHide();
-
         //reset player variables
         state = PlayerController.State.Alive;
-
     }
 
     void FixedUpdate()
