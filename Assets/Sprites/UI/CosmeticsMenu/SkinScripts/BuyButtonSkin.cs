@@ -170,6 +170,7 @@ public class BuyButtonSkin : MonoBehaviour
                 if (menuData.ads < cost)
                 {
                     adManager.PlayAd("AdSkins");
+                    btn.interactable = false;
                     //play an ad here
                     //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
                     //{

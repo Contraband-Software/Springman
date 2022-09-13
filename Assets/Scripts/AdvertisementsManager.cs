@@ -94,7 +94,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
         public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
         {
-            if (adUnitId.Equals(AdID))
+            if (adUnitId.Equals(AdID) && isPlaying)
             {
                 if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
                 {

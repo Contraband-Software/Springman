@@ -49051,6 +49051,7 @@ MonoBehaviour:
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 0}
   priceOnButton: {fileID: 0}
+  btn: {fileID: 0}
 --- !u!1 &1018327433
 GameObject:
   m_ObjectHideFlags: 0
@@ -57232,6 +57233,18 @@ MonoBehaviour:
   defaultStyle: 0
   key: color_buy_button
   Optional2ndKey: 
+--- !u!114 &1199393592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5482114567344926944, guid: 9fb657646fa357f4b83fd43d2592d1f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5482114566733231025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1202041979
 GameObject:
   m_ObjectHideFlags: 0
@@ -96848,6 +96861,7 @@ MonoBehaviour:
   purchaseTypeImage: {fileID: 1954749223}
   adsBuycon: {fileID: 0}
   priceOnButton: {fileID: 0}
+  btn: {fileID: 0}
 --- !u!114 &2003604383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103169,6 +103183,11 @@ PrefabInstance:
       propertyPath: purchaseTypeImage
       value: 
       objectReference: {fileID: 1954749223}
+    - target: {fileID: 5482114567344926945, guid: 9fb657646fa357f4b83fd43d2592d1f1,
+        type: 3}
+      propertyPath: btn
+      value: 
+      objectReference: {fileID: 1199393592}
     - target: {fileID: 5482114567344926970, guid: 9fb657646fa357f4b83fd43d2592d1f1,
         type: 3}
       propertyPath: m_Name
