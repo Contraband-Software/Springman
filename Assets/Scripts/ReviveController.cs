@@ -33,21 +33,21 @@ public class ReviveController : MonoBehaviour
 
     public void AdRevive()
     {
-        AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, (bool success) =>
-        {
-            if (success)
-            {
-                ReviveIncrement();
-                Debug.Log("Successful revive");
-                //DeathScreenScript.instance.DeathScreenHide();
+        //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, (bool success) =>
+        //{
+        //    if (success)
+        //    {
+        //        ReviveIncrement();
+        //        Debug.Log("Successful revive");
+        //        //DeathScreenScript.instance.DeathScreenHide();
 
-                //player.revive();
-                playerController.Revive();
-                DeathScreenScript.instance.DeathScreenHide();
-            } else
-            {
-                Debug.Log("Unsuccessful revive");
-            }
-        });
+        //        //player.revive();
+        //        playerController.Revive();
+        //        DeathScreenScript.instance.DeathScreenHide();
+        //    } else
+        //    {
+        //        Debug.Log("Unsuccessful revive");
+        //    }
+        //});
     }
 }

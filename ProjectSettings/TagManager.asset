@@ -9,6 +9,7 @@ TagManager:
   - FlyingEnemy
   - Background
   - Screw
+  - AdvertisementsManager
   layers:
   - Default
   - TransparentFX

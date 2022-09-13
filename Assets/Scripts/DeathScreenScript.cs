@@ -66,9 +66,9 @@ public class DeathScreenScript : MonoBehaviour
             }
 
             //banner ad at the bottom of the death screen
-            AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.BANNER, delegate (bool status) {
-                Debug.Log("Death banner Ad: " + status.ToString());
-            });
+            //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.BANNER, delegate (bool status) {
+            //    Debug.Log("Death banner Ad: " + status.ToString());
+            //});
             //evil video death ad
             //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.INTERSTITIAL, delegate (bool status) {
             //    Debug.Log("Death Interstitial Ad: " + status.ToString());

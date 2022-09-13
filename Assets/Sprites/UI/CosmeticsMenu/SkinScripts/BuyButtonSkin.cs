@@ -42,17 +42,47 @@ public class BuyButtonSkin : MonoBehaviour
     [Header("Price on Button")]
     public TextMeshProUGUI priceOnButton;
 
-
+    private AdvertisementsManager adManager;
     public void Start()
     {
         canvasToOpen.enabled = false;
         brokeBoyCanvas.enabled = false;
         allBoughtCanvas.enabled = false;
         cosMenuCon = skinSelector.cosMenuCon;
-        
+
         if (purchaseType == PurchaseType.Ads)
         {
             priceOnButton.text = (10 - menuData.ads).ToString();
+
+
+            Button btn = GetComponent<Button>();
+            adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+            adManager.RegisterCompletionCallback(1, (bool status) => {
+                if (status)
+                {
+                    this.menuData.ads++;
+                    this.menuData.SaveGameData();
+                }
+                else
+                {
+                    //ad failed, either because the user exited early (skipped), has no wifi or one couldnt be fetched for some reason
+                    //Show a failiure dialogue
+                }
+
+                Debug.LogWarning("Complete");
+
+                //probably best to update the price on the button regardless of the outcome to avoid bugs
+                priceOnButton.text = (10 - menuData.ads).ToString();
+            });
+            adManager.RegisterLoadCallback(1, () =>
+            {
+                btn.interactable = true;
+            });
+            if (!adManager.GetLoadedStatus(1))
+            {
+                Debug.Log(adManager.GetLoadedStatus(1));
+                btn.interactable = false;
+            }
         }
     }
 
@@ -145,22 +175,23 @@ public class BuyButtonSkin : MonoBehaviour
             {
                 if (menuData.ads < cost)
                 {
+                    adManager.PlayAd(1);
                     //play an ad here
-                    AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
-                    {
-                        if (success)
-                        {
-                            menuData.ads++;
-                            menuData.SaveGameData();
-                        } else
-                        {
-                            //ad failed, either because the user exited early (skipped), has no wifi or one couldnt be fetched for some reason
-                            //Show a failiure dialogue
-                        }
+                    //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
+                    //{
+                    //    if (success)
+                    //    {
+                    //        menuData.ads++;
+                    //        menuData.SaveGameData();
+                    //    } else
+                    //    {
+                    //        //ad failed, either because the user exited early (skipped), has no wifi or one couldnt be fetched for some reason
+                    //        //Show a failiure dialogue
+                    //    }
 
-                        //probably best to update the price on the button regardless of the outcome to avoid bugs
-                        priceOnButton.text = (10 - menuData.ads).ToString();
-                    });
+                    //    //probably best to update the price on the button regardless of the outcome to avoid bugs
+                    //    priceOnButton.text = (10 - menuData.ads).ToString();
+                    //});
                 }
                 else
                 {

@@ -56580,7 +56580,7 @@ GameObject:
   - component: {fileID: 1187147699}
   m_Layer: 0
   m_Name: MonetisationController
-  m_TagString: Untagged
+  m_TagString: AdvertisementsManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56613,17 +56613,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppleGameID: 4923364
   GooglePlayGameID: 4923365
-  InterstitialAd:
-    Android: Interstitial_Android
+  AdUnits:
+  - Android: Interstitial_Android
     IOS: Interstitial_iOS
-  RewardedAd:
-    Android: Rewarded_Android
+    Banner: 0
+  - Android: Rewarded_Android
     IOS: Rewarded_iOS
-  BannerAd:
-    Android: Banner_Android
+    Banner: 0
+  - Android: Banner_Android
     IOS: Banner_iOS
+    Banner: 1
   BannerAdPosition: 4
-  TestMode: 0
+  TestMode: 1
 --- !u!1 &1187865703
 GameObject:
   m_ObjectHideFlags: 0

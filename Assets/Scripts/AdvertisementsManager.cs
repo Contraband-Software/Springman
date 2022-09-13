@@ -4,59 +4,187 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using System;
 
-public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener//, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    public static AdvertisementsManager instance;
-
     [Serializable]
-    public struct AdUnit
+    public class AdUnit : IUnityAdsLoadListener, IUnityAdsShowListener
     {
         public string Android;
         public string IOS;
+        public bool Banner;
+
+        private string AdID;
+
+        private bool Loaded;
+        public bool IsLoaded()
+        {
+            return Loaded;
+        }
+
+        public void Init()
+        {
+#if UNITY_IOS
+            AdID = IOS;
+#elif UNITY_ANDROID
+            AdID = Android;
+#endif
+            Loaded = false;
+            Advertisement.Load(AdID, this);
+
+            LoadedCallback = () => {
+                Debug.Log(AdID + " has been loaded");
+            };
+
+            CompleteCallback = (bool status) => {
+                if (status)
+                {
+                    Debug.Log(AdID + " has been successful");
+                } else
+                {
+                    Debug.Log(AdID + " has been unsuccessful");
+                }
+            };
+        }
+
+        private bool isPlaying;
+        public void SetPlaying(bool status)
+        {
+            isPlaying = status;
+        }
+        public bool GetPlaying()
+        {
+            return isPlaying;
+        }
+
+        private Action<bool> CompleteCallback;
+        public void SetCompleteCallback(Action<bool> action)
+        {
+            CompleteCallback = action;
+        }
+        public Action<bool> GetCompleteCallback()
+        {
+            return CompleteCallback;
+        }
+        private Action LoadedCallback;
+        public void SetLoadedCallback(Action action)
+        {
+            LoadedCallback = action;
+        }
+        public Action GetAction()
+        {
+            return LoadedCallback;
+        }
+
+        public void ShowAd()
+        {
+            Advertisement.Show(AdID, this);
+
+            Loaded = false;
+        }
+
+        public void OnUnityAdsAdLoaded(string adUnitId)
+        {
+            Debug.Log("Ad Loaded: " + adUnitId);
+
+            if (adUnitId.Equals(AdID))
+            {
+                LoadedCallback();
+                Debug.Log(adUnitId + " IS LOADED");
+                Loaded = true;
+            }
+        }
+
+        public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
+        {
+            if (adUnitId.Equals(AdID))
+            {
+                if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
+                {
+                    Debug.Log("Unity Ads Rewarded Ad Completed");
+                    // Grant a reward.
+                    CompleteCallback(true);
+                } else
+                {
+                    CompleteCallback(false);
+                }
+
+                // Load another ad:
+                Advertisement.Load(AdID, this);
+            }
+        }
+
+        // Implement Load and Show Listener error callbacks:
+        public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
+        {
+            Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
+            Advertisement.Load(AdID, this);
+        }
+
+        public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
+        {
+            Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+            // Use the error details to determine whether to try to load another ad.
+            CompleteCallback(false);
+            Advertisement.Load(AdID, this);
+        }
+
+        public void OnUnityAdsShowStart(string adUnitId) { }
+        public void OnUnityAdsShowClick(string adUnitId) { }
     }
 
     [Header("Unity Ads game IDs")]
     [SerializeField] string AppleGameID;
     [SerializeField] string GooglePlayGameID;
 
-    [Header("Unity Ad Units")]
-    [SerializeField] AdUnit InterstitialAd;
-    [SerializeField] AdUnit RewardedAd;
-    [SerializeField] AdUnit BannerAd;
+    [Header("Ad Units")]
+    [SerializeField] List<AdUnit> AdUnits;
 
     [Header("Settings")]
     [SerializeField] BannerPosition BannerAdPosition;
     [SerializeField, Tooltip("WARNING: THIS IS FOR FRAUD PREVENTION, IT MEANS NO REVENUE IS EARNED FROM ADS")] bool TestMode = false;
 
-    string GameID;
 
-    List<Action<bool>> ActionCallback;
-    void DoCallback(bool status)
-    {
-        ActionCallback[ActionCallback.Count - 1](status);
-        ActionCallback.RemoveAt(ActionCallback.Count - 1);
-    }
+    private string GameID;
 
-    public enum AdType
+    public void PlayAd(int index)
     {
-        INTERSTITIAL,
-        REWARDED,
-        BANNER
-    }
-
-    BannerLoadOptions bannerOptions = new BannerLoadOptions
-    {
-        loadCallback = delegate()
+        if (index > 0 && index < AdUnits.Count)
         {
-            Advertisement.Banner.Show("Banner_Android");
-        },
-        errorCallback = delegate(string err)
-        {
-            Debug.Log($"Banner Error: {err}");
+            AdUnits[index].ShowAd();
         }
-    };
+    }
+    public void RegisterLoadCallback(int index, Action callback)
+    {
+        if (index > 0 && index < AdUnits.Count)
+        {
+            AdUnits[index].SetLoadedCallback(callback);
+        }
+    }
+    public void RegisterCompletionCallback(int index, Action<bool> completionCallback)
+    {
+        if (index > 0 && index < AdUnits.Count)
+        {
+            AdUnits[index].SetCompleteCallback(completionCallback);
+        }
+    }
+    public bool GetLoadedStatus(int index)
+    {
+        if (index > 0 && index < AdUnits.Count)
+        {
+            return AdUnits[index].IsLoaded();
+        }
 
-    void Awake()
+        return false;
+    }
+
+    private void Awake()
+    {
+        InitializeManager();
+        InitializeAdUnits();
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
+    public void InitializeManager()
     {
 #if UNITY_IOS
         GameID = AppleGameID;
@@ -66,130 +194,21 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         Advertisement.Initialize(GameID, TestMode, this);
 
         Advertisement.Banner.SetPosition(BannerAdPosition);
-
-        ActionCallback = new List<Action<bool>>();
-
-        DontDestroyOnLoad(transform.gameObject);
-
-        if (!instance)
+    }
+    private void InitializeAdUnits()
+    {
+        for (int i = 0; i < AdUnits.Count; i++)
         {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            AdUnits[i].Init();
         }
     }
 
-    //Initialization callbacks
     public void OnInitializationComplete()
     {
-        Debug.Log("Unity Ads has initialized");
-
-        //PlayAd(AdType.BANNER, delegate (bool status) {});
+        Debug.Log("Unity Ads initialization complete.");
     }
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
     }
-
-    public void PlayAd(AdType type, Action<bool> callback)
-    {
-        if (!Advertisement.isInitialized)
-        {
-            callback(false);
-            return;
-        }
-
-#if UNITY_IOS
-        switch (type)
-        {
-            case AdType.INTERSTITIAL:
-                Advertisement.Load(InterstitialAd.IOS, this);
-                break;
-            case AdType.REWARDED:
-                Advertisement.Load(RewardedAd.IOS, this);
-                break;
-            case AdType.BANNER:
-                Advertisement.Banner.Load(BannerAd.IOS, bannerOptions);
-                break;
-        }
-#elif UNITY_ANDROID
-        switch (type)
-        {
-            case AdType.INTERSTITIAL:
-                Advertisement.Load(InterstitialAd.Android, this);
-                break;
-            case AdType.REWARDED:
-                Advertisement.Load(RewardedAd.Android, this);
-                break;
-            case AdType.BANNER:
-                Advertisement.Banner.Load(BannerAd.Android, bannerOptions);
-                break;
-        }
-#endif
-
-        ActionCallback.Add(callback);
-    }
-    public void HideBannerAd()
-    {
-        Advertisement.Banner.Hide();
-    }
-
-    public void OnUnityAdsAdLoaded(string adUnitId)
-    {
-        //Debug.Log("Ad Loaded: " + adUnitId);
-        Advertisement.Show(adUnitId, this);
-    }
-
-    public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
-    {
-        if (adUnitId ==
-#if UNITY_IOS
-            RewardedAd.IOS
-#elif UNITY_ANDROID
-            RewardedAd.Android
-#endif
-        )
-        {
-            //rewarded ad
-            if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
-            {
-                //Debug.Log("Rewarded Ad Completed");
-                DoCallback(true);
-            }
-            else
-            {
-                DoCallback(false);
-            }
-        } else
-        {
-            //non rewarded ad
-            if (showCompletionState.Equals(UnityAdsShowCompletionState.UNKNOWN))
-            {
-                DoCallback(false);
-            } else
-            {
-                DoCallback(true);
-            }
-        }
-    }
-    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
-    {
-        Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        DoCallback(false);
-    }
-
-    // Implement Load and Show Listener error callbacks:
-    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
-    {
-        Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        DoCallback(false);
-    }
-
-    public void OnUnityAdsShowStart(string adUnitId) { }
-    public void OnUnityAdsShowClick(string adUnitId) { }
-
 }
