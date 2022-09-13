@@ -190,6 +190,7 @@ public class CosmeticsData : MonoBehaviour
 
             FileStream stream = new FileStream(path, FileMode.Create);
 
+            print("SAVING COSMETICS DATA");
             //control changes to skins
             skinSelectorPremium.CollectSpecialColourSettings();
 

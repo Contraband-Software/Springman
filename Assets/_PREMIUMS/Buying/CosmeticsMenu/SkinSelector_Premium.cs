@@ -62,6 +62,8 @@ public class SkinSelector_Premium : MonoBehaviour
 
     public void CollectGlowColours()
     {
+        print("COLLECTING GLOW COLOURS");
+
         List<string> glowColoursGathered = new List<string>();
         List<bool> hasSpecialColourGathered = new List<bool>();
         List<bool> sCMgathered = new List<bool>();
@@ -69,6 +71,7 @@ public class SkinSelector_Premium : MonoBehaviour
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
             glowColoursGathered.Add(cosmeticsData.ColorToString(premDemo.targetColor));
+            print(premDemo.name + ": "+ cosmeticsData.ColorToString(premDemo.targetColor));
 
             hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
             sCMgathered.Add(premDemo.colourShift);
@@ -85,6 +88,17 @@ public class SkinSelector_Premium : MonoBehaviour
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
             hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
+        }
+    }
+
+    public void SetAllGlowColours()
+    {
+        for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
+        {
+            PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
+            premDemo.targetColor = cosmeticsData.StringToColor(cosmeticsData.glowColours[child]);
+            premDemo.hasSpecialColourMode = cosmeticsData.hasSpecialColour[child];
+            premDemo.colourShift = cosmeticsData.specialColourModes[child];
         }
     }
 
@@ -235,7 +249,7 @@ public class SkinSelector_Premium : MonoBehaviour
                         selectedSkin = sb;
                         selectedObject = sb.rect.anchoredPosition;
 
-                        Debug.Log("SELECTED: " + selectedSkin.skin_name);
+                        //Debug.Log("SELECTED: " + selectedSkin.skin_name);
                     }
                 }
             }
