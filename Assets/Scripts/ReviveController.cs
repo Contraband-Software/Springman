@@ -11,7 +11,34 @@ public class ReviveController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] int MaxRevives = 1;
 
+    private AdvertisementsManager adManager;
+
     int ReviveCount = 0;
+
+    private void Start()
+    {
+        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+        adManager.RegisterCompletionCallback("ReviveAd", (bool status) => {
+            if (status)
+            {
+                ReviveIncrement();
+                playerController.Revive();
+                DeathScreenScript.instance.DeathScreenHide();
+            }
+            else
+            {
+                Debug.LogWarning("revive fail");
+            }
+        });
+        adManager.RegisterLoadCallback("ReviveAd", () =>
+        {
+            if (ReviveCount < MaxRevives)
+            {
+                button.interactable = true;
+            }
+        });
+        button.interactable = adManager.GetLoadedStatus("ReviveAd");
+    }
 
     public int GetReviveCount()
     {
@@ -49,5 +76,7 @@ public class ReviveController : MonoBehaviour
         //        Debug.Log("Unsuccessful revive");
         //    }
         //});
+
+        adManager.PlayAd("ReviveAd");
     }
 }

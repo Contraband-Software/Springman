@@ -56614,15 +56614,22 @@ MonoBehaviour:
   AppleGameID: 4923364
   GooglePlayGameID: 4923365
   AdUnits:
-  - Android: Interstitial_Android
+  - Name: DeathInterstitial
+    Android: Interstitial_Android
     IOS: Interstitial_iOS
     Banner: 0
-  - Android: Rewarded_Android
+  - Name: AdSkins
+    Android: Rewarded_Android
     IOS: Rewarded_iOS
     Banner: 0
-  - Android: Banner_Android
+  - Name: DeathBanner
+    Android: Banner_Android
     IOS: Banner_iOS
     Banner: 1
+  - Name: ReviveAd
+    Android: Revive_Android
+    IOS: Revive_iOS
+    Banner: 0
   BannerAdPosition: 4
   TestMode: 1
 --- !u!1 &1187865703

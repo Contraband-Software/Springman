@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public class BuyButtonSkin : MonoBehaviour
 {
@@ -43,25 +44,24 @@ public class BuyButtonSkin : MonoBehaviour
     public TextMeshProUGUI priceOnButton;
 
     private AdvertisementsManager adManager;
+    public Button btn;
+
     public void Start()
     {
         canvasToOpen.enabled = false;
         brokeBoyCanvas.enabled = false;
         allBoughtCanvas.enabled = false;
         cosMenuCon = skinSelector.cosMenuCon;
+        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
 
         if (purchaseType == PurchaseType.Ads)
         {
             priceOnButton.text = (10 - menuData.ads).ToString();
-
-
-            Button btn = GetComponent<Button>();
-            adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
-            adManager.RegisterCompletionCallback(1, (bool status) => {
+            adManager.RegisterCompletionCallback("AdSkins", (bool status) => {
                 if (status)
                 {
-                    this.menuData.ads++;
-                    this.menuData.SaveGameData();
+                    menuData.ads++;
+                    menuData.SaveGameData();
                 }
                 else
                 {
@@ -69,26 +69,20 @@ public class BuyButtonSkin : MonoBehaviour
                     //Show a failiure dialogue
                 }
 
-                Debug.LogWarning("Complete");
-
                 //probably best to update the price on the button regardless of the outcome to avoid bugs
                 priceOnButton.text = (10 - menuData.ads).ToString();
             });
-            adManager.RegisterLoadCallback(1, () =>
+            adManager.RegisterLoadCallback("AdSkins", () =>
             {
                 btn.interactable = true;
+                Debug.Log("Loaded ad skin ad");
             });
-            if (!adManager.GetLoadedStatus(1))
-            {
-                Debug.Log(adManager.GetLoadedStatus(1));
-                btn.interactable = false;
-            }
+            btn.interactable = adManager.GetLoadedStatus("AdSkins");
         }
     }
 
     public void OnClick()
     {
-
         if (purchaseType == PurchaseType.Silver && menuData.silver >= cost)
         {
             confirmBuySkin.cost = silverCost;
@@ -175,7 +169,7 @@ public class BuyButtonSkin : MonoBehaviour
             {
                 if (menuData.ads < cost)
                 {
-                    adManager.PlayAd(1);
+                    adManager.PlayAd("AdSkins");
                     //play an ad here
                     //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
                     //{

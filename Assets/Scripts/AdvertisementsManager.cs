@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using System;
 
-public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener//, IUnityAdsLoadListener, IUnityAdsShowListener
+public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener
 {
     [Serializable]
     public class AdUnit : IUnityAdsLoadListener, IUnityAdsShowListener
     {
+        public string Name;
+
         public string Android;
         public string IOS;
         public bool Banner;
@@ -44,13 +46,11 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                     Debug.Log(AdID + " has been unsuccessful");
                 }
             };
+
+            isPlaying = false;
         }
 
         private bool isPlaying;
-        public void SetPlaying(bool status)
-        {
-            isPlaying = status;
-        }
         public bool GetPlaying()
         {
             return isPlaying;
@@ -84,8 +84,6 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
         public void OnUnityAdsAdLoaded(string adUnitId)
         {
-            Debug.Log("Ad Loaded: " + adUnitId);
-
             if (adUnitId.Equals(AdID))
             {
                 LoadedCallback();
@@ -108,6 +106,8 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                     CompleteCallback(false);
                 }
 
+                isPlaying = false;
+
                 // Load another ad:
                 Advertisement.Load(AdID, this);
             }
@@ -116,19 +116,31 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         // Implement Load and Show Listener error callbacks:
         public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
         {
-            Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
-            Advertisement.Load(AdID, this);
+            if (adUnitId.Equals(AdID))
+            {
+                Loaded = false;
+                Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
+                Advertisement.Load(AdID, this);
+            }
         }
 
         public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
         {
-            Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-            // Use the error details to determine whether to try to load another ad.
-            CompleteCallback(false);
-            Advertisement.Load(AdID, this);
+            if (adUnitId.Equals(AdID))
+            {
+                Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+                // Use the error details to determine whether to try to load another ad.
+                CompleteCallback(false);
+                Advertisement.Load(AdID, this);
+
+                isPlaying = false;
+            }
         }
 
-        public void OnUnityAdsShowStart(string adUnitId) { }
+        public void OnUnityAdsShowStart(string adUnitId)
+        {
+            isPlaying = true;
+        }
         public void OnUnityAdsShowClick(string adUnitId) { }
     }
 
@@ -146,41 +158,53 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
     private string GameID;
 
-    public void PlayAd(int index)
+    private AdUnit GetAdUnitByName(string name)
     {
-        if (index > 0 && index < AdUnits.Count)
+        for (int i = 0; i < AdUnits.Count; i++)
         {
-            AdUnits[index].ShowAd();
-        }
-    }
-    public void RegisterLoadCallback(int index, Action callback)
-    {
-        if (index > 0 && index < AdUnits.Count)
-        {
-            AdUnits[index].SetLoadedCallback(callback);
-        }
-    }
-    public void RegisterCompletionCallback(int index, Action<bool> completionCallback)
-    {
-        if (index > 0 && index < AdUnits.Count)
-        {
-            AdUnits[index].SetCompleteCallback(completionCallback);
-        }
-    }
-    public bool GetLoadedStatus(int index)
-    {
-        if (index > 0 && index < AdUnits.Count)
-        {
-            return AdUnits[index].IsLoaded();
+            if (AdUnits[i].Name == name)
+            {
+                return AdUnits[i];
+            }
         }
 
-        return false;
+        return null;
+    }
+
+    public void PlayAd(string name)
+    {
+        //if (index > 0 && index < AdUnits.Count)
+        //{
+        GetAdUnitByName(name).ShowAd();
+        //}
+    }
+    public void RegisterLoadCallback(string name, Action callback)
+    {
+        //if (index > 0 && index < AdUnits.Count)
+        //{
+            GetAdUnitByName(name).SetLoadedCallback(callback);
+        //}
+    }
+    public void RegisterCompletionCallback(string name, Action<bool> completionCallback)
+    {
+        //if (index > 0 && index < AdUnits.Count)
+        //{
+        GetAdUnitByName(name).SetCompleteCallback(completionCallback);
+        //}
+    }
+    public bool GetLoadedStatus(string name)
+    {
+        //if (index > 0 && index < AdUnits.Count)
+        //{
+            return GetAdUnitByName(name).IsLoaded();
+        //}
+
+        //return false;
     }
 
     private void Awake()
     {
         InitializeManager();
-        InitializeAdUnits();
         DontDestroyOnLoad(transform.gameObject);
     }
 
@@ -206,6 +230,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
+        InitializeAdUnits();
     }
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
