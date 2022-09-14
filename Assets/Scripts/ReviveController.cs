@@ -78,5 +78,6 @@ public class ReviveController : MonoBehaviour
         //});
 
         adManager.PlayAd("ReviveAd");
+        button.interactable = false;
     }
 }

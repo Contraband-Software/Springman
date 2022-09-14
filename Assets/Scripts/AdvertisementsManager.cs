@@ -50,6 +50,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                     loadCallback = () =>
                     {
                         Loaded = true;
+                        LoadedCallback();
                     },
                     errorCallback = (string err) =>
                     {

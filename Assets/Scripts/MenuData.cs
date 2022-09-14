@@ -34,9 +34,13 @@ public class MenuData : MonoBehaviour
     [Header("Error Stuff")]
     public bool errorOpened = false;
 
+    string path;
+
     void Awake()
     {
         Application.targetFrameRate = 60;
+
+        path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
 
         LeanTween.cancelAll();
 
@@ -49,8 +53,6 @@ public class MenuData : MonoBehaviour
 
     private void Start()
     {
-
-
         errorOpened = false;
 
         curtainCG.alpha = 1f;
@@ -62,7 +64,6 @@ public class MenuData : MonoBehaviour
         float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
         if (availableSpace > 10)
         {
-            string path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
             if (!File.Exists(path))
             {
                 musicOn = true;
@@ -98,7 +99,6 @@ public class MenuData : MonoBehaviour
 
     public void LoadGameData()
     {
-        string path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
         if (File.Exists(path))
         {
             File.SetAttributes(path, FileAttributes.Normal);
@@ -130,7 +130,6 @@ public class MenuData : MonoBehaviour
         if (availableSpace > 10)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            string path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
             File.SetAttributes(path, FileAttributes.Normal);
 
             FileStream stream = new FileStream(path, FileMode.Create);

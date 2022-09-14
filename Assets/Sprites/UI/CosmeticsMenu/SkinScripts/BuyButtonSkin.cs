@@ -46,7 +46,7 @@ public class BuyButtonSkin : MonoBehaviour
     private AdvertisementsManager adManager;
     public Button btn;
 
-    public void Start()
+    private void Start()
     {
         canvasToOpen.enabled = false;
         brokeBoyCanvas.enabled = false;
@@ -60,8 +60,14 @@ public class BuyButtonSkin : MonoBehaviour
             adManager.RegisterCompletionCallback("AdSkins", (bool status) => {
                 if (status)
                 {
-                    menuData.ads++;
-                    menuData.SaveGameData();
+                    //try
+                    //{
+                        menuData.ads++;
+                        menuData.SaveGameData();
+                    //} catch
+                    //{
+                        Debug.LogWarning("AD SKIN TRANSACTION FAILED");
+                    //}
                 }
                 else
                 {
@@ -74,9 +80,17 @@ public class BuyButtonSkin : MonoBehaviour
             });
             adManager.RegisterLoadCallback("AdSkins", () =>
             {
-                btn.interactable = true;
+                //btn.interactable = true;
                 Debug.Log("Loaded ad skin ad");
             });
+            btn.interactable = adManager.GetLoadedStatus("AdSkins");
+        }
+    }
+
+    private void Update()
+    {
+        if (purchaseType == PurchaseType.Ads)
+        {
             btn.interactable = adManager.GetLoadedStatus("AdSkins");
         }
     }
@@ -170,7 +184,7 @@ public class BuyButtonSkin : MonoBehaviour
                 if (menuData.ads < cost)
                 {
                     adManager.PlayAd("AdSkins");
-                    btn.interactable = false;
+                    //btn.interactable = false;
                     //play an ad here
                     //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
                     //{
