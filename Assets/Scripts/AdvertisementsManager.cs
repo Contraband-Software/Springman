@@ -66,7 +66,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                     },
                     hideCallback = () =>
                     {
-                        AdvertisementsManager.HideBannerAd();
+                        //HideBannerAd();
                     },
                     showCallback = () =>
                     {
@@ -230,7 +230,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         GetAdUnitByName(name).ShowAd();
         //}
     }
-    public static void HideBannerAd()
+    public void HideBannerAd()
     {
         Advertisement.Banner.Hide();
     }

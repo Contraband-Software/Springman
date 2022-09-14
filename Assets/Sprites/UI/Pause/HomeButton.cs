@@ -8,11 +8,19 @@ public class HomeButton : MonoBehaviour
     public GameData gameData;
     public CanvasGroup curtainCG;
 
+    private AdvertisementsManager adManager;
+
+    private void Start()
+    {
+        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+    }
+
     public void OnClick()
     {
         gameData.SaveGameData();
 
         //AdvertisementsManager.HideBannerAd();
+        adManager.HideBannerAd();
 
         LeanTween.alphaCanvas(curtainCG, 1f, 0.2f).setIgnoreTimeScale(true);
         StartCoroutine(LoadMainMenu());
