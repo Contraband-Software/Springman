@@ -319,17 +319,30 @@ public class Bounce_Effects : MonoBehaviour
     }
     private void Neon_ColourShift_SelectTarget()
     {
-        currentColour = premDetails.targetColor;
-        int currentIndex = premDetails.colorChoices.IndexOf(currentColour);
+        if(playerCon.state != PlayerController.State.Dead)
+        {
+            currentColour = premDetails.targetColor;
+            string currentColString = premDetails.cosData.ColorToString(currentColour);
+            List<string> colourChoicesString = new List<string>();
+            foreach (Color col in premDetails.colorChoices)
+            {
+                colourChoicesString.Add(premDetails.cosData.ColorToString(col));
+            }
 
-        targetColour = premDetails.colorChoices[((currentIndex % (premDetails.colorChoices.Count - 1)) + 1)];
-        
-        LeanTween.value(gameObject, Neon_ColourShift_Callback, currentColour, targetColour, shiftSpeed).setOnComplete(Neon_ColourShift_SelectTarget).setEase(LeanTweenType.linear);
+            int currentIndex = colourChoicesString.IndexOf(currentColString);
+
+            targetColour = premDetails.colorChoices[((currentIndex % (premDetails.colorChoices.Count - 1)) + 1)];
+
+            LeanTween.value(gameObject, Neon_ColourShift_Callback, currentColour, targetColour, shiftSpeed).setOnComplete(Neon_ColourShift_SelectTarget).setEase(LeanTweenType.linear);
+        }
     }
 
     private void Neon_ColourShift_Callback(Color col)
     {
-        premDetails.targetColor = col;
-        premDetails.UpdateGlow_Soft();
+        if (playerCon.state != PlayerController.State.Dead)
+        {
+            premDetails.targetColor = col;
+            premDetails.UpdateGlow_Soft();
+        }
     }
 }

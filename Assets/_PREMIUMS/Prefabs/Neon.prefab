@@ -4831,6 +4831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3502900740360226301}
   - component: {fileID: 3502900740360226300}
+  - component: {fileID: 5083357993428897385}
   m_Layer: 0
   m_Name: Bottom_Glow
   m_TagString: Untagged
@@ -4902,6 +4903,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5083357993428897385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502900740360226178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1e8dc27f28e1144905d412d8153a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3502900740360226300}
+  alphaValue: 1
+  blackOutMode: 1
+  opaqueValue: 1
+  callManually: 1
+  targetOpaque: 0.2
+  lerpTime: 0.5
 --- !u!1 &3502900740416967511
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,6 +4937,7 @@ GameObject:
   - component: {fileID: 994340980}
   - component: {fileID: 6337266888859952027}
   - component: {fileID: 1443816921790566207}
+  - component: {fileID: 1376167397}
   m_Layer: 0
   m_Name: Neon
   m_TagString: Untagged
@@ -4982,7 +5003,7 @@ SpriteRenderer:
   m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 197895749b34e8443ab6728e69bf98a0, type: 3}
-  m_Color: {r: 1, g: 0.504717, b: 0.96441495, a: 1}
+  m_Color: {r: 1, g: 0.4292453, b: 0.9616299, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5096,7 +5117,7 @@ MonoBehaviour:
   effectCon: {fileID: 0}
   gameData: {fileID: 0}
   colourVariation: 0.6
-  bounceSoundName: Bounce_Blank
+  bounceSoundName: Bounce_Neon
   bounce_pSys: {fileID: 727278957}
   cloneParent: {fileID: 3502900741875488009}
   override_standard_bounce_effect: 1
@@ -5140,6 +5161,10 @@ MonoBehaviour:
   moltenCoreGlow_1: {fileID: 0}
   moltenCoreGlow_2: {fileID: 0}
   pSys_moltenCore_steam: {fileID: 0}
+  trAnimList:
+  - {fileID: 1376167397}
+  - {fileID: 5083357993428897385}
+  - {fileID: 5780236775277016226}
 --- !u!114 &1443816921790566207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5164,6 +5189,25 @@ MonoBehaviour:
   stomperAnimator: {fileID: 0}
   dc_anim: {fileID: 0}
   dc_cannonCon: {fileID: 0}
+--- !u!114 &1376167397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502900740416967511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1e8dc27f28e1144905d412d8153a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3502900740416967510}
+  alphaValue: 1
+  blackOutMode: 1
+  opaqueValue: 1
+  callManually: 1
+  targetOpaque: 0.2
+  lerpTime: 0.5
 --- !u!1 &3502900740898838988
 GameObject:
   m_ObjectHideFlags: 0
@@ -5174,6 +5218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3502900740898838991}
   - component: {fileID: 3502900740898838990}
+  - component: {fileID: 5780236775277016226}
   m_Layer: 0
   m_Name: Glasses_Glow
   m_TagString: Untagged
@@ -5245,6 +5290,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5780236775277016226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502900740898838988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1e8dc27f28e1144905d412d8153a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3502900740898838990}
+  alphaValue: 1
+  blackOutMode: 1
+  opaqueValue: 1
+  callManually: 1
+  targetOpaque: 0.2
+  lerpTime: 0.5
 --- !u!1 &3502900741655475861
 GameObject:
   m_ObjectHideFlags: 0

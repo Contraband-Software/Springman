@@ -10267,6 +10267,9 @@ MonoBehaviour:
   - name: Bounce_DualCannon
     clip: {fileID: 8300000, guid: 1e262fa52958a83479fb16f16e8359b0, type: 3}
     volume: 0.5
+  - name: Bounce_Neon
+    clip: {fileID: 8300000, guid: ee7925e1e213a4f4aa9f488d9e834e9b, type: 3}
+    volume: 0.5
   premiumSkinActive: 0
   premium_bounce_effects: {fileID: 0}
   premium_death_effects: {fileID: 0}

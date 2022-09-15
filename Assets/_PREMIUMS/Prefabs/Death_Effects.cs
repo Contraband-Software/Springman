@@ -53,6 +53,9 @@ public class Death_Effects : MonoBehaviour
     private Color MC_startColor_2;
     public ParticleSystem pSys_moltenCore_steam;
 
+    [Header("Neon Details")]
+    public List<TransparencyAnimator> trAnimList = new List<TransparencyAnimator>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +106,10 @@ public class Death_Effects : MonoBehaviour
 
             case "Molten Core":
                 MoltenCore();
+                break;
+
+            case "Neon":
+                Neon();
                 break;
 
             default:
@@ -251,6 +258,15 @@ public class Death_Effects : MonoBehaviour
         glow_2_Col.g *= v;
         glow_2_Col.b *= v;
         moltenCoreGlow_2.color = glow_2_Col;
+    }
+
+    private void Neon()
+    {
+        foreach(TransparencyAnimator trAnim in trAnimList)
+        {
+            trAnim.setInitialColour();
+            trAnim.fadeToTargetBlack();
+        }
     }
 
 }
