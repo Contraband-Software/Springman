@@ -33,12 +33,6 @@ public class DeathScreenScript : MonoBehaviour
         DeathScreenCanvas.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //DeathScreenShow();
-    }
-
     public void DeathScreenHide()
     {
         if (DeathScreenShowing == true)
@@ -69,14 +63,8 @@ public class DeathScreenScript : MonoBehaviour
                 PauseScreenCanvas.enabled = false;
             }
 
-            //banner ad at the bottom of the death screen
-            //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.BANNER, delegate (bool status) {
-            //    Debug.Log("Death banner Ad: " + status.ToString());
-            //});
             //evil video death ad
-            //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.INTERSTITIAL, delegate (bool status) {
-            //    Debug.Log("Death Interstitial Ad: " + status.ToString());
-            //});
+            //adManager.PlayAd("DeathInterstitial");
             adManager.PlayAd("DeathBanner");
 
             gameCanvas.gameObject.SetActive(false);

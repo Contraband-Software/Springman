@@ -52,7 +52,6 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                     loadCallback = () =>
                     {
                         Loaded = true;
-                        //LoadedCallback();
                         OnLoadComplete.Invoke();
                     },
                     errorCallback = (string err) =>
@@ -131,11 +130,9 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                 {
                     //Debug.LogWarning("Unity Ads Rewarded Ad Completed");
                     // Grant a reward.
-                    //CompleteCallback(true);
                     OnShowComplete.Invoke(true);
                 } else
                 {
-                    //CompleteCallback(false);
                     OnShowComplete.Invoke(false);
                 }
 
@@ -159,12 +156,10 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
         public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
         {
-            Debug.LogWarning("OnUnityAdsShowFailure: " + error.ToString() + "; for: " + adUnitId + ", " + message);
             if (adUnitId.Equals(AdID))
             {
                 Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
                 // Use the error details to determine whether to try to load another ad.
-                //CompleteCallback(false);
                 OnShowComplete.Invoke(false);
                 Load();
 
@@ -208,30 +203,13 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
     public void PlayAd(string name)
     {
-        //if (index > 0 && index < AdUnits.Count)
-        //{
         GetAdUnitByName(name).ShowAd();
-        //}
     }
     public void HideBannerAd()
     {
         Advertisement.Banner.Hide();
     }
 
-    //public void RegisterLoadCallback(string name, Action callback)
-    //{
-    //    //if (index > 0 && index < AdUnits.Count)
-    //    //{
-    //        //GetAdUnitByName(name).SetLoadedCallback(callback);
-    //    //}
-    //}
-    //public void RegisterCompletionCallback(string name, Action<bool> completionCallback)
-    //{
-    //    //if (index > 0 && index < AdUnits.Count)
-    //    //{
-    //    //GetAdUnitByName(name).SetCompleteCallback(completionCallback);
-    //    //}
-    //}
     public AdUnit.OnShowCompleteEvent GetShowCompleteEvent(string name)
     {
         return GetAdUnitByName(name).OnShowComplete;
@@ -242,12 +220,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
     }
     public bool GetLoadedStatus(string name)
     {
-        //if (index > 0 && index < AdUnits.Count)
-        //{
-            return GetAdUnitByName(name).IsLoaded();
-        //}
-
-        //return false;
+        return GetAdUnitByName(name).IsLoaded();
     }
 
     private void Awake()

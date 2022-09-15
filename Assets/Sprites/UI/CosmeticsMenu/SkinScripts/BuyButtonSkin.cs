@@ -184,25 +184,8 @@ public class BuyButtonSkin : MonoBehaviour
             {
                 if (menuData.ads < cost)
                 {
-                    Debug.LogWarning("AD SKIN AD START");
+                    Debug.LogWarning("AD SKIN BUTTON PRESS");
                     adManager.PlayAd("AdSkins");
-                    //btn.interactable = false;
-                    //play an ad here
-                    //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, delegate(bool success)
-                    //{
-                    //    if (success)
-                    //    {
-                    //        menuData.ads++;
-                    //        menuData.SaveGameData();
-                    //    } else
-                    //    {
-                    //        //ad failed, either because the user exited early (skipped), has no wifi or one couldnt be fetched for some reason
-                    //        //Show a failiure dialogue
-                    //    }
-
-                    //    //probably best to update the price on the button regardless of the outcome to avoid bugs
-                    //    priceOnButton.text = (10 - menuData.ads).ToString();
-                    //});
                 }
                 else
                 {
@@ -211,27 +194,11 @@ public class BuyButtonSkin : MonoBehaviour
                         adsBuycon.ResetToDefaults();
                         adsBuycon.stopTweens();
                         adsBuycon.StopLerping();
-
-                        //menuData.ads = 0;
-                        //canvasToOpen.enabled = true;
-                        //cosMenuCon.buyCanvasOn = true;
-                        //canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
-
-                        //adsBuycon.UnlockAdSkin();
-                        //adsBuycon.pressedOnce = false;
                     }
                     else
                     {
                         adsBuycon.SetDefaults();
                         skinsCon.defaultsSetADS = true;
-
-                        //menuData.ads = 0;
-                        //canvasToOpen.enabled = true;
-                        //cosMenuCon.buyCanvasOn = true;
-                        //canvasToOpen.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
-
-                        //adsBuycon.UnlockAdSkin();
-                        //adsBuycon.pressedOnce = false;
                     }
 
                     

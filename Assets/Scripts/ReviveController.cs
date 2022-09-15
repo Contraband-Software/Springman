@@ -18,26 +18,7 @@ public class ReviveController : MonoBehaviour
     private void Start()
     {
         adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
-        //adManager.RegisterCompletionCallback("ReviveAd", (bool status) => {
-        //    if (status)
-        //    {
-        //        ReviveIncrement();
-        //        playerController.Revive();
-        //        DeathScreenScript.instance.DeathScreenHide();
-        //    }
-        //    else
-        //    {
-        //        Debug.LogWarning("revive fail");
-        //    }
-        //});
-        //adManager.RegisterLoadCallback("ReviveAd", () =>
-        //{
-        //    if (ReviveCount < MaxRevives)
-        //    {
-        //        button.interactable = true;
-        //    }
-        //});
-        //button.interactable = adManager.GetLoadedStatus("ReviveAd");
+
         adManager.GetShowCompleteEvent("ReviveAd").AddListener((bool status) =>
         {
             if (status)
@@ -81,23 +62,6 @@ public class ReviveController : MonoBehaviour
 
     public void AdRevive()
     {
-        //AdvertisementsManager.instance.PlayAd(AdvertisementsManager.AdType.REWARDED, (bool success) =>
-        //{
-        //    if (success)
-        //    {
-        //        ReviveIncrement();
-        //        Debug.Log("Successful revive");
-        //        //DeathScreenScript.instance.DeathScreenHide();
-
-        //        //player.revive();
-        //        playerController.Revive();
-        //        DeathScreenScript.instance.DeathScreenHide();
-        //    } else
-        //    {
-        //        Debug.Log("Unsuccessful revive");
-        //    }
-        //});
-
         Debug.Log("User tried to revive");
 
         adManager.PlayAd("ReviveAd");
