@@ -13018,6 +13018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1129672823}
+  buttonImage: {fileID: 1129672824}
   playerController: {fileID: 5005137631159096663}
   MaxRevives: 1
 --- !u!1 &1158410337

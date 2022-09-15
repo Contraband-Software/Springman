@@ -7,6 +7,7 @@ public class ReviveController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Button button;
+    [SerializeField] Image buttonImage;
     [SerializeField] PlayerController playerController;
     [Header("Settings")]
     [SerializeField] int MaxRevives = 1;
@@ -66,5 +67,7 @@ public class ReviveController : MonoBehaviour
 
         adManager.PlayAd("ReviveAd");
         button.interactable = false;
+        buttonImage.enabled = false;
+
     }
 }
