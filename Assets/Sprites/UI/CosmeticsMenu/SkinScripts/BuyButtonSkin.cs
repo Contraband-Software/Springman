@@ -57,17 +57,18 @@ public class BuyButtonSkin : MonoBehaviour
         if (purchaseType == PurchaseType.Ads)
         {
             priceOnButton.text = (10 - menuData.ads).ToString();
-            adManager.RegisterCompletionCallback("AdSkins", (bool status) => {
+            adManager.GetShowCompleteEvent("AdSkins").AddListener((bool status) => {
                 if (status)
                 {
-                    //try
-                    //{
+                    try
+                    {
                         menuData.ads++;
                         menuData.SaveGameData();
-                    //} catch
-                    //{
-                        Debug.LogWarning("AD SKIN TRANSACTION FAILED");
-                    //}
+                    } catch
+                    {
+                        Debug.LogWarning("AD SKIN TRANSACTION FAILIURE");
+                        menuData.ads--;
+                    }
                 }
                 else
                 {
@@ -78,7 +79,7 @@ public class BuyButtonSkin : MonoBehaviour
                 //probably best to update the price on the button regardless of the outcome to avoid bugs
                 priceOnButton.text = (10 - menuData.ads).ToString();
             });
-            adManager.RegisterLoadCallback("AdSkins", () =>
+            adManager.GetLoadCompleteEvent("AdSkins").AddListener(() =>
             {
                 //btn.interactable = true;
                 Debug.Log("Loaded ad skin ad");
@@ -183,6 +184,7 @@ public class BuyButtonSkin : MonoBehaviour
             {
                 if (menuData.ads < cost)
                 {
+                    Debug.LogWarning("AD SKIN AD START");
                     adManager.PlayAd("AdSkins");
                     //btn.interactable = false;
                     //play an ad here

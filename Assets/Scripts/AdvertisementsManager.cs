@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using System;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener
 {
@@ -50,7 +52,8 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
                     loadCallback = () =>
                     {
                         Loaded = true;
-                        LoadedCallback();
+                        //LoadedCallback();
+                        OnLoadComplete.Invoke();
                     },
                     errorCallback = (string err) =>
                     {
@@ -79,20 +82,6 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
             Loaded = false;
             Load();
 
-            LoadedCallback = () => {
-                Debug.Log(AdID + " has been loaded");
-            };
-
-            CompleteCallback = (bool status) => {
-                if (status)
-                {
-                    Debug.Log(AdID + " has been successful");
-                } else
-                {
-                    Debug.Log(AdID + " has been unsuccessful");
-                }
-            };
-
             isPlaying = false;
         }
 
@@ -102,24 +91,9 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
             return isPlaying;
         }
 
-        private Action<bool> CompleteCallback;
-        public void SetCompleteCallback(Action<bool> action)
-        {
-            CompleteCallback = action;
-        }
-        public Action<bool> GetCompleteCallback()
-        {
-            return CompleteCallback;
-        }
-        private Action LoadedCallback;
-        public void SetLoadedCallback(Action action)
-        {
-            LoadedCallback = action;
-        }
-        public Action GetAction()
-        {
-            return LoadedCallback;
-        }
+        public class OnShowCompleteEvent : UnityEvent<bool> { };
+        [HideInInspector] public OnShowCompleteEvent OnShowComplete = new OnShowCompleteEvent();
+        [HideInInspector] public UnityEvent OnLoadComplete = new UnityEvent();
 
         public void ShowAd()
         {
@@ -139,7 +113,8 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
         {
             if (adUnitId.Equals(AdID))
             {
-                LoadedCallback();
+                //LoadedCallback();
+                OnLoadComplete.Invoke();
                 Debug.Log(adUnitId + " IS LOADED");
                 Loaded = true;
             }
@@ -147,16 +122,21 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
         public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
         {
+            //Debug.LogWarning("OnUnityAdsShowComplete");
+            //Debug.LogWarning(isPlaying);
             if (adUnitId.Equals(AdID) && isPlaying)
             {
+                //Debug.LogWarning("adUnitId.Equals(AdID) && isPlaying");
                 if (showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
                 {
-                    Debug.Log("Unity Ads Rewarded Ad Completed");
+                    //Debug.LogWarning("Unity Ads Rewarded Ad Completed");
                     // Grant a reward.
-                    CompleteCallback(true);
+                    //CompleteCallback(true);
+                    OnShowComplete.Invoke(true);
                 } else
                 {
-                    CompleteCallback(false);
+                    //CompleteCallback(false);
+                    OnShowComplete.Invoke(false);
                 }
 
                 isPlaying = false;
@@ -172,18 +152,20 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
             if (adUnitId.Equals(AdID))
             {
                 Loaded = false;
-                Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
+                Debug.LogWarning($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
                 Load();
             }
         }
 
         public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
         {
+            Debug.LogWarning("OnUnityAdsShowFailure: " + error.ToString() + "; for: " + adUnitId + ", " + message);
             if (adUnitId.Equals(AdID))
             {
                 Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
                 // Use the error details to determine whether to try to load another ad.
-                CompleteCallback(false);
+                //CompleteCallback(false);
+                OnShowComplete.Invoke(false);
                 Load();
 
                 isPlaying = false;
@@ -235,19 +217,28 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
     {
         Advertisement.Banner.Hide();
     }
-    public void RegisterLoadCallback(string name, Action callback)
+
+    //public void RegisterLoadCallback(string name, Action callback)
+    //{
+    //    //if (index > 0 && index < AdUnits.Count)
+    //    //{
+    //        //GetAdUnitByName(name).SetLoadedCallback(callback);
+    //    //}
+    //}
+    //public void RegisterCompletionCallback(string name, Action<bool> completionCallback)
+    //{
+    //    //if (index > 0 && index < AdUnits.Count)
+    //    //{
+    //    //GetAdUnitByName(name).SetCompleteCallback(completionCallback);
+    //    //}
+    //}
+    public AdUnit.OnShowCompleteEvent GetShowCompleteEvent(string name)
     {
-        //if (index > 0 && index < AdUnits.Count)
-        //{
-            GetAdUnitByName(name).SetLoadedCallback(callback);
-        //}
+        return GetAdUnitByName(name).OnShowComplete;
     }
-    public void RegisterCompletionCallback(string name, Action<bool> completionCallback)
+    public UnityEvent GetLoadCompleteEvent(string name)
     {
-        //if (index > 0 && index < AdUnits.Count)
-        //{
-        GetAdUnitByName(name).SetCompleteCallback(completionCallback);
-        //}
+        return GetAdUnitByName(name).OnLoadComplete;
     }
     public bool GetLoadedStatus(string name)
     {
