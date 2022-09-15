@@ -195,6 +195,17 @@ public class PlayerController : MonoBehaviour {
         //give all event listeners a reference to the new player controller copy
         print("REVIVING PLAYER");
         revive_Reassign.Invoke(playerCopy.GetComponent<PlayerController>());
+        
+        //REMOVE ENEMIES
+        foreach(GameObject enemy in gamedata.enemiesActive)
+        {
+            Destroy(enemy);
+        }
+        gamedata.enemiesActive = new List<GameObject>();
+        playerCopy.SetActive(true);
+        playerCopy.gameObject.name = "Player";
+        gameObject.name = "Player(Dead)";
+        gameObject.SetActive(false);
     }
 
     void FixedUpdate()
