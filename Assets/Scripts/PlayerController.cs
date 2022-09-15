@@ -5,6 +5,9 @@ using System.Resources;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    [Header("Player Duplication Reference")]
+    private GameObject playerCopy;
+
     [Header("Important References")]
     public EffectController effectCon;
 
@@ -170,12 +173,21 @@ public class PlayerController : MonoBehaviour {
         }
         defaultSplashVol = FindSound("water", effectCon.death_sounds).volume;
 
+        DuplicatePlayer_ForRevive();
+    }
+
+    private void DuplicatePlayer_ForRevive()
+    {
+        playerCopy = Instantiate(gameObject);
+        playerCopy.SetActive(false);
     }
 
     public void Revive()
     {
         //reset player variables
         state = PlayerController.State.Alive;
+
+        print("REVIVING PLAYER");
     }
 
     void FixedUpdate()
