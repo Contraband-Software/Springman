@@ -26,8 +26,15 @@ public class WaterRise : MonoBehaviour {
 		boxCollider = gameObject.GetComponent<BoxCollider2D>();
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
+
+		pController.revive_Reassign += ReassignPCon;
 	}
-	
+
+	private void ReassignPCon(PlayerController pCon)
+	{
+		pController = pCon;
+	}
+
 	void Update () 
 	{
 		if(pController.state ==	PlayerController.State.Alive)

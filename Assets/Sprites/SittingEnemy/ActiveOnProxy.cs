@@ -29,6 +29,14 @@ public class ActiveOnProxy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         bounds = GetComponent<BoxCollider2D>().bounds;
+
+        pController.revive_Reassign += ReassignPCon;
+    }
+
+    private void ReassignPCon(PlayerController pCon)
+    {
+        pController = pCon;
+        player = pController.gameObject;
     }
 
     // Update is called once per frame

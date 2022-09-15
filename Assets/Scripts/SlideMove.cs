@@ -102,6 +102,14 @@ public class SlideMove : MonoBehaviour {
 		{
 			gameObject.name = "LowestPlatform";
 		}
+
+		pController.revive_Reassign += ReassignPCon;
+	}
+
+	private void ReassignPCon(PlayerController pCon)
+	{
+		pController = pCon;
+		player = pController.gameObject;
 	}
 	// Update is called once per frame
 	void Update()

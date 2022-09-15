@@ -44,7 +44,7 @@ public class CameraFollow : MonoBehaviour {
         playerController.revive_Reassign += ReassignPCon;
     }
 
-    public void ReassignPCon(PlayerController pCon)
+    private void ReassignPCon(PlayerController pCon)
     {
         playerController = pCon;
         target = playerController.gameObject.transform;

@@ -31,6 +31,13 @@ public class DeathScreenScript : MonoBehaviour
 
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         DeathScreenCanvas.enabled = false;
+
+        pcontroller.revive_Reassign += ReassignPCon;
+    }
+
+    private void ReassignPCon(PlayerController pCon)
+    {
+        pcontroller = pCon;
     }
 
     public void DeathScreenHide()
