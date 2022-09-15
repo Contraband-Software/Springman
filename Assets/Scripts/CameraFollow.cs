@@ -41,6 +41,13 @@ public class CameraFollow : MonoBehaviour {
         water = GameObject.Find("Water");
         waterCollider = water.GetComponent<BoxCollider2D>();
 
+        playerController.revive_Reassign += ReassignPCon;
+    }
+
+    public void ReassignPCon(PlayerController pCon)
+    {
+        playerController = pCon;
+        target = playerController.gameObject.transform;
     }
 
     void FixedUpdate()

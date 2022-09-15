@@ -23825,6 +23825,11 @@ PrefabInstance:
       objectReference: {fileID: 276251849}
     - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
         type: 3}
+      propertyPath: revive_Reassign_Event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
+        type: 3}
       propertyPath: water
       value: 
       objectReference: {fileID: 485887120}
@@ -23833,6 +23838,31 @@ PrefabInstance:
       propertyPath: gamedata
       value: 
       objectReference: {fileID: 646998404}
+    - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
+        type: 3}
+      propertyPath: revive_Reassign_Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
+        type: 3}
+      propertyPath: revive_Reassign_Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
+        type: 3}
+      propertyPath: revive_Reassign_Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 276251849}
+    - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
+        type: 3}
+      propertyPath: revive_Reassign_Event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReassignPCon
+      objectReference: {fileID: 0}
+    - target: {fileID: 114559933295590350, guid: 066441d5ebb64ec4eb7c7a4217ec39bf,
+        type: 3}
+      propertyPath: revive_Reassign_Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066441d5ebb64ec4eb7c7a4217ec39bf, type: 3}
 --- !u!212 &1935567955094047525 stripped

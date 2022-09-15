@@ -27,6 +27,8 @@ public class CreatePlatforms : MonoBehaviour
 	public float firstPlatPosY = -1.5f;
 	Bounds bounds;
 
+	private PlayerController pCon;
+
 	//initial platform width >>>>> Make script to alter the number once score is implemented
 
 	//Randomization variables
@@ -44,7 +46,7 @@ public class CreatePlatforms : MonoBehaviour
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		zeroToEdge = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)).x;
 		halfPlatSize = bounds.extents.y;
-
+		pCon = gameObject.GetComponent<PlayerController>();
 		CreateFirstPlat();
 	}
 
@@ -94,7 +96,13 @@ public class CreatePlatforms : MonoBehaviour
 					}
 					//platform = GameObject.FindWithTag("Platform");
 					GameObject Platform = Instantiate(platform, new Vector3(spawnEdge, highestPlat + platDistance, 0f), new Quaternion(0f, 0f, 0f, 0f));
-					Platform.GetComponent<SlideMove>().thisPlatLength = gameData.platLength;
+					SlideMove sm = Platform.GetComponent<SlideMove>();
+					sm.thisPlatLength = gameData.platLength;
+					sm.player = gameObject;
+					sm.pController = pCon;
+					sm.gameData = gameData;
+					sm.mainCamera = cam.gameObject;
+					sm.cam = cam;
 				}
 			}
 		}
@@ -125,7 +133,13 @@ public class CreatePlatforms : MonoBehaviour
 		ChangePlatLength();
 
 		GameObject Platform = Instantiate(platform, new Vector3(-zeroToEdge - (gameData.platLength / 2) -0.05f, firstPlatPosY, 0f), new Quaternion(0f, 0f, 0f, 0f));
-		Platform.GetComponent<SlideMove>().thisPlatLength = gameData.platLength;
+		SlideMove sm = Platform.GetComponent<SlideMove>();
+		sm.thisPlatLength = gameData.platLength;
 		highestPlat = firstPlatPosY;
+		sm.player = gameObject;
+		sm.pController = pCon;
+		sm.gameData = gameData;
+		sm.mainCamera = cam.gameObject;
+		sm.cam = cam;
 	}
 }
