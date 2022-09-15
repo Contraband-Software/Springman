@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     //[Header("On Revive, Reassign References")]
     public event Action<PlayerController> revive_Reassign;
     //public AssignPlayerRefEvent revive_Reassign_Event;
+    [Header("Highest Platform Hit")]
+    [SerializeField] GameObject highestPlatformHit;
 
     [Header("Important References")]
     public EffectController effectCon;
@@ -759,6 +761,7 @@ public class PlayerController : MonoBehaviour {
         {
             gamedata.score++;
             LastPlatY = rayhit.collider.transform.position.y;
+            highestPlatformHit = rayhit.collider.transform.root.gameObject;
         }
     }
 
