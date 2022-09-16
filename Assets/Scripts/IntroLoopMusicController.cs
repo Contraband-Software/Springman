@@ -17,7 +17,7 @@ public class IntroLoopMusicController : MonoBehaviour
 
     private IEnumerator StartLoopSection()
     {
-        yield return new WaitForSeconds(IntroSource.clip.length - 0.6f);
+        yield return new WaitForSeconds(IntroSource.clip.length - 0.52f);
         LoopSource.Play();
     }
 }
