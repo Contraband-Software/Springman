@@ -215,17 +215,27 @@ public class PlayerController : MonoBehaviour {
         pConCopy.highestPlatformHit = highestPlatformHit;
 
         //prepare platform to spawn onto
-        Vector3 newPos = highestPlatformHit.transform.position;
-        newPos.x = 0f;
-        highestPlatformHit.transform.position = newPos;
-        Vector3 newScale = highestPlatformHit.transform.localScale;
-        newScale.x = 8f;
-        highestPlatformHit.transform.localScale = newScale;
-
+        if(highestPlatformHit != null)
+        {
+            Vector3 newPos = highestPlatformHit.transform.position;
+            newPos.x = 0f;
+            highestPlatformHit.transform.position = newPos;
+            Vector3 newScale = highestPlatformHit.transform.localScale;
+            newScale.x = 8f;
+            highestPlatformHit.transform.localScale = newScale;
+        }
         //place player on platform
         Vector3 newSpawnPos = playerCopy.transform.position;
         newSpawnPos.x = 0f;
-        newSpawnPos.y = highestPlatformHit.transform.position.y + 1.75f;
+        if (highestPlatformHit != null)
+        {
+            newSpawnPos.y = highestPlatformHit.transform.position.y + 1.75f;
+        }
+        else
+        {
+            newSpawnPos.y = 0f;
+        }
+        
         playerCopy.transform.position = newSpawnPos;
 
         //focus camera on new platform
@@ -234,6 +244,10 @@ public class PlayerController : MonoBehaviour {
         playerCopy.SetActive(true);
 
         gameObject.SetActive(false);
+
+
+        //pause time
+        Time.timeScale = 0f;
     }
 
     void FixedUpdate()

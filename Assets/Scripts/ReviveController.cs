@@ -13,6 +13,7 @@ public class ReviveController : MonoBehaviour
     [SerializeField] int MaxRevives = 1;
 
     private AdvertisementsManager adManager;
+    [SerializeField] ReviveCountdownScript reviveCountdownScript;
 
     int ReviveCount = 0;
 
@@ -26,6 +27,7 @@ public class ReviveController : MonoBehaviour
             {
                 ReviveIncrement();
                 playerController.Revive();
+                reviveCountdownScript.BeginCountdown();
                 DeathScreenScript.instance.DeathScreenHide();
             }
             else

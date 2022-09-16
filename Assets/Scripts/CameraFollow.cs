@@ -158,7 +158,17 @@ public class CameraFollow : MonoBehaviour {
     public void AutoFocus_OnRespawn()
     {
         camDirection = CamDirection.Up;
-        desiredPosition = new Vector3(transform.position.x, playerController.highestPlatformHit.transform.position.y + jumpByAmount, transform.position.z);
+
+        if(playerController.highestPlatformHit != null)
+        {
+            desiredPosition = new Vector3(transform.position.x, playerController.highestPlatformHit.transform.position.y + jumpByAmount, transform.position.z);
+        }
+        else
+        {
+            desiredPosition = new Vector3(transform.position.x, 0.65f, transform.position.z);
+        }
+        
+        transform.position = desiredPosition;
         targetFound = true;
     }
 

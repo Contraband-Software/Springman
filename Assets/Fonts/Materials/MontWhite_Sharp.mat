@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MontWhite
+  m_Name: MontWhite_Sharp
   m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
   m_ShaderKeywords: OUTLINE_ON
   m_LightmapFlags: 4
@@ -30,7 +30,7 @@ Material:
     - _GradientScale: 6
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0.15
+    - _OutlineSoftness: 0.05
     - _OutlineWidth: 0.2
     - _PerspectiveFilter: 0.875
     - _ScaleRatioA: 0.8333333
