@@ -51,6 +51,8 @@ public class DeathScreenScript : MonoBehaviour
             sstScore.Close();
         }
 
+        adManager.HideBannerAd();
+
         DeathScreenShowing = false;
     }
 
