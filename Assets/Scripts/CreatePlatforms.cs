@@ -23,9 +23,10 @@ public class CreatePlatforms : MonoBehaviour
 
 	//Platform variables
 	public float halfPlatSize = 0.15f;
-	float highestPlat = 0f;
+	public float highestPlat = 0f;
 	public float firstPlatPosY = -1.5f;
 	Bounds bounds;
+	public bool dontCreateFirstPlat = false;
 
 	private PlayerController pCon;
 
@@ -47,7 +48,11 @@ public class CreatePlatforms : MonoBehaviour
 		zeroToEdge = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)).x;
 		halfPlatSize = bounds.extents.y;
 		pCon = gameObject.GetComponent<PlayerController>();
-		CreateFirstPlat();
+
+        if (!dontCreateFirstPlat)
+        {
+			CreateFirstPlat();
+		}
 	}
 
 	void Update()

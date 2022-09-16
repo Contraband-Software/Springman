@@ -9724,7 +9724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed54e12822f1a9347af8a51e5f4db068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1977417570200530}
+  highestPlatformHit: {fileID: 0}
+  createPlatsRef: {fileID: 114219021896163626}
   effectCon: {fileID: 5531641677264940234}
   deathSprite: {fileID: 21300000, guid: 83992d7606fb1324c94bcac3e9ea2ec5, type: 3}
   cosCon: {fileID: 0}
@@ -9805,6 +9806,7 @@ MonoBehaviour:
     type: 3}
   camScript: {fileID: 0}
   halfPlatSize: 0.15
+  highestPlat: 0
   firstPlatPosY: -1.5
   spawnEdge: 0
   platDistance: 3

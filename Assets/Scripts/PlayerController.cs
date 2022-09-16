@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour {
     public event Action<PlayerController> revive_Reassign;
     //public AssignPlayerRefEvent revive_Reassign_Event;
     [Header("Highest Platform Hit")]
-    [SerializeField] GameObject highestPlatformHit;
+    public GameObject highestPlatformHit;
+    public CreatePlatforms createPlatsRef;
 
     [Header("Important References")]
     public EffectController effectCon;
@@ -196,17 +197,42 @@ public class PlayerController : MonoBehaviour {
         //reset player variables, active other copy
         //give all event listeners a reference to the new player controller copy
         print("REVIVING PLAYER");
-        revive_Reassign.Invoke(playerCopy.GetComponent<PlayerController>());
+        PlayerController pConCopy = playerCopy.GetComponent<PlayerController>();
+        revive_Reassign.Invoke(pConCopy);
         
         //REMOVE ENEMIES
         foreach(GameObject enemy in gamedata.enemiesActive)
         {
             Destroy(enemy);
         }
+
+        //Active other player copy
         gamedata.enemiesActive = new List<GameObject>();
-        playerCopy.SetActive(true);
         playerCopy.gameObject.name = "Player";
         gameObject.name = "Player(Dead)";
+        pConCopy.createPlatsRef.dontCreateFirstPlat = true;
+        pConCopy.createPlatsRef.highestPlat = createPlatsRef.highestPlat;
+        pConCopy.highestPlatformHit = highestPlatformHit;
+
+        //prepare platform to spawn onto
+        Vector3 newPos = highestPlatformHit.transform.position;
+        newPos.x = 0f;
+        highestPlatformHit.transform.position = newPos;
+        Vector3 newScale = highestPlatformHit.transform.localScale;
+        newScale.x = 8f;
+        highestPlatformHit.transform.localScale = newScale;
+
+        //place player on platform
+        Vector3 newSpawnPos = playerCopy.transform.position;
+        newSpawnPos.x = 0f;
+        newSpawnPos.y = highestPlatformHit.transform.position.y + 1.75f;
+        playerCopy.transform.position = newSpawnPos;
+
+        //focus camera on new platform
+        camScript.AutoFocus_OnRespawn();
+
+        playerCopy.SetActive(true);
+
         gameObject.SetActive(false);
     }
 
