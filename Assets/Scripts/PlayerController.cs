@@ -3,10 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Duplication Reference")]
     private GameObject playerCopy;
+
+    [Serializable] public class AssignPlayerRefEvent : UnityEvent<PlayerController> { };
+    //[Header("On Revive, Reassign References")]
+    public event Action<PlayerController> revive_Reassign;
+    //public AssignPlayerRefEvent revive_Reassign_Event;
+    [Header("Highest Platform Hit")]
+    [SerializeField] GameObject highestPlatformHit;
 
     [Header("Important References")]
     public EffectController effectCon;
@@ -180,14 +188,26 @@ public class PlayerController : MonoBehaviour {
     {
         playerCopy = Instantiate(gameObject);
         playerCopy.SetActive(false);
+        playerCopy.GetComponent<PlayerController>().revive_Reassign = null;
     }
 
     public void Revive()
     {
-        //reset player variables
-        state = PlayerController.State.Alive;
-
+        //reset player variables, active other copy
+        //give all event listeners a reference to the new player controller copy
         print("REVIVING PLAYER");
+        revive_Reassign.Invoke(playerCopy.GetComponent<PlayerController>());
+        
+        //REMOVE ENEMIES
+        foreach(GameObject enemy in gamedata.enemiesActive)
+        {
+            Destroy(enemy);
+        }
+        gamedata.enemiesActive = new List<GameObject>();
+        playerCopy.SetActive(true);
+        playerCopy.gameObject.name = "Player";
+        gameObject.name = "Player(Dead)";
+        gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -741,6 +761,7 @@ public class PlayerController : MonoBehaviour {
         {
             gamedata.score++;
             LastPlatY = rayhit.collider.transform.position.y;
+            highestPlatformHit = rayhit.collider.transform.root.gameObject;
         }
     }
 

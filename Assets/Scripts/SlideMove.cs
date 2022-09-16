@@ -5,15 +5,15 @@ using System.Linq;
 using UnityEngine;
 public class SlideMove : MonoBehaviour {
 
-	private GameData gameData;
+	public GameData gameData;
 
-	private Rigidbody2D rb;
+	public Rigidbody2D rb;
 	public GameObject player;
 	public PlayerController pController;
 	private CameraFollow cameraFollow;
 	public Transform waterTransform;
 	public GameObject mainCamera;
-	private Camera cam;
+	public Camera cam;
 
 	public SpriteRenderer indicatorSprite;
 
@@ -69,22 +69,16 @@ public class SlideMove : MonoBehaviour {
 
 	void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
-		gameData = GameObject.Find("GameController").GetComponent<GameData>();
-		player = GameObject.Find("Player");
-		pController = player.GetComponent<PlayerController>();
+		//rb = GetComponent<Rigidbody2D>();
+		//gameData = GameObject.Find("GameController").GetComponent<GameData>();
 		halfPlatHeight = transform.Find("PlatformMID").GetComponent<BoxCollider2D>().bounds.extents.y;
-		mainCamera = GameObject.Find("Main Camera");
-		cameraFollow = mainCamera.GetComponent<CameraFollow>();
-		cam = mainCamera.GetComponent<Camera>();
+		//mainCamera = GameObject.Find("Main Camera");
+		//cam = mainCamera.GetComponent<Camera>();
 		sittingEnemyHeight = sittingEnemyPrefab.GetComponent<Renderer>().bounds.extents.y * 2;
 		waterTransform = GameObject.Find("Water").GetComponent<Transform>();
 
 		goldScrewBounds = goldScrew.transform.Find("ScrewObjects/Screw").GetComponent<Renderer>().bounds;
 		silverScrewBounds = silverScrew.transform.Find("Screw").GetComponent<Renderer>().bounds;
-
-		topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)); //Coords of top right corner of screen
-		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
 
 		sittingEnemySpawned = false;
 
@@ -92,6 +86,10 @@ public class SlideMove : MonoBehaviour {
 }
 	void Start()
 	{
+		cameraFollow = mainCamera.GetComponent<CameraFollow>();
+		topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)); //Coords of top right corner of screen
+		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
+
 		RampSESpawnChance();
 		Visibility();
 		PotentialSittingEnemySpawn();
@@ -104,6 +102,14 @@ public class SlideMove : MonoBehaviour {
 		{
 			gameObject.name = "LowestPlatform";
 		}
+
+		pController.revive_Reassign += ReassignPCon;
+	}
+
+	private void ReassignPCon(PlayerController pCon)
+	{
+		pController = pCon;
+		player = pController.gameObject;
 	}
 	// Update is called once per frame
 	void Update()
@@ -286,7 +292,10 @@ public class SlideMove : MonoBehaviour {
 
 			sittingEnemy.transform.position = offset;
 			sittingEnemy.transform.SetParent(gameObject.transform);
-
+			ActiveOnProxy aop = sittingEnemy.GetComponent<ActiveOnProxy>();
+			aop.player = player;
+			aop.pController = pController;
+			aop.gamedata = gameData;
 			sittingEnemySpawned = true;
 
 			//FLASH INDICATOR RED

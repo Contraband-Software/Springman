@@ -23,12 +23,20 @@ public class ActiveOnProxy : MonoBehaviour
     {
         isVisible = false;
 
-        player = GameObject.Find("Player");
-        gamedata = GameObject.Find("GameController").GetComponent<GameData>();
-        pController = player.GetComponent<PlayerController>();
+        //player = GameObject.Find("Player");
+        //gamedata = GameObject.Find("GameController").GetComponent<GameData>();
+        //pController = player.GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
 
         bounds = GetComponent<BoxCollider2D>().bounds;
+
+        pController.revive_Reassign += ReassignPCon;
+    }
+
+    private void ReassignPCon(PlayerController pCon)
+    {
+        pController = pCon;
+        player = pController.gameObject;
     }
 
     // Update is called once per frame

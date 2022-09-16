@@ -389,10 +389,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5d915e963c02a47bb8340e48ed3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 0}
+  rb: {fileID: -8152115161200138284}
   player: {fileID: 1977417570200530, guid: 066441d5ebb64ec4eb7c7a4217ec39bf, type: 3}
   pController: {fileID: 0}
   waterTransform: {fileID: 0}
   mainCamera: {fileID: 0}
+  cam: {fileID: 0}
   indicatorSprite: {fileID: 0}
   halfPlatHeight: 0
   platDistance: 3

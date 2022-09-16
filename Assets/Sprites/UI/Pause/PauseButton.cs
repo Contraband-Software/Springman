@@ -51,6 +51,12 @@ public class PauseButton : MonoBehaviour
         gameData = GameObject.Find("GameController").GetComponent<GameData>();
 
         GatherAudioSources();
+        pController.revive_Reassign += ReassignPCon;
+    }
+
+    private void ReassignPCon(PlayerController pCon)
+    {
+        pController = pCon;
     }
 
     public void OnOpen()
