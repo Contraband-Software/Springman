@@ -7,6 +7,10 @@ public class ReviveCountdownScript : MonoBehaviour
 {
     public Canvas reviveCountdownCanvas;
     private int count = 3;
+
+    public LeanTweenType scaleUpTween;
+    public LeanTweenType fadeOutTween;
+
     public RectTransform numberObj;
     public TextMeshProUGUI numberText;
     public CanvasGroup cg;
@@ -15,7 +19,6 @@ public class ReviveCountdownScript : MonoBehaviour
 
     public void BeginCountdown()
     {
-        print("COUTNDING");
         initialSize = numberObj.localScale;
         reviveCountdownCanvas.enabled = true;
 
@@ -24,8 +27,8 @@ public class ReviveCountdownScript : MonoBehaviour
 
     private void FadeOutNumber()
     {
-        LeanTween.value(gameObject, UpdateNumberSize, numberObj.localScale.x, 1.6f, 1f).setIgnoreTimeScale(true);
-        LeanTween.value(gameObject, UpdateOpacity, 1f, 0f, 1f).setIgnoreTimeScale(true).setOnComplete(NextNumber);
+        LeanTween.value(gameObject, UpdateNumberSize, numberObj.localScale.x, 1.6f, 1f).setIgnoreTimeScale(true).setEase(scaleUpTween);
+        LeanTween.value(gameObject, UpdateOpacity, 1f, 0f, 1f).setIgnoreTimeScale(true).setOnComplete(NextNumber).setEase(fadeOutTween);
     }
 
     private void UpdateNumberSize(float val)

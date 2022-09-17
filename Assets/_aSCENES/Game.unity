@@ -6739,6 +6739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reviveCountdownCanvas: {fileID: 461825447}
+  scaleUpTween: 2
+  fadeOutTween: 2
   numberObj: {fileID: 1251291439}
   numberText: {fileID: 1251291440}
   cg: {fileID: 1251291442}

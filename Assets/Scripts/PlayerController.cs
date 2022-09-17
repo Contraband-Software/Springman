@@ -223,7 +223,15 @@ public class PlayerController : MonoBehaviour {
             Vector3 newScale = highestPlatformHit.transform.localScale;
             newScale.x = 8f;
             highestPlatformHit.transform.localScale = newScale;
+
+            //delete screw if on platform
+            Transform screw = highestPlatformHit.transform.Find("SilverScrew(Clone)");
+            if(screw != null)
+            {
+                screw.gameObject.SetActive(false);
+            }
         }
+
         //place player on platform
         Vector3 newSpawnPos = playerCopy.transform.position;
         newSpawnPos.x = 0f;
@@ -237,6 +245,11 @@ public class PlayerController : MonoBehaviour {
         }
         
         playerCopy.transform.position = newSpawnPos;
+
+        //Move water to be below player
+        Vector3 newWaterPos = water.transform.position;
+        newWaterPos.y = playerCopy.transform.position.y - waterBounds.size.y;
+        water.transform.position = newWaterPos;
 
         //focus camera on new platform
         camScript.AutoFocus_OnRespawn();
