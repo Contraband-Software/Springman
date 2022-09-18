@@ -1,0 +1,1 @@
+start "" "%ProgramFiles%\Unity\Hub\Editor\2019.4.0f1\Editor\Unity.exe" -projectPath "D:\contraband\springman\SpringmanSource" -buildTarget Android

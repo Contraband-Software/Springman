@@ -10,6 +10,7 @@ TagManager:
   - Background
   - Screw
   - AdvertisementsManager
+  - GameMusicController
   layers:
   - Default
   - TransparentFX

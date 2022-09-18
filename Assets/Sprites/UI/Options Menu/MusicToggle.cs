@@ -21,44 +21,47 @@ public class MusicToggle : MonoBehaviour
 
 	Scene currentScene;
 
-	public void Toggle()
+	JukeboxScript jukebox;
+
+    private void SetMute(bool mute)
+    {
+        gameObject.GetComponent<Image>().sprite = (mute) ? OFF : ON;
+
+        musicOnText.enabled = !mute;
+        ToggleON.enabled = !mute;
+
+        musicOffText.enabled = mute;
+        ToggleOFF.enabled = mute;
+
+        jukebox.SetMute(mute);
+    }
+
+    public void Toggle()
 	{
 		FindScenesData();
 
 		if (gameObject.GetComponent<Image>().sprite == ON)
 		{
-			gameObject.GetComponent<Image>().sprite = OFF;
+            SetMute(true);
 
-			musicOnText.enabled = false;
-			ToggleON.enabled = false;
-
-			musicOffText.enabled = true;
-			ToggleOFF.enabled = true;
-
-			if (currentScene.name == "Main Menu")
+            if (currentScene.name == "Main Menu")
 			{
 				menuData.musicOn = false;
 			}
-			if (currentScene.name == "Game")
+			else if (currentScene.name == "Game")
 			{
 				gameData.musicOn = false;
 			}
 		}
 		else
 		{
-			gameObject.GetComponent<Image>().sprite = ON;
+			SetMute(false);
 
-			musicOnText.enabled = true;
-			ToggleON.enabled = true;
-
-			musicOffText.enabled = false;
-			ToggleOFF.enabled = false;
-
-			if (currentScene.name == "Main Menu")
+            if (currentScene.name == "Main Menu")
 			{
 				menuData.musicOn = true;
 			}
-			if (currentScene.name == "Game")
+            else if (currentScene.name == "Game")
 			{
 				gameData.musicOn = true;
 			}
@@ -72,7 +75,7 @@ public class MusicToggle : MonoBehaviour
 		{
 			menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
 		}
-		if (currentScene.name == "Game")
+        else if (currentScene.name == "Game")
 		{
 			gameData = GameObject.Find("GameController").GetComponent<GameData>();
 		}
@@ -80,57 +83,19 @@ public class MusicToggle : MonoBehaviour
 
 	private void Start()
 	{
-		currentScene = SceneManager.GetActiveScene();
+        jukebox = GameObject.FindGameObjectWithTag("GameMusicController").GetComponent<JukeboxScript>();
+
+        currentScene = SceneManager.GetActiveScene();
+
 		if (currentScene.name == "Main Menu")
 		{
 			menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
-
-			if (menuData.musicOn == true)
-			{
-				gameObject.GetComponent<Image>().sprite = ON;
-
-				musicOnText.enabled = true;
-				ToggleON.enabled = true;
-
-				musicOffText.enabled = false;
-				ToggleOFF.enabled = false;
-			}
-			else
-			{
-				gameObject.GetComponent<Image>().sprite = OFF;
-
-				musicOnText.enabled = false;
-				ToggleON.enabled = false;
-
-				musicOffText.enabled = true;
-				ToggleOFF.enabled = true;
-			}
-
+			SetMute(!menuData.musicOn);
 		}
-		if (currentScene.name == "Game")
+        else if (currentScene.name == "Game")
 		{
 			gameData = GameObject.Find("GameController").GetComponent<GameData>();
-
-			if (gameData.musicOn == true)
-			{
-				gameObject.GetComponent<Image>().sprite = ON;
-
-				musicOnText.enabled = true;
-				ToggleON.enabled = true;
-
-				musicOffText.enabled = false;
-				ToggleOFF.enabled = false;
-			}
-			else
-			{
-				gameObject.GetComponent<Image>().sprite = OFF;
-
-				musicOnText.enabled = false;
-				ToggleON.enabled = false;
-
-				musicOffText.enabled = true;
-				ToggleOFF.enabled = true;
-			}
+			SetMute(!gameData.musicOn);
 		}
 	}
 }

@@ -7,17 +7,39 @@ public class IntroLoopMusicController : MonoBehaviour
     [SerializeField] AudioSource IntroSource;
     [SerializeField] AudioSource LoopSource;
 
-    private void Awake()
-    {
-        IntroSource.Play();
-        Invoke("StartLoopSection", IntroSource.clip.length);
+    private bool playing = false;
+    private bool switched = false;
 
-        StartCoroutine(StartLoopSection());
+    public void SetMute(bool mute)
+    {
+        IntroSource.mute = mute;
+        LoopSource.mute = mute;
     }
 
-    private IEnumerator StartLoopSection()
+    public void Play()
     {
-        yield return new WaitForSeconds(IntroSource.clip.length - 0.52f);
-        LoopSource.Play();
+        IntroSource.Play();
+
+        playing = true;
+    }
+
+    public void Stop()
+    {
+        IntroSource.Stop();
+        LoopSource.Stop();
+        playing = false;
+        switched = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (playing)
+        {
+            if (IntroSource.isPlaying == false && switched == false)
+            {
+                switched = true;
+                LoopSource.Play();
+            }
+        }
     }
 }
