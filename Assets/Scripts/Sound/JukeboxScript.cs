@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using static UnityEngine.UI.Image;
+using UnityEngine.Audio;
 
 public class JukeboxScript : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class JukeboxScript : MonoBehaviour
     }
     [SerializeField] List<Song> musicControllers = new List<Song>();
 
+    public AudioMixer am;
     private Song GetSongByName(string name)
     {
         for (int i = 0; i < musicControllers.Count; i++)

@@ -9,7 +9,6 @@ public class MusicToggle : MonoBehaviour
 {
 	public GameData gameData;
 	public MenuData menuData;
-    Scene currentScene;
 
     public TextMeshProUGUI musicOnText;
 	public TextMeshProUGUI ToggleON;
@@ -32,7 +31,7 @@ public class MusicToggle : MonoBehaviour
 		musicOffText.enabled = mute;
 		ToggleOFF.enabled = mute;
 
-		switch (currentScene.name) {
+		switch (SceneManager.GetActiveScene().name) {
 			case "Main Menu":
 				menuData.musicOn = !mute;
 				break;
@@ -61,8 +60,7 @@ public class MusicToggle : MonoBehaviour
         jukebox = GameObject.FindGameObjectWithTag("GameMusicController").GetComponent<JukeboxScript>();
 
 #region FINDSCENEDATA
-        currentScene = SceneManager.GetActiveScene();
-        switch (currentScene.name)
+        switch (SceneManager.GetActiveScene().name)
         {
             case "Main Menu":
                 menuData = GameObject.Find("MenuController").GetComponent<MenuData>();

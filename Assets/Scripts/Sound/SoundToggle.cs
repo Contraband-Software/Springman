@@ -9,7 +9,6 @@ public class SoundToggle : MonoBehaviour
 {
 	public GameData gameData;
 	public MenuData menuData;
-    Scene currentScene;
 
     public TextMeshProUGUI soundsOnText;
 	public TextMeshProUGUI ToggleON;
@@ -30,7 +29,7 @@ public class SoundToggle : MonoBehaviour
         soundsOffText.enabled = mute;
         ToggleOFF.enabled = mute;
 
-        switch (currentScene.name)
+        switch (SceneManager.GetActiveScene().name)
         {
             case "Main Menu":
                 menuData.soundsOn = !mute;
@@ -56,8 +55,7 @@ public class SoundToggle : MonoBehaviour
 	private void Start()
     {
 #region FINDSCENEDATA
-        currentScene = SceneManager.GetActiveScene();
-        switch (currentScene.name)
+        switch (SceneManager.GetActiveScene().name)
         {
             case "Main Menu":
                 menuData = GameObject.Find("MenuController").GetComponent<MenuData>();

@@ -7,6 +7,7 @@ public class IntroLoopMusicController : MonoBehaviour
     [Header("References")]
     [SerializeField] AudioSource IntroSource;
     [SerializeField] AudioSource LoopSource;
+
     [Header("Settings")]
     [SerializeField, Range(0, 1)] float Volume;
 
@@ -45,6 +46,8 @@ public class IntroLoopMusicController : MonoBehaviour
         SetVolume(Volume);
     }
 
+    //Using fixed update avoids the delay between the intro section ending and the loop section playing
+    //this can be replaced with the normal update function if there are any problems
     private void FixedUpdate()
     {
         if (playing)
