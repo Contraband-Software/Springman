@@ -48241,7 +48241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IntroSource: {fileID: 887590608}
   LoopSource: {fileID: 1277724518}
-  Volume: 0.122
+  Volume: 0.1
 --- !u!1 &1010933762
 GameObject:
   m_ObjectHideFlags: 0
