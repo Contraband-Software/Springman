@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class IntroLoopMusicController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] AudioSource IntroSource;
     [SerializeField] AudioSource LoopSource;
+    [Header("Settings")]
+    [SerializeField, Range(0, 1)] float Volume;
 
     private bool playing = false;
     private bool switched = false;
@@ -29,6 +32,17 @@ public class IntroLoopMusicController : MonoBehaviour
         LoopSource.Stop();
         playing = false;
         switched = false;
+    }
+
+    public void SetVolume(float volume)
+    {
+        IntroSource.volume = volume;
+        LoopSource.volume = volume;
+    }
+    
+    private void Awake()
+    {
+        SetVolume(Volume);
     }
 
     private void FixedUpdate()

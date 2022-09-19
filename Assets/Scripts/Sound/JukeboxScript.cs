@@ -1,19 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
+using System;
+using static UnityEngine.UI.Image;
 
 public class JukeboxScript : MonoBehaviour
 {
-    [SerializeField] List<IntroLoopMusicController> musicControllers = new List<IntroLoopMusicController>();
+    [Serializable] public struct Song
+    {
+        public string name;
+        public IntroLoopMusicController Controller;
+    }
+    [SerializeField] List<Song> musicControllers = new List<Song>();
+
+    private Song GetSongByName(string name)
+    {
+        for (int i = 0; i < musicControllers.Count; i++)
+        {
+            if (name == musicControllers[i].name)
+            {
+                return musicControllers[i];
+            }
+        }
+
+        throw new ArgumentException("Song name does not exist", nameof(name));
+    }
+
+    public IntroLoopMusicController GetSongController(string song)
+    {
+        return GetSongByName(song).Controller;
+    }
 
     public void SetMute(bool mute)
     {
         for (int i = 0; i < musicControllers.Count; i++)
         {
-            musicControllers[i].SetMute(mute);
+            musicControllers[i].Controller.SetMute(mute);
         }
     }
 
@@ -21,14 +43,14 @@ public class JukeboxScript : MonoBehaviour
     {
         for (int i = 0; i < musicControllers.Count; i++)
         {
-            musicControllers[i].Stop();
+            musicControllers[i].Controller.Stop();
         }
     }
 
-    public void Play(int index)
+    public void Play(string song)
     {
         StopAll();
 
-        musicControllers[index].Play();
+        GetSongByName(song).Controller.Play();
     }
 }

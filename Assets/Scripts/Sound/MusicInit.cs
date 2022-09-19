@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicInit : MonoBehaviour
 {
-    [SerializeField, Min(0)] int Song;
+    [SerializeField] string Song;
 
     private void Awake()
     {
