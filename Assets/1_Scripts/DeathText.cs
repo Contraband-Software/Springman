@@ -5,9 +5,9 @@ using TMPro;
 
 public class DeathText : MonoBehaviour
 {
-    public TextMeshProUGUI deathText;
-    public LeanTweenType easeIn;
-    public LeanTweenType easeFadeText;
+    [SerializeField] TextMeshProUGUI deathText;
+    [SerializeField] LeanTweenType easeIn;
+    [SerializeField] LeanTweenType easeFadeText;
 
     public void Start()
     {

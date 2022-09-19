@@ -48,6 +48,7 @@ public class CameraFollow : MonoBehaviour {
     {
         playerController = pCon;
         target = playerController.gameObject.transform;
+        playerController.revive_Reassign += ReassignPCon;
     }
 
     void FixedUpdate()

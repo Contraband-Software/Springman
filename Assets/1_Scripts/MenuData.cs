@@ -119,7 +119,7 @@ public class MenuData : MonoBehaviour
             tutorialComplete = data.tutorialComplete;
             ads = data.ads;
 
-            Debug.Log("LOADED GAMEDATA FILE");
+            //Debug.Log("LOADED GAMEDATA FILE");
         }
         ReLocalizeTexts();
     }

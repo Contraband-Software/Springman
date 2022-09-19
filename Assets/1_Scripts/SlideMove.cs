@@ -106,10 +106,11 @@ public class SlideMove : MonoBehaviour {
 		pController.revive_Reassign += ReassignPCon;
 	}
 
-	private void ReassignPCon(PlayerController pCon)
+	public void ReassignPCon(PlayerController pCon)
 	{
 		pController = pCon;
 		player = pController.gameObject;
+		pController.revive_Reassign += ReassignPCon;
 	}
 	// Update is called once per frame
 	void Update()
@@ -234,6 +235,12 @@ public class SlideMove : MonoBehaviour {
 
 			float chanceToSpawn = minChance + ((maxChance - minChance) * percentage);
 			chanceToSpawnSE = Mathf.Min(maxChance, chanceToSpawn);
+
+#if UNITY_EDITOR
+			if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetSEOnAllPlatforms()) {
+				chanceToSpawnSE = 100f;
+			}
+#endif
 		}
 		else
 		{

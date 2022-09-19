@@ -5,20 +5,26 @@ using TMPro;
 
 public class ReviveCountdownScript : MonoBehaviour
 {
-    public Canvas reviveCountdownCanvas;
+    [SerializeField] Canvas reviveCountdownCanvas;
+    [SerializeField] private int countdownTime = 3;
     private int count = 3;
 
-    public LeanTweenType scaleUpTween;
-    public LeanTweenType fadeOutTween;
+    [SerializeField] LeanTweenType scaleUpTween;
+    [SerializeField] LeanTweenType fadeOutTween;
 
-    public RectTransform numberObj;
-    public TextMeshProUGUI numberText;
-    public CanvasGroup cg;
+    [SerializeField] RectTransform numberObj;
+    [SerializeField] TextMeshProUGUI numberText;
+    [SerializeField] CanvasGroup cg;
 
     private Vector3 initialSize;
 
     public void BeginCountdown()
     {
+        count = countdownTime;
+        numberText.text = count.ToString();
+        numberObj.localScale = initialSize;
+        cg.alpha = 1f;
+
         initialSize = numberObj.localScale;
         reviveCountdownCanvas.enabled = true;
 

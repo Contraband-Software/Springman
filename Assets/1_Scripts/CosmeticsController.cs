@@ -30,10 +30,11 @@ public class CosmeticsController : MonoBehaviour
 
     private void Update()
     {
-        if(currentScene.name == "Game")
-        {
-            springSprite.color = cosData.springColor;
-        }
+
+        //if (currentScene.name == "Game")
+        //{
+        //    springSprite.color = cosData.springColor;
+        //}
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -49,6 +50,7 @@ public class CosmeticsController : MonoBehaviour
             topSprite = GameObject.Find("Player/Base").GetComponent<SpriteRenderer>();
             bottomSprite = GameObject.Find("Player/PlayerBottom").GetComponent<SpriteRenderer>();
             springSprite = GameObject.Find("Player/PlayerBottom/Spring").GetComponent<SpriteRenderer>();
+            springSprite.color = cosData.springColor;
 
             LoadCosmeticValues();
         }

@@ -37,6 +37,7 @@ public class ActiveOnProxy : MonoBehaviour
     {
         pController = pCon;
         player = pController.gameObject;
+        pController.revive_Reassign += ReassignPCon;
     }
 
     // Update is called once per frame

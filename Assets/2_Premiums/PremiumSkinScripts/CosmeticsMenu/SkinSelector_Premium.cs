@@ -71,7 +71,7 @@ public class SkinSelector_Premium : MonoBehaviour
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
             glowColoursGathered.Add(cosmeticsData.ColorToString(premDemo.targetColor));
-            print(premDemo.name + ": "+ cosmeticsData.ColorToString(premDemo.targetColor));
+            //print(premDemo.name + ": "+ cosmeticsData.ColorToString(premDemo.targetColor));
 
             hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
             sCMgathered.Add(premDemo.colourShift);

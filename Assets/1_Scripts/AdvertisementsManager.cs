@@ -114,7 +114,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
             {
                 //LoadedCallback();
                 OnLoadComplete.Invoke();
-                Debug.Log(adUnitId + " IS LOADED");
+                //Debug.Log(adUnitId + " IS LOADED");
                 Loaded = true;
             }
         }

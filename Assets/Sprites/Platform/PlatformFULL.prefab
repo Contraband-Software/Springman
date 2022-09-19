@@ -407,12 +407,12 @@ MonoBehaviour:
     type: 3}
   silverChance: 60
   goldChance: 3
-  chanceToSpawnSE: 100
+  chanceToSpawnSE: 15
   sittingEnemyPrefab: {fileID: 2573083920281326699, guid: 6cdda766902fdb84095d0eca01c8b25b,
     type: 3}
   sittingEnemySpawned: 0
-  maxChance: 100
-  minChance: 100
+  maxChance: 60
+  minChance: 15
   capChanceAtScore: 100
   topRight: {x: 0, y: 0, z: 0}
   bottomLeft: {x: 0, y: 0, z: 0}

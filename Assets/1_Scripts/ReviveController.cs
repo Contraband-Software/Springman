@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GooglePlayGames.BasicApi;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,16 +10,19 @@ public class ReviveController : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Image buttonImage;
     [SerializeField] PlayerController playerController;
+    [SerializeField] DeathScreenScript deathScreenManager;
+    [SerializeField] ReviveCountdownScript reviveCountdownScript;
     [Header("Settings")]
     [SerializeField] int MaxRevives = 1;
 
     private AdvertisementsManager adManager;
-    [SerializeField] ReviveCountdownScript reviveCountdownScript;
 
     int ReviveCount = 0;
 
     private void Start()
     {
+        playerController.revive_Reassign += ReassignPCon;
+
         adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
 
         adManager.GetShowCompleteEvent("ReviveAd").AddListener((bool status) =>
@@ -28,7 +32,7 @@ public class ReviveController : MonoBehaviour
                 ReviveIncrement();
                 playerController.Revive();
                 reviveCountdownScript.BeginCountdown();
-                DeathScreenScript.instance.DeathScreenHide();
+                deathScreenManager.DeathScreenHide();
             }
             else
             {
@@ -39,10 +43,16 @@ public class ReviveController : MonoBehaviour
         {
             if (ReviveCount < MaxRevives)
             {
-                button.interactable = true;
+                ToggleButton(true);
             }
         });
-        button.interactable = adManager.GetLoadedStatus("ReviveAd");
+        ToggleButton(adManager.GetLoadedStatus("ReviveAd"));
+    }
+
+    private void ReassignPCon(PlayerController pCon)
+    {
+        playerController = pCon;
+        playerController.revive_Reassign += ReassignPCon;
     }
 
     public int GetReviveCount()
@@ -59,7 +69,7 @@ public class ReviveController : MonoBehaviour
         ReviveCount++;
         if (ReviveCount > MaxRevives)
         {
-            button.interactable = false;
+            ToggleButton(false);
         }
     }
 
@@ -68,8 +78,12 @@ public class ReviveController : MonoBehaviour
         Debug.Log("User tried to revive");
 
         adManager.PlayAd("ReviveAd");
-        button.interactable = false;
-        buttonImage.enabled = false;
+        ToggleButton(false);
+    }
 
+    private void ToggleButton(bool status)
+    {
+        button.interactable = status;
+        buttonImage.enabled = status;
     }
 }

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     [Serializable] public class AssignPlayerRefEvent : UnityEvent<PlayerController> { };
     //[Header("On Revive, Reassign References")]
     public event Action<PlayerController> revive_Reassign;
+
     //public AssignPlayerRefEvent revive_Reassign_Event;
     [Header("Highest Platform Hit")]
     public GameObject highestPlatformHit;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Important References")]
     public EffectController effectCon;
+    [SerializeField] DeathScreenScript deathScreenManager;
 
     [Header("DeathSprite")]
     public Sprite deathSprite;
@@ -189,27 +191,38 @@ public class PlayerController : MonoBehaviour {
     {
         playerCopy = Instantiate(gameObject);
         playerCopy.SetActive(false);
-        playerCopy.GetComponent<PlayerController>().revive_Reassign = null;
+        //playerCopy.GetComponent<PlayerController>().revive_Reassign = null;
     }
 
     public void Revive()
     {
         //reset player variables, active other copy
         //give all event listeners a reference to the new player controller copy
-        print("REVIVING PLAYER");
+        print("REVIVING PLAYER " + gameObject.name);
         PlayerController pConCopy = playerCopy.GetComponent<PlayerController>();
+        if (pConCopy == null)
+        {
+            print("COPY PLAYER NULLL");
+        }
+        if(revive_Reassign == null)
+        {
+            print("revive reassing null");
+        }
         revive_Reassign.Invoke(pConCopy);
-        
+
+#region REMOVENEMIES
         //REMOVE ENEMIES
-        foreach(GameObject enemy in gamedata.enemiesActive)
+        foreach (GameObject enemy in gamedata.enemiesActive)
         {
             Destroy(enemy);
         }
+        gamedata.enemiesActive = new List<GameObject>();
+#endregion
 
         //Active other player copy
-        gamedata.enemiesActive = new List<GameObject>();
         playerCopy.gameObject.name = "Player";
         gameObject.name = "Player(Dead)";
+
         pConCopy.createPlatsRef.dontCreateFirstPlat = true;
         pConCopy.createPlatsRef.highestPlat = createPlatsRef.highestPlat;
         pConCopy.highestPlatformHit = highestPlatformHit;
@@ -248,7 +261,7 @@ public class PlayerController : MonoBehaviour {
 
         //Move water to be below player
         Vector3 newWaterPos = water.transform.position;
-        newWaterPos.y = playerCopy.transform.position.y - waterBounds.size.y;
+        newWaterPos.y = playerCopy.transform.position.y - (waterBounds.size.y * 1.2f);
         water.transform.position = newWaterPos;
 
         //focus camera on new platform
@@ -256,11 +269,12 @@ public class PlayerController : MonoBehaviour {
 
         playerCopy.SetActive(true);
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 
 
         //pause time
         Time.timeScale = 0f;
+        Destroy(gameObject);
     }
 
     void FixedUpdate()
@@ -315,7 +329,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(state == State.Dead)
         {
-            DeathScreenScript.instance.DeathScreenShow();
+            deathScreenManager.DeathScreenShow();
 
             effectCon.DeathAllEffect();//_EFFECT
 

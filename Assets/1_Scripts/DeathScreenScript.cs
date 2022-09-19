@@ -5,29 +5,31 @@ using TMPro;
 
 public class DeathScreenScript : MonoBehaviour
 {
-    public static DeathScreenScript instance;
+    [Header("References")]
+    [SerializeField] Canvas DeathScreenCanvas;
+    [SerializeField] CanvasGroup filter;
+    [SerializeField] CanvasGroup gameCanvas;
+    [SerializeField] SlideScoreText sstHighscore;
+    [SerializeField] SlideScoreText sstScore;
+    [SerializeField] Canvas PauseScreenCanvas;
+    //[SerializeField] GameObject GameCanvas;
 
-    public Canvas DeathScreenCanvas;
-    public PlayerController pcontroller;
-    public CanvasGroup filter;
-    public CanvasGroup gameCanvas;
-    public SlideScoreText sstHighscore;
-    public SlideScoreText sstScore;
-    public Canvas PauseScreenCanvas;
-    public GameObject GameCanvas;
+    //[Header("Settings")]
+    //[SerializeField, Min(0), Tooltip("How many games before an unrewarded ad is shown when the player dies")] int InterstitialAdFrequency;
 
     AdvertisementsManager adManager;
+    DeathAd deathAd;
+    //int GamesSinceAd;
+
+    PlayerController pcontroller;
 
     bool DeathScreenShowing = false;
 
     void Start()
     {
-        if (!instance)
-        {
-            instance = this;
-        }
-
-        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+        GameObject Money = GameObject.FindGameObjectWithTag("AdvertisementsManager");
+        adManager = Money.GetComponent<AdvertisementsManager>();
+        deathAd = Money.GetComponent<DeathAd>();
 
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         DeathScreenCanvas.enabled = false;
@@ -38,6 +40,7 @@ public class DeathScreenScript : MonoBehaviour
     private void ReassignPCon(PlayerController pCon)
     {
         pcontroller = pCon;
+        pcontroller.revive_Reassign += ReassignPCon;
     }
 
     public void DeathScreenHide()
@@ -73,7 +76,7 @@ public class DeathScreenScript : MonoBehaviour
             }
 
             //evil video death ad
-            //adManager.PlayAd("DeathInterstitial");
+            //deathAd.Tick();
             adManager.PlayAd("DeathBanner");
 
             gameCanvas.gameObject.SetActive(false);

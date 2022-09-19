@@ -28,11 +28,19 @@ public class WaterRise : MonoBehaviour {
 		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
 
 		pController.revive_Reassign += ReassignPCon;
-	}
+
+#if UNITY_EDITOR
+        if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetWaterDisabled())
+        {
+			this.enabled = false;
+        }
+#endif
+    }
 
 	private void ReassignPCon(PlayerController pCon)
 	{
 		pController = pCon;
+		pController.revive_Reassign += ReassignPCon;
 	}
 
 	void Update () 
