@@ -12,7 +12,8 @@ public class HomeButton : MonoBehaviour
 
     private void Start()
     {
-        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+        adManager = GameObject.FindGameObjectWithTag("Integrations")
+            .GetComponent<IntegrationsManager>().GetAdvertisements();
     }
 
     public void OnClick()

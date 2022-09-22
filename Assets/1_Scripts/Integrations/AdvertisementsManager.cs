@@ -237,7 +237,7 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
         Advertisement.Banner.SetPosition(BannerAdPosition);
 
-        DontDestroyOnLoad(transform.gameObject);
+        //DontDestroyOnLoad(transform.gameObject);
     }
 
     public void InitializeManager()

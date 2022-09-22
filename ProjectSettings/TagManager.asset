@@ -9,9 +9,9 @@ TagManager:
   - FlyingEnemy
   - Background
   - Screw
-  - AdvertisementsManager
   - GameMusicController
   - DebugController
+  - Integrations
   layers:
   - Default
   - TransparentFX

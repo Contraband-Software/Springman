@@ -27,9 +27,10 @@ public class DeathScreenScript : MonoBehaviour
 
     void Start()
     {
-        GameObject Money = GameObject.FindGameObjectWithTag("AdvertisementsManager");
-        adManager = Money.GetComponent<AdvertisementsManager>();
-        deathAd = Money.GetComponent<DeathAd>();
+        //GameObject Money = GameObject.FindGameObjectWithTag("AdvertisementsManager");
+        adManager = GameObject.FindGameObjectWithTag("Integrations")
+            .GetComponent<IntegrationsManager>().GetAdvertisements();
+        //deathAd = Money.GetComponent<DeathAd>();
 
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         DeathScreenCanvas.enabled = false;

@@ -23,7 +23,8 @@ public class ReviveController : MonoBehaviour
     {
         playerController.revive_Reassign += ReassignPCon;
 
-        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+        adManager = GameObject.FindGameObjectWithTag("Integrations")
+            .GetComponent<IntegrationsManager>().GetAdvertisements();
 
         adManager.GetShowCompleteEvent("ReviveAd").AddListener((bool status) =>
         {

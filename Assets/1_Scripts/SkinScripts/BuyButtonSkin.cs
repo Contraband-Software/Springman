@@ -52,7 +52,8 @@ public class BuyButtonSkin : MonoBehaviour
         brokeBoyCanvas.enabled = false;
         allBoughtCanvas.enabled = false;
         cosMenuCon = skinSelector.cosMenuCon;
-        adManager = GameObject.FindGameObjectWithTag("AdvertisementsManager").GetComponent<AdvertisementsManager>();
+        adManager = GameObject.FindGameObjectWithTag("Integrations")
+            .GetComponent<IntegrationsManager>().GetAdvertisements();
 
         if (purchaseType == PurchaseType.Ads)
         {
