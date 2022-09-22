@@ -203,6 +203,14 @@ public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListe
 
     public void PlayAd(string name)
     {
+#if UNITY_EDITOR
+        if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetAdsDisabled())
+        {
+            GetAdUnitByName(name).OnShowComplete.Invoke(true);
+            GetAdUnitByName(name).OnLoadComplete.Invoke();
+            return;
+        }
+#endif
         GetAdUnitByName(name).ShowAd();
     }
     public void HideBannerAd()

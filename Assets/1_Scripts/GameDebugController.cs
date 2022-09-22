@@ -12,6 +12,7 @@ public class GameDebugController : MonoBehaviour
     [SerializeField] bool spawnFlyingEnemyOnStart = false;
     [SerializeField] bool waterDisabled = false;
     [SerializeField] bool spawnSEOnAllPlatforms = false;
+    [SerializeField] bool disableAds = false;
 
     public bool GetWaterDisabled()
     {
@@ -20,6 +21,10 @@ public class GameDebugController : MonoBehaviour
     public bool GetSEOnAllPlatforms()
     {
         return spawnSEOnAllPlatforms;
+    }
+    public bool GetAdsDisabled()
+    {
+        return disableAds;
     }
 
     private void Start()

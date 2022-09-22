@@ -48,3 +48,4 @@ MonoBehaviour:
   spawnFlyingEnemyOnStart: 0
   waterDisabled: 0
   spawnSEOnAllPlatforms: 1
+  disableAds: 1
