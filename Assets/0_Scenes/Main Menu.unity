@@ -57007,6 +57007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1187147698}
   - component: {fileID: 1187147699}
+  - component: {fileID: 1187147700}
   m_Layer: 0
   m_Name: MonetisationController
   m_TagString: AdvertisementsManager
@@ -57073,6 +57074,18 @@ MonoBehaviour:
         m_Calls: []
   BannerAdPosition: 4
   TestMode: 1
+--- !u!114 &1187147700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187147697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78ea9d464e49814e9a94845b91542c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1187865703
 GameObject:
   m_ObjectHideFlags: 0
