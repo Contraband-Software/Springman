@@ -18,6 +18,9 @@ public class MenuData : MonoBehaviour
 
     public GameObject menuAudio;
 
+    [Header("Legal")]
+    public bool EULA_Accepted = false;
+
     [Header("Language Fonts")]
     public TMP_FontAsset appropriateFont;
     public TMP_FontAsset Latin_Cyrillic;
@@ -65,11 +68,14 @@ public class MenuData : MonoBehaviour
         float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
         if (availableSpace > 10)
         {
-            if (!File.Exists(path)
-#if UNITY_EDITOR
-                || GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetAlwaysFirstRun()
-#endif
-                )
+//#if UNITY_EDITOR
+//            if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetAlwaysFirstRun())
+//            {
+//                File.Delete(Path.Combine(Application.persistentDataPath, "cosmeticsData.cos"));
+//                File.Delete(Path.Combine(Application.persistentDataPath, "gamedatafile.gd"));
+//            }
+//#endif
+            if (!File.Exists(path))
             {
                 musicOn = true;
                 soundsOn = true;
@@ -83,7 +89,7 @@ public class MenuData : MonoBehaviour
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
 
-                SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
+                SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver,
                     tutorialComplete, this.ads);
 
 #if !UNITY_EDITOR
@@ -230,8 +236,9 @@ public class MenuData : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if(errorOpened == false)
+        if(errorOpened == false && EULA_Accepted)
         {
+            Debug.Log("Saving on exit");
             SaveGameData();
         }
     }

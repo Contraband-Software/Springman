@@ -9165,7 +9165,7 @@ PrefabInstance:
     - target: {fileID: 959901860760237009, guid: 3d5f964273c006d4c83586633c05cf8c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 959901860760237010, guid: 3d5f964273c006d4c83586633c05cf8c,
         type: 3}
@@ -19553,6 +19553,7 @@ MonoBehaviour:
   silver: 0
   ads: 0
   menuAudio: {fileID: 1782169662}
+  EULA_Accepted: 0
   appropriateFont: {fileID: 0}
   Latin_Cyrillic: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
   Latin: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
@@ -57125,6 +57126,16 @@ PrefabInstance:
     - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
         type: 3}
       propertyPath: alwaysFirstRun
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: disableAds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: spawnSEOnAllPlatforms
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -78886,7 +78897,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1371504299}
   m_Direction: 2
   m_Value: 1.0000001
-  m_Size: 0.057965297
+  m_Size: 0.057965305
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -98251,7 +98262,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 88b91b4051f08c34db6b7643e7b88501, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: bb50a6b001e7d1140b88af91de59f613, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -98295,7 +98306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 155a474e46739ea40abe616622230142, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86c9737b4cac8e04597f69d4193d4b53, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -102528,6 +102539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7b08132fcfbd343b40f23d5f946edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  md: {fileID: 444504074}
 --- !u!1 &2055884597
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ public class GameDebugController : MonoBehaviour
     [SerializeField] bool spawnFlyingEnemyOnStart = false;
     [SerializeField] bool waterDisabled = false;
     [SerializeField] bool spawnSEOnAllPlatforms = false;
-    [SerializeField] bool disableAds = false;
-    [SerializeField] bool alwaysFirstRun = false;
+    //[SerializeField] bool disableAds = false;
+    //[SerializeField] bool alwaysFirstRun = false;
 
     public bool GetWaterDisabled()
     {
@@ -23,14 +23,14 @@ public class GameDebugController : MonoBehaviour
     {
         return spawnSEOnAllPlatforms;
     }
-    public bool GetAdsDisabled()
-    {
-        return disableAds;
-    }
-    public bool GetAlwaysFirstRun()
-    {
-        return alwaysFirstRun;
-    }
+    //public bool GetAdsDisabled()
+    //{
+    //    return disableAds;
+    //}
+    //public bool GetAlwaysFirstRun()
+    //{
+    //    return alwaysFirstRun;
+    //}
 
     private void Start()
     {

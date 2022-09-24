@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EULADialogue : MonoBehaviour
 {
+    public MenuData md;
+
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -18,6 +20,7 @@ public class EULADialogue : MonoBehaviour
     public void Accept()
     {
         gameObject.SetActive(false);
+        md.EULA_Accepted = true;
         //write EULA_Accepted to disk?
     }
 
