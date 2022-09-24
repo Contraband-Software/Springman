@@ -34,6 +34,9 @@ public class MenuData : MonoBehaviour
     [Header("Error Stuff")]
     public bool errorOpened = false;
 
+    [Header("EULA")]
+    [SerializeField] EULADialogue eula;
+
     string path;
 
     void Awake()
@@ -47,8 +50,6 @@ public class MenuData : MonoBehaviour
         InitialiseAppropriateFonts();
         CreateFirstDataFile();
         LoadGameData();
-
-        DontDestroyOnLoad(menuAudio);
     }
 
     private void Start()
@@ -64,7 +65,11 @@ public class MenuData : MonoBehaviour
         float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
         if (availableSpace > 10)
         {
-            if (!File.Exists(path))
+            if (!File.Exists(path)
+#if UNITY_EDITOR
+                || GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetAlwaysFirstRun()
+#endif
+                )
             {
                 musicOn = true;
                 soundsOn = true;
@@ -76,12 +81,14 @@ public class MenuData : MonoBehaviour
                 ads = 0;
 
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream stream = new FileStream(path, FileMode.Create);
+                FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
 
                 SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
                     tutorialComplete, this.ads);
 
+#if !UNITY_EDITOR
                 File.SetAttributes(path, FileAttributes.ReadOnly);
+#endif
 
                 formatter.Serialize(stream, data);
                 stream.Close();
@@ -89,6 +96,8 @@ public class MenuData : MonoBehaviour
                 Debug.Log("CREATED FIRST GAME DATA FILE");
 
                 ReLocalizeTexts();
+
+                eula.Show();
             }
         }
         else
