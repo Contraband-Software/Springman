@@ -4,11 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Platform
-  - SittingEnemy
-  - FlyingEnemy
-  - Background
-  - Screw
   - GameMusicController
   - DebugController
   - Integrations
