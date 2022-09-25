@@ -116,6 +116,10 @@ public class Bounce_Effects : MonoBehaviour
                 Neon();
                 break;
 
+            case "PC":
+                PC();
+                break;
+
             default:
                 break;
         }
@@ -344,5 +348,17 @@ public class Bounce_Effects : MonoBehaviour
             premDetails.targetColor = col;
             premDetails.UpdateGlow_Soft();
         }
+    }
+
+    private void PC()
+    {
+        bounce_animator.Play("bounce");
+        //Bounce Sound
+        if (gameData.soundsOn)
+        {
+            playerCon.bounceSound.Play();
+        }
+
+        playerCon.bounceDust.Play();
     }
 }
