@@ -33805,11 +33805,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PC
       objectReference: {fileID: 0}
-    - target: {fileID: 1215366909311681752, guid: 21c2c56d15e004746b9fabbd6a12e601,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1215366909311681759, guid: 21c2c56d15e004746b9fabbd6a12e601,
         type: 3}
       propertyPath: m_LocalPosition.x

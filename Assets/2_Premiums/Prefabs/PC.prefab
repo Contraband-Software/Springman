@@ -176,6 +176,9 @@ GameObject:
   - component: {fileID: 1070052482590014681}
   - component: {fileID: 447085359}
   - component: {fileID: 732678764}
+  - component: {fileID: 1487112230935702337}
+  - component: {fileID: 732678765}
+  - component: {fileID: 732678766}
   m_Layer: 0
   m_Name: PC
   m_TagString: Untagged
@@ -409,10 +412,92 @@ MonoBehaviour:
   bounce_pSys: {fileID: 0}
   cloneParent: {fileID: 0}
   override_standard_bounce_effect: 1
-  bounce_animator: {fileID: 0}
+  bounce_animator: {fileID: 1667655022}
   bounce_effect_artifact: {fileID: 0}
   bounce_effect_charged: {fileID: 0}
   shiftSpeed: 1
+--- !u!114 &1487112230935702337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215366909311681752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88206ae9a163ce4e9f8d91b62f346d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  premDetails: {fileID: 0}
+  playerCon: {fileID: 0}
+  effectCon: {fileID: 0}
+  gameData: {fileID: 0}
+  deathPassiveName: 
+  hasDeathPassiveSound: 0
+  hasDeathPassiveAnim: 0
+  death_animator: {fileID: 1667655022}
+  passive_death_audioSource: {fileID: 0}
+  firstGlowPip: {fileID: 0}
+  redPipSprite: {fileID: 0}
+  glowBG: {fileID: 0}
+  glowFG: {fileID: 0}
+  glint: {fileID: 0}
+  shatteredGlass: {fileID: 0}
+  pSys_GlassShatter: {fileID: 0}
+  pSys_WaterSpill: {fileID: 0}
+  dude: {fileID: 0}
+  colourVariation: 0
+  lightbulbDeathAnimator: {fileID: 0}
+  pSys_BulbShatter: {fileID: 0}
+  moltenCoreGlow_1: {fileID: 0}
+  moltenCoreGlow_2: {fileID: 0}
+  pSys_moltenCore_steam: {fileID: 0}
+  trAnimList: []
+--- !u!114 &732678765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215366909311681752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4610bf695dc9d4e8430de50ae12474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  premDetails: {fileID: 0}
+  playerCon: {fileID: 0}
+  manuallyTriggerFE_DeathAnim: 0
+  artifactAnimator: {fileID: 0}
+  missilePrefab: {fileID: 0}
+  chargedAnimator: {fileID: 0}
+  beamObject: {fileID: 0}
+  electricArc: {fileID: 0}
+  firePoint: {fileID: 0}
+  stomperAnimator: {fileID: 0}
+  dc_anim: {fileID: 0}
+  dc_cannonCon: {fileID: 0}
+--- !u!114 &732678766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215366909311681752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fb27c7701ba47489121d42b364ef92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  premDetails: {fileID: 0}
+  playerCon: {fileID: 0}
+  chargedAnimator: {fileID: 0}
+  beamObject: {fileID: 0}
+  electricArc: {fileID: 0}
+  firePoint: {fileID: 0}
+  stomperAnimator: {fileID: 0}
+  dc_anim: {fileID: 0}
+  dc_cannonCon: {fileID: 0}
 --- !u!1 &1215366909615789241
 GameObject:
   m_ObjectHideFlags: 0
