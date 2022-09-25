@@ -30,6 +30,9 @@ public class KillSitting_Effects : MonoBehaviour
     public Animator dc_anim;
     public DC_CannonController dc_cannonCon;
 
+    [Header("PC Deatials")]
+    public Animator pc_anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +61,10 @@ public class KillSitting_Effects : MonoBehaviour
 
             case "Dual Cannon":
                 DualCannon();
+                break;
+
+            case "PC":
+                PC();
                 break;
 
             default:
@@ -101,4 +108,12 @@ public class KillSitting_Effects : MonoBehaviour
         print("FIRE");
         dc_cannonCon.AimAtPosition(sittingEnemyObject.transform.position, premDetails, sittingEnemyObject);
     }
+    private void PC()
+    {
+        if (!pc_anim.GetBool("moneyAnimPlaying"))
+        {
+            pc_anim.Play("pc_flash_kill");
+        }
+    }
+
 }

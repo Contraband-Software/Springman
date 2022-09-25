@@ -36,6 +36,9 @@ public class KillFlying_Effects : MonoBehaviour
     public Animator dc_anim;
     public DC_CannonController dc_cannonCon;
 
+    [Header("PC Details")]
+    public Animator pc_anim;
+
     public void Start()
     {
         premDetails = gameObject.GetComponent<PremSkinDetailsDemo>();
@@ -69,6 +72,10 @@ public class KillFlying_Effects : MonoBehaviour
 
             case "Dual Cannon":
                 DualCannon();
+                break;
+
+            case "PC":
+                PC();
                 break;
 
             default:
@@ -132,6 +139,16 @@ public class KillFlying_Effects : MonoBehaviour
         dc_anim.Play("dualcannon_glow_fire");
         dc_cannonCon.AimAtPosition(flyingEnemyObject.transform.position, premDetails, flyingEnemyObject);
 
+        tapToKillReference.KillFlyingEnemy(flyingEnemyObject);
+    }
+
+    private void PC()
+    {
+        if (!pc_anim.GetBool("moneyAnimPlaying"))
+        {
+            pc_anim.Play("pc_flash_kill");
+        }
+        
         tapToKillReference.KillFlyingEnemy(flyingEnemyObject);
     }
 }

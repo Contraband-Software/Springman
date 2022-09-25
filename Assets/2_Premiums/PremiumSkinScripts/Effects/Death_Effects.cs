@@ -56,6 +56,10 @@ public class Death_Effects : MonoBehaviour
     [Header("Neon Details")]
     public List<TransparencyAnimator> trAnimList = new List<TransparencyAnimator>();
 
+    [Header("PC Details")]
+    public GameObject dead_face;
+    public List<GameObject> turn_off_objects = new List<GameObject>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +114,10 @@ public class Death_Effects : MonoBehaviour
 
             case "Neon":
                 Neon();
+                break;
+
+            case "PC":
+                PC();
                 break;
 
             default:
@@ -269,4 +277,8 @@ public class Death_Effects : MonoBehaviour
         }
     }
 
+    private void PC()
+    {
+        death_animator.Play("pc_death_passive_2");
+    }
 }
