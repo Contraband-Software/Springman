@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 1487112230935702337}
   - component: {fileID: 732678765}
   - component: {fileID: 732678766}
+  - component: {fileID: 2071975907}
   m_Layer: 0
   m_Name: PC
   m_TagString: Untagged
@@ -432,9 +433,9 @@ MonoBehaviour:
   playerCon: {fileID: 0}
   effectCon: {fileID: 0}
   gameData: {fileID: 0}
-  deathPassiveName: 
+  deathPassiveName: pc_death_passive
   hasDeathPassiveSound: 0
-  hasDeathPassiveAnim: 0
+  hasDeathPassiveAnim: 1
   death_animator: {fileID: 1667655022}
   passive_death_audioSource: {fileID: 0}
   firstGlowPip: {fileID: 0}
@@ -453,6 +454,8 @@ MonoBehaviour:
   moltenCoreGlow_2: {fileID: 0}
   pSys_moltenCore_steam: {fileID: 0}
   trAnimList: []
+  dead_face: {fileID: 8534885161034267313}
+  turn_off_objects: []
 --- !u!114 &732678765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,7 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   premDetails: {fileID: 0}
   playerCon: {fileID: 0}
-  manuallyTriggerFE_DeathAnim: 0
+  manuallyTriggerFE_DeathAnim: 1
   artifactAnimator: {fileID: 0}
   missilePrefab: {fileID: 0}
   chargedAnimator: {fileID: 0}
@@ -477,6 +480,7 @@ MonoBehaviour:
   stomperAnimator: {fileID: 0}
   dc_anim: {fileID: 0}
   dc_cannonCon: {fileID: 0}
+  pc_anim: {fileID: 1667655022}
 --- !u!114 &732678766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +502,21 @@ MonoBehaviour:
   stomperAnimator: {fileID: 0}
   dc_anim: {fileID: 0}
   dc_cannonCon: {fileID: 0}
+  pc_anim: {fileID: 0}
+--- !u!114 &2071975907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215366909311681752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ea615f383dcc04cbfa3e457adb23e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 0}
+  anim: {fileID: 1667655022}
 --- !u!1 &1215366909615789241
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5812863578247787084
 Transform:
   m_ObjectHideFlags: 0

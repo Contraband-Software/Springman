@@ -33805,6 +33805,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PC
       objectReference: {fileID: 0}
+    - target: {fileID: 1215366909311681752, guid: 21c2c56d15e004746b9fabbd6a12e601,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1215366909311681759, guid: 21c2c56d15e004746b9fabbd6a12e601,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -57212,6 +57217,16 @@ PrefabInstance:
     - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
         type: 3}
       propertyPath: spawnSEOnAllPlatforms
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: waterDisabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: spawnFlyingEnemyOnStart
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

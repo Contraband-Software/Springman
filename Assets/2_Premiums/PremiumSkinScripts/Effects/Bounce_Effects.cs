@@ -359,6 +359,11 @@ public class Bounce_Effects : MonoBehaviour
             playerCon.bounceSound.Play();
         }
 
+        if (!bounce_animator.GetBool("moneyAnimPlaying"))
+        {
+            bounce_animator.Play("pc_flash_bounce");
+        }
+
         playerCon.bounceDust.Play();
     }
 }
