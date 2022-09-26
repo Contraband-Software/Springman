@@ -78,14 +78,15 @@ public class MenuData : MonoBehaviour
             if (!File.Exists(path))
             {
                 EULA_Accepted = false;
-
                 musicOn = true;
                 soundsOn = true;
-                langIndex = 0;
                 gold = 60;
                 silver = 300;
                 tutorialComplete = false;
                 ads = 0;
+
+                List<string> langsTemp = new List<string>{ "english", "french", "spanish", "russian", "german", "portugese", "malay",
+                "polish", "italian", "chinese", "turkish", "vietnamese", "ukrainian", "hindi", "indonesian", "arabic"};
 
                 switch (Application.systemLanguage)
                 {
@@ -135,6 +136,8 @@ public class MenuData : MonoBehaviour
                         currentLanguage = "english";
                         break;
                 }
+
+                langIndex = langsTemp.IndexOf(currentLanguage);
 
 
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -226,8 +229,9 @@ public class MenuData : MonoBehaviour
 
     public void ReLocalizeTexts()
     {
-
+        print("TRANSLATING TEXTS");
         LocalizationSystem.language = (LocalizationSystem.Language)langIndex;
+        print("TO: " + LocalizationSystem.language.ToString());
 
         FindAppropriateFont();
 
