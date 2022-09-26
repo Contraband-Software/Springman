@@ -308,8 +308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 48, y: 18}
-  m_SizeDelta: {x: 135.80966, y: 98.29032}
+  m_AnchoredPosition: {x: 0, y: 7}
+  m_SizeDelta: {x: 221.2931, y: 89.2776}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7198142
 MonoBehaviour:
@@ -347,7 +347,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: bdbcff794c60b8048a7a5c6c930f76aa, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 926756e8e24801446bb1319b662bf7b4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 45.15
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -82.49756, y: 24.604544, z: 18.815243, w: 0}
+  m_margin: {x: 0.41457585, y: 1.1942344, z: -0.16608982, w: 0}
   m_textInfo:
     textComponent: {fileID: 7198144}
     characterCount: 7
@@ -38203,8 +38203,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000049591, y: 0.000085831}
-  m_SizeDelta: {x: 290, y: 120.00019}
+  m_AnchoredPosition: {x: 0, y: 7}
+  m_SizeDelta: {x: 221.29309, y: 89.277596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &807308304
 MonoBehaviour:
@@ -78990,7 +78990,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1371504299}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.048037138
+  m_Size: 0.048048217
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -85982,6 +85982,7 @@ GameObject:
   - component: {fileID: 1756165791}
   - component: {fileID: 1756165790}
   - component: {fileID: 1756165789}
+  - component: {fileID: 1756165794}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -86006,8 +86007,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -423, y: 330}
-  m_SizeDelta: {x: 290, y: 120}
+  m_AnchoredPosition: {x: -390, y: 330}
+  m_SizeDelta: {x: 242.90607, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756165789
 MonoBehaviour:
@@ -86023,10 +86024,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterCanvasRect: {fileID: 477412708}
   buttonRect: {fileID: 1756165788}
-  targetRect: {fileID: 0}
+  targetRect: {fileID: 807308303}
   text1: {fileID: 0}
   text2: {fileID: 0}
-  deltaY: 0
+  deltaY: 7
   buttonBeingPressed: 0
   tintOnPress: 0
   textDetails: {fileID: 0}
@@ -86144,6 +86145,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756165787}
   m_CullTransparentMesh: 0
+--- !u!114 &1756165794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756165787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a091bbbcd10dc6b4a807928f51a70628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1757282917
 GameObject:
   m_ObjectHideFlags: 0
@@ -98364,8 +98377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 416.5, y: 330}
-  m_SizeDelta: {x: 290, y: 120}
+  m_AnchoredPosition: {x: 390, y: 330}
+  m_SizeDelta: {x: 243.53094, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990935371
 MonoBehaviour:
@@ -98381,10 +98394,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterCanvasRect: {fileID: 477412708}
   buttonRect: {fileID: 1990935370}
-  targetRect: {fileID: 0}
+  targetRect: {fileID: 7198141}
   text1: {fileID: 0}
   text2: {fileID: 0}
-  deltaY: 0
+  deltaY: 7
   buttonBeingPressed: 0
   tintOnPress: 1
   textDetails: {fileID: 0}

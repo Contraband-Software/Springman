@@ -77,6 +77,8 @@ public class MenuData : MonoBehaviour
 //#endif
             if (!File.Exists(path))
             {
+                EULA_Accepted = false;
+
                 musicOn = true;
                 soundsOn = true;
                 langIndex = 0;
@@ -182,6 +184,8 @@ public class MenuData : MonoBehaviour
             silver = data.silver;
             tutorialComplete = data.tutorialComplete;
             ads = data.ads;
+
+            EULA_Accepted = true;
 
             //Debug.Log("LOADED GAMEDATA FILE");
         }
@@ -289,6 +293,13 @@ public class MenuData : MonoBehaviour
         {
             Debug.Log("Saving on exit");
             SaveGameData();
+        }
+
+        if (!EULA_Accepted)
+        {
+            //shut game, delete all gamedata, hard factory reset
+            DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+            dataDir.Delete(true);
         }
     }
 }

@@ -8,6 +8,6 @@ public class ui_IgnoreAlpha : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		this.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
+		gameObject.GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
 	}
 }
