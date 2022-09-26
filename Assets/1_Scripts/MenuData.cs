@@ -79,12 +79,61 @@ public class MenuData : MonoBehaviour
             {
                 musicOn = true;
                 soundsOn = true;
-                currentLanguage = "english";
                 langIndex = 0;
                 gold = 60;
                 silver = 300;
                 tutorialComplete = false;
                 ads = 0;
+
+                switch (Application.systemLanguage)
+                {
+                    case SystemLanguage.Arabic:
+                        currentLanguage = "arabic";
+                        break;
+                    case SystemLanguage.Chinese:
+                        currentLanguage = "chinese";
+                        break;
+                    case SystemLanguage.French:
+                        currentLanguage = "french";
+                        break;
+                    case SystemLanguage.German:
+                        currentLanguage = "german";
+                        break;
+                    case SystemLanguage.Indonesian:
+                        currentLanguage = "indonesian";
+                        break;
+                    case SystemLanguage.Italian:
+                        currentLanguage = "italian";
+                        break;
+                    case SystemLanguage.Polish:
+                        currentLanguage = "polish";
+                        break;
+                    case SystemLanguage.Portuguese:
+                        currentLanguage = "portugese";
+                        break;
+                    case SystemLanguage.Russian:
+                        currentLanguage = "russian";
+                        break;
+                    case SystemLanguage.Spanish:
+                        currentLanguage = "spanish";
+                        break;
+                    case SystemLanguage.Turkish:
+                        currentLanguage = "turkish";
+                        break;
+                    case SystemLanguage.Ukrainian:
+                        currentLanguage = "ukrainian";
+                        break;
+                    case SystemLanguage.Vietnamese:
+                        currentLanguage = "vietnamese";
+                        break;
+
+                    //DEFAULT TO ENGLISH
+                    case SystemLanguage.Unknown:
+                    default:
+                        currentLanguage = "english";
+                        break;
+                }
+
 
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
