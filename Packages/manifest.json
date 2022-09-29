@@ -14,7 +14,6 @@
     "com.unity.timeline": "1.2.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.xr.legacyinputhelpers": "2.1.4",
-    "net.gree.unity-webview": "https://github.com/gree/unity-webview.git?path=/dist/package",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -46,11 +45,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "lock": {
-    "net.gree.unity-webview": {
-      "revision": "HEAD",
-      "hash": "e2ee37af62acc41dd1a87baa4932cd0a1c548197"
-    }
   }
 }
