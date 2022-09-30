@@ -10,8 +10,14 @@ public class PremiumButton : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Button thisButton;
     [SerializeField] ButtonMouseDown btnDownScript;
+    [SerializeField] Canvas premBuyCanvas;
+    [SerializeField] ScaleTween scaleTween;
     private bool currentSkinPrem_stored = false;
 
+    private void Start()
+    {
+        premBuyCanvas.enabled = false;
+    }
 
     private void Update()
     {
@@ -47,7 +53,8 @@ public class PremiumButton : MonoBehaviour
     {
         if (cosData.currentSkinPremium)
         {
-
+            premBuyCanvas.enabled = true;
+            scaleTween.OnOpen();
         }
     }
 }
