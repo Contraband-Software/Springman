@@ -12,6 +12,8 @@ public class PremiumButton : MonoBehaviour
     [SerializeField] ButtonMouseDown btnDownScript;
     [SerializeField] Canvas premBuyCanvas;
     [SerializeField] ScaleTween scaleTween;
+    [SerializeField] FilterFade ff;
+    [SerializeField] CosmeticsMenuController cosMenuCon;
     private bool currentSkinPrem_stored = false;
 
     private void Start()
@@ -55,6 +57,8 @@ public class PremiumButton : MonoBehaviour
         {
             premBuyCanvas.enabled = true;
             scaleTween.OnOpen();
+            ff.FadeToBlack();
+            cosMenuCon.buyCanvasOn = true;
         }
     }
 }

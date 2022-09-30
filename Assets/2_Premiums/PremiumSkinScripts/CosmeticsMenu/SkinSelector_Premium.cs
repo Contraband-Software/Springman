@@ -212,7 +212,7 @@ public class SkinSelector_Premium : MonoBehaviour
             withinX = true;
         }
 
-        if(withinX && withinY)
+        if (withinX && withinY && !cosMenuCon.buyCanvasOn && !cosMenuCon.allBoughtCanvasOn && !cosMenuCon.brokeCanvasOn)
         {
             return true;
         }

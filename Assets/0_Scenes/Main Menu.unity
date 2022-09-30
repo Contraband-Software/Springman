@@ -35241,6 +35241,8 @@ MonoBehaviour:
   btnDownScript: {fileID: 754556974}
   premBuyCanvas: {fileID: 898013393}
   scaleTween: {fileID: 1994375396}
+  ff: {fileID: 688083485}
+  cosMenuCon: {fileID: 1624638535}
 --- !u!1 &755203045
 GameObject:
   m_ObjectHideFlags: 0
