@@ -57,7 +57,7 @@ TextureImporter:
       213: -740082458972940806
     second: Explosion1_17
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -77,6 +77,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -85,9 +87,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -108,10 +110,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -151,6 +157,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -552,6 +570,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Explosion1_5: 7946471205713304260
+      Explosion1_13: -3547454156628944036
+      Explosion1_4: 2919337598458167260
+      Explosion1_15: -2613992024051656597
+      Explosion1_11: -298352706587287717
+      Explosion1_6: 6429953392170825754
+      Explosion1_7: -3030184561591757135
+      Explosion1_16: -5054021602144492057
+      Explosion1_9: -4054574758982948011
+      Explosion1_17: -740082458972940806
+      Explosion1_8: 5148627618877288894
+      Explosion1_10: -5657478249251358033
+      Explosion1_12: 3386580810454180892
+      Explosion1_3: -6535378651979640892
+      Explosion1_0: -3675699285358318716
+      Explosion1_1: 5070197690011788643
+      Explosion1_2: 3563958213308516570
+      Explosion1_14: 3158679262674546034
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
