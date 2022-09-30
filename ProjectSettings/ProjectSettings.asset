@@ -168,9 +168,9 @@ PlayerSettings:
     Android: software.contraband.springman
     Standalone: software.contraband.springman
   buildNumber: {}
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 32
-  AndroidTargetSdkVersion: 32
+  AndroidBundleVersionCode: 3
+  AndroidMinSdkVersion: 19
+  AndroidTargetSdkVersion: 31
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
