@@ -754,6 +754,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!4 &12607336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4622692240753642059, guid: e029d426edee51643bd0ec74dc27f845,
@@ -5516,6 +5517,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &147334749
 GameObject:
   m_ObjectHideFlags: 0
@@ -7729,7 +7731,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 0
-  m_textAlignment: 2050
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -10383,6 +10385,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &241639625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12385,6 +12388,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &291626034
 GameObject:
   m_ObjectHideFlags: 0
@@ -12469,6 +12473,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &291626038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14124,6 +14129,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &326917926
 GameObject:
   m_ObjectHideFlags: 0
@@ -19602,6 +19608,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &440936449
 GameObject:
   m_ObjectHideFlags: 0
@@ -22809,6 +22816,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &501137659
 GameObject:
   m_ObjectHideFlags: 0
@@ -29139,6 +29147,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &645312781
 GameObject:
   m_ObjectHideFlags: 0
@@ -31261,6 +31270,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &684785809
 GameObject:
   m_ObjectHideFlags: 0
@@ -34578,6 +34588,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &754287768
 GameObject:
   m_ObjectHideFlags: 0
@@ -34715,7 +34726,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 754556972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 754556975}
+        m_MethodName: Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &754556972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34785,6 +34807,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &754556975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34799,6 +34822,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cosData: {fileID: 1243343506}
   text: {fileID: 190209030}
+  thisButton: {fileID: 754556971}
+  btnDownScript: {fileID: 754556974}
 --- !u!1 &755203045
 GameObject:
   m_ObjectHideFlags: 0
@@ -43485,6 +43510,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &903943820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43517,6 +43543,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &907218382
 GameObject:
   m_ObjectHideFlags: 0
@@ -44500,6 +44527,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &916846562
 GameObject:
   m_ObjectHideFlags: 0
@@ -45328,6 +45356,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &930238493
 GameObject:
   m_ObjectHideFlags: 0
@@ -45821,6 +45850,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &931656597
 GameObject:
   m_ObjectHideFlags: 0
@@ -47597,6 +47627,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &967938106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50851,6 +50882,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1017204792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50883,6 +50915,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1017204793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50915,6 +50948,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1017204795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52643,6 +52677,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1050725652
 GameObject:
   m_ObjectHideFlags: 0
@@ -55022,6 +55057,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1126793297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55054,6 +55090,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1126793299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56451,6 +56488,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1141858244
 GameObject:
   m_ObjectHideFlags: 0
@@ -61966,6 +62004,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1251753348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63703,6 +63742,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1297674253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64004,6 +64044,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1301232015
 GameObject:
   m_ObjectHideFlags: 0
@@ -66624,6 +66665,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1347375647
 GameObject:
   m_ObjectHideFlags: 0
@@ -71138,6 +71180,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1442671211
 GameObject:
   m_ObjectHideFlags: 0
@@ -71782,6 +71825,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1452617420
 GameObject:
   m_ObjectHideFlags: 0
@@ -78979,6 +79023,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1605800590
 GameObject:
   m_ObjectHideFlags: 0
@@ -81262,6 +81307,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1646667548
 GameObject:
   m_ObjectHideFlags: 0
@@ -83692,6 +83738,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1692268411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83724,6 +83771,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1692268412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83756,6 +83804,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1692268413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85282,6 +85331,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1726845746
 GameObject:
   m_ObjectHideFlags: 0
@@ -85593,6 +85643,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1731973391
 GameObject:
   m_ObjectHideFlags: 0
@@ -86460,6 +86511,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1756165790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95670,6 +95722,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1938012453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95702,6 +95755,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1938012454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95734,6 +95788,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1941200589
 GameObject:
   m_ObjectHideFlags: 0
@@ -97688,6 +97743,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!1 &1973659632
 GameObject:
   m_ObjectHideFlags: 0
@@ -98830,6 +98886,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &1990935373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100340,6 +100397,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &2003604380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100372,6 +100430,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &2003604381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100404,6 +100463,7 @@ MonoBehaviour:
   single_on_up: 0
   menuData_Fetched: {fileID: 0}
   gameData_Fetched: {fileID: 0}
+  disabledButton: 0
 --- !u!114 &2003604382
 MonoBehaviour:
   m_ObjectHideFlags: 0

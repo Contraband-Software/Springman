@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PremiumButton : MonoBehaviour
 {
     [SerializeField] CosmeticsData cosData;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Button thisButton;
+    [SerializeField] ButtonMouseDown btnDownScript;
     private bool currentSkinPrem_stored = false;
 
 
@@ -27,11 +30,24 @@ public class PremiumButton : MonoBehaviour
     {
         currentSkinPrem_stored = true;
         text.text = "Customise";
+        thisButton.interactable = true;
+        btnDownScript.disabledButton = false;
     }
 
     private void ChangeToSaySelect()
     {
         currentSkinPrem_stored = false;
         text.text = "Select A Skin";
+        thisButton.interactable = false;
+        btnDownScript.disabledButton = true;
+    }
+
+
+    public void Clicked()
+    {
+        if (cosData.currentSkinPremium)
+        {
+
+        }
     }
 }

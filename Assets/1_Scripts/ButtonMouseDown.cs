@@ -37,6 +37,9 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public MenuData menuData_Fetched;
     public GameData gameData_Fetched;
 
+    [Header("BLOCK CLICKS (DISABLE BUTTON")]
+    public bool disabledButton = false;
+
     public void Awake()
     {
         GetAudioRules();
@@ -61,51 +64,56 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        buttonBeingPressed = true;
-
-        if (soundsOn)
+        if (!disabledButton)
         {
-            if (!ignoreClick && !single_on_up)
+            buttonBeingPressed = true;
+
+            if (soundsOn)
             {
-                if (!negative_first)
+                if (!ignoreClick && !single_on_up)
                 {
-                    pos_click.Play();
-                }
-                else
-                {
-                    neg_click.Play();
+                    if (!negative_first)
+                    {
+                        pos_click.Play();
+                    }
+                    else
+                    {
+                        neg_click.Play();
+                    }
                 }
             }
+
+            ChangeDueToPress();
         }
-
-        ChangeDueToPress();
-
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        buttonBeingPressed = false;
-
-        if (soundsOn)
+        if (!disabledButton)
         {
-            if (!ignoreClick && !single_click)
+            buttonBeingPressed = false;
+
+            if (soundsOn)
             {
-                if (!negative_first)
+                if (!ignoreClick && !single_click)
                 {
-                    neg_click.Play();
+                    if (!negative_first)
+                    {
+                        neg_click.Play();
+                    }
+                    else
+                    {
+                        pos_click.Play();
+                    }
                 }
-                else
+                if (single_on_up)
                 {
                     pos_click.Play();
                 }
             }
-            if (single_on_up)
-            {
-                pos_click.Play();
-            }
-        }
 
-        ReturnToDefault();
+            ReturnToDefault();
+        }
     }
 
     private bool soundsOn;
