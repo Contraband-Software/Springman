@@ -173,12 +173,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "software.contraband.unity.platformintegrations": {
-      "version": "file:cyanUnityPlatformItegrations",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

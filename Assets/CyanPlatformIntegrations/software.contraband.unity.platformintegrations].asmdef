@@ -1,0 +1,19 @@
+{
+    "name": "software.contraband.unity.platformintegrations.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ff6de30450f3748908ff580f6ec64d9a",
+        "GUID:0fda7ebe61ab2164383d10e32efb9c6e",
+        "GUID:9172e27a923a34eb8b02dc3ab88d3dcd",
+        "GUID:1ed07ff861e5f468287b0baef844706d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

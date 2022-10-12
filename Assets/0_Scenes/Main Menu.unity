@@ -3003,50 +3003,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81306522}
   m_CullTransparentMesh: 0
---- !u!1 &82766734
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 82766736}
-  - component: {fileID: 82766735}
-  m_Layer: 0
-  m_Name: DataPrivacy
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &82766735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82766734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d78ea9d464e49814e9a94845b91542c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &82766736
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82766734}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1586006873}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83089562
 GameObject:
   m_ObjectHideFlags: 0
@@ -53843,37 +53799,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058018071}
   m_CullTransparentMesh: 0
---- !u!1 &1058193850
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1058193851}
-  m_Layer: 0
-  m_Name: InAppPurchases
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1058193851
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058193850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1586006873}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061130457
 GameObject:
   m_ObjectHideFlags: 0
@@ -59726,83 +59651,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187042257}
   m_CullTransparentMesh: 0
---- !u!1 &1187147697
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1187147698}
-  - component: {fileID: 1187147699}
-  m_Layer: 0
-  m_Name: AdvertisementsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1187147698
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187147697}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -359.5935, y: 111.33984, z: 208.89294}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1586006873}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1187147699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187147697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36c193d4f18da734383e2f7ec649899c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AppleGameID: 4923364
-  GooglePlayGameID: 4923365
-  AdUnits:
-  - Name: DeathInterstitial
-    Android: Interstitial_Android
-    IOS: Interstitial_iOS
-    Banner: 0
-    OnLoadComplete:
-      m_PersistentCalls:
-        m_Calls: []
-  - Name: AdSkins
-    Android: Rewarded_Android
-    IOS: Rewarded_iOS
-    Banner: 0
-    OnLoadComplete:
-      m_PersistentCalls:
-        m_Calls: []
-  - Name: DeathBanner
-    Android: Banner_Android
-    IOS: Banner_iOS
-    Banner: 1
-    OnLoadComplete:
-      m_PersistentCalls:
-        m_Calls: []
-  - Name: ReviveAd
-    Android: Revive_Android
-    IOS: Revive_iOS
-    Banner: 0
-    OnLoadComplete:
-      m_PersistentCalls:
-        m_Calls: []
-  BannerAdPosition: 4
-  TestMode: 1
 --- !u!1 &1187865703
 GameObject:
   m_ObjectHideFlags: 0
@@ -79582,57 +79430,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582005496}
   m_CullTransparentMesh: 0
---- !u!1 &1586006871
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1586006873}
-  - component: {fileID: 1586006874}
-  m_Layer: 0
-  m_Name: PlatformIntegrations
-  m_TagString: Integrations
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1586006873
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586006871}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1171.5178, y: 438.6333, z: -706.5604}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1187147698}
-  - {fileID: 1058193851}
-  - {fileID: 82766736}
-  - {fileID: 1979364074}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1586006874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586006871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4187816f59182f4581e83d0f7de4560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  advertisementsManager: {fileID: 1187147699}
-  dataPrivacyHandler: {fileID: 0}
-  googlePlayGamesManager: {fileID: 1979364075}
 --- !u!1 &1590563559
 GameObject:
   m_ObjectHideFlags: 0
@@ -99823,50 +99620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinSpecs: {fileID: 0}
   rect: {fileID: 0}
---- !u!1 &1979364073
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1979364074}
-  - component: {fileID: 1979364075}
-  m_Layer: 0
-  m_Name: GooglePlayGames
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1979364074
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979364073}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1586006873}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1979364075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979364073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e884784389a8a44923bb3a1d91b220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1980334638
 GameObject:
   m_ObjectHideFlags: 0
@@ -108583,6 +108336,165 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133805194}
   m_CullTransparentMesh: 0
+--- !u!1001 &4427019384286551851
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1171.5178
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 438.6333
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -706.5604
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133307004, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_Name
+      value: PlatformIntegrations
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: TestMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AppleGameID
+      value: 4923364
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: BannerAdPosition
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: GooglePlayGameID
+      value: 4923365
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[0].IOS
+      value: Revive_iOS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[1].IOS
+      value: Rewarded_iOS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[2].IOS
+      value: Interstitial_iOS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[3].IOS
+      value: Banner_iOS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[0].Name
+      value: ReviveAd
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[1].Name
+      value: AdSkins
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[2].Name
+      value: DeathInterstitial
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[3].Name
+      value: DeathBanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[3].Banner
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[0].Android
+      value: Revive_Android
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[1].Android
+      value: Rewarded_Android
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[2].Android
+      value: Interstitial_Android
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: AdUnits.Array.data[3].Android
+      value: Banner_Android
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
 --- !u!1001 &5482114566733231025
 PrefabInstance:
   m_ObjectHideFlags: 0
