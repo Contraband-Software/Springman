@@ -7,12 +7,16 @@ using SimpleDiskUtils;
 
 public class TestDiskUtils : MonoBehaviour {
 
+    [SerializeField]
+    TextMesh text;
 
 	string obj = "A";
 
 
     void PrintDebug(string str)
     {
+        if (text != null)
+            text.text += str;
         Debug.Log(str);
     }
 
@@ -53,6 +57,7 @@ public class TestDiskUtils : MonoBehaviour {
 
     IEnumerator Tests()
     {
+		text.text = "";
 
         string dir = Application.persistentDataPath + "/TestDiskUtils/";
         string storePath = Application.persistentDataPath + "/TestDiskUtils/Test.txt";
