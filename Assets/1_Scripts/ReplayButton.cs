@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PlatformIntegrations;
 
 public class ReplayButton : MonoBehaviour
 {

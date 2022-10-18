@@ -76188,7 +76188,6 @@ GameObject:
   - component: {fileID: 1524131931}
   - component: {fileID: 1524131930}
   - component: {fileID: 1524131929}
-  - component: {fileID: 1524131932}
   - component: {fileID: 1524131933}
   - component: {fileID: 1524131934}
   m_Layer: 0
@@ -76264,18 +76263,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1524131932
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524131928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -629645037, guid: 4d822e07ba2e51b43a9090ba5769b73a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1524131933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108343,6 +108330,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4181529459941313769, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: SocialManager
+      value: 
+      objectReference: {fileID: 4427019384286551852}
+    - target: {fileID: 4427019384515571138, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
+      propertyPath: m_Name
+      value: SocialPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
       propertyPath: m_RootOrder
@@ -108493,8 +108490,22 @@ PrefabInstance:
       propertyPath: AdUnits.Array.data[3].Android
       value: Banner_Android
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 512643117620778877, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
+    - {fileID: 5811369845408834058, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
+--- !u!114 &4427019384286551852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9115400694181143610, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4427019384286551851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f88acc240bc44447bd73c436f72d31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5482114566733231025
 PrefabInstance:
   m_ObjectHideFlags: 0
