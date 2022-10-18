@@ -11,10 +11,10 @@ namespace PlatformIntegrations
         [SerializeField] AdvertisementsManager advertisementsManager;
         public AdvertisementsManager GetAdvertisements() { return advertisementsManager; }
 
-#if UNITY_ANALYTICS
+//#if UNITY_ANALYTICS
         [SerializeField] DataPrivacyHandler dataPrivacyHandler;
         public DataPrivacyHandler GetDataPrivacy() { return dataPrivacyHandler; }
-#endif
+//#endif
 
         [Header("Platform Controllers")]
 
