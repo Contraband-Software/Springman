@@ -3112,7 +3112,7 @@ RectTransform:
   m_Children:
   - {fileID: 760492865}
   m_Father: {fileID: 539754225}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -22317,7 +22317,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -25298,7 +25298,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 807614449}
-  - {fileID: 1902720878}
   - {fileID: 1756165788}
   - {fileID: 1990935370}
   - {fileID: 83089563}
@@ -83510,7 +83509,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371504300}
   m_HandleRect: {fileID: 1371504299}
   m_Direction: 2
-  m_Value: 1.0000001
+  m_Value: 1
   m_Size: 0.048048217
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -90767,7 +90766,7 @@ RectTransform:
   m_Children:
   - {fileID: 807308303}
   m_Father: {fileID: 539754225}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -98690,242 +98689,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900770288}
   m_CullTransparentMesh: 0
---- !u!1 &1902720877
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1902720878}
-  - component: {fileID: 1902720881}
-  - component: {fileID: 1902720880}
-  m_Layer: 5
-  m_Name: Content
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1902720878
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902720877}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2094306660}
-  m_Father: {fileID: 539754225}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.1, y: 30.1}
-  m_SizeDelta: {x: 1757.677, y: 1201.009}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1902720880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902720877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: "End-User License Agreement (EULA) of Springman\r\nThis End-User License
-    Agreement (\"EULA\") is a legal agreement between you and Contraband Software.\r\n\r\nThis
-    EULA agreement governs your acquisition and use of our Springman software (\"Software\")
-    directly from Contraband Software or indirectly through a Contraband Software
-    authorized reseller or distributor (a \"Reseller\").\r\n\r\nPlease read this
-    EULA agreement carefully before using the Springman software. It provides a license
-    to use the Springman software and contains warranty information and liability
-    disclaimers.\r\n\r\nBy clicking \"accept\" or installing and/or using the Springman
-    software, you are confirming your acceptance of the Software and agreeing to
-    become bound by the terms of this EULA agreement.\r\n\r\nIf you are entering
-    into this EULA agreement on behalf of a company or other legal entity, you represent
-    that you have the authority to bind such entity and its affiliates to these terms
-    and conditions. If you do not have such authority or if you do not agree with
-    the terms and conditions of this EULA agreement, do not install or use the Software,
-    and you must not accept this EULA agreement.\r\n\r\nThis EULA agreement shall
-    apply only to the Software supplied by Contraband Software herewith regardless
-    of whether other software is referred to or described herein. The terms also
-    apply to any Contraband Software updates, supplements, Internet-based services,
-    and support services for the Software, unless other terms accompany those items
-    on delivery. If so, those terms apply.\r\n\r\nLicense Grant\r\nContraband Software
-    hereby grants you a personal, non-transferable, non-exclusive licence to install
-    and use the Springman software on your devices in accordance with the terms of
-    this EULA agreement.\r\n\r\nYou are permitted to load the Springman software
-    (for example a PC, laptop, mobile or tablet) under your control. You are responsible
-    for ensuring your device meets the minimum requirements of the Springman software.\r\n\r\nYou
-    are not permitted to:\r\n\r\nEdit, alter, modify, adapt, translate or otherwise
-    change the whole or any part of the Software nor permit the whole or any part
-    of the Software to be combined with or become incorporated in any other software,
-    nor decompile, disassemble or reverse engineer the Software or attempt to do
-    any such things\r\nReproduce, copy, distribute, resell or otherwise use the Software
-    for any commercial purpose\r\nAllow any third party to use the Software on behalf
-    of or for the benefit of any third party\r\nUse the Software in any way which
-    breaches any applicable local, national or international law\r\nuse the Software
-    for any purpose that Contraband Software considers is a breach of this EULA agreement\r\nDamage,
-    disable, overburden, or impair the Application (or servers or networks connected
-    to the Application), nor may you use the Application in any manner that could
-    interfere with any other party's use and enjoyment of the Application (or servers
-    or networks connected to the Application).\r\nIntellectual Property and Ownership\r\nContraband
-    Software shall at all times retain ownership of the Software as originally downloaded
-    by you and all subsequent downloads of the Software by you. The Software (and
-    the copyright, and other intellectual property rights of whatever nature in the
-    Software, including any modifications made thereto) are and shall remain the
-    property of Contraband Software.\r\n\r\nContraband Software reserves the right
-    to grant licences to use the Software to third parties.\r\n\r\nConsent to Use
-    of Data\r\nYou agree that Contraband Software may collect and use technical data
-    and related information\u2014including but not limited to technical information
-    about your device, system and application software, and peripherals\u2014that
-    is gathered periodically to facilitate the provision of software updates, product
-    support, and other services to you (if any) related to the Springman Application.
-    Contraband Software may use this information, as long as it is in a form that
-    does not personally identify you, to improve its products or to provide services
-    or technologies to you.\r\n\r\nYou can find our privacy policy and that of any
-    third-party we work with at our website.\r\n\r\nTermination\r\nThis EULA agreement
-    is effective from the date you first use the Software and shall continue until
-    terminated. You may terminate it at any time upon written notice to Contraband
-    Software.\r\n\r\nIt will also terminate immediately if you fail to comply with
-    any term of this EULA agreement. Upon such termination, the licenses granted
-    by this EULA agreement will immediately terminate and you agree to stop all access
-    and use of the Software. The provisions that by their nature continue and survive
-    will survive any termination of this EULA agreement.\r\n\r\nDisclaimer of Warranties\r\nYOU
-    EXPRESSLY UNDERSTAND AND AGREE THAT YOUR USE OF THE APPLICATION IS AT YOUR SOLE
-    DISCRETION AND RISK AND THAT THE APPLICATION IS PROVIDED AS IS AND AS AVAILABLE
-    WITHOUT WARRANTY OF ANY KIND.\r\n\r\nYOU ARE SOLELY RESPONSIBLE FOR ANY DAMAGE
-    TO YOUR MOBILE DEVICE, OR OTHER DEVICE, OR LOSS OF DATA THAT RESULTS FROM SUCH
-    USE.\r\n\r\nContraband Software FURTHER EXPRESSLY DISCLAIMS ALL WARRANTIES AND
-    CONDITIONS OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED
-    TO THE IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-    PURPOSE AND NON-INFRINGEMENT, WITH RESPECT TO THE APPLICATION.\r\n\r\nTHE APPLICATION
-    IS NOT INTENDED FOR USE IN THE OPERATION OF NUCLEAR FACILITIES, LIFE SUPPORT
-    SYSTEMS, EMERGENCY COMMUNICATIONS, AIRCRAFT NAVIGATION OR COMMUNICATION SYSTEMS,
-    AIR TRAFFIC CONTROL SYSTEMS, OR ANY OTHER ACTIVITIES IN WHICH THE FAILURE OF
-    THE APPLICATION COULD LEAD TO DEATH, PERSONAL INJURY, OR SEVERE PHYSICAL OR ENVIRONMENTAL
-    DAMAGE.\r\n\r\nLimitation of Liability\r\nYOU EXPRESSLY UNDERSTAND AND AGREE
-    THAT Contraband Software, ITS SUBSIDIARIES AND AFFILIATES, AND ITS LICENSORS
-    ARE NOT LIABLE TO YOU UNDER ANY THEORY OF LIABILITY FOR ANY DIRECT, INDIRECT,
-    INCIDENTAL, SPECIAL CONSEQUENTIAL OR EXEMPLARY DAMAGES THAT MAY BE INCURRED BY
-    YOU THROUGH YOUR USE OF THE APPLICATION, INCLUDING ANY LOSS OF DATA OR DAMAGE
-    TO YOUR MOBILE DEVICE, WHETHER OR NOT Contraband Software OR ITS REPRESENTATIVES
-    HAVE BEEN ADVISED OF OR SHOULD HAVE BEEN AWARE OF THE POSSIBILITY OF ANY SUCH
-    LOSSES ARISING.\r\n\r\nIndemnity\r\nTo the maximum extent permitted by law, you
-    agree to defend, indemnify and hold harmless Contraband Software, its affiliates
-    and their respective directors, officers, employees and agents from and against
-    any and all claims, actions, suits or proceedings, as well as any and all losses,
-    liabilities, damages, costs and expenses (including reasonable attorneys fees)
-    arising out of or accruing from your use of the Application, including your downloading,
-    installation, or use of the Application, or your violation of these Terms and
-    Conditions.\r\n\r\nGoverning Law\r\nThis EULA agreement, and any dispute arising
-    out of or in connection with this EULA agreement, shall be governed by and construed
-    in accordance with the laws of The United Kingdom of Great Britain and Northern
-    Ireland.\r\n\r\nMiscellaneous\r\nThese Terms and Conditions constitute the entire
-    Agreement between you and Contraband Software relating to the Application and
-    govern your use of the Application, and completely replace any prior or contemporaneous
-    agreements between you and Contraband Software regarding the Application.\r\n\r\nThe
-    failure of Contraband Software to exercise or enforce any right or provision
-    of these Terms and Conditions does not constitute a waiver of such right or provision,
-    which will still be available to Contraband Software.\r\n\r\nIf any court of
-    law, having the jurisdiction to decide on this matter, rules that any provision
-    of these Terms and Conditions is invalid, then that provision will be removed
-    from the Terms and Conditions without affecting the rest of the Terms and Conditions.
-    The remaining provisions of these Terms and Conditions will continue to be valid
-    and enforceable."
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 21445a98cde55284996713630d125e3f, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4097
-  m_characterSpacing: -0.43
-  m_wordSpacing: 2.25
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 4
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1902720881
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902720877}
-  m_CullTransparentMesh: 0
 --- !u!1 &1903076419
 GameObject:
   m_ObjectHideFlags: 0
@@ -103696,7 +103459,7 @@ RectTransform:
   m_Children:
   - {fileID: 7198141}
   m_Father: {fileID: 539754225}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -110544,80 +110307,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092383732}
-  m_CullTransparentMesh: 0
---- !u!1 &2094306659
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2094306660}
-  - component: {fileID: 2094306662}
-  - component: {fileID: 2094306661}
-  m_Layer: 5
-  m_Name: TMP SubMeshUI [WhiteBlack + LiberationSans SDF Atlas]
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2094306660
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094306659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1902720878}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2094306661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094306659}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_spriteAsset: {fileID: 0}
-  m_material: {fileID: 0}
-  m_sharedMaterial: {fileID: 0}
-  m_isDefaultMaterial: 0
-  m_padding: 2.42
-  m_TextComponent: {fileID: 1902720880}
-  m_materialReferenceIndex: 1
---- !u!222 &2094306662
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2094306659}
   m_CullTransparentMesh: 0
 --- !u!1 &2094338441
 GameObject:
