@@ -4846,7 +4846,7 @@ GameObject:
   - component: {fileID: 131708085}
   - component: {fileID: 131708084}
   m_Layer: 5
-  m_Name: ColourBody (14)
+  m_Name: ColourBody (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4866,7 +4866,7 @@ RectTransform:
   m_Children:
   - {fileID: 823984528}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13115,7 +13115,7 @@ GameObject:
   - component: {fileID: 296800502}
   - component: {fileID: 296800501}
   m_Layer: 5
-  m_Name: ColourBody (8)
+  m_Name: ColourBody (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13135,7 +13135,7 @@ RectTransform:
   m_Children:
   - {fileID: 1532878924}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -25024,7 +25024,7 @@ GameObject:
   - component: {fileID: 533210281}
   - component: {fileID: 533210280}
   m_Layer: 5
-  m_Name: ColourBody (19)
+  m_Name: ColourBody (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25044,7 +25044,7 @@ RectTransform:
   m_Children:
   - {fileID: 1412861165}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -33439,7 +33439,7 @@ GameObject:
   - component: {fileID: 696910121}
   - component: {fileID: 696910120}
   m_Layer: 5
-  m_Name: ColourBody (9)
+  m_Name: ColourBody (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33459,11 +33459,11 @@ RectTransform:
   m_Children:
   - {fileID: 462692711}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -113.9, y: -0.99999666}
+  m_AnchoredPosition: {x: -113.9, y: -1}
   m_SizeDelta: {x: 63, y: 63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696910120
@@ -36358,6 +36358,18 @@ MonoBehaviour:
       - m_Target: {fileID: 754556975}
         m_TargetAssemblyTypeName: 
         m_MethodName: Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1794606120}
+        m_TargetAssemblyTypeName: GlowColourSelector, Assembly-CSharp
+        m_MethodName: UpdateColourOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41224,7 +41236,7 @@ GameObject:
   - component: {fileID: 827281246}
   - component: {fileID: 827281245}
   m_Layer: 5
-  m_Name: ColourBody (21)
+  m_Name: ColourBody (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41244,7 +41256,7 @@ RectTransform:
   m_Children:
   - {fileID: 342334639}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 21
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -45487,7 +45499,7 @@ GameObject:
   - component: {fileID: 910581245}
   - component: {fileID: 910581244}
   m_Layer: 5
-  m_Name: ColourBody (15)
+  m_Name: ColourBody (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45507,7 +45519,7 @@ RectTransform:
   m_Children:
   - {fileID: 549193841}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -58870,7 +58882,7 @@ GameObject:
   - component: {fileID: 1137442621}
   - component: {fileID: 1137442620}
   m_Layer: 5
-  m_Name: ColourBody (13)
+  m_Name: ColourBody (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58890,7 +58902,7 @@ RectTransform:
   m_Children:
   - {fileID: 1206309810}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -60839,7 +60851,7 @@ GameObject:
   - component: {fileID: 1166144738}
   - component: {fileID: 1166144737}
   m_Layer: 5
-  m_Name: ColourBody (10)
+  m_Name: ColourBody (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60859,11 +60871,11 @@ RectTransform:
   m_Children:
   - {fileID: 996747678}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: -0.99999666}
+  m_AnchoredPosition: {x: 38, y: -1}
   m_SizeDelta: {x: 63, y: 63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166144737
@@ -72126,7 +72138,7 @@ GameObject:
   - component: {fileID: 1391455178}
   - component: {fileID: 1391455177}
   m_Layer: 5
-  m_Name: ColourBody (7)
+  m_Name: ColourBody (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72146,7 +72158,7 @@ RectTransform:
   m_Children:
   - {fileID: 722820275}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -83509,7 +83521,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371504300}
   m_HandleRect: {fileID: 1371504299}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000001
   m_Size: 0.048048217
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -89878,7 +89890,7 @@ GameObject:
   - component: {fileID: 1731931824}
   - component: {fileID: 1731931823}
   m_Layer: 5
-  m_Name: ColourBody (22)
+  m_Name: ColourBody (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89898,7 +89910,7 @@ RectTransform:
   m_Children:
   - {fileID: 1940921374}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -92887,6 +92899,7 @@ GameObject:
   - component: {fileID: 1794606119}
   - component: {fileID: 1794606118}
   - component: {fileID: 1794606117}
+  - component: {fileID: 1794606120}
   m_Layer: 5
   m_Name: Colours
   m_TagString: Untagged
@@ -92913,22 +92926,22 @@ RectTransform:
   - {fileID: 517620942}
   - {fileID: 1939861389}
   - {fileID: 1898214659}
-  - {fileID: 1391455176}
-  - {fileID: 296800500}
   - {fileID: 696910119}
+  - {fileID: 1391455176}
   - {fileID: 1166144736}
+  - {fileID: 296800500}
   - {fileID: 1024587694}
   - {fileID: 1354089588}
-  - {fileID: 1137442619}
-  - {fileID: 131708083}
   - {fileID: 910581243}
+  - {fileID: 1137442619}
   - {fileID: 2008557904}
+  - {fileID: 131708083}
   - {fileID: 528563617}
   - {fileID: 553870597}
-  - {fileID: 533210279}
-  - {fileID: 2082274606}
   - {fileID: 827281244}
+  - {fileID: 533210279}
   - {fileID: 1731931822}
+  - {fileID: 2082274606}
   - {fileID: 1713923254}
   m_Father: {fileID: 1994375395}
   m_RootOrder: 2
@@ -92999,6 +93012,46 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1794606120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794606115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deeea98bbe06c7a4d835fac14d0e1914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coloursButtons:
+  - {fileID: 93304767}
+  - {fileID: 411338960}
+  - {fileID: 1866532959}
+  - {fileID: 832689541}
+  - {fileID: 517620941}
+  - {fileID: 1939861388}
+  - {fileID: 1898214658}
+  - {fileID: 696910118}
+  - {fileID: 1391455175}
+  - {fileID: 1166144735}
+  - {fileID: 296800499}
+  - {fileID: 1024587693}
+  - {fileID: 1354089587}
+  - {fileID: 910581242}
+  - {fileID: 1137442618}
+  - {fileID: 2008557903}
+  - {fileID: 131708082}
+  - {fileID: 528563616}
+  - {fileID: 553870596}
+  - {fileID: 827281243}
+  - {fileID: 533210278}
+  - {fileID: 1731931821}
+  - {fileID: 2082274605}
+  - {fileID: 1713923253}
+  premDemoCon: {fileID: 1624638538}
+  cosData: {fileID: 1243343506}
+  colourChoiceParent: {fileID: 1794606115}
 --- !u!1 &1794848913
 GameObject:
   m_ObjectHideFlags: 0
@@ -105535,7 +105588,7 @@ GameObject:
   - component: {fileID: 2008557906}
   - component: {fileID: 2008557905}
   m_Layer: 5
-  m_Name: ColourBody (16)
+  m_Name: ColourBody (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105555,7 +105608,7 @@ RectTransform:
   m_Children:
   - {fileID: 1294552748}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -109486,7 +109539,7 @@ GameObject:
   - component: {fileID: 2082274608}
   - component: {fileID: 2082274607}
   m_Layer: 5
-  m_Name: ColourBody (20)
+  m_Name: ColourBody (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109506,7 +109559,7 @@ RectTransform:
   m_Children:
   - {fileID: 1122827676}
   m_Father: {fileID: 1794606116}
-  m_RootOrder: 20
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
