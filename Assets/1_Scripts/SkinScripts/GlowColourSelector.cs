@@ -7,13 +7,17 @@ using TMPro;
 public class GlowColourSelector : MonoBehaviour
 {
     [SerializeField] private List<GameObject> coloursButtons = new List<GameObject>();
+    [SerializeField] private List<Image> colourBtnImages = new List<Image>();
 
 
     [SerializeField] private PremiumDemoContoller premDemoCon;
     [SerializeField] private CosmeticsData cosData;
 
     [SerializeField] private GameObject colourChoiceParent;
+    [SerializeField] private Sprite colourShiftImage;
+    [SerializeField] private Sprite basicBtnImage;
     private int currentOptionsCount;
+    private string lastPremiumName = null;
 
     private void Start()
     {
@@ -29,8 +33,17 @@ public class GlowColourSelector : MonoBehaviour
             return;
         }
 
+        //if different skin to last time, change potentially colour shift button sprite back to normal
+        if (lastPremiumName != null && lastPremiumName != cosData.activePremiumSkinName)
+        {
+            colourBtnImages[currentOptionsCount - 1].sprite = basicBtnImage;
+            colourBtnImages[currentOptionsCount - 1].color = Color.white;
+        }
+        lastPremiumName = cosData.activePremiumSkinName;
+
         int skinColourChoicesCount = premDemoCon.activePremiumSkin.colorChoices.Count;
         bool hasSpecialColourMode = false;
+        lastPremiumName = cosData.activePremiumSkinName;
 
         if (premDemoCon.activePremiumSkin.hasSpecialColourMode)
         {
@@ -61,6 +74,18 @@ public class GlowColourSelector : MonoBehaviour
                 print(i);
                 colourChoiceParent.transform.GetChild(i).gameObject.SetActive(true);
             }
+        }
+
+        //Updates the colours to show the options for the skin
+        for (int i = 0; i < premDemoCon.activePremiumSkin.colorChoices.Count; i++)
+        {
+            colourBtnImages[i].color = premDemoCon.activePremiumSkin.colorChoices[i];
+        }
+        if (hasSpecialColourMode)
+        {
+            print("HAS SPECIAL MODE");
+            colourBtnImages[skinColourChoicesCount - 1].color = Color.white;
+            colourBtnImages[skinColourChoicesCount - 1].sprite = colourShiftImage;
         }
 
 

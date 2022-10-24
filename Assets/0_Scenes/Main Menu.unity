@@ -93049,9 +93049,36 @@ MonoBehaviour:
   - {fileID: 1731931821}
   - {fileID: 2082274605}
   - {fileID: 1713923253}
+  colourBtnImages:
+  - {fileID: 93304769}
+  - {fileID: 411338962}
+  - {fileID: 1866532961}
+  - {fileID: 832689543}
+  - {fileID: 517620943}
+  - {fileID: 1939861390}
+  - {fileID: 1898214660}
+  - {fileID: 696910120}
+  - {fileID: 1391455177}
+  - {fileID: 1166144737}
+  - {fileID: 296800501}
+  - {fileID: 1024587695}
+  - {fileID: 1354089589}
+  - {fileID: 910581244}
+  - {fileID: 1137442620}
+  - {fileID: 2008557905}
+  - {fileID: 131708084}
+  - {fileID: 528563618}
+  - {fileID: 553870598}
+  - {fileID: 827281245}
+  - {fileID: 533210280}
+  - {fileID: 1731931823}
+  - {fileID: 2082274607}
+  - {fileID: 1713923255}
   premDemoCon: {fileID: 1624638538}
   cosData: {fileID: 1243343506}
   colourChoiceParent: {fileID: 1794606115}
+  colourShiftImage: {fileID: 21300000, guid: 387fdebfa1b5d9f40b7d187fb4ec710c, type: 3}
+  basicBtnImage: {fileID: 21300000, guid: 10ba659f58f0ac54697b84b8211350c5, type: 3}
 --- !u!1 &1794848913
 GameObject:
   m_ObjectHideFlags: 0
