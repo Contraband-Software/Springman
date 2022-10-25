@@ -100,13 +100,26 @@ public class GlowColourSelector : MonoBehaviour
         //convert to a string to swap into glow colours array
         //feed into the premdetails and update the demo
 
+        int indexOfPremium = cosData.allPremiums.IndexOf(cosData.activePremiumSkinName);
         if (!colBtn.isColorShiftButton())
         {
+
+            if (premDemoCon.activePremiumSkin.hasSpecialColourMode)
+            {
+                cosData.specialColourModes[indexOfPremium] = false;
+                premDemoCon.activePremiumSkin.colourShift = false;
+            }
+
+
             colorChosen = colBtn.getButtonColour();
-            int indexOfPremium = cosData.allPremiums.IndexOf(cosData.activePremiumSkinName);
-            cosData.glowColours[indexOfPremium] = cosData.ColorToString(colorChosen);
+            cosData.glowColours[indexOfPremium] = cosData.ColorToString(colorChosen); 
 
             premDemoCon.activePremiumSkin.UpdateSkin();
+        }
+        else
+        {
+            cosData.specialColourModes[indexOfPremium] = true;
+            premDemoCon.activePremiumSkin.colourShift = true;
         }
     }
 }
