@@ -19,6 +19,10 @@ public class GlowColourSelector : MonoBehaviour
     private int currentOptionsCount;
     private string lastPremiumName = null;
 
+
+    //TEST
+    public Color colorChosen;
+
     private void Start()
     {
         currentOptionsCount = colourChoiceParent.transform.childCount;
@@ -51,9 +55,6 @@ public class GlowColourSelector : MonoBehaviour
             skinColourChoicesCount++;
         }
 
-        print(skinColourChoicesCount);
-        print(currentOptionsCount);
-
 
         //Current skin has less colour options than previous
         if(skinColourChoicesCount < currentOptionsCount)
@@ -61,7 +62,6 @@ public class GlowColourSelector : MonoBehaviour
             //disables all gameobjects above the max option
             for(int i = skinColourChoicesCount; i <= currentOptionsCount-1; i++)
             {
-                print(i);
                 colourChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
@@ -71,7 +71,6 @@ public class GlowColourSelector : MonoBehaviour
             //enables all gameobjects from the current max to the new skin max
             for (int i = currentOptionsCount; i <= skinColourChoicesCount - 1; i++)
             {
-                print(i);
                 colourChoiceParent.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
@@ -95,11 +94,19 @@ public class GlowColourSelector : MonoBehaviour
 
 
 
-    public void ColourClicked()
+    public void ColourClicked(ColorBtnPremium colBtn)
     {
         //get color of button
         //convert to a string to swap into glow colours array
         //feed into the premdetails and update the demo
 
+        if (!colBtn.isColorShiftButton())
+        {
+            colorChosen = colBtn.getButtonColour();
+            int indexOfPremium = cosData.allPremiums.IndexOf(cosData.activePremiumSkinName);
+            cosData.glowColours[indexOfPremium] = cosData.ColorToString(colorChosen);
+
+            premDemoCon.activePremiumSkin.UpdateSkin();
+        }
     }
 }
