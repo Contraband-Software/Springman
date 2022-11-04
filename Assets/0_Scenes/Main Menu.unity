@@ -20710,7 +20710,6 @@ MonoBehaviour:
   silver: 0
   ads: 0
   menuAudio: {fileID: 1782169662}
-  EULA_Accepted: 0
   appropriateFont: {fileID: 0}
   Latin_Cyrillic: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
   Latin: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
@@ -20722,6 +20721,7 @@ MonoBehaviour:
   tutorialComplete: 0
   errorOpened: 0
   eula: {fileID: 2054626940}
+  integrations: {fileID: 504291211}
 --- !u!1 &444829621
 GameObject:
   m_ObjectHideFlags: 0
@@ -24111,6 +24111,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000015258789, y: -36.950104}
   m_SizeDelta: {x: 218.2149, y: 218.2149}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &504291211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4181529459941313769, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4427019384286551851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b042febb8047e24ebf015f86306ad1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508382418
 GameObject:
   m_ObjectHideFlags: 0
@@ -84728,8 +84740,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371504300}
   m_HandleRect: {fileID: 1371504299}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.048048217
+  m_Value: 1
+  m_Size: 0.048048213
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
