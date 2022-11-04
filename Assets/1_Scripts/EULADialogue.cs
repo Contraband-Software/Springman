@@ -20,7 +20,7 @@ public class EULADialogue : MonoBehaviour
     public void Accept()
     {
         gameObject.SetActive(false);
-        md.EULA_Accepted = true;
+        md.SetEULA_Accepted();
         //write EULA_Accepted to disk?
     }
 

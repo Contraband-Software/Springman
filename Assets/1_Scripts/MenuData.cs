@@ -19,8 +19,7 @@ public class MenuData : MonoBehaviour
 
     public GameObject menuAudio;
 
-    [Header("Legal")]
-    public bool EULA_Accepted = false;
+    //[Header("Legal")]
 
     [Header("Language Fonts")]
     public TMP_FontAsset appropriateFont;
@@ -38,10 +37,17 @@ public class MenuData : MonoBehaviour
     [Header("Error Stuff")]
     public bool errorOpened = false;
 
-    [Header("EULA")]
+    [Header("First load systems")]
     [SerializeField] EULADialogue eula;
+    [SerializeField] PlatformIntegrations.IntegrationsManager integrations;
 
     string path;
+    bool EULA_Accepted = false;
+
+    public void SetEULA_Accepted()
+    {
+        EULA_Accepted = true;
+    }
 
     void Awake()
     {
@@ -66,6 +72,8 @@ public class MenuData : MonoBehaviour
 
     public void CreateFirstDataFile()
     {
+        PlatformIntegrations.SocialManager sm = integrations.GetSocialManager();
+
         float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
         if (availableSpace > 10)
         {
@@ -132,7 +140,6 @@ public class MenuData : MonoBehaviour
                         break;
 
                     //DEFAULT TO ENGLISH
-                    case SystemLanguage.Unknown:
                     default:
                         currentLanguage = "english";
                         break;
@@ -159,6 +166,10 @@ public class MenuData : MonoBehaviour
                 ReLocalizeTexts();
 
                 eula.Show();
+                //if (sm.isAvailable()) { sm.ShowSaveGameSelectUI(); }
+            } else
+            {
+                //if (sm.isAvailable()) { sm.LoadSaveGame(); }
             }
         }
         else

@@ -19,7 +19,7 @@ namespace PlatformIntegrations
         [Header("Platform Controllers")]
 
         [SerializeField] SocialManager SocialManager;
-        public SocialManager GetGooglePlayGamesService() { return SocialManager; }
+        public SocialManager GetSocialManager() { return SocialManager; }
 
 
         void Start()
