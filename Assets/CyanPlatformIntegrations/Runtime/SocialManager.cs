@@ -24,7 +24,7 @@ namespace PlatformIntegrations
             AuthenticatorCallback = new AuthenticationEvent();
             AuthenticatorCallback.AddListener((bool status) =>
             {
-                Debug.Log("Platform signin STATUS: " + status.ToString());
+                Debug.Log("GPGS: Platform signin STATUS: " + status.ToString());
             });
         }
         public void Start()
@@ -60,16 +60,13 @@ namespace PlatformIntegrations
 
 
 #region GOOGLE_PLAY_GAMES
-
-        ISavedGameClient savedGameClient;
-
         internal void ProcessAuthentication(SignInStatus status)
         {
             if (status == SignInStatus.Success)
             {
                 // Continue with Play Games Services
                 available = true;
-                ShowSaveGameSelectUI();
+                OpenSavedGame("UserGameSave.dat");
             }
             else
             {
@@ -82,39 +79,29 @@ namespace PlatformIntegrations
             AuthenticatorCallback.Invoke(available);
         }
 
-        //SELECT A SAVE GAME
-        /// <summary>
-        /// Prompt the user to select a cloud save game
-        /// </summary>
-        public void ShowSaveGameSelectUI()
+        //SAVE GAMES
+        void OpenSavedGame(string filename)
         {
-            uint maxNumToDisplay = 2;
-            bool allowCreateNew = true;
-            bool allowDelete = true;
-
-            savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-            savedGameClient.ShowSelectSavedGameUI("Select or create a save-game",
-                maxNumToDisplay,
-                allowCreateNew,
-                allowDelete,
-                OnSavedGameSelected);
+            ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+            savedGameClient.OpenWithAutomaticConflictResolution(filename, DataSource.ReadCacheOrNetwork,
+                ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
         }
-        public void OnSavedGameSelected(SelectUIStatus status, ISavedGameMetadata game)
+        public void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
-            if (status == SelectUIStatus.SavedGameSelected)
+            Debug.Log("GPGS: Game Data Load Status: " + status.ToString());
+            if (status == SavedGameRequestStatus.Success)
             {
-                // handle selected game save
+                // handle reading or writing of saved game.
             }
             else
             {
-                // handle cancel or error
+                // handle error
             }
-            Debug.Log("GPGS saved game selected: " + status.ToString());
         }
 
         public void LoadSaveGame()
         {
-            Debug.Log("GPGS saved game loaded");
+            Debug.Log("GPGS: saved game loaded");
         }
 
 #endregion
