@@ -5627,11 +5627,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pattern3
       objectReference: {fileID: 0}
-    - target: {fileID: 5730044865843540960, guid: 28c4ebb4f720968458a392f6b78b7cb1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28c4ebb4f720968458a392f6b78b7cb1, type: 3}
 --- !u!4 &143611913 stripped
@@ -19551,11 +19546,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pattern1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7452554111908160120, guid: 91c5389779f5dc84da01d63b0563c054,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8616320452654749703, guid: 91c5389779f5dc84da01d63b0563c054,
         type: 3}
@@ -84740,8 +84730,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371504300}
   m_HandleRect: {fileID: 1371504299}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.048048213
+  m_Value: 1.0000001
+  m_Size: 0.048048217
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -96188,11 +96178,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pattern2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115192184667304418, guid: 7cfb5dc2679ad7741a47925863d3fe31,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cfb5dc2679ad7741a47925863d3fe31, type: 3}
