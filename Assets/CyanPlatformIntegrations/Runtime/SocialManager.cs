@@ -98,6 +98,9 @@ namespace PlatformIntegrations
         {
             if (status == SignInStatus.Success)
             {
+                //Activates unity social api integrations
+                PlayGamesPlatform.Activate();
+
                 // Continue with Play Games Services
                 available = true;
                 OpenSavedGame("UserGameSave.dat");
