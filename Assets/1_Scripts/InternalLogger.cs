@@ -11,5 +11,4 @@ public static class InternalLogger
     {
         logger.Log(kTag, message);
     }
-
 }

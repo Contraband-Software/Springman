@@ -18,8 +18,7 @@ public class DeathScreenScript : MonoBehaviour
     //[SerializeField, Min(0), Tooltip("How many games before an unrewarded ad is shown when the player dies")] int InterstitialAdFrequency;
 
     AdvertisementsManager adManager;
-    DeathAd deathAd;
-    //int GamesSinceAd;
+    SocialManager socialManager;
 
     PlayerController pcontroller;
 
@@ -30,6 +29,9 @@ public class DeathScreenScript : MonoBehaviour
         //GameObject Money = GameObject.FindGameObjectWithTag("AdvertisementsManager");
         adManager = GameObject.FindGameObjectWithTag("Integrations")
             .GetComponent<IntegrationsManager>().GetAdvertisements();
+
+        socialManager = GameObject.FindGameObjectWithTag("Integrations")
+            .GetComponent<IntegrationsManager>().GetSocialManager();
         //deathAd = Money.GetComponent<DeathAd>();
 
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -67,7 +69,7 @@ public class DeathScreenScript : MonoBehaviour
         DeathScreenShowing = false;
     }
 
-    public void DeathScreenShow()
+    public void DeathScreenShow(int finalScore)
     {
         if (DeathScreenShowing == false && DeathScreenCanvas.enabled == false)
         {
@@ -79,6 +81,11 @@ public class DeathScreenScript : MonoBehaviour
             //evil video death ad
             //deathAd.Tick();
             adManager.PlayAd("DeathBanner");
+
+            socialManager.PostLeaderboardScore(finalScore, (bool status) =>
+            {
+                Debug.Log("GPGS: Post leaderboard score status: " + status.ToString());
+            });
 
             gameCanvas.gameObject.SetActive(false);
             DeathScreenCanvas.enabled = true;

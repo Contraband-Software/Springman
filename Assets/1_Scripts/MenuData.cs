@@ -180,30 +180,28 @@ public class MenuData : MonoBehaviour
 
     public void LoadGameData()
     {
-        if (File.Exists(path))
-        {
-            File.SetAttributes(path, FileAttributes.Normal);
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+        File.SetAttributes(path, FileAttributes.Normal);
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(path, FileMode.Open);
 
-            SaveData data = formatter.Deserialize(stream) as SaveData;
-            stream.Close();
+        SaveData data = formatter.Deserialize(stream) as SaveData;
+        stream.Close();
 
-            allTimeHighscore = data.highscore;
-            musicOn = data.musicOn;
-            soundsOn = data.soundsOn;
-            currentLanguage = data.language;
+        allTimeHighscore = data.highscore;
+        musicOn = data.musicOn;
+        soundsOn = data.soundsOn;
+        currentLanguage = data.language;
 
-            langIndex = data.langIndex;
-            gold = data.gold;
-            silver = data.silver;
-            tutorialComplete = data.tutorialComplete;
-            ads = data.ads;
+        langIndex = data.langIndex;
+        gold = data.gold;
+        silver = data.silver;
+        tutorialComplete = data.tutorialComplete;
+        ads = data.ads;
 
-            EULA_Accepted = true;
+        EULA_Accepted = true;
 
-            //Debug.Log("LOADED GAMEDATA FILE");
-        }
+        //Debug.Log("LOADED GAMEDATA FILE");
+        
         ReLocalizeTexts();
     }
 

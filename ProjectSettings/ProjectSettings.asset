@@ -157,6 +157,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: software.contraband.springman
     Standalone: software.contraband.springman
+    iPhone: software.contraband.springman
   buildNumber:
     Standalone: 0
     iPhone: 0

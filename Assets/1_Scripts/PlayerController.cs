@@ -329,7 +329,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(state == State.Dead)
         {
-            deathScreenManager.DeathScreenShow();
+            deathScreenManager.DeathScreenShow(gamedata.score);
 
             effectCon.DeathAllEffect();//_EFFECT
 
