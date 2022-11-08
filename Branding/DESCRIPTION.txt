@@ -1,0 +1,1 @@
+A simple game like doodle jump about platforming and getting cool skins.
