@@ -74,22 +74,14 @@ public class MenuData : MonoBehaviour
         sm.SaveDataWriteCallback.AddListener((bool status) => {
             if (!status)
             {
-                SaveGameData_LocalFallback(new SaveData(
-                    this.allTimeHighscore,
-                    this.musicOn,
-                    this.soundsOn,
-                    this.currentLanguage,
-                    this.langIndex,
-                    this.gold, this.silver,
-                    tutorialComplete,
-                    ads
-                ));
-
-                Debug.Log("Save data written to local fallback");
+                Debug.Log("MenuData: Save data cloud write unsuccessful");
             } else
             {
-                Debug.Log("Save data written to cloud successfully");
+                Debug.Log("MenuData: Save data written to cloud successfully");
             }
+        });
+        sm.SaveDataLoadCallback.AddListener((bool status, object data) => {
+            Debug.Log("MenuData: Cloud save status: " + status.ToString());
         });
     }
 
@@ -259,6 +251,8 @@ public class MenuData : MonoBehaviour
 
             formatter.Serialize(stream, data);
             stream.Close();
+
+            Debug.Log("MenuData: Save data written to local fallback");
         }
         else
         {
