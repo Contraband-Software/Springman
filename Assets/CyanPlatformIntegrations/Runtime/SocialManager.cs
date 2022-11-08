@@ -15,10 +15,12 @@ namespace PlatformIntegrations
 
     public class SocialManager : MonoBehaviour
     {
+        const string logDecorator = "GPGS: ";
+
         #region EVENTS
         public class AuthenticationEvent : UnityEvent<bool> { }
         public AuthenticationEvent AuthenticatorCallback;
-        public class SaveDataLoadEvent : UnityEvent<Object> { }
+        public class SaveDataLoadEvent : UnityEvent<bool, Object> { }
         public SaveDataLoadEvent SaveDataLoadCallback;
         public class SaveDataWriteEvent : UnityEvent<bool> { }
         public SaveDataWriteEvent SaveDataWriteCallback;
@@ -38,17 +40,17 @@ namespace PlatformIntegrations
             AuthenticatorCallback = new AuthenticationEvent();
             AuthenticatorCallback.AddListener((bool status) =>
             {
-                Debug.Log("GPGS: Platform signin status: " + status.ToString());
+                Debug.Log(logDecorator + "Platform signin status: " + status.ToString());
             });
             SaveDataLoadCallback = new SaveDataLoadEvent();
-            SaveDataLoadCallback.AddListener((object data) =>
+            SaveDataLoadCallback.AddListener((bool status, object data) =>
             {
-                Debug.Log("GPGS: Cloud save loaded and read into memory");
+                Debug.Log(logDecorator + "Cloud save loaded and read into memory: " + status.ToString());
             });
             SaveDataWriteCallback = new SaveDataWriteEvent();
             SaveDataWriteCallback.AddListener((bool status) =>
             {
-                Debug.Log("GPGS: Game data write status: " + status.ToString());
+                Debug.Log(logDecorator + "Game data write status: " + status.ToString());
             });
         }
         private void Start()
@@ -142,7 +144,7 @@ namespace PlatformIntegrations
         }
         private void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
-            Debug.Log("GPGS: Game Data Load Status: " + status.ToString());
+            Debug.Log(logDecorator + "Game Data Load Status: " + status.ToString());
 
             if (status == SavedGameRequestStatus.Success)
             {
@@ -154,6 +156,7 @@ namespace PlatformIntegrations
             else
             {
                 // handle error
+                SaveDataLoadCallback.Invoke(false, null);
             }
         }
 
@@ -164,11 +167,13 @@ namespace PlatformIntegrations
             if (status == SavedGameRequestStatus.Success)
             {
                 // handle processing the byte array data
-                SaveDataLoadCallback.Invoke(ByteArrayToObject(data));
+                SaveDataLoadCallback.Invoke(true, ByteArrayToObject(data));
             }
             else
             {
                 // handle error
+                Debug.Log(logDecorator + "Failed to read and return cloud save data: " + status.ToString());
+                SaveDataLoadCallback.Invoke(false, null);
             }
         }
 
@@ -193,7 +198,7 @@ namespace PlatformIntegrations
                 savedGameClient.CommitUpdate(currentSavedGameMetadata, updatedMetadata, ObjectToByteArray(savedData), OnSavedGameWritten);
             } else
             {
-                Debug.Log("GPGS: Internal save data error");
+                Debug.Log(logDecorator + "Internal save data error");
             }
         }
 
@@ -205,7 +210,7 @@ namespace PlatformIntegrations
             }
             else
             {
-                Debug.Log("GPGS: Writing save data to cloud failed: " + status.ToString());
+                Debug.Log(logDecorator + "Writing save data to cloud failed: " + status.ToString());
                 SaveDataWriteCallback.Invoke(false);
             }
         }
