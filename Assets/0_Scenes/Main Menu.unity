@@ -2656,7 +2656,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -2669,8 +2669,8 @@ MonoBehaviour:
   m_fontSizeMax: 65
   m_fontStyle: 1
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4097
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -33964,7 +33964,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -33976,9 +33976,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 90
   m_fontStyle: 33
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 2
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -40021,21 +40021,21 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 35
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -50817,7 +50817,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -50829,9 +50829,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -53889,21 +53889,21 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 34.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 35
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -60935,7 +60935,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -60947,9 +60947,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -93334,7 +93334,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -93346,9 +93346,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -97000,7 +97000,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -97012,9 +97012,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -104493,7 +104493,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -104505,9 +104505,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -106481,7 +106481,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -106493,9 +106493,9 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 50
   m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 4098
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 4096
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -113625,16 +113625,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4181529459941313769, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: SocialManager
-      value: 
-      objectReference: {fileID: 4427019384286551852}
-    - target: {fileID: 4427019384515571138, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: m_Name
-      value: SocialPlatform
-      objectReference: {fileID: 0}
     - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
       propertyPath: m_RootOrder
@@ -113695,99 +113685,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformIntegrations
       objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: TestMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AppleGameID
-      value: 4923364
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: BannerAdPosition
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: GooglePlayGameID
-      value: 4923365
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[0].IOS
-      value: Revive_iOS
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[1].IOS
-      value: Rewarded_iOS
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[2].IOS
-      value: Interstitial_iOS
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[3].IOS
-      value: Banner_iOS
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[0].Name
-      value: ReviveAd
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[1].Name
-      value: AdSkins
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[2].Name
-      value: DeathInterstitial
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[3].Name
-      value: DeathBanner
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[3].Banner
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[0].Android
-      value: Revive_Android
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[1].Android
-      value: Rewarded_Android
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[2].Android
-      value: Interstitial_Android
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711893189126891643, guid: 79ca99013cbe47f4cb4de3b458e416c1,
-        type: 3}
-      propertyPath: AdUnits.Array.data[3].Android
-      value: Banner_Android
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 512643117620778877, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
-    - {fileID: 5811369845408834058, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79ca99013cbe47f4cb4de3b458e416c1, type: 3}
 --- !u!114 &4427019384286551852 stripped
 MonoBehaviour:

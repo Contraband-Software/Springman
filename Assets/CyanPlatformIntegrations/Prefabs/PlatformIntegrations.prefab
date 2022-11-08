@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &966248103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966248104}
+  - component: {fileID: 966248105}
+  m_Layer: 0
+  m_Name: IAPs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966248104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966248103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4427019385133306994}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966248105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966248103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a991e35c66b8d874caebca35be2fd6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4427019383532543633
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +196,7 @@ Transform:
   - {fileID: 4427019383532543632}
   - {fileID: 4427019384229590203}
   - {fileID: 4427019384515571137}
+  - {fileID: 966248104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -169,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   advertisementsManager: {fileID: 7711893189126891643}
   dataPrivacyHandler: {fileID: 1889817636520089069}
+  inAppPurchases: {fileID: 966248105}
   SocialManager: {fileID: 9115400694181143610}
 --- !u!1 &4427019385272103066
 GameObject:
@@ -214,8 +260,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cd6dd12b220524b923d234a71e6e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppleGameID: 
-  GooglePlayGameID: 
-  AdUnits: []
-  BannerAdPosition: 0
-  TestMode: 0
+  AppleGameID: 4923364
+  GooglePlayGameID: 4923365
+  AdUnits:
+  - Name: ReviveAd
+    Android: Revive_Android
+    IOS: Revive_iOS
+    Banner: 0
+    OnLoadComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: AdSkins
+    Android: Rewarded_Android
+    IOS: Rewarded_iOS
+    Banner: 0
+    OnLoadComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: DeathInterstitial
+    Android: Interstitial_Android
+    IOS: Interstitial_iOS
+    Banner: 0
+    OnLoadComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  - Name: DeathBanner
+    Android: Banner_Android
+    IOS: Banner_iOS
+    Banner: 1
+    OnLoadComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  BannerAdPosition: 4
+  TestMode: 1

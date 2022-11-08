@@ -15,6 +15,8 @@ namespace PlatformIntegrations
         [SerializeField] DataPrivacyHandler dataPrivacyHandler;
         public DataPrivacyHandler GetDataPrivacy() { return dataPrivacyHandler; }
 //#endif
+        [SerializeField] InAppPurchases inAppPurchases;
+        public InAppPurchases GetIAPManager() { return inAppPurchases; }
 
         [Header("Platform Controllers")]
 
