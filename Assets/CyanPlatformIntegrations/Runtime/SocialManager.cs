@@ -25,7 +25,6 @@ namespace PlatformIntegrations
         #endregion
 
         bool available = false;
-        bool saveGameLoaded = false;
         ISavedGameMetadata currentSavedGameMetadata = null;
 
         private void Awake()
@@ -82,7 +81,7 @@ namespace PlatformIntegrations
         /// <returns></returns>
         public bool SaveGameLoaded()
         {
-            return saveGameLoaded;
+            return currentSavedGameMetadata != null;
         }
 
         /// <summary>
@@ -142,7 +141,6 @@ namespace PlatformIntegrations
             if (status == SavedGameRequestStatus.Success)
             {
                 currentSavedGameMetadata = game;
-                saveGameLoaded = true;
 
                 ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
                 savedGameClient.ReadBinaryData(game, OnSavedGameDataRead);

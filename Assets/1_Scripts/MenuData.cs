@@ -43,6 +43,7 @@ public class MenuData : MonoBehaviour
 
     string path;
     bool EULA_Accepted = false;
+    PlatformIntegrations.SocialManager sm;
 
     public void SetEULA_Accepted()
     {
@@ -68,22 +69,35 @@ public class MenuData : MonoBehaviour
 
         curtainCG.alpha = 1f;
         LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
+
+        sm = integrations.GetSocialManager();
+        sm.SaveDataWriteCallback.AddListener((bool status) => {
+            if (!status)
+            {
+                SaveGameData_LocalFallback(new SaveData(
+                    this.allTimeHighscore,
+                    this.musicOn,
+                    this.soundsOn,
+                    this.currentLanguage,
+                    this.langIndex,
+                    this.gold, this.silver,
+                    tutorialComplete,
+                    ads
+                ));
+
+                Debug.Log("Save data written to local fallback");
+            } else
+            {
+                Debug.Log("Save data written to cloud successfully");
+            }
+        });
     }
 
     public void CreateFirstDataFile()
     {
-        PlatformIntegrations.SocialManager sm = integrations.GetSocialManager();
-
         float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
         if (availableSpace > 10)
         {
-//#if UNITY_EDITOR
-//            if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetAlwaysFirstRun())
-//            {
-//                File.Delete(Path.Combine(Application.persistentDataPath, "cosmeticsData.cos"));
-//                File.Delete(Path.Combine(Application.persistentDataPath, "gamedatafile.gd"));
-//            }
-//#endif
             if (!File.Exists(path))
             {
                 EULA_Accepted = false;
@@ -207,6 +221,32 @@ public class MenuData : MonoBehaviour
 
     public void SaveGameData()
     {
+        SaveData data = new SaveData(
+            this.allTimeHighscore, 
+            this.musicOn, 
+            this.soundsOn, 
+            this.currentLanguage, 
+            this.langIndex, 
+            this.gold, this.silver,
+            tutorialComplete, 
+            ads
+        );
+
+        if (sm.IsAvailable() && sm.SaveGameLoaded())
+        {
+            sm.SaveGame(data, new System.TimeSpan(1));
+        }
+        else
+        {
+            Debug.Log("integration not availible");
+        }
+
+        //SAVE TO LOCAL STORAGE ALWAYS ANYWAY
+        SaveGameData_LocalFallback(data);
+    }
+
+    private void SaveGameData_LocalFallback(SaveData data)
+    {
         float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
         if (availableSpace > 10)
         {
@@ -214,9 +254,6 @@ public class MenuData : MonoBehaviour
             File.SetAttributes(path, FileAttributes.Normal);
 
             FileStream stream = new FileStream(path, FileMode.Create);
-
-            SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
-                tutorialComplete, ads);
 
             File.SetAttributes(path, FileAttributes.ReadOnly);
 

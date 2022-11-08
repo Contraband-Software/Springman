@@ -44,7 +44,7 @@ namespace PlatformIntegrations
             public void Init()
             {
 #if UNITY_IOS
-            AdID = IOS;
+                AdID = IOS;
 #elif UNITY_ANDROID
                 AdID = Android;
 #endif
@@ -100,16 +100,19 @@ namespace PlatformIntegrations
 
             public void ShowAd()
             {
-                if (Banner)
+                if (Loaded)
                 {
-                    Advertisement.Banner.Show(AdID, bannerShowOptions);
-                }
-                else
-                {
-                    Advertisement.Show(AdID, this);
-                }
+                    if (Banner)
+                    {
+                        Advertisement.Banner.Show(AdID, bannerShowOptions);
+                    }
+                    else
+                    {
+                        Advertisement.Show(AdID, this);
+                    }
 
-                Loaded = false;
+                    Loaded = false;
+                }
             }
 
             public void OnUnityAdsAdLoaded(string adUnitId)
@@ -216,7 +219,13 @@ namespace PlatformIntegrations
             //            return;
             //        }
             //#endif
-            GetAdUnitByName(name).ShowAd();
+            if (Advertisement.isInitialized)
+            {
+                GetAdUnitByName(name).ShowAd();
+            } else
+            {
+                Debug.Log("AD NOT INITIALIZED: " + name);
+            }
         }
         public void HideBannerAd()
         {
@@ -239,16 +248,12 @@ namespace PlatformIntegrations
         private void Awake()
         {
             InitializeManager();
-
-            Advertisement.Banner.SetPosition(BannerAdPosition);
-
-            //DontDestroyOnLoad(transform.gameObject);
         }
 
         public void InitializeManager()
         {
 #if UNITY_IOS
-        GameID = AppleGameID;
+            GameID = AppleGameID;
 #elif UNITY_ANDROID
             GameID = GooglePlayGameID;
 #endif
@@ -265,11 +270,15 @@ namespace PlatformIntegrations
         public void OnInitializationComplete()
         {
             Debug.Log("Unity Ads initialization complete.");
+            Advertisement.Banner.SetPosition(BannerAdPosition);
+
             InitializeAdUnits();
         }
         public void OnInitializationFailed(UnityAdsInitializationError error, string message)
         {
             Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+
+            Advertisement.Initialize(GameID, TestMode, this);
         }
     }
 }
