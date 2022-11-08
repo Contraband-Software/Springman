@@ -24,11 +24,17 @@ namespace PlatformIntegrations
         public SaveDataWriteEvent SaveDataWriteCallback;
         #endregion
 
+        private const string cloudSaveFile = "UserGameSave.dat";
+
         bool available = false;
         ISavedGameMetadata currentSavedGameMetadata = null;
 
+        TimeSpan sessionStart;
+
         private void Awake()
         {
+            sessionStart = DateTime.Now.TimeOfDay;
+
             AuthenticatorCallback = new AuthenticationEvent();
             AuthenticatorCallback.AddListener((bool status) =>
             {
@@ -37,7 +43,7 @@ namespace PlatformIntegrations
             SaveDataLoadCallback = new SaveDataLoadEvent();
             SaveDataLoadCallback.AddListener((object data) =>
             {
-                Debug.Log("GPGS: Cloud save loaded ");
+                Debug.Log("GPGS: Cloud save loaded and read into memory");
             });
             SaveDataWriteCallback = new SaveDataWriteEvent();
             SaveDataWriteCallback.AddListener((bool status) =>
@@ -102,7 +108,7 @@ namespace PlatformIntegrations
 
                 // Continue with Play Games Services
                 available = true;
-                OpenSavedGame("UserGameSave.dat");
+                OpenSavedGame(cloudSaveFile);
             }
             else
             {
@@ -171,17 +177,24 @@ namespace PlatformIntegrations
         /// </summary>
         /// <param name="savedData">A serializable object with some serializable fields to save</param>
         /// <param name="totalPlaytime">The total play time for this save so far</param>
-        public void SaveGame(object savedData, TimeSpan totalPlaytime)
+        public void SaveGame(object savedData)
         {
-            byte[] saveBlob = ObjectToByteArray(savedData);
-            ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+            if (IsAvailable() && currentSavedGameMetadata != null)
+            {
+                ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
 
-            SavedGameMetadataUpdate.Builder builder = new SavedGameMetadataUpdate.Builder();
-            builder = builder
-                .WithUpdatedPlayedTime(totalPlaytime);
+                SavedGameMetadataUpdate.Builder builder = new SavedGameMetadataUpdate.Builder();
+                builder = builder
+                    .WithUpdatedPlayedTime(
+                        currentSavedGameMetadata.TotalTimePlayed.Add(DateTime.Now.TimeOfDay.Subtract(sessionStart))
+                    );
 
-            SavedGameMetadataUpdate updatedMetadata = builder.Build();
-            savedGameClient.CommitUpdate(currentSavedGameMetadata, updatedMetadata, saveBlob, OnSavedGameWritten);
+                SavedGameMetadataUpdate updatedMetadata = builder.Build();
+                savedGameClient.CommitUpdate(currentSavedGameMetadata, updatedMetadata, ObjectToByteArray(savedData), OnSavedGameWritten);
+            } else
+            {
+                Debug.Log("GPGS: Internal save data error");
+            }
         }
 
         private void OnSavedGameWritten(SavedGameRequestStatus status, ISavedGameMetadata game)
@@ -192,6 +205,7 @@ namespace PlatformIntegrations
             }
             else
             {
+                Debug.Log("GPGS: Writing save data to cloud failed: " + status.ToString());
                 SaveDataWriteCallback.Invoke(false);
             }
         }

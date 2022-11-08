@@ -234,7 +234,7 @@ public class MenuData : MonoBehaviour
 
         if (sm.IsAvailable() && sm.SaveGameLoaded())
         {
-            sm.SaveGame(data, new System.TimeSpan(1));
+            sm.SaveGame(data);
         }
         else
         {
