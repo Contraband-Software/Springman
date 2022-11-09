@@ -17,11 +17,11 @@ namespace PlatformIntegrations
 #region EVENTS
 
         public class OnInitialize : UnityEvent<bool> { }
-        [HideInInspector] public OnInitialize OnInitializeEvent;
-        public class OnPurchaseSuccess : UnityEvent<PurchaseEventArgs> { }
-        [HideInInspector] private OnPurchaseSuccess OnPurchaseSuccessEvent;
-        public class OnPurchaseFail : UnityEvent<Product, PurchaseFailureReason> { }
-        [HideInInspector] private OnPurchaseFail OnPurchaseFailEvent;
+        [HideInInspector] public static OnInitialize OnInitializeEvent;
+        //public class OnPurchaseSuccess : UnityEvent<PurchaseEventArgs> { }
+        //[HideInInspector] private static OnPurchaseSuccess OnPurchaseSuccessEvent;
+        //public class OnPurchaseFail : UnityEvent<Product, PurchaseFailureReason> { }
+        //[HideInInspector] private static OnPurchaseFail OnPurchaseFailEvent;
 
 #endregion
 
@@ -29,30 +29,29 @@ namespace PlatformIntegrations
         private IStoreController controller;
         private IExtensionProvider extensions;
 
-        private Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>> purchaseProcessingCallbacks;
+        private static Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>> purchaseProcessingCallbacks;
 
-        private string environment = "production";
+        private static string environment = "production";
 
-        private async void Awake()
+        private bool available = false;
+
+        public static bool FirstInit { get; private set; } = false;
+
+        private void Awake()
         {
-            OnInitializeEvent = new OnInitialize();
-            OnInitializeEvent.AddListener((bool status) =>
+            Debug.Log(FirstInit);
+            if (!FirstInit)
             {
-                Debug.Log(logDecorator + "Initialized: " + status.ToString());
-            });
-            OnPurchaseSuccessEvent = new OnPurchaseSuccess();
-            OnPurchaseSuccessEvent.AddListener((PurchaseEventArgs args) =>
-            {
-                Debug.Log(logDecorator + "Successfully purchased: " + args.purchasedProduct.definition.id);
-            });
-            OnPurchaseFailEvent = new OnPurchaseFail();
-            OnPurchaseFailEvent.AddListener((Product product, PurchaseFailureReason reason) =>
-            {
-                Debug.Log(logDecorator + "Failed to purchase: " + product.definition.id + ": " + reason.ToString());
-            });
+                InitState();
+            }
 
             //UNITY GAMING SERVICES
-            try 
+            InitializeServices();
+        }
+
+        private async void InitializeServices()
+        {
+            try
             {
                 var options = new InitializationOptions()
                     .SetEnvironmentName(environment);
@@ -65,10 +64,9 @@ namespace PlatformIntegrations
             }
             catch (Exception exception)
             {
-                Debug.Log(logDecorator + "FAILED TO INITIALIZE UNITY GAMING SERVICES, IAP ABORTED");
+                Debug.Log(logDecorator + "FAILED TO INITIALIZE UNITY GAMING SERVICES, IAP ABORTED: " + exception.ToString());
             }
         }
-
         private void InitializeIAP()
         {
             ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
@@ -90,6 +88,8 @@ namespace PlatformIntegrations
             this.controller = controller;
             this.extensions = extensions;
 
+            available = true;
+
             OnInitializeEvent.Invoke(true);
         }
 
@@ -101,18 +101,57 @@ namespace PlatformIntegrations
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
         {
             //OnPurchaseSuccessEvent.Invoke(purchaseEvent);
+            Debug.Log(logDecorator + "[" + purchaseProcessingCallbacks.Count.ToString() + "] Purchase processing: " + purchaseEvent.purchasedProduct.definition.id);
             return purchaseProcessingCallbacks[purchaseEvent.purchasedProduct.definition.id](true, PurchaseFailureReason.Unknown, purchaseEvent);//PurchaseProcessingResult.Complete;
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
         {
             //OnPurchaseFailEvent.Invoke(product, failureReason);
+            Debug.Log(logDecorator + "Purchase could not be processed: " + product.definition.id);
             purchaseProcessingCallbacks[product.definition.id](false, failureReason, null);
         }
 
 #endregion
 
 #region PUBLIC_INTERFACE
+
+        /// <summary>
+        /// Initializes the public interface, independant of the IAP internals
+        /// </summary>
+        public void InitState()
+        {
+            purchaseProcessingCallbacks = new Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>>();
+
+            OnInitializeEvent = new OnInitialize();
+            OnInitializeEvent.AddListener((bool status) =>
+            {
+                Debug.Log(logDecorator + "Initialized: " + status.ToString());
+            });
+            //OnPurchaseSuccessEvent = new OnPurchaseSuccess();
+            //OnPurchaseSuccessEvent.AddListener((PurchaseEventArgs args) =>
+            //{
+            //    Debug.Log(logDecorator + "Successfully purchased: " + args.purchasedProduct.definition.id);
+            //});
+            //OnPurchaseFailEvent = new OnPurchaseFail();
+            //OnPurchaseFailEvent.AddListener((Product product, PurchaseFailureReason reason) =>
+            //{
+            //    Debug.Log(logDecorator + "Failed to purchase: " + product.definition.id + ": " + reason.ToString());
+            //});
+
+            Debug.Log(logDecorator + "Initialized Internal State");
+            FirstInit = true;
+            Debug.Log(FirstInit);
+        }
+
+        /// <summary>
+        /// Returns if Unity gaming services and Purchasing has initialized
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAvailible()
+        {
+            return available;
+        }
 
         /// <summary>
         /// Registers a function to handle the purchase for a specific product ID, call this on any script handling a purchase for a product in Start().
@@ -122,8 +161,18 @@ namespace PlatformIntegrations
         /// <exception cref="Exception">If the function fails to add to the dictionary for any reason</exception>
         public void RegisterPurchaseProcessor(string productID, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult> callback)
         {
-            if (!purchaseProcessingCallbacks.TryAdd(productID, callback)) {
-                throw new Exception(logDecorator + "PURCHASE PROCESSING CALLBACK FAILED TO REGISTER");
+            if (!purchaseProcessingCallbacks.ContainsKey(productID))
+            {
+                if (!purchaseProcessingCallbacks.TryAdd(productID, callback))
+                {
+                    throw new Exception(logDecorator + "PURCHASE PROCESSING CALLBACK FAILED TO REGISTER");
+                } else
+                {
+                    Debug.Log(logDecorator + "[" + purchaseProcessingCallbacks.Count.ToString() + "] Registered callback: " + purchaseProcessingCallbacks.ToString());
+                }
+            } else
+            {
+                //Debug.Log(logDecorator + "PURCHASE PROCESSING CALLBACK ALREADY REGISTERED");
             }
         }
 
@@ -131,9 +180,17 @@ namespace PlatformIntegrations
         /// YOU MUST REGISTER A PURCHASE PROCESSOR CALLBACK FOR ANY PRODUCT ID USED WITH THIS METHOD.
         /// </summary>
         /// <param name="productID">The product ID defined in the IAP catalogue</param>
-        public void InitiatePurchase(string productID)
+        /// <returns>If the purchase could be initiated</returns>
+        public bool InitiatePurchase(string productID)
         {
-            controller.InitiatePurchase(productID);
+            if (available)
+            {
+                controller.InitiatePurchase(productID);
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
 #endregion

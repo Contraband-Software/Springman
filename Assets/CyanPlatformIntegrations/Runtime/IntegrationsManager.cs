@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace PlatformIntegrations
 {
     public class IntegrationsManager : MonoBehaviour
     {
+        //Ensure this is the only instance
+        private static Tuple<bool, int> instanceID;
+
         [Header("Integration Controllers")]
 
         [SerializeField] AdvertisementsManager advertisementsManager;
@@ -24,9 +28,23 @@ namespace PlatformIntegrations
         public SocialManager GetSocialManager() { return SocialManager; }
 
 
-        void Start()
+        void Awake()
         {
             DontDestroyOnLoad(gameObject);
+
+            if (instanceID == null)
+            {
+                instanceID = new Tuple<bool, int>(true, gameObject.GetInstanceID());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public static IntegrationsManager GetObject() {
+            return GameObject.FindGameObjectWithTag("Integrations")
+                .GetComponent<IntegrationsManager>();
         }
     }
 }
