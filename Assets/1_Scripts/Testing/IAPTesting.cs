@@ -16,7 +16,7 @@ public class IAPTesting : MonoBehaviour
 {
     IntegrationsManager integrationsManager;
 
-    public string productID = "software.contraband.springman.iap.removeads";
+    [SerializeField] string productID = "software.contraband.springman.iap.removeads";
 
     void Start()
     {
@@ -26,9 +26,11 @@ public class IAPTesting : MonoBehaviour
             (bool status, PurchaseFailureReason failReason, PurchaseEventArgs args) => {
                 if (status)
                 {
+                    //someskin.allowedtouse = true;
                     //give the user the skin
                     Debug.Log("Fufilled User purchase of: " + productID);
                     Debug.Log("RECEIPT: " + args.purchasedProduct.receipt.ToString());
+
                 } else
                 {
                     Debug.Log("Could not give user item due to: " + failReason.ToString());

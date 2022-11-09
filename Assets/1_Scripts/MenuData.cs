@@ -82,6 +82,8 @@ public class MenuData : MonoBehaviour
         });
         sm.SaveDataLoadCallback.AddListener((bool status, object data) => {
             Debug.Log("MenuData: Cloud save status: " + status.ToString());
+            //MenuData dartar = (MenuData)data;
+            //load the vloud
         });
     }
 
