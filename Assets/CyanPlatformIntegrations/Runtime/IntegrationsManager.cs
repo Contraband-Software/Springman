@@ -30,6 +30,7 @@ namespace PlatformIntegrations
 
         void Awake()
         {
+#region PREVENT_DUPLICATES
             DontDestroyOnLoad(gameObject);
 
             if (instanceID == null)
@@ -40,6 +41,7 @@ namespace PlatformIntegrations
             {
                 Destroy(gameObject);
             }
+#endregion
         }
 
         public static IntegrationsManager GetObject() {
