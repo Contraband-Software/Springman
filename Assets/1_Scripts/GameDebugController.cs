@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameDebugController : MonoBehaviour
 {
 #if UNITY_EDITOR
+    public static GameDebugController instance;
+
     [Header("References")]
     [SerializeField] GameObject flyingEnemyPrefab;
 
@@ -32,9 +34,26 @@ public class GameDebugController : MonoBehaviour
     //    return alwaysFirstRun;
     //}
 
-    private void Start()
+    void Start()
     {
+        #region PREVENT_DUPLICATES
         DontDestroyOnLoad(gameObject);
+
+        if (instance == null)
+        {
+            instance = this;
+
+            Initialize();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        #endregion
+    }
+
+    private void Initialize()
+    {
         if (spawnFlyingEnemyOnStart)
         {
             GameObject fe = Instantiate(flyingEnemyPrefab);
