@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4873717494692743790}
   m_Layer: 0
   m_Name: TestingConsole
-  m_TagString: DebugController
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flyingEnemyPrefab: {fileID: 152433443641657821, guid: 766ede31e464da141bc07542836bf1f0,
     type: 3}
-  spawnFlyingEnemyOnStart: 0
-  waterDisabled: 0
+  spawnFlyingEnemyOnStart: 1
+  waterDisabled: 1
   spawnSEOnAllPlatforms: 1
-  disableAds: 1

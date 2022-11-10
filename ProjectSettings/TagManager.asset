@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameMusicController
-  - DebugController
   - Integrations
+  - Background
+  - FlyingEnemy
+  - Platform
+  - Screw
+  - SittingEnemy
   layers:
   - Default
   - TransparentFX
