@@ -61673,7 +61673,7 @@ PrefabInstance:
     - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
         type: 3}
       propertyPath: waterDisabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
         type: 3}

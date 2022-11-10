@@ -30,7 +30,7 @@ public class WaterRise : MonoBehaviour {
 		pController.revive_Reassign += ReassignPCon;
 
 #if UNITY_EDITOR
-        if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetWaterDisabled())
+        if (GameDebugController.instance.GetWaterDisabled())
         {
 			this.enabled = false;
         }

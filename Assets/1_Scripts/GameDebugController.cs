@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameDebugController : MonoBehaviour
 {
 #if UNITY_EDITOR
-    public static GameDebugController instance;
+    public static GameDebugController instance { get; private set; }
 
     [Header("References")]
     [SerializeField] GameObject flyingEnemyPrefab;
@@ -52,13 +52,21 @@ public class GameDebugController : MonoBehaviour
         #endregion
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 2)
+        {
+            if (spawnFlyingEnemyOnStart)
+            {
+                GameObject fe = Instantiate(flyingEnemyPrefab);
+                fe.transform.position = new Vector3(-1.5f, 3.1f, 0f);
+            }
+        }
+    }
+
     private void Initialize()
     {
-        if (spawnFlyingEnemyOnStart)
-        {
-            GameObject fe = Instantiate(flyingEnemyPrefab);
-            fe.transform.position = new Vector3(-1.5f, 3.1f, 0f);
-        }
+        
     }
 
 #endif
