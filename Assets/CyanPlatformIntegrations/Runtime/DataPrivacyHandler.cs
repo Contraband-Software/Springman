@@ -47,7 +47,7 @@ namespace PlatformIntegrations
             }
         }
 
-        void OnApplicationFocus(bool hasFocus)
+        public void OnApplicationFocus(bool hasFocus)
         {
             if (hasFocus && urlOpened)
             {

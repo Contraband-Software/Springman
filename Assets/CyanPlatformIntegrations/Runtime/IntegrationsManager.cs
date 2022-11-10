@@ -56,8 +56,12 @@ namespace PlatformIntegrations
             if (Advertising | InAppPurchases) { dataPrivacyHandler = new DataPrivacyHandler(); }
         }
 
-        public static GameObject GetObject() {
-            return GameObject.FindGameObjectWithTag("Integrations");
+        private void OnApplicationFocus(bool focus)
+        {
+            if (dataPrivacyHandler != null)
+            {
+                dataPrivacyHandler.OnApplicationFocus(focus);
+            }
         }
     }
 }
