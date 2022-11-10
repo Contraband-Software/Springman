@@ -5,6 +5,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using SimpleDiskUtils;
+using PlatformIntegrations;
 
 public class MenuData : MonoBehaviour
 {
@@ -39,7 +40,6 @@ public class MenuData : MonoBehaviour
 
     [Header("First load systems")]
     [SerializeField] EULADialogue eula;
-    [SerializeField] PlatformIntegrations.IntegrationsManager integrations;
 
     string path;
     bool EULA_Accepted = false;
@@ -70,7 +70,7 @@ public class MenuData : MonoBehaviour
         curtainCG.alpha = 1f;
         LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
 
-        sm = integrations.GetSocialManager();
+        sm = IntegrationsManager.instance.socialManager;
         sm.SaveDataWriteCallback.AddListener((bool status) => {
             if (!status)
             {

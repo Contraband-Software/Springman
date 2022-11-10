@@ -13,18 +13,18 @@ namespace PlatformIntegrations
     using System.Runtime.Serialization.Formatters.Binary;
     using UnityEngine.SocialPlatforms;
 
-    public class SocialManager : MonoBehaviour
+    public class SocialManager
     {
         const string logDecorator = "GPGS: ";
 
-        #region EVENTS
+#region EVENTS
         public class AuthenticationEvent : UnityEvent<bool> { }
         public AuthenticationEvent AuthenticatorCallback;
         public class SaveDataLoadEvent : UnityEvent<bool, Object> { }
         public SaveDataLoadEvent SaveDataLoadCallback;
         public class SaveDataWriteEvent : UnityEvent<bool> { }
         public SaveDataWriteEvent SaveDataWriteCallback;
-        #endregion
+#endregion
 
         private const string cloudSaveFile = "UserGameSave.dat";
 
@@ -33,7 +33,7 @@ namespace PlatformIntegrations
 
         TimeSpan sessionStart;
 
-        private void Awake()
+        public SocialManager()
         {
             sessionStart = DateTime.Now.TimeOfDay;
 
@@ -52,9 +52,7 @@ namespace PlatformIntegrations
             {
                 Debug.Log(logDecorator + "Game data write status: " + status.ToString());
             });
-        }
-        private void Start()
-        {
+
 #if UNITY_ANDROID
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 #elif UNITY_IOS
@@ -130,9 +128,15 @@ namespace PlatformIntegrations
         public void PostLeaderboardScore(int score, Action<bool> callback)
         {
             //CgkI6NDuufMeEAIQAQ is the API ID for OUR leaderboard
-            Social.ReportScore(score, "CgkI6NDuufMeEAIQAQ", (bool success) => {
-                callback(success);
-            });
+            if (IsAvailable())
+            {
+                Social.ReportScore(score, "CgkI6NDuufMeEAIQAQ", (bool success) => {
+                    callback(success);
+                });
+            } else
+            {
+                callback(false);
+            }
         }
 
         //SAVE GAMES

@@ -20,9 +20,9 @@ public class IAPTesting : MonoBehaviour
 
     void Start()
     {
-        integrationsManager = IntegrationsManager.GetObject();
+        integrationsManager = IntegrationsManager.instance;
 
-        integrationsManager.GetIAPManager().RegisterPurchaseProcessor(productID, 
+        integrationsManager.iapHandler.RegisterPurchaseProcessor(productID, 
             (bool status, PurchaseFailureReason failReason, PurchaseEventArgs args) => {
                 if (status)
                 {
@@ -45,6 +45,6 @@ public class IAPTesting : MonoBehaviour
     public void DoPurchase()
     {
         Debug.Log("Started purchase for: " + productID);
-        integrationsManager.GetIAPManager().InitiatePurchase(productID);
+        integrationsManager.iapHandler.InitiatePurchase(productID);
     }
 }

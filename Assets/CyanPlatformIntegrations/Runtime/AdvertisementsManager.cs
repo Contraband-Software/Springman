@@ -7,24 +7,32 @@ using UnityEngine.EventSystems;
 
 namespace PlatformIntegrations
 {
+    using PlasticPipe.PlasticProtocol.Messages;
     using UnityEngine.Advertisements;
 
-    public class AdvertisementsManager : MonoBehaviour, IUnityAdsInitializationListener
+    public class AdvertisementsManager : IUnityAdsInitializationListener
     {
         [Serializable]
         public class AdUnit : IUnityAdsLoadListener, IUnityAdsShowListener
         {
-            public string Name;
+            [SerializeField] string Name;
 
-            public string Android;
-            public string IOS;
-            public bool Banner;
+            [SerializeField] string Android;
+            [SerializeField] string IOS;
+            [SerializeField] bool Banner;
+
             private BannerLoadOptions bannerLoadOptions;
             private BannerOptions bannerShowOptions;
 
             private string AdID;
 
             private bool Loaded;
+
+            public string GetName()
+            {
+                return Name;
+            }
+
             public bool IsLoaded()
             {
                 return Loaded;
@@ -182,17 +190,14 @@ namespace PlatformIntegrations
             public void OnUnityAdsShowClick(string adUnitId) { }
         }
 
-        [Header("Unity Ads game IDs")]
-        [SerializeField] string AppleGameID;
-        [SerializeField] string GooglePlayGameID;
+        string AppleGameID;
+        string GooglePlayGameID;
 
-        [Header("Ad Units")]
-        [SerializeField] List<AdUnit> AdUnits;
+        List<AdUnit> AdUnits;
 
-        [Header("Settings")]
-        [SerializeField] BannerPosition BannerAdPosition;
-        [SerializeField, Tooltip("WARNING: THIS IS FOR FRAUD PREVENTION, IT MEANS NO REVENUE IS EARNED FROM ADS")] bool TestMode = false;
+        BannerPosition BannerAdPosition;
 
+        bool TestMode = false;
 
         private string GameID;
 
@@ -200,7 +205,7 @@ namespace PlatformIntegrations
         {
             for (int i = 0; i < AdUnits.Count; i++)
             {
-                if (AdUnits[i].Name == name)
+                if (AdUnits[i].GetName() == name)
                 {
                     return AdUnits[i];
                 }
@@ -211,14 +216,6 @@ namespace PlatformIntegrations
 
         public void PlayAd(string name)
         {
-            //#if UNITY_EDITOR
-            //        if (GameObject.FindGameObjectWithTag("DebugController").GetComponent<GameDebugController>().GetAdsDisabled())
-            //        {
-            //            GetAdUnitByName(name).OnShowComplete.Invoke(true);
-            //            GetAdUnitByName(name).OnLoadComplete.Invoke();
-            //            return;
-            //        }
-            //#endif
             if (Advertisement.isInitialized)
             {
                 GetAdUnitByName(name).ShowAd();
@@ -245,8 +242,18 @@ namespace PlatformIntegrations
             return GetAdUnitByName(name).IsLoaded();
         }
 
-        private void Awake()
-        {
+        public AdvertisementsManager(
+            string appleGameID, string gpgsID, 
+            List<AdUnit> AdUnits, 
+            BannerPosition BannerAdPosition,
+            bool testMode
+        ) {
+            this.AppleGameID = appleGameID;
+            this.GooglePlayGameID = gpgsID;
+            this.AdUnits = AdUnits;
+            this.BannerAdPosition = BannerAdPosition;
+            this.TestMode = testMode;
+
             InitializeManager();
         }
 

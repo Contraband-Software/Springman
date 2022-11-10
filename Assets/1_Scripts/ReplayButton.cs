@@ -12,8 +12,7 @@ public class ReplayButton : MonoBehaviour
 
     private void Start()
     {
-        adManager = GameObject.FindGameObjectWithTag("Integrations")
-            .GetComponent<IntegrationsManager>().GetAdvertisements();
+        adManager = IntegrationsManager.instance.advertisementsManager;
     }
 
     public void OnClick()

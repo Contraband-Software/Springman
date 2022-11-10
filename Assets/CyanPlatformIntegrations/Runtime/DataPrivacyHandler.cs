@@ -8,7 +8,7 @@ namespace PlatformIntegrations
 {
     using UnityEngine.Analytics;
 
-    public class DataPrivacyHandler : MonoBehaviour
+    public class DataPrivacyHandler
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]
@@ -34,7 +34,7 @@ namespace PlatformIntegrations
         void OnURLReceived(string url)
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        OpenNewWindow(url);
+            OpenNewWindow(url);
 #else
             Application.OpenURL(url);
 #endif

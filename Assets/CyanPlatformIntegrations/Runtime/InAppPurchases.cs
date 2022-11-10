@@ -10,18 +10,14 @@ namespace PlatformIntegrations
     using Unity.Services.Core;
     using Unity.Services.Core.Environments;
 
-    public class InAppPurchases : MonoBehaviour, IStoreListener
+    public class InAppPurchases : IStoreListener
     {
         const string logDecorator = "IAP: ";
 
 #region EVENTS
 
         public class OnInitialize : UnityEvent<bool> { }
-        [HideInInspector] public static OnInitialize OnInitializeEvent;
-        //public class OnPurchaseSuccess : UnityEvent<PurchaseEventArgs> { }
-        //[HideInInspector] private static OnPurchaseSuccess OnPurchaseSuccessEvent;
-        //public class OnPurchaseFail : UnityEvent<Product, PurchaseFailureReason> { }
-        //[HideInInspector] private static OnPurchaseFail OnPurchaseFailEvent;
+        public OnInitialize OnInitializeEvent { get; private set; }
 
 #endregion
 
@@ -29,21 +25,16 @@ namespace PlatformIntegrations
         private IStoreController controller;
         private IExtensionProvider extensions;
 
-        private static Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>> purchaseProcessingCallbacks;
+        private Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>> purchaseProcessingCallbacks;
 
-        private static string environment = "production";
+        public static string environment { get; internal set; } = "production";
+        //public static bool FirstInit { get; private set; } = false;
 
         private bool available = false;
 
-        public static bool FirstInit { get; private set; } = false;
-
-        private void Awake()
+        public InAppPurchases()
         {
-            Debug.Log(FirstInit);
-            if (!FirstInit)
-            {
-                InitState();
-            }
+            InitState();
 
             //UNITY GAMING SERVICES
             InitializeServices();
@@ -128,20 +119,8 @@ namespace PlatformIntegrations
             {
                 Debug.Log(logDecorator + "Initialized: " + status.ToString());
             });
-            //OnPurchaseSuccessEvent = new OnPurchaseSuccess();
-            //OnPurchaseSuccessEvent.AddListener((PurchaseEventArgs args) =>
-            //{
-            //    Debug.Log(logDecorator + "Successfully purchased: " + args.purchasedProduct.definition.id);
-            //});
-            //OnPurchaseFailEvent = new OnPurchaseFail();
-            //OnPurchaseFailEvent.AddListener((Product product, PurchaseFailureReason reason) =>
-            //{
-            //    Debug.Log(logDecorator + "Failed to purchase: " + product.definition.id + ": " + reason.ToString());
-            //});
 
             Debug.Log(logDecorator + "Initialized Internal State");
-            FirstInit = true;
-            Debug.Log(FirstInit);
         }
 
         /// <summary>
