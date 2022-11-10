@@ -1,55 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UpdateValue;
 
 public class Loading : MonoBehaviour
 {
-
-    public Slider slider;
-    private void Awake()
+    public enum SceneIndexes
     {
-
+        LOADING = 0,
+        MAINMENU = 1,
+        GAME = 2
     }
 
-    void Start()
+    [Header("Important References")]
+    [SerializeField] SceneIndexes Scene;
+    [Header("Settings")]
+    [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
+    [SerializeField] Slider slider;
+
+    void Awake()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        Debug.Log(currentScene.name);
-        if(currentScene.name != "Main Menu")
-        {
-            LoadMainMenu();
-        }
+        StartCoroutine(LoadScene((int)Scene));
     }
 
-    public void LoadMainMenu()
+    IEnumerator LoadScene(int sceneIndex)
     {
-        StartCoroutine(LoadAsynchMM((int)SceneIndexes.MAINMENU));
-    }
+        yield return null;
 
-    IEnumerator LoadAsynchMM(int sceneIndex)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        UnityEngine.AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        operation.allowSceneActivation = false;
 
         while (!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            slider.value = progress;
+            yield return StartCoroutine(UpdateLoadingBar(operation.progress));
+
+            if (slider.value >= 0.88f)
+            {
+                operation.allowSceneActivation = true;
+            }
+
             yield return null;
         }
+    }
 
-        Scene sceneToLoad = SceneManager.GetSceneAt(sceneIndex);
-        if (sceneToLoad.IsValid())
+    IEnumerator UpdateLoadingBar(float targetValue)
+    {
+        while (targetValue - slider.value > 0.005f)
         {
-            SceneManager.SetActiveScene(SceneManager.GetSceneAt(sceneIndex));
+            slider.value += (targetValue - slider.value) * updateSpeed;
+
+            yield return null;
         }
     }
-}
-
-public enum SceneIndexes
-{
-    LOADING = 0,
-    MAINMENU = 1,
-    GAME = 2
 }
