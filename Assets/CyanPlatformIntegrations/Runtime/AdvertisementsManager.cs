@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 namespace PlatformIntegrations
 {
-    using PlasticPipe.PlasticProtocol.Messages;
     using UnityEngine.Advertisements;
 
     public class AdvertisementsManager : IUnityAdsInitializationListener
