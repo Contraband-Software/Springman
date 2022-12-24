@@ -39,7 +39,7 @@
     <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.11.01.aar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a,x86,x86_64" />
     <setting name="bundleId" value="software.contraband.springman" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />

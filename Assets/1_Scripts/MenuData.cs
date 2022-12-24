@@ -62,7 +62,9 @@ public class MenuData : MonoBehaviour
 
         //social manager will have loaded data cached
         //CreateFirstDataFile();
-        LoadGameData();
+        //LoadGameData();
+        Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
+        Debug.Log((SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame());
     }
 
     private void Start()
