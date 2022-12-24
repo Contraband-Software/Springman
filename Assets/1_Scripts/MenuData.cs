@@ -59,7 +59,9 @@ public class MenuData : MonoBehaviour
         LeanTween.cancelAll();
 
         InitialiseAppropriateFonts();
-        CreateFirstDataFile();
+
+        //social manager will have loaded data cached
+        //CreateFirstDataFile();
         LoadGameData();
     }
 
