@@ -20,7 +20,7 @@ namespace PlatformIntegrations
 #region EVENTS
         public class AuthenticationEvent : UnityEvent<bool> { }
         public AuthenticationEvent AuthenticatorCallback;
-        public class SaveDataLoadEvent : UnityEvent<bool, Object> { }
+        public class SaveDataLoadEvent : UnityEvent<bool, object> { }
         public SaveDataLoadEvent SaveDataLoadCallback;
         public class SaveDataWriteEvent : UnityEvent<bool> { }
         public SaveDataWriteEvent SaveDataWriteCallback;

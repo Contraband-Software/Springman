@@ -30,9 +30,11 @@ public class Loading : MonoBehaviour
         StartCoroutine(LoadScene((int)Scene));
 
         //register listener for loading the user game data
-        IntegrationsManager.instance.socialManager.SaveDataLoadCallback.AddListener((bool status, object data) => {
+        Debug.Log("REGISTERING CALLBACK FOR LOADING SAVEDATA IN LOADING SCRIPT");
+        /*IntegrationsManager.instance.socialManager.SaveDataLoadCallback.AddListener((bool status, object data) => {
             this.data = data;
-        });
+            Debug.Log("LOADING SCENE RECIEVED SAVEDATA LOADED CALLBACK");
+        });*/
         
     }
 
@@ -50,7 +52,7 @@ public class Loading : MonoBehaviour
             if (slider.value >= 0.88f)
             {
                 //start coroutine to check if save data has been loaded
-
+                Debug.Log("LOADED ASSETS");
                 StartCoroutine(WaitForSaveDataToLoad());
             }
 
@@ -62,6 +64,7 @@ public class Loading : MonoBehaviour
     {
         while (targetValue - slider.value > 0.005f)
         {
+            Debug.Log("Updating loading bar...");
             slider.value += (targetValue - slider.value) * updateSpeed;
 
             yield return null;
@@ -74,9 +77,12 @@ public class Loading : MonoBehaviour
 
         while(data == null)
         {
+            Debug.Log("Waiting to load data from GPGS...");
             yield return new WaitForSeconds(0.1f);
         }
 
+        Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
+        Debug.Log("ALLOWING SCENE ACTIVATION");
         operation.allowSceneActivation = true;
     }
 }
