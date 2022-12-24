@@ -30,6 +30,7 @@ namespace PlatformIntegrations
 
         bool available = false;
         ISavedGameMetadata currentSavedGameMetadata = null;
+        byte[] cache;
 
         TimeSpan sessionStart;
 
@@ -99,6 +100,16 @@ namespace PlatformIntegrations
         }
 
 #region GOOGLE_PLAY_GAMES
+
+        /// <summary>
+        /// Returns the most recently loaded user game save data
+        /// </summary>
+        /// <returns></returns>
+        public object GetCachedSaveGame()
+        {
+            return ByteArrayToObject(cache);
+        }
+
         internal void ProcessAuthentication(SignInStatus status)
         {
             if (status == SignInStatus.Success)
@@ -172,6 +183,7 @@ namespace PlatformIntegrations
             {
                 // handle processing the byte array data
                 SaveDataLoadCallback.Invoke(true, ByteArrayToObject(data));
+                cache = data;
             }
             else
             {
