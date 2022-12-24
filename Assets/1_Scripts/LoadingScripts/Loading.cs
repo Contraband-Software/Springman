@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using PlatformIntegrations;
 using static UpdateValue;
 
 public class Loading : MonoBehaviour
@@ -21,16 +22,25 @@ public class Loading : MonoBehaviour
     [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
     [SerializeField] Slider slider;
 
+    private object data = null;
+    private UnityEngine.AsyncOperation operation;
+
     void Awake()
     {
         StartCoroutine(LoadScene((int)Scene));
+
+        //register listener for loading the user game data
+        IntegrationsManager.instance.socialManager.SaveDataLoadCallback.AddListener((bool status, object data) => {
+            this.data = data;
+        });
+        
     }
 
     IEnumerator LoadScene(int sceneIndex)
     {
         yield return null;
 
-        UnityEngine.AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        operation = SceneManager.LoadSceneAsync(sceneIndex);
         operation.allowSceneActivation = false;
 
         while (!operation.isDone)
@@ -39,7 +49,9 @@ public class Loading : MonoBehaviour
 
             if (slider.value >= 0.88f)
             {
-                operation.allowSceneActivation = true;
+                //start coroutine to check if save data has been loaded
+
+                StartCoroutine(WaitForSaveDataToLoad());
             }
 
             yield return null;
@@ -54,5 +66,17 @@ public class Loading : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    IEnumerator WaitForSaveDataToLoad()
+    {
+
+
+        while(data == null)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        operation.allowSceneActivation = true;
     }
 }
