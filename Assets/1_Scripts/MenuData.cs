@@ -85,11 +85,23 @@ public class MenuData : MonoBehaviour
                 Debug.Log("MenuData: Save data written to cloud successfully");
             }
         });
-        sm.SaveDataLoadCallback.AddListener((bool status, object data) => {
-            Debug.Log("MenuData: Cloud save status: " + status.ToString());
-            //MenuData dartar = (MenuData)data;
-            //load the vloud
-        });
+
+#if !UNITY_EDITOR
+        SaveData loadedSaveData = (SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame();
+        Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
+        Debug.Log(loadedSaveData);
+
+
+        ReLocalizeTexts();
+        //load the vloud
+#else
+        //create default save data to create dummy file
+        //create first data file()
+        CreateFirstDataFile();
+        LoadGameData();
+        ReLocalizeTexts();
+#endif
+
     }
 
     public void CreateFirstDataFile()
@@ -176,7 +188,7 @@ public class MenuData : MonoBehaviour
 
                 Debug.Log("CREATED FIRST GAME DATA FILE");
 
-                ReLocalizeTexts();
+                
 
                 eula.Show();
                 //if (sm.isAvailable()) { sm.ShowSaveGameSelectUI(); }
@@ -215,7 +227,7 @@ public class MenuData : MonoBehaviour
 
         //Debug.Log("LOADED GAMEDATA FILE");
         
-        ReLocalizeTexts();
+        
     }
 
     public void SaveGameData()
@@ -231,6 +243,10 @@ public class MenuData : MonoBehaviour
             ads
         );
 
+#if UNITY_EDITOR
+        //SAVE TO LOCAL STORAGE ALWAYS ANYWAY
+        SaveGameData_LocalFallback(data);
+#else
         if (sm.IsAvailable() && sm.SaveGameLoaded())
         {
             sm.SaveGame(data);
@@ -239,9 +255,8 @@ public class MenuData : MonoBehaviour
         {
             Debug.Log("integration not availible");
         }
+#endif
 
-        //SAVE TO LOCAL STORAGE ALWAYS ANYWAY
-        SaveGameData_LocalFallback(data);
     }
 
     private void SaveGameData_LocalFallback(SaveData data)

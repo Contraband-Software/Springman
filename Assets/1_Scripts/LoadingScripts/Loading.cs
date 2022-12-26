@@ -63,16 +63,19 @@ public class Loading : MonoBehaviour
         }
     }
 
+
     IEnumerator WaitForSaveDataToLoad()
     {
-        while(IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null)
+#if !UNITY_EDITOR
+        while (IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null)
         {
             Debug.Log("Waiting to load data from GPGS...");
             yield return new WaitForSeconds(0.1f);
         }
-
+#endif
         Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
         Debug.Log("ALLOWING SCENE ACTIVATION");
         operation.allowSceneActivation = true;
+        yield return null;
     }
 }
