@@ -45,7 +45,9 @@ public class Loading : MonoBehaviour
             {
                 //start coroutine to check if save data has been loaded
                 Debug.Log("LOADED ASSETS");
+                operation.allowSceneActivation = true;
                 StartCoroutine(WaitForSaveDataToLoad());
+                yield break;
             }
 
             yield return null;
@@ -71,17 +73,20 @@ public class Loading : MonoBehaviour
         {
             Debug.Log("Waiting to load data from GPGS...");
             Debug.Log("Data loaded: " + IntegrationsManager.instance.socialManager.HasLoadedFromCloud());
-            if(IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null){
-                Debug.Log("LOADED FROM GPGS, FILE SEEMS EMPTY...");
-                
-            }
+            
 
             Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
             yield return new WaitForSeconds(0.1f);
         }
+
+        if(IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null){
+            Debug.Log("LOADED FROM GPGS, FILE SEEMS EMPTY...");
+                
+        }
 #endif
         Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
         Debug.Log("ALLOWING SCENE ACTIVATION");
+        Debug.Log("Scene Activation Allowed?: " + operation.allowSceneActivation);
         operation.allowSceneActivation = true;
         yield break;
     }
