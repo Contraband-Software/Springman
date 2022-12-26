@@ -193,7 +193,7 @@ namespace PlatformIntegrations
 
         private void OnSavedGameDataRead(SavedGameRequestStatus status, byte[] data)
         {
-            //Debug.Log("GPGS: Game Data Read Status: " + status.ToString());
+            Debug.Log("GPGS: Game Data Read Status: " + status.ToString());
 
             if (status == SavedGameRequestStatus.Success)
             {

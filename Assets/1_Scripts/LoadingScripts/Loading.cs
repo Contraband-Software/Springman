@@ -67,13 +67,13 @@ public class Loading : MonoBehaviour
     IEnumerator WaitForSaveDataToLoad()
     {
 #if !UNITY_EDITOR
-        while (IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null)
+        while (!IntegrationsManager.instance.socialManager.HasLoadedFromCloud())
         {
             Debug.Log("Waiting to load data from GPGS...");
             Debug.Log("Data loaded: " + IntegrationsManager.instance.socialManager.HasLoadedFromCloud());
-            if(IntegrationsManager.instance.socialManager.HasLoadedFromCloud()){
+            if(IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null){
                 Debug.Log("LOADED FROM GPGS, FILE SEEMS EMPTY...");
-                break;
+                
             }
 
             Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
@@ -83,6 +83,6 @@ public class Loading : MonoBehaviour
         Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
         Debug.Log("ALLOWING SCENE ACTIVATION");
         operation.allowSceneActivation = true;
-        yield return null;
+        yield break;
     }
 }
