@@ -19,12 +19,12 @@ namespace PlatformIntegrations
 
 #region EVENTS
         public class AuthenticationEvent : UnityEvent<bool> { }
-        public AuthenticationEvent AuthenticatorCallback;
-        public class SaveDataLoadEvent : UnityEvent<bool, object> { }
-        public SaveDataLoadEvent SaveDataLoadCallback;
+        public AuthenticationEvent AuthenticatorCallback { get; private set; }
+        //public class SaveDataLoadEvent : UnityEvent<bool, object> { }
+        //public SaveDataLoadEvent SaveDataLoadCallback { get; private set; }
         public class SaveDataWriteEvent : UnityEvent<bool> { }
-        public SaveDataWriteEvent SaveDataWriteCallback;
-#endregion
+        public SaveDataWriteEvent SaveDataWriteCallback { get; private set; }
+        #endregion
 
         private const string cloudSaveFile = "UserGameSave.dat";
 
@@ -43,11 +43,11 @@ namespace PlatformIntegrations
             {
                 Debug.Log(logDecorator + "Platform signin status: " + status.ToString());
             });
-            SaveDataLoadCallback = new SaveDataLoadEvent();
-            SaveDataLoadCallback.AddListener((bool status, object data) =>
-            {
-                Debug.Log(logDecorator + "Cloud save loaded and read into memory: " + status.ToString());
-            });
+            //SaveDataLoadCallback = new SaveDataLoadEvent();
+            //SaveDataLoadCallback.AddListener((bool status, object data) =>
+            //{
+            //    Debug.Log(logDecorator + "Cloud save loaded and read into memory: " + status.ToString());
+            //});
             SaveDataWriteCallback = new SaveDataWriteEvent();
             SaveDataWriteCallback.AddListener((bool status) =>
             {
@@ -58,6 +58,8 @@ namespace PlatformIntegrations
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 #elif UNITY_IOS
             //Log into icloud/game center
+#else
+            throw new NotSupportedException(logDecorator + "INVALID PLATFORM, MUST BE ANDROID OR IOS");
 #endif
         }
 
@@ -171,7 +173,7 @@ namespace PlatformIntegrations
             else
             {
                 // handle error
-                SaveDataLoadCallback.Invoke(false, null);
+                //SaveDataLoadCallback.Invoke(false, null);
             }
         }
 
@@ -182,14 +184,15 @@ namespace PlatformIntegrations
             if (status == SavedGameRequestStatus.Success)
             {
                 // handle processing the byte array data
-                SaveDataLoadCallback.Invoke(true, ByteArrayToObject(data));
+                //SaveDataLoadCallback.Invoke(true, ByteArrayToObject(data));
                 cache = data;
             }
             else
             {
+                cache = null;
                 // handle error
                 Debug.Log(logDecorator + "Failed to read and return cloud save data: " + status.ToString());
-                SaveDataLoadCallback.Invoke(false, null);
+                //SaveDataLoadCallback.Invoke(false, null);
             }
         }
 
