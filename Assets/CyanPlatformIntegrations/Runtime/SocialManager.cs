@@ -20,8 +20,8 @@ namespace PlatformIntegrations
 #region EVENTS
         public class AuthenticationEvent : UnityEvent<bool> { }
         public AuthenticationEvent AuthenticatorCallback { get; private set; }
-        //public class SaveDataLoadEvent : UnityEvent<bool, object> { }
-        //public SaveDataLoadEvent SaveDataLoadCallback { get; private set; }
+        public class SaveDataLoadEvent : UnityEvent<bool, object> { }
+        public SaveDataLoadEvent SaveDataLoadCallback { get; private set; }
         public class SaveDataWriteEvent : UnityEvent<bool> { }
         public SaveDataWriteEvent SaveDataWriteCallback { get; private set; }
         #endregion
@@ -30,6 +30,7 @@ namespace PlatformIntegrations
 
         bool available = false;
         ISavedGameMetadata currentSavedGameMetadata = null;
+        bool saveFileLoaded = false;
         byte[] cache;
 
         TimeSpan sessionStart;
@@ -45,11 +46,13 @@ namespace PlatformIntegrations
             {
                 Debug.Log(logDecorator + "Platform signin status: " + status.ToString());
             });
-            //SaveDataLoadCallback = new SaveDataLoadEvent();
-            //SaveDataLoadCallback.AddListener((bool status, object data) =>
-            //{
-            //    Debug.Log(logDecorator + "Cloud save loaded and read into memory: " + status.ToString());
-            //});
+            SaveDataLoadCallback = new SaveDataLoadEvent();
+            SaveDataLoadCallback.AddListener((bool status, object data) =>
+            {
+                Debug.Log(logDecorator + "Cloud save loaded and read into memory: " + status.ToString());
+                saveFileLoaded = status;
+
+            });
             SaveDataWriteCallback = new SaveDataWriteEvent();
             SaveDataWriteCallback.AddListener((bool status) =>
             {
@@ -85,7 +88,16 @@ namespace PlatformIntegrations
         {
             return available;
         }
-        
+
+        /// <summary>
+        /// Returns if the cloud file has been loaded
+        /// </summary>
+        /// <returns></returns>
+        public bool HasLoadedFromCloud()
+        {
+            return saveFileLoaded;
+        }
+
         /// <summary>
         /// Returns if a cloud save is loaded
         /// </summary>
@@ -175,7 +187,7 @@ namespace PlatformIntegrations
             else
             {
                 // handle error
-                //SaveDataLoadCallback.Invoke(false, null);
+                SaveDataLoadCallback.Invoke(false, null);
             }
         }
 
@@ -186,7 +198,7 @@ namespace PlatformIntegrations
             if (status == SavedGameRequestStatus.Success)
             {
                 // handle processing the byte array data
-                //SaveDataLoadCallback.Invoke(true, ByteArrayToObject(data));
+                SaveDataLoadCallback.Invoke(true, ByteArrayToObject(data));
                 cache = data;
             }
             else
@@ -194,7 +206,7 @@ namespace PlatformIntegrations
                 cache = null;
                 // handle error
                 Debug.Log(logDecorator + "Failed to read and return cloud save data: " + status.ToString());
-                //SaveDataLoadCallback.Invoke(false, null);
+                SaveDataLoadCallback.Invoke(false, null);
             }
         }
 
