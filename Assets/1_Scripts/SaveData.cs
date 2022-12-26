@@ -15,7 +15,15 @@ public class SaveData
     public bool tutorialComplete = false;
     public int ads;
 
-    public SaveData(int allTimeHighscore, bool musicOn, bool soundsOn, string language, int langIndex, int gold, int silver, bool tutorialComplete, int ads)
+    public SaveData(int allTimeHighscore, 
+        bool musicOn, 
+        bool soundsOn, 
+        string language, 
+        int langIndex, 
+        int gold, 
+        int silver, 
+        bool tutorialComplete, 
+        int ads)
     {
         highscore = allTimeHighscore;
         this.musicOn = musicOn;
