@@ -73,7 +73,7 @@ public class Loading : MonoBehaviour
             Debug.Log("Data loaded: " + IntegrationsManager.instance.socialManager.HasLoadedFromCloud());
             if(IntegrationsManager.instance.socialManager.HasLoadedFromCloud()){
                 Debug.Log("LOADED FROM GPGS, FILE SEEMS EMPTY...");
-                yield break;
+                break;
             }
 
             Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
