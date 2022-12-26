@@ -41,13 +41,13 @@ public class Loading : MonoBehaviour
         {
             yield return StartCoroutine(UpdateLoadingBar(operation.progress));
 
-            if (slider.value >= 0.88f)
+            if (slider.value >= 0.88f && !operation.allowSceneActivation)
             {
                 //start coroutine to check if save data has been loaded
                 Debug.Log("LOADED ASSETS");
                 operation.allowSceneActivation = true;
                 StartCoroutine(WaitForSaveDataToLoad());
-                yield break;
+                yield return null;
             }
 
             yield return null;

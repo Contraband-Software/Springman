@@ -13,6 +13,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+		<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </activity>
     </application>
 </manifest>
