@@ -38,6 +38,8 @@ namespace PlatformIntegrations
         {
             sessionStart = DateTime.Now.TimeOfDay;
 
+            cache = new byte[0];
+
             AuthenticatorCallback = new AuthenticationEvent();
             AuthenticatorCallback.AddListener((bool status) =>
             {
@@ -233,7 +235,7 @@ namespace PlatformIntegrations
                 SaveDataWriteCallback.Invoke(false);
             }
         }
-        #endregion
+#endregion
 
         private byte[] ObjectToByteArray(object obj)
         {
