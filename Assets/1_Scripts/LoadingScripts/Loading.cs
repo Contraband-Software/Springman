@@ -22,20 +22,12 @@ public class Loading : MonoBehaviour
     [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
     [SerializeField] Slider slider;
 
-    private object data = null;
     private UnityEngine.AsyncOperation operation;
 
     void Awake()
     {
         StartCoroutine(LoadScene((int)Scene));
 
-        //register listener for loading the user game data
-        Debug.Log("REGISTERING CALLBACK FOR LOADING SAVEDATA IN LOADING SCRIPT");
-        /*IntegrationsManager.instance.socialManager.SaveDataLoadCallback.AddListener((bool status, object data) => {
-            this.data = data;
-            Debug.Log("LOADING SCENE RECIEVED SAVEDATA LOADED CALLBACK");
-        });*/
-        
     }
 
     IEnumerator LoadScene(int sceneIndex)
@@ -73,9 +65,7 @@ public class Loading : MonoBehaviour
 
     IEnumerator WaitForSaveDataToLoad()
     {
-
-
-        while(data == null)
+        while(IntegrationsManager.instance.socialManager.GetCachedSaveGame() == null)
         {
             Debug.Log("Waiting to load data from GPGS...");
             yield return new WaitForSeconds(0.1f);
