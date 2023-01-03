@@ -22,7 +22,8 @@ public class Arrange : MonoBehaviour
         leftBounds = left.GetComponent<BoxCollider2D>().bounds;
         rightBounds = right.GetComponent<BoxCollider2D>().bounds;
     }
-    void Start()
+
+    public void ArrangePlatform()
     {
         gameData = GameObject.Find("GameController").GetComponent<GameData>();
         Resize();

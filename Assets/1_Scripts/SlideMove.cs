@@ -67,11 +67,21 @@ public class SlideMove : MonoBehaviour {
 
 	public float thisPlatLength;
 
+	[Header("Arrangment Script")]
+	public Arrange arrangeScript;
+	public ArrangeHole arrangeHoleScript;
+
+	[Header("Platform Type")]
+	public bool isHolePlatform = false;
+
+
+	[Header("For Revive")]
+	public bool disableMovement = false;
 	void Awake()
 	{
 		//rb = GetComponent<Rigidbody2D>();
 		//gameData = GameObject.Find("GameController").GetComponent<GameData>();
-		halfPlatHeight = transform.Find("PlatformMID").GetComponent<BoxCollider2D>().bounds.extents.y;
+		halfPlatHeight = transform.GetChild(0).GetComponent<BoxCollider2D>().bounds.extents.y;
 		//mainCamera = GameObject.Find("Main Camera");
 		//cam = mainCamera.GetComponent<Camera>();
 		sittingEnemyHeight = sittingEnemyPrefab.GetComponent<Renderer>().bounds.extents.y * 2;
@@ -90,9 +100,14 @@ public class SlideMove : MonoBehaviour {
 		topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)); //Coords of top right corner of screen
 		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
 
+        if (gameData.nextPlatIsHole) { isHolePlatform = true; }
+
+		if (!isHolePlatform) { arrangeScript.ArrangePlatform(); }
+        else { arrangeHoleScript.ArrangePlatform(); }
+
 		RampSESpawnChance();
 		Visibility();
-		PotentialSittingEnemySpawn();
+        if (!isHolePlatform) { PotentialSittingEnemySpawn(); }
 
 		if(gameData.tutorialComplete == false && transform.position.y == 1.5f)
 		{
@@ -104,6 +119,7 @@ public class SlideMove : MonoBehaviour {
 		}
 
 		pController.revive_Reassign += ReassignPCon;
+		gameData.nextPlatIsHole = false;
 	}
 
 	public void ReassignPCon(PlayerController pCon)
@@ -115,7 +131,7 @@ public class SlideMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		ClampToScreen();
+		if (!disableMovement) { ClampToScreen(); }
 		topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)); //Coords of top right corner of screen
 		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
 
@@ -123,7 +139,7 @@ public class SlideMove : MonoBehaviour {
 		WhenToDestroy();
 		//PotentialEnemySpawn
 
-		if (!gameData.Paused && pController.state == PlayerController.State.Alive && gameData.allowSlideMove == true)
+		if (!gameData.Paused && pController.state == PlayerController.State.Alive && gameData.allowSlideMove == true && !disableMovement)
 		{
 			if (Input.touchCount > 0)
 			{
@@ -265,30 +281,6 @@ public class SlideMove : MonoBehaviour {
 	{
 		cameraFollow.yPositions.Remove(transform.position.y);
 	}
-	//public void PotentialFlyingEnemySpawn()
-	//{
-	//	//Make them spawn only if they are going to be above the top most platfrom
-	//	if(cameraFollow.yPositions.Count > 0)
-	//	{
-	//		Vector3 feBounds = flyingEnemyPrefab.GetComponent<BoxCollider2D>().bounds.extents;
-
-	//		float spawnPosX = rnd.Next(Convert.ToInt32(-330 + (Math.Round(feBounds.x, 2) * 100)), Convert.ToInt32(330 - (Math.Round(feBounds.x, 2) * 100))) / 100f;
-	//		float spawnPosY = (transform.position.y + platDistance) - halfPlatHeight - offset;
-
-	//		if (CanSpawnFlyingEnemy() && flyingEnemySpawned == false)
-	//		{
-	//			Vector3 spawnPos = new Vector3(spawnPosX, spawnPosY, 0f);
-	//			GameObject flyingEnemy = Instantiate(flyingEnemyPrefab, new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f));
-
-	//			flyingEnemy.transform.position = spawnPos;
-
-	//			MaterializeEnemy(flyingEnemy);
-	//			flyingEnemySpawned = true;
-	//		}
-
-
-	//	}
-	//}
 
 	public void PotentialSittingEnemySpawn()
 	{
@@ -427,6 +419,16 @@ public class SlideMove : MonoBehaviour {
 	{
 		float trueSize = thisPlatLength - 0.02f;
 
+        if (isHolePlatform)
+        {
+			float min = arrangeHoleScript.GetMinX();
+			float max = arrangeHoleScript.GetMaxX();
+
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x, min, max), transform.position.y, transform.position.z);
+			return;
+        }
+
+		//the below code prevents the player being able to trap the springman by squashing him between the screen edge and a platform.
 		if (pController.transform.position.x > pController.zeroToEdge - pController.bounds.x - 0.1f ||
 					pController.transform.position.x < -pController.zeroToEdge + pController.bounds.x + 0.1f) //player near the walls
 		{
@@ -458,18 +460,4 @@ public class SlideMove : MonoBehaviour {
 			transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeft.x - (trueSize / 2) - 0.05f, topRight.x + (trueSize / 2) +0.05f), transform.position.y, transform.position.z);
 		}
 	}
-	//public bool CanSpawnFlyingEnemy()
-	//{
-	//	int randNum = rnd.Next(1, 101);
-	//	if (randNum <= chanceToSpawnFE)
-	//	{
-	//		//print("can spawn FE");
-	//		return true;
-	//	}
-	//	else
-	//	{
-	//		//print("cant spawn FE");
-	//		return false;
-	//	}
-	//}
 }

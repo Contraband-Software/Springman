@@ -55,6 +55,7 @@ public class GameData : MonoBehaviour
     public float maxPlatLength;
     public float CapShrinkAtScore;
     public float platLength;
+    public bool nextPlatIsHole = false;
 
     [Header("Flying Enemy Variables")]
 
