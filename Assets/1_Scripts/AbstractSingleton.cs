@@ -1,12 +1,14 @@
+#define ARCH_SINGLETON_AUTOINIT
+
+#pragma warning disable S2696 //static method warning
+#pragma warning disable S2743 //static field in generic class warning
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-#pragma warning disable S2696 //static method warning
-#pragma warning disable S2743 //static field in generic class warning
-
-namespace Arch
+namespace Backend
 {
     //Enforces the rule that T MUST be a child class of AbstractSingleton<T> (recursive) - this allows the class to return a child type (how cool is that???)
     public abstract class AbstractSingleton<T> : MonoBehaviour where T : AbstractSingleton<T> 
@@ -19,7 +21,12 @@ namespace Arch
         /// <summary>
         /// This method must be called in either Start() or Awake() to correctly set up the singleton behaviour
         /// </summary>
-        protected void MakeSingleton()
+#if ARCH_SINGLETON_AUTOINIT
+        private
+#else
+        protected
+#endif
+            void MakeSingleton()
         {
             DontDestroyOnLoad(gameObject);
 
@@ -36,7 +43,12 @@ namespace Arch
         /// This method must be called in either Start() or Awake() to correctly set up the singleton behaviour
         /// </summary>
         /// <param name="Init">An action to execute if the singleton must be (re)initialized - this would contain Start() function kind of stuff.</param>
-        protected void MakeSingleton(Action Init)
+#if ARCH_SINGLETON_AUTOINIT
+        private
+#else
+        protected
+#endif
+        void MakeSingleton(Action Init)
         {
             DontDestroyOnLoad(gameObject);
 
@@ -67,5 +79,15 @@ namespace Arch
                 }
             }
         }
+
+#if ARCH_SINGLETON_AUTOINIT
+        private void Awake()
+        {
+            MakeSingleton();
+            SingletonAwake();
+        }
+
+        protected abstract void SingletonAwake();
+#endif
     }
 }

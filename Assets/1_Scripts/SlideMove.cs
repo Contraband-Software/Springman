@@ -253,7 +253,7 @@ public class SlideMove : MonoBehaviour {
 			chanceToSpawnSE = Mathf.Min(maxChance, chanceToSpawn);
 
 #if UNITY_EDITOR
-			if (GameDebugController.Instance.GetSEOnAllPlatforms()) {
+			if (Development.GameDebugController.Instance.GetSEOnAllPlatforms()) {
 				chanceToSpawnSE = 100f;
 			}
 #endif
