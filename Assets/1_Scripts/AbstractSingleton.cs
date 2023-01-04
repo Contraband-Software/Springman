@@ -87,6 +87,9 @@ namespace Backend
             SingletonAwake();
         }
 
+        /// <summary>
+        /// Treat this exactly like the original Unity Awake() function
+        /// </summary>
         protected abstract void SingletonAwake();
 #endif
     }
