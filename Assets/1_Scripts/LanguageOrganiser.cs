@@ -58,30 +58,6 @@ public class LanguageOrganiser : MonoBehaviour
 		}
 	}
 
-	/*
-	public void HighlightCurrentLanguage()
-	{
-		string currentLanguage;
-
-
-		if (currentScene.name == "Main Menu")
-		{
-			currentLanguage = menuData.currentLanguage;
-			HCLTurnOn(currentLanguage);
-		}
-		if (currentScene.name == "Game")
-		{
-			currentLanguage = gameData.currentLanguage;
-			HCLTurnOn(currentLanguage);
-		}
-	}
-	public void HCLTurnOn(string langString)
-	{
-		int index = Array.IndexOf(languages, langString);
-		langButScripts[index].Select();
-	}
-	*/
-
 	public void HighlightCurrentLanguage()
 	{
 		UnSelectPrevious();
