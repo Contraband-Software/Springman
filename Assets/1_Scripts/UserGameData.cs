@@ -63,9 +63,6 @@ namespace Architecture
         public enum PlayerCosmeticType { None, Color };
         public PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
 
-
-        private static GameObject objectInstance;
-
         [Header("Premium Skins")]
         public bool currentSkinPremium = false;
         public string activePremiumSkinName;
@@ -110,6 +107,16 @@ namespace Architecture
             SaveData loadedSaveData = (SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame();
             Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
             Debug.Log(loadedSaveData);
+
+            //no data in loadedSaveData, but the load from cloud was succesful = save a default file onto the cloud
+            if(PlatformIntegrations.IntegrationsManager.Instance.socialManager.HasLoadedFromCloud()
+            && loadedSaveData == null){
+                
+                DefaultDataFileSettings();
+                SaveGameData();
+                ShowEULA.Invoke();
+            }
+
             ReLocalizeTexts();
 #else
             // Unity editor local fallback
@@ -148,7 +155,8 @@ namespace Architecture
                     BinaryFormatter formatter = new BinaryFormatter();
                     FileStream stream = new FileStream(gameDataPath, FileMode.OpenOrCreate);
 
-                    SaveData data = DefaultDataFileSettings();
+                    DefaultDataFileSettings();
+                    SaveData data = PackSaveDataWithCurrentValues();
 
                     formatter.Serialize(stream, data);
                     stream.Close();
@@ -164,7 +172,7 @@ namespace Architecture
             }
         }
 
-        private SaveData DefaultDataFileSettings()
+        private void DefaultDataFileSettings()
         {
             EULA_Accepted = false;
             musicOn = true;
@@ -197,9 +205,6 @@ namespace Architecture
             topColor = Color.white;
             bottomColor = Color.white;
             springColor = UserGameDataHandlingUtilities.StringToColor("373737");
-
-            SaveData defaults = PackSaveDataWithCurrentValues();
-            return defaults;
         }
 
         private SaveData PackSaveDataWithCurrentValues()
