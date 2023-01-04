@@ -187,6 +187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4427019385133307004, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427019385133307004, guid: 79ca99013cbe47f4cb4de3b458e416c1,
+        type: 3}
       propertyPath: m_Name
       value: PlatformIntegrations
       objectReference: {fileID: 0}
@@ -900,6 +905,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4873717494692743784, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4873717494692743784, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
         type: 3}
       propertyPath: m_Name

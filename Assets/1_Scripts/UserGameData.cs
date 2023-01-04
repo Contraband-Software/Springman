@@ -34,6 +34,10 @@ namespace Architecture
         public bool EULA_Accepted { get; set; } = false;
         #endregion
 
+        #region COSMETICS_DATA
+
+        #endregion
+
         string gameDataPath = "";
         SocialManager socialManager = null;
 
@@ -180,6 +184,7 @@ namespace Architecture
                 ErrorEvent.Invoke();
                 Debug.Log("Social integration not availible");
                 throw new System.NotImplementedException("GOOGLE CANNOT BE REACHED, WE SHOULD ERROR OUT AND KILL THE APP HERE");
+                //killing an app without saving could be dangerous. Potential of losing a premium purchase
             }
 #endif
         }
