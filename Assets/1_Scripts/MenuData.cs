@@ -287,10 +287,7 @@ public class MenuData : MonoBehaviour
 
     public void DisplayErrorScreen()
     {
-        if (errorOpened == false)
-        {
-            errorOpened = true;    
-        }
+        errorOpened = true;
     }
 
     //Localisation
