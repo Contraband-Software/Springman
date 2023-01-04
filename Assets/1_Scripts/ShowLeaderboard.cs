@@ -6,6 +6,6 @@ public class ShowLeaderboard : MonoBehaviour
 {
     public void DoShowLeaderboard()
     {
-        PlatformIntegrations.IntegrationsManager.instance.socialManager.OpenLeaderBoardUI();
+        PlatformIntegrations.IntegrationsManager.Instance.socialManager.OpenLeaderBoardUI();
     }
 }

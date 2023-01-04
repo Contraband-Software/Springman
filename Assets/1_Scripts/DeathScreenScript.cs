@@ -26,8 +26,8 @@ public class DeathScreenScript : MonoBehaviour
 
     void Start()
     {
-        adManager = IntegrationsManager.instance.advertisementsManager;
-        socialManager = IntegrationsManager.instance.socialManager;
+        adManager = IntegrationsManager.Instance.advertisementsManager;
+        socialManager = IntegrationsManager.Instance.socialManager;
 
         pcontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         DeathScreenCanvas.enabled = false;

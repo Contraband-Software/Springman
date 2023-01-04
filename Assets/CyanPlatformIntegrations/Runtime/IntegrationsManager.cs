@@ -7,9 +7,9 @@ using static PlatformIntegrations.AdvertisementsManager;
 
 namespace PlatformIntegrations
 {
-    public class IntegrationsManager : MonoBehaviour
+    public sealed class IntegrationsManager : MonoBehaviour
     {
-        public static IntegrationsManager instance { get; private set; } = null;
+        public static IntegrationsManager Instance { get; private set; } = null;
 
         public SocialManager socialManager { get; private set; } = null;
         public InAppPurchases iapHandler { get; private set; } = null;
@@ -33,9 +33,9 @@ namespace PlatformIntegrations
 #region PREVENT_DUPLICATES
             DontDestroyOnLoad(gameObject);
 
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
 
                 Initialize();
             }
@@ -53,7 +53,7 @@ namespace PlatformIntegrations
             if (Social) { socialManager = new SocialManager(); }
             if (InAppPurchases) { iapHandler = new InAppPurchases(); }
             if (Advertising) { advertisementsManager = new AdvertisementsManager(AppleGameID, GooglePlayGameID, AdUnits, BannerAdPosition, TestMode); }
-            if (Advertising | InAppPurchases) { dataPrivacyHandler = new DataPrivacyHandler(); }
+            if (Advertising || InAppPurchases) { dataPrivacyHandler = new DataPrivacyHandler(); }
         }
 
         private void OnApplicationFocus(bool focus)

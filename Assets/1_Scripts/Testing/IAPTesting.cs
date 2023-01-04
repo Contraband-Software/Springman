@@ -20,7 +20,7 @@ public class IAPTesting : MonoBehaviour
 
     void Start()
     {
-        integrationsManager = IntegrationsManager.instance;
+        integrationsManager = IntegrationsManager.Instance;
 
         integrationsManager.iapHandler.RegisterPurchaseProcessor(productID, 
             (bool status, PurchaseFailureReason failReason, PurchaseEventArgs args) => {

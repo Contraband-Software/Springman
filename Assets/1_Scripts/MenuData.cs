@@ -12,7 +12,7 @@ public class MenuData : MonoBehaviour
     public int allTimeHighscore;
     public bool musicOn;
     public bool soundsOn;
-    public string currentLanguage;
+    public string currentLanguage; //Localisation
     public int langIndex;
     public int gold;
     public int silver;
@@ -45,7 +45,7 @@ public class MenuData : MonoBehaviour
     bool EULA_Accepted = false;
     PlatformIntegrations.SocialManager sm;
 
-    public void SetEULA_Accepted()
+    public void SetEulaAccepted()
     {
         EULA_Accepted = true;
     }
@@ -65,8 +65,8 @@ public class MenuData : MonoBehaviour
         //LoadGameData();
         Debug.Log("WE LOADED IN TO THE MAIN MENU POG POG POG");
         Debug.Log("MENU DATA - ATTEMPTING TO GET SAVED DATA FROM CACHE");
-        Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
-        Debug.Log((SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame());
+        Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
+        Debug.Log((SaveData)IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
     }
 
     private void Start()
@@ -76,7 +76,7 @@ public class MenuData : MonoBehaviour
         curtainCG.alpha = 1f;
         LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
 
-        sm = IntegrationsManager.instance.socialManager;
+        sm = IntegrationsManager.Instance.socialManager;
         sm.SaveDataWriteCallback.AddListener((bool status) => {
             if (!status)
             {
@@ -120,9 +120,11 @@ public class MenuData : MonoBehaviour
                 tutorialComplete = false;
                 ads = 0;
 
+                //Localisation
                 List<string> langsTemp = new List<string>{ "english", "french", "spanish", "russian", "german", "portugese", "malay",
                 "polish", "italian", "chinese", "turkish", "vietnamese", "ukrainian", "hindi", "indonesian", "arabic"};
 
+                //Localisation
                 switch (Application.systemLanguage)
                 {
                     case SystemLanguage.Arabic:
@@ -170,7 +172,7 @@ public class MenuData : MonoBehaviour
                         currentLanguage = "english";
                         break;
                 }
-
+                //Localisation
                 langIndex = langsTemp.IndexOf(currentLanguage);
 
 
@@ -291,6 +293,7 @@ public class MenuData : MonoBehaviour
         }
     }
 
+    //Localisation
     public void ReLocalizeTexts()
     {
         print("TRANSLATING TEXTS");
@@ -317,8 +320,10 @@ public class MenuData : MonoBehaviour
         }
     }
 
+    //Localisation
     Dictionary<string, TMP_FontAsset> appropriateFonts = new Dictionary<string, TMP_FontAsset>();
 
+    //Localisation
     void InitialiseAppropriateFonts()
     {
         appropriateFonts.Add("english", Latin);
@@ -339,6 +344,7 @@ public class MenuData : MonoBehaviour
         appropriateFonts.Add("arabic", Arabic);
     }
 
+    //Localisation
     void FindAppropriateFont()
     {
         TMP_FontAsset value;
@@ -347,6 +353,7 @@ public class MenuData : MonoBehaviour
         appropriateFont = value;
     }
 
+    //Localisation
     public TMP_FontAsset GiveAppropriateFont(string language)
     {
         TMP_FontAsset value;

@@ -13,7 +13,7 @@ public class HomeButton : MonoBehaviour
 
     private void Start()
     {
-        adManager = IntegrationsManager.instance.advertisementsManager;
+        adManager = IntegrationsManager.Instance.advertisementsManager;
     }
 
     public void OnClick()

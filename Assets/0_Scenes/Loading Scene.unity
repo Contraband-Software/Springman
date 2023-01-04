@@ -138,17 +138,17 @@ PrefabInstance:
     - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1171.5178
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 438.6333
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -706.5604
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427019385133306994, guid: 79ca99013cbe47f4cb4de3b458e416c1,
         type: 3}
@@ -913,6 +913,16 @@ PrefabInstance:
     - target: {fileID: 4873717494692743785, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: waterDisabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4873717494692743790, guid: 6d6ebda9b7ced3647ae452154bee3bc8,
+        type: 3}
+      propertyPath: spawnFlyingEnemyOnStart
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

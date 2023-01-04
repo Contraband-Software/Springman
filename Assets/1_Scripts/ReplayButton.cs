@@ -12,7 +12,7 @@ public class ReplayButton : MonoBehaviour
 
     private void Start()
     {
-        adManager = IntegrationsManager.instance.advertisementsManager;
+        adManager = IntegrationsManager.Instance.advertisementsManager;
     }
 
     public void OnClick()

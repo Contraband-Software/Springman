@@ -52,7 +52,7 @@ public class BuyButtonSkin : MonoBehaviour
         brokeBoyCanvas.enabled = false;
         allBoughtCanvas.enabled = false;
         cosMenuCon = skinSelector.cosMenuCon;
-        adManager = IntegrationsManager.instance.advertisementsManager;
+        adManager = IntegrationsManager.Instance.advertisementsManager;
 
         if (purchaseType == PurchaseType.Ads)
         {
