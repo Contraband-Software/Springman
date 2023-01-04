@@ -16,18 +16,24 @@ public class CreatePlatforms : MonoBehaviour
 	public float zeroToEdge;
 
 	//Object to Instantiate
+	[Header("Object to instantiate")]
 	public GameObject platform;
+	public GameObject platformHole;
 
+	[Header("Rest")]
 	//Camera script to get yPositions from
 	public CameraFollow camScript;
 
 	//Platform variables
+	[Header("Platform Variables")]
 	public float halfPlatSize = 0.15f;
 	public float highestPlat = 0f;
 	public float firstPlatPosY = -1.5f;
 	Bounds bounds;
 	public bool dontCreateFirstPlat = false;
+	public int holePlatformChance = 50;
 
+	[Header("Other shit idk")]
 	private PlayerController pCon;
 
 	//initial platform width >>>>> Make script to alter the number once score is implemented
@@ -73,9 +79,17 @@ public class CreatePlatforms : MonoBehaviour
 			{
 				if (camScript.yPositions.Contains(highestPlat + platDistance) == false) //this makes sure this plat position doesnt already exist
 				{
+
 					ChangePlatLength();
 					if (gameData.tutorialComplete)
 					{
+
+						//random chance to spawn a hole platform instead
+						if(rnd.Next(0, 100) < holePlatformChance)
+                        {
+							gameData.nextPlatIsHole = true;
+                        }
+
 						if (rnd.Next(0, 2) == 1)
 						{
 							//spawns left side
@@ -100,7 +114,17 @@ public class CreatePlatforms : MonoBehaviour
 						}
 					}
 					//platform = GameObject.FindWithTag("Platform");
-					GameObject Platform = Instantiate(platform, new Vector3(spawnEdge, highestPlat + platDistance, 0f), new Quaternion(0f, 0f, 0f, 0f));
+
+					GameObject Platform;
+                    if (!gameData.nextPlatIsHole)
+                    {
+						Platform = Instantiate(platform, new Vector3(spawnEdge, highestPlat + platDistance, 0f), new Quaternion(0f, 0f, 0f, 0f));
+					}
+                    else
+                    {
+						Platform = Instantiate(platformHole, new Vector3(spawnEdge, highestPlat + platDistance, 0f), new Quaternion(0f, 0f, 0f, 0f));
+					}
+
 					SlideMove sm = Platform.GetComponent<SlideMove>();
 					sm.thisPlatLength = gameData.platLength;
 					sm.player = gameObject;

@@ -230,18 +230,33 @@ public class PlayerController : MonoBehaviour {
         //prepare platform to spawn onto
         if(highestPlatformHit != null)
         {
-            Vector3 newPos = highestPlatformHit.transform.position;
-            newPos.x = 0f;
-            highestPlatformHit.transform.position = newPos;
+            //delete screw if on platform
+            Transform screw = highestPlatformHit.transform.Find("SilverScrew(Clone)");
+            if (screw != null)
+            {
+                screw.gameObject.SetActive(false);
+            }
+
+            highestPlatformHit.GetComponent<SlideMove>().disableMovement = true;
+
             Vector3 newScale = highestPlatformHit.transform.localScale;
             newScale.x = 8f;
             highestPlatformHit.transform.localScale = newScale;
 
-            //delete screw if on platform
-            Transform screw = highestPlatformHit.transform.Find("SilverScrew(Clone)");
-            if(screw != null)
+            if (highestPlatformHit.GetComponent<ArrangeHole>() != null)
             {
-                screw.gameObject.SetActive(false);
+                ArrangeHole ahs = highestPlatformHit.GetComponent<ArrangeHole>();
+                Vector3 newPos = highestPlatformHit.transform.position;
+                newPos.x = ahs.leftFlat.transform.position.x * -1f;
+                print(ahs.leftFlat.transform.position.x);
+                highestPlatformHit.transform.position = newPos;
+
+            }
+            else
+            {
+                Vector3 newPos = highestPlatformHit.transform.position;
+                newPos.x = 0f;
+                highestPlatformHit.transform.position = newPos;
             }
         }
 
