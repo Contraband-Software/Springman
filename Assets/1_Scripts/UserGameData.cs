@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 using PlatformIntegrations;
 using UnityEngine.Analytics;
+using Architecture.Localisation;
 
 namespace Architecture
 {
@@ -69,7 +70,26 @@ namespace Architecture
             // Unity editor local fallback
             // create default save data to create dummy file
             CreateFirstDataFile();
-            LoadLocalGameData();
+
+            File.SetAttributes(gameDataPath, FileAttributes.Normal);
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(gameDataPath, FileMode.Open);
+
+            SaveData data = formatter.Deserialize(stream) as SaveData;
+            stream.Close();
+
+            allTimeHighscore = data.highscore;
+            musicOn = data.musicOn;
+            soundsOn = data.soundsOn;
+            LocalizationSystem.language = (LocalizationSystem.Language)data.langIndex;
+
+            langIndex = data.langIndex;
+            gold = data.gold;
+            silver = data.silver;
+            tutorialComplete = data.tutorialComplete;
+            ads = data.ads;
+
+            EULA_Accepted = true;
 #endif
         }
 
@@ -116,31 +136,6 @@ namespace Architecture
             {
                 ErrorEvent.Invoke();
             }
-        }
-
-        private void LoadLocalGameData()
-        {
-            File.SetAttributes(gameDataPath, FileAttributes.Normal);
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(gameDataPath, FileMode.Open);
-
-            SaveData data = formatter.Deserialize(stream) as SaveData;
-            stream.Close();
-
-            allTimeHighscore = data.highscore;
-            musicOn = data.musicOn;
-            soundsOn = data.soundsOn;
-            LocalizationSystem.language = (LocalizationSystem.Language)data.langIndex;
-
-            langIndex = data.langIndex;
-            gold = data.gold;
-            silver = data.silver;
-            tutorialComplete = data.tutorialComplete;
-            ads = data.ads;
-
-            EULA_Accepted = true;
-
-            //Debug.Log("LOADED GAMEDATA FILE");
         }
 
         public void SaveGameData()

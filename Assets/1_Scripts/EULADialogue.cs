@@ -7,8 +7,6 @@ namespace Architecture
 {
     public class EULADialogue : MonoBehaviour
     {
-        public MenuData md;
-
         private void Awake()
         {
             UserGameData.Instance.ShowEULA.AddListener(() =>
@@ -26,8 +24,7 @@ namespace Architecture
         public void Accept()
         {
             gameObject.SetActive(false);
-            md.SetEulaAccepted();
-            //write EULA_Accepted to disk?
+            UserGameData.Instance.EULA_Accepted = true;
         }
 
         public void Deny()
@@ -38,7 +35,7 @@ namespace Architecture
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-         Application.Quit();
+            Application.Quit();
 #endif
         }
     }

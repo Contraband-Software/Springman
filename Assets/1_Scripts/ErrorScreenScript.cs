@@ -3,51 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ErrorScreenScript : MonoBehaviour
+using Architecture;
+
+namespace Architecture
 {
-    public Canvas errorCanvas;
-    public GameData gameData;
-    public MenuData menuData;
-    public bool displayError = false;
-    Scene scene;
-    private void Start()
+    public class ErrorScreenScript : MonoBehaviour
     {
-        errorCanvas.enabled = false;
-        displayError = false;
+        public Canvas errorCanvas;
+        public GameData gameData;
+        public MenuData menuData;
 
-        scene = SceneManager.GetActiveScene();
+        Scene scene;
 
-        if(scene.name == "Main Menu")
+        private void Start()
         {
-            menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
-        }
-        if(scene.name == "Game")
-        {
-            gameData = GameObject.Find("GameController").GetComponent<GameData>();
+            UserGameData.Instance.ErrorEvent.AddListener(() =>
+            {
+                DisplayError();
+            });
+
+            errorCanvas.enabled = false;
+
+            scene = SceneManager.GetActiveScene();
+
+            switch (scene.name)
+            {
+                case "Main Menu":
+                    menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
+                    break;
+                case "Game":
+                    gameData = GameObject.Find("GameController").GetComponent<GameData>();
+                    break;
+            }
         }
 
-        DisplayError();
-    }
-
-    private void Update()
-    {
-        DisplayError();
-    }
-
-    void DisplayError()
-    {
-        if(scene.name == "Game" && gameData.errorOpened)
-        {
-            Time.timeScale = 0f;
-            errorCanvas.enabled = true;
-            gameObject.transform.GetChild(0).GetComponent<FilterFade>().FadeToBlack();
-            gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
-        }
-        if (scene.name == "Main Menu" && menuData.errorOpened)
+        void DisplayError()
         {
             errorCanvas.enabled = true;
             gameObject.transform.GetChild(0).GetComponent<FilterFade>().FadeToBlack();
             gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+
+            if (scene.name == "Game")
+            {
+                Time.timeScale = 0f;
+            }
         }
     }
 }

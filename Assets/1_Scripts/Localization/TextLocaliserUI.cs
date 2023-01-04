@@ -107,8 +107,9 @@ public class TextLocaliserUI : MonoBehaviour
 
         if (menuData != null)
         {
+
             textField.font = menuData.GiveAppropriateFont(transform.parent.gameObject.GetComponent<LanguageToggle>().storedLanguage);
-            language = menuData.currentLanguage;
+            language = UserGameData.Instance.currentLanguage;
         }
         if (gameData != null)
         {

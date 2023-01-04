@@ -38,9 +38,6 @@ public class MenuData : MonoBehaviour
     [Header("Error Stuff")]
     public bool errorOpened = false;
 
-    [Header("First load systems")]
-    [SerializeField] EULADialogue eula;
-
     string path;
     bool EULA_Accepted = false;
     PlatformIntegrations.SocialManager sm;
@@ -361,13 +358,14 @@ public class MenuData : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if(errorOpened == false && EULA_Accepted)
+        if (EULA_Accepted)
         {
-            Debug.Log("Saving on exit");
-            SaveGameData();
-        }
-
-        if (!EULA_Accepted)
+            if (!errorOpened)
+            {
+                Debug.Log("Saving on exit");
+                SaveGameData();
+            }
+        } else
         {
             //shut game, delete all gamedata, hard factory reset
             DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);

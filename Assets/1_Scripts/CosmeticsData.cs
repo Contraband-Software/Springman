@@ -284,9 +284,6 @@ public class CosmeticsData : MonoBehaviour
 
     public void DisplayErrorScreen()
     {
-        if (menuData.errorOpened == false)
-        {
-            menuData.errorOpened = true;
-        }
+        menuData.errorOpened = true;
     }
 }
