@@ -19,6 +19,7 @@ namespace Architecture
         public LanguageLoadEventType LanguageLoadEvent { private set; get; }
         public UnityEvent ErrorEvent { private set; get; }
         public UnityEvent ShowEULA { private set; get; }
+        public UnityEvent RequestColourData { private set; get; }
         #endregion
 
         #region GAME_DATA
@@ -35,7 +36,46 @@ namespace Architecture
         #endregion
 
         #region COSMETICS_DATA
+        [Header("Colour Data")]
+        public Color topColor;
+        public Color bottomColor;
+        public Color springColor;
 
+        public Vector3 topObject;
+        public Vector3 bottomObject;
+        public Vector3 springObject;
+
+        public List<string> unlockedColours = new List<string>();
+        public List<string> allColours = new List<string>();
+
+        [Header("Skin Data")]
+
+        public string currentSkin;
+
+        public SkinSpecsSolid cSpecs = new SkinSpecsSolid();
+
+        public List<string> unlockedSkins = new List<string>();
+        public List<string> allSkins = new List<string>();
+
+        public List<string> allSkinsCodes = new List<string>();
+        public List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
+
+        public enum PlayerCosmeticType { None, Color };
+        public PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
+
+
+        private static GameObject objectInstance;
+
+        [Header("Premium Skins")]
+        public bool currentSkinPremium = false;
+        public string activePremiumSkinName;
+        public List<string> unlockedPremiums = new List<string>();
+        public List<string> allPremiums = new List<string>();
+        public List<string> allPremiumCodes = new List<string>();
+
+        public List<string> glowColours = new List<string>();
+        public List<bool> hasSpecialColour = new List<bool>();
+        public List<bool> specialColourModes = new List<bool>();
         #endregion
 
         string gameDataPath = "";
@@ -46,6 +86,7 @@ namespace Architecture
             LanguageLoadEvent = new LanguageLoadEventType();
             ErrorEvent = new UnityEvent();
             ShowEULA = new UnityEvent();
+            RequestColourData = new UnityEvent();
 
             gameDataPath = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
 
@@ -104,29 +145,10 @@ namespace Architecture
             {
                 if (!File.Exists(gameDataPath))
                 {
-                    EULA_Accepted = false;
-                    musicOn = true;
-                    soundsOn = true;
-                    gold = 60;
-                    silver = 300;
-                    tutorialComplete = false;
-                    ads = 0;
-
-                    //To be implemented
-                    //langIndex = LocalisationClass.GetSystemLang();
-
-
                     BinaryFormatter formatter = new BinaryFormatter();
                     FileStream stream = new FileStream(gameDataPath, FileMode.OpenOrCreate);
 
-                    SaveData data = new SaveData(
-                        this.allTimeHighscore, 
-                        this.musicOn, this.soundsOn, 
-                        LocalizationSystem.language.ToString().ToLower(), this.langIndex, 
-                        this.gold, this.silver,
-                        tutorialComplete, 
-                        this.ads
-                    );
+                    SaveData data = DefaultDataFileSettings();
 
                     formatter.Serialize(stream, data);
                     stream.Close();
@@ -142,7 +164,45 @@ namespace Architecture
             }
         }
 
-        public void SaveGameData()
+        private SaveData DefaultDataFileSettings()
+        {
+            EULA_Accepted = false;
+            musicOn = true;
+            soundsOn = true;
+            gold = 60;
+            silver = 300;
+            tutorialComplete = false;
+            ads = 0;
+            //To be implemented
+            //langIndex = LocalisationClass.GetSystemLang();
+
+            unlockedColours.Add("FFFFFF");
+            unlockedColours.Add("373737");
+
+            //////////////
+            //unlockedPremiums.Add("lpqok951139");
+            unlockedPremiums = new List<string>{ "lpqok951139", "bonvmm916571", "jkhqys871421", "xxclpu871531", "kljqye098901", "opiuqa9815211", "loiqyv904091", "gqulpo090861"
+                , "oilpqu876019", "vbtqeq651064"};
+            /////////////
+
+            unlockedSkins.Add("109651fc");
+
+            currentSkin = "109651fc";
+
+            RequestColourData.Invoke();
+
+            //skinSelectorPremium.CollectGlowColours(); RequestColourData.Invoke() does this to avoid needing a reference
+
+            playerCosmeticType = PlayerCosmeticType.Color;
+            topColor = Color.white;
+            bottomColor = Color.white;
+            springColor = UserGameDataHandlingUtilities.StringToColor("373737");
+
+            SaveData defaults = PackSaveDataWithCurrentValues();
+            return defaults;
+        }
+
+        private SaveData PackSaveDataWithCurrentValues()
         {
             SaveData data = new SaveData(
                 this.allTimeHighscore,
@@ -150,8 +210,24 @@ namespace Architecture
                 LocalizationSystem.language.ToString().ToLower(), this.langIndex,
                 this.gold, this.silver,
                 tutorialComplete,
-                this.ads
+                this.ads,
+                UserGameDataHandlingUtilities.ColorToString(topColor),
+                UserGameDataHandlingUtilities.ColorToString(bottomColor),
+                UserGameDataHandlingUtilities.ColorToString(springColor),
+                topObject, bottomObject, springObject, 
+                (int)playerCosmeticType, 
+                unlockedColours, unlockedSkins, 
+                currentSkin, unlockedPremiums, 
+                currentSkinPremium, 
+                glowColours, hasSpecialColour, specialColourModes
             );
+
+            return data;
+        }
+
+        public void SaveGameData()
+        {
+            SaveData data = PackSaveDataWithCurrentValues();
 
 #if UNITY_EDITOR
             // Editor local save fallback
@@ -189,4 +265,58 @@ namespace Architecture
 #endif
         }
     }
+
+    public static class UserGameDataHandlingUtilities
+    {
+        public static int HexToDec(string hex)
+        {
+            int dec = System.Convert.ToInt32(hex, 16);
+            return dec;
+        }
+
+        public static string DecToHex(int value)
+        {
+            return value.ToString("X2");
+        }
+
+        public static string FloatToNormalizedToHex(float value)
+        {
+            return DecToHex(Mathf.RoundToInt(value * 255f));
+        }
+
+        public static float HexToFloatNormalized(string hex)
+        {
+            return HexToDec(hex) / 255f;
+        }
+
+        public static Color StringToColor(string hexString)
+        {
+            float red = HexToFloatNormalized(hexString.Substring(0, 2));
+            float green = HexToFloatNormalized(hexString.Substring(2, 2));
+            float blue = HexToFloatNormalized(hexString.Substring(4, 2));
+            float alpha = 1f;
+            if (hexString.Length >= 8)
+            {
+                alpha = HexToFloatNormalized(hexString.Substring(6, 2));
+            }
+
+            return new Color(red, green, blue, alpha);
+        }
+        public static string ColorToString(Color color, bool useAlpha = false)
+        {
+            string red = FloatToNormalizedToHex(color.r);
+            string green = FloatToNormalizedToHex(color.g);
+            string blue = FloatToNormalizedToHex(color.b);
+            if (!useAlpha)
+            {
+                return red + green + blue;
+            }
+            else
+            {
+                string alpha = FloatToNormalizedToHex(color.a);
+                return red + green + blue + alpha;
+            }
+        }
+    }
 }
+

@@ -287,3 +287,4 @@ public class CosmeticsData : MonoBehaviour
         menuData.errorOpened = true;
     }
 }
+
