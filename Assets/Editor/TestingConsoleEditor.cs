@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using Development;
 
 [CustomEditor(typeof(GameDebugController))]
 public class TestingConsoleEditor : Editor

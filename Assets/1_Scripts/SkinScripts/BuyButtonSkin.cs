@@ -92,7 +92,7 @@ public class BuyButtonSkin : MonoBehaviour
     {
         if (purchaseType == PurchaseType.Ads)
         {
-            btn.interactable = adManager.GetLoadedStatus("AdSkins");
+            btn.interactable = IntegrationsManager.Instance.advertisementsManager.GetLoadedStatus("AdSkins");
         }
     }
 

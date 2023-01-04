@@ -58,7 +58,6 @@ public class Loading : MonoBehaviour
     {
         while (targetValue - slider.value > 0.005f)
         {
-            Debug.Log("Updating loading bar...");
             slider.value += (targetValue - slider.value) * updateSpeed;
 
             yield return null;
