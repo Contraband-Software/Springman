@@ -21,7 +21,9 @@ namespace Architecture.Localisation
         {
             if (langOrganiser.selectedLanguage != "")
             {
-                Enum.TryParse(langOrganiser.selectedLanguage, out LocalizationSystem.Instance.CurrentLanguage);
+                LocalizationSystem.Language lang = LocalizationSystem.Language.English;
+                Enum.TryParse(langOrganiser.selectedLanguage, out lang);
+                LocalizationSystem.Instance.CurrentLanguage = lang;
                 UserGameData.Instance.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
 
                 UserGameData.Instance.SaveGameData();
