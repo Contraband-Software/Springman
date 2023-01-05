@@ -22,7 +22,7 @@ namespace Architecture.Localisation
             if (langOrganiser.selectedLanguage != "")
             {
                 Enum.TryParse(langOrganiser.selectedLanguage, out LocalizationSystem.Instance.CurrentLanguage);
-                UserGameData.Instance.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
+                UserGameData.Instance.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage.ToLower());
 
                 UserGameData.Instance.SaveGameData();
                 LocalizationSystem.Instance.ReLocalizeTexts();

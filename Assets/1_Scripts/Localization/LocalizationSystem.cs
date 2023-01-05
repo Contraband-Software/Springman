@@ -242,12 +242,12 @@ namespace Architecture.Localisation
             {
                 if (text.key == "localLang")
                 {
-                    text.language = CurrentLanguage.ToString().ToLower();
+                    text.language = CurrentLanguage.ToString();
                     text.ApplyFontForLangMenu();
                 }
                 else
                 {
-                    text.language = CurrentLanguage.ToString().ToLower();
+                    text.language = CurrentLanguage.ToString();
                     text.Localize();
                 }
             }
