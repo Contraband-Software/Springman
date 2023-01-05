@@ -20273,6 +20273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444504073}
   - component: {fileID: 444504074}
+  - component: {fileID: 444504075}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -20319,6 +20320,18 @@ MonoBehaviour:
   curtainCG: {fileID: 1903076422}
   tutorialComplete: 0
   errorOpened: 0
+--- !u!114 &444504075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444504072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecbb1a2dc50a8e54395cb9f19dbbebd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &444829621
 GameObject:
   m_ObjectHideFlags: 0

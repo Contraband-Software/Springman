@@ -117,7 +117,7 @@ namespace Architecture.Managers
                 
             }
 
-            ReLocalizeTexts();
+            
 #else
             #region LOCAL_FALLBACK
             // Unity editor local fallback
