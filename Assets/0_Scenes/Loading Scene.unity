@@ -274,9 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18060e982e082b449915b7cfc81a8dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColours: []
-  hasSpecialColour: 
-  specialColourModes: 
 --- !u!4 &454096218
 Transform:
   m_ObjectHideFlags: 0
@@ -304,13 +301,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2311b17634b7714c9eb02a86acd7589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Latin_Cyrillic: {fileID: 11400000, guid: 1809abd2f5466dd4b9656dbcb0c950e0, type: 2}
+  Latin_Cyrillic: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
   Latin: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
   Vietnamese: {fileID: 11400000, guid: 37ad30116d00c75448925925ef7bae3d, type: 2}
   Chinese: {fileID: 11400000, guid: 4cfeec32b1cc67146a110c9cab30e1bf, type: 2}
-  Hindi: {fileID: 11400000, guid: c0c49e12fa6833b4db655d72ee89fe4d, type: 2}
+  Hindi: {fileID: 11400000, guid: 2d6bfc8895898e147ae53ab2fd6ff11e, type: 2}
   Arabic: {fileID: 11400000, guid: 15e9bf9b2518ca343bfd2c0ffc84ba33, type: 2}
-  CurrentLanguage: 0
 --- !u!1 &539792364
 GameObject:
   m_ObjectHideFlags: 0
