@@ -291,11 +291,12 @@ public class MenuData : MonoBehaviour
     public void ReLocalizeTexts()
     {
         print("TRANSLATING TEXTS");
-        LocalizationSystem.language = (LocalizationSystem.Language)langIndex;
-        print("TO: " + LocalizationSystem.language.ToString());
+        Architecture.Localisation.LocalizationSystem.language = (Architecture.Localisation.LocalizationSystem.Language)langIndex;
+        print("TO: " + Architecture.Localisation.LocalizationSystem.language.ToString());
 
         FindAppropriateFont();
 
+        //can make this more efficient: after finding all these objects once, cache them.
         TextLocaliserUI[] textItems = FindObjectsOfType(typeof(TextLocaliserUI)) as TextLocaliserUI[];
         foreach(TextLocaliserUI text in textItems)
         {
