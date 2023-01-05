@@ -46,7 +46,7 @@ namespace Architecture.Localisation
 		{
 			UnSelectPrevious();
 
-			selectedLanguage = LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower();
+			selectedLanguage = LocalizationSystem.Instance.CurrentLanguage.ToString();
 
 			int index = Array.IndexOf(languages, selectedLanguage);
 			langButScripts[index].Select();

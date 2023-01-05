@@ -98,8 +98,8 @@ namespace Architecture.Localisation
                 textField.fontMaterial.GetFloat("_FaceDilate"), textField.fontMaterial.GetColor("_OutlineColor"), (textField.fontMaterial.GetFloat("_OutlineWidth")));
 
 
-            textField.font = LocalizationSystem.Instance.GiveAppropriateFont(transform.parent.gameObject.GetComponent<LanguageToggle>().storedLanguage);
-            language = LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower();
+            textField.font = LocalizationSystem.Instance.GiveAppropriateFont(transform.parent.gameObject.GetComponent<LanguageToggle>().storedLanguage.ToLower());
+            language = LocalizationSystem.Instance.CurrentLanguage.ToString();
 
             ApplyFontDetails();
         }

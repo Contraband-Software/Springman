@@ -175,6 +175,8 @@ namespace Architecture.Managers
             {
                 //shut game, delete all gamedata, hard factory reset
                 DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+
+                //reset cloud file?
                 dataDir.Delete(true);
             }
         }
@@ -191,9 +193,10 @@ namespace Architecture.Managers
             allTimeHighscore = data.highscore;
             musicOn = data.musicOn;
             soundsOn = data.soundsOn;
-            LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)data.langIndex;
 
             langIndex = data.langIndex;
+            LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)data.langIndex;
+
             gold = data.gold;
             silver = data.silver;
             tutorialComplete = data.tutorialComplete;
