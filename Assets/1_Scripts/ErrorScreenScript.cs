@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 namespace Architecture
 {
+    using Managers;
+
     public class ErrorScreenScript : MonoBehaviour
     {
         public Canvas errorCanvas { get; set; }

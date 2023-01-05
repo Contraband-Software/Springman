@@ -168,7 +168,7 @@ public class CosmeticsData : MonoBehaviour
             }
             catch(NullReferenceException exc)
             {
-                Debug.Log("REINSTALL ERROR, PROMPTING REBUILDING OF INITIAL FILES");
+                Debug.Log("REINSTALL ERROR, PROMPTING REBUILDING OF INITIAL FILES: " + exc.Message);
                 DeleteExistingFilesAndRebuild();
             }
 

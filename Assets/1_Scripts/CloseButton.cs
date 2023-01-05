@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+using Architecture.Managers;
+
 public class CloseButton : MonoBehaviour
 {
     public Canvas uiToClose;

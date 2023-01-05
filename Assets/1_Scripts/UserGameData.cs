@@ -69,9 +69,10 @@ namespace Architecture.Managers
         [SerializeField] List<string> allPremiums = new List<string>();
         [SerializeField] List<string> allPremiumCodes = new List<string>();
 
-        [SerializeField] List<string> glowColours = new List<string>();
-        [SerializeField] List<bool> hasSpecialColour = new List<bool>();
-        [SerializeField] List<bool> specialColourModes = new List<bool>();
+        //COSMETICS PUBLIC INTERFACE
+        public List<string> glowColours = new List<string>();
+        public List<bool> hasSpecialColour = new List<bool>();
+        public List<bool> specialColourModes = new List<bool>();
         #endregion
 
         string gameDataPath = "";
@@ -129,7 +130,31 @@ namespace Architecture.Managers
 #else
             // Unity editor local fallback
             // create default save data to create dummy file
-            CreateFirstDataFile();
+            {
+                float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
+                if (availableSpace > 10)
+                {
+                    if (!File.Exists(gameDataPath))
+                    {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        FileStream localFile = new FileStream(gameDataPath, FileMode.OpenOrCreate);
+
+                        DefaultDataFileSettings();
+                        SaveData saveData = PackSaveDataWithCurrentValues();
+
+                        bf.Serialize(localFile, saveData);
+                        localFile.Close();
+
+                        Debug.Log("CREATED FIRST GAME DATA FILE");
+
+                        ShowEULA.Invoke();
+                    }
+                }
+                else
+                {
+                    ErrorEvent.Invoke();
+                }
+            }
 
             File.SetAttributes(gameDataPath, FileAttributes.Normal);
             BinaryFormatter formatter = new BinaryFormatter();
@@ -159,33 +184,10 @@ namespace Architecture.Managers
         #endregion
 
         #region SAVING
-        private void CreateFirstDataFile()
-        {
-            float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
-            if (availableSpace > 10)
-            {
-                if (!File.Exists(gameDataPath))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    FileStream stream = new FileStream(gameDataPath, FileMode.OpenOrCreate);
-
-                    DefaultDataFileSettings();
-                    SaveData data = PackSaveDataWithCurrentValues();
-
-                    formatter.Serialize(stream, data);
-                    stream.Close();
-
-                    Debug.Log("CREATED FIRST GAME DATA FILE");
-
-                    ShowEULA.Invoke();
-                }
-            }
-            else
-            {
-                ErrorEvent.Invoke();
-            }
-        }
-
+        /// <summary>
+        /// Loads a save data struct into this class
+        /// </summary>
+        /// <param name="data"></param>
         private void UnpackLoadedSaveDataFile(SaveData data)
         {
             //GAMEDATA

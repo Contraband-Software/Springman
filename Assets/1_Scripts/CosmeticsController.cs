@@ -40,7 +40,7 @@ public class CosmeticsController : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentScene = scene;
-        if (scene.name == "Game" && this!=null)
+        if (scene.name == "Game")// && this!=null
         {
             GameObject player = GameObject.Find("Player");
             player.GetComponent<PlayerController>().cosCon = this;

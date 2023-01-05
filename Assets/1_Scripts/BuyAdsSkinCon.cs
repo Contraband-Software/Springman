@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using Architecture.Localisation;
+
 public class BuyAdsSkinCon : MonoBehaviour
 {
     [Header("Purchase Details")]

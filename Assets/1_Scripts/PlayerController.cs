@@ -5,6 +5,8 @@ using System.Resources;
 using UnityEngine;
 using UnityEngine.Events;
 
+using Architecture.Audio;
+
 public class PlayerController : MonoBehaviour {
     [Header("Player Duplication Reference")]
     private GameObject playerCopy;
@@ -333,7 +335,7 @@ public class PlayerController : MonoBehaviour {
                 return s;
             }
         }
-        return null;
+        throw new ArgumentException("Unknown sound name");
     }
 
 

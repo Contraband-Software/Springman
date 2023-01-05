@@ -173,12 +173,12 @@ public class GameData : MonoBehaviour
 
                 FileStream stream = new FileStream(path, FileMode.Create);
 
-                SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
-                    tutorialComplete, ads);
+                //SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
+                    //tutorialComplete, ads);
 
                 File.SetAttributes(path, FileAttributes.ReadOnly);
 
-                formatter.Serialize(stream, data);
+                //formatter.Serialize(stream, data);
                 stream.Close();
 
                 ReLocalizeTexts();
@@ -202,12 +202,12 @@ public class GameData : MonoBehaviour
 
             FileStream stream = new FileStream(path, FileMode.Create);
 
-            SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
-                tutorialComplete, ads);
+            //SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver, 
+            //    tutorialComplete, ads);
 
             File.SetAttributes(path, FileAttributes.ReadOnly);
 
-            formatter.Serialize(stream, data);
+            //formatter.Serialize(stream, data);
             stream.Close();
         }
         else
@@ -270,13 +270,11 @@ public class GameData : MonoBehaviour
         {
             if(text.key == "localLang")
             {
-                text.gameData = this;
                 text.language = currentLanguage;
                 text.ApplyFontForLangMenu();
             }
             else
             {
-                text.gameData = this;
                 text.language = currentLanguage;
                 text.Localize();
             }

@@ -8,6 +8,8 @@ using System;
 
 namespace Architecture
 {
+    using Managers;
+
     public class UpdateValue : MonoBehaviour
     {
         public TextMeshProUGUI thisText;

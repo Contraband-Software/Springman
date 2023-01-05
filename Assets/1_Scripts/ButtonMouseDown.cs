@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Architecture;
+using Architecture.Managers;
 
 public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {

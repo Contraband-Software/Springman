@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Audio;
+
 public class EffectController : MonoBehaviour
 {
     //This script is used to interface between an action happening and the correct effect playing as a result

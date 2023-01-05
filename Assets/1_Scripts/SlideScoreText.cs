@@ -5,6 +5,8 @@ using TMPro;
 using System;
 using System.Linq;
 
+using Architecture.Localisation;
+
 public class SlideScoreText : MonoBehaviour
 {
     public TextMeshProUGUI text;

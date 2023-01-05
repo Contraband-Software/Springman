@@ -57,7 +57,7 @@ public class MenuData : MonoBehaviour
 
         LeanTween.cancelAll();
 
-        InitialiseAppropriateFonts();
+        //InitialiseAppropriateFonts();
 
         //social manager will have loaded data cached
         //CreateFirstDataFile();
@@ -99,7 +99,7 @@ public class MenuData : MonoBehaviour
         //create first data file()
         CreateFirstDataFile();
         LoadGameData();
-        ReLocalizeTexts();
+        //ReLocalizeTexts();
 #endif
 
     }
@@ -178,21 +178,20 @@ public class MenuData : MonoBehaviour
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
 
-                SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver,
-                    tutorialComplete, this.ads);
+                //SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver,
+                //    tutorialComplete, this.ads);
 
 #if !UNITY_EDITOR
                 File.SetAttributes(path, FileAttributes.ReadOnly);
 #endif
 
-                formatter.Serialize(stream, data);
+                //formatter.Serialize(stream, data);
                 stream.Close();
 
                 Debug.Log("CREATED FIRST GAME DATA FILE");
 
                 
 
-                eula.Show();
                 //if (sm.isAvailable()) { sm.ShowSaveGameSelectUI(); }
             } else
             {
@@ -234,24 +233,24 @@ public class MenuData : MonoBehaviour
 
     public void SaveGameData()
     {
-        SaveData data = new SaveData(
-            this.allTimeHighscore, 
-            this.musicOn, 
-            this.soundsOn, 
-            this.currentLanguage, 
-            this.langIndex, 
-            this.gold, this.silver,
-            tutorialComplete, 
-            ads
-        );
+        //SaveData data = new SaveData(
+        //    this.allTimeHighscore, 
+        //    this.musicOn, 
+        //    this.soundsOn, 
+        //    this.currentLanguage, 
+        //    this.langIndex, 
+        //    this.gold, this.silver,
+        //    tutorialComplete, 
+        //    ads
+        //);
 
 #if UNITY_EDITOR
         //SAVE TO LOCAL STORAGE ALWAYS ANYWAY
-        SaveGameData_LocalFallback(data);
+        //SaveGameData_LocalFallback(data);
 #else
         if (sm.IsAvailable() && sm.SaveGameLoaded())
         {
-            sm.SaveGame(data);
+            //sm.SaveGame(data);
         }
         else
         {

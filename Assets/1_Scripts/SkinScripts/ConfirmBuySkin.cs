@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Architecture.Localisation;
+using Architecture;
 
 public class ConfirmBuySkin : MonoBehaviour
 {

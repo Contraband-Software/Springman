@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Architecture.Managers;
+
 public class SkinSelector_Premium : MonoBehaviour
 {
     [Header("Important References")]
@@ -29,7 +31,7 @@ public class SkinSelector_Premium : MonoBehaviour
 
     private void Start()
     {
-        Architecture.UserGameData.Instance.RequestColourData.AddListener(CollectGlowColours);
+        UserGameData.Instance.RequestColourData.AddListener(CollectGlowColours);
         tabSkinsCollected = false;
 
         CollectSkins();
@@ -64,7 +66,6 @@ public class SkinSelector_Premium : MonoBehaviour
     public void CollectGlowColours()
     {
         print("COLLECTING GLOW COLOURS");
-        Architecture.UserGameData userGameData = Architecture.UserGameData.Instance;
 
         List<string> glowColoursGathered = new List<string>();
         List<bool> hasSpecialColourGathered = new List<bool>();
@@ -72,15 +73,15 @@ public class SkinSelector_Premium : MonoBehaviour
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
-            glowColoursGathered.Add(Architecture.UserGameDataHandlingUtilities.ColorToString(premDemo.targetColor));
+            glowColoursGathered.Add(Backend.Utilities.ColorToString(premDemo.targetColor));
             //print(premDemo.name + ": "+ cosmeticsData.ColorToString(premDemo.targetColor));
 
             hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
             sCMgathered.Add(premDemo.colourShift);
         }
-        userGameData.glowColours = glowColoursGathered;
-        userGameData.hasSpecialColour = hasSpecialColourGathered;
-        userGameData.specialColourModes = sCMgathered;
+        UserGameData.Instance.glowColours = glowColoursGathered;
+        UserGameData.Instance.hasSpecialColour = hasSpecialColourGathered;
+        UserGameData.Instance.specialColourModes = sCMgathered;
         //ALSO GATHERS SPECIAL COLOUR EFFECTS
     }
     public void CollectSpecialColourSettings()

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Audio;
+
 public class Death_Effects : MonoBehaviour
 {
-
     private string premium_name;
 
     [Header("Important References")]
