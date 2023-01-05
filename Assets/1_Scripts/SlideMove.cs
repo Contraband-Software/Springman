@@ -294,7 +294,7 @@ public class SlideMove : MonoBehaviour {
 			ActiveOnProxy aop = sittingEnemy.GetComponent<ActiveOnProxy>();
 			aop.player = player;
 			aop.pController = pController;
-			aop.gamedata = gameData;
+			//aop.gamedata = gameData;
 			sittingEnemySpawned = true;
 
 			//FLASH INDICATOR RED

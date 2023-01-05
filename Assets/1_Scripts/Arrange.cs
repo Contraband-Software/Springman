@@ -44,10 +44,10 @@ public class Arrange : MonoBehaviour
 
     void Resize()
     {
-        float excludeCaps = gameData.platLength - (leftBounds.extents.x * 4) - 0.02f;
-        float scaleMultiplier = excludeCaps / (midBounds.extents.x * 2);
+        //float excludeCaps = gameData.platLength - (leftBounds.extents.x * 4) - 0.02f;
+        //float scaleMultiplier = excludeCaps / (midBounds.extents.x * 2);
 
-        mid.transform.localScale = new Vector3(mid.transform.localScale.x * scaleMultiplier, mid.transform.localScale.y, mid.transform.localScale.z);
+        //mid.transform.localScale = new Vector3(mid.transform.localScale.x * scaleMultiplier, mid.transform.localScale.y, mid.transform.localScale.z);
     }
     
     void PositionIndicator()

@@ -45,13 +45,10 @@ namespace Architecture
         // Update is called once per frame
         void Update()
         {
-            /*
-            if(currentScene.name != "Game")
+            if (currentScene.name != "Game")
             {
-                UpdateCurrency(gameData, menuData, valueType);
+                UpdateCurrency(valueType);
             }
-            */
-
         }
 
         public void UpdateCurrency(ValueType type)
