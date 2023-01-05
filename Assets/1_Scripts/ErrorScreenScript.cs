@@ -10,8 +10,6 @@ namespace Architecture
     public class ErrorScreenScript : MonoBehaviour
     {
         public Canvas errorCanvas;
-        public GameData gameData;
-        public MenuData menuData;
 
         Scene scene;
 

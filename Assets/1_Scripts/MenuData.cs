@@ -22,15 +22,6 @@ public class MenuData : MonoBehaviour
 
     //[Header("Legal")]
 
-    [Header("Language Fonts")]
-    public TMP_FontAsset appropriateFont;
-    public TMP_FontAsset Latin_Cyrillic;
-    public TMP_FontAsset Latin;
-    public TMP_FontAsset Vietnamese;
-    public TMP_FontAsset Chinese;
-    public TMP_FontAsset Hindi;
-    public TMP_FontAsset Arabic;
-
     public CanvasGroup curtainCG;
     [Header("Tutorial Status")]
     public bool tutorialComplete = false;
@@ -285,91 +276,5 @@ public class MenuData : MonoBehaviour
     public void DisplayErrorScreen()
     {
         errorOpened = true;
-    }
-
-    //Localisation
-    public void ReLocalizeTexts()
-    {
-        print("TRANSLATING TEXTS");
-        LocalizationSystem.language = (LocalizationSystem.Language)langIndex;
-        print("TO: " + LocalizationSystem.language.ToString());
-
-        FindAppropriateFont();
-
-        TextLocaliserUI[] textItems = FindObjectsOfType(typeof(TextLocaliserUI)) as TextLocaliserUI[];
-        foreach(TextLocaliserUI text in textItems)
-        {
-            if (text.key == "localLang")
-            {
-                text.menuData = this;
-                text.language = currentLanguage;
-                text.ApplyFontForLangMenu();
-            }
-            else
-            {
-                text.menuData = this;
-                text.language = currentLanguage;
-                text.Localize();
-            }
-        }
-    }
-
-    //Localisation
-    Dictionary<string, TMP_FontAsset> appropriateFonts = new Dictionary<string, TMP_FontAsset>();
-
-    //Localisation
-    void InitialiseAppropriateFonts()
-    {
-        appropriateFonts.Add("english", Latin);
-        appropriateFonts.Add("french", Latin_Cyrillic);
-        appropriateFonts.Add("spanish", Latin_Cyrillic);
-        appropriateFonts.Add("russian", Latin_Cyrillic);
-        appropriateFonts.Add("german", Latin_Cyrillic);
-        appropriateFonts.Add("portugese", Latin_Cyrillic);
-        appropriateFonts.Add("malay", Latin_Cyrillic);
-        appropriateFonts.Add("polish", Latin_Cyrillic);
-        appropriateFonts.Add("italian", Latin_Cyrillic);
-        appropriateFonts.Add("chinese", Chinese);
-        appropriateFonts.Add("turkish", Latin_Cyrillic);
-        appropriateFonts.Add("vietnamese", Vietnamese);
-        appropriateFonts.Add("ukrainian", Latin_Cyrillic);
-        appropriateFonts.Add("hindi", Hindi);
-        appropriateFonts.Add("indonesian", Latin_Cyrillic);
-        appropriateFonts.Add("arabic", Arabic);
-    }
-
-    //Localisation
-    void FindAppropriateFont()
-    {
-        TMP_FontAsset value;
-        appropriateFonts.TryGetValue(currentLanguage, out value);
-
-        appropriateFont = value;
-    }
-
-    //Localisation
-    public TMP_FontAsset GiveAppropriateFont(string language)
-    {
-        TMP_FontAsset value;
-        appropriateFonts.TryGetValue(language, out value);
-
-        return value;
-    }
-
-    private void OnApplicationQuit()
-    {
-        if (EULA_Accepted)
-        {
-            if (!errorOpened)
-            {
-                Debug.Log("Saving on exit");
-                SaveGameData();
-            }
-        } else
-        {
-            //shut game, delete all gamedata, hard factory reset
-            DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
-            dataDir.Delete(true);
-        }
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using Architecture;
+using Architecture.Localisation;
+
 [RequireComponent(typeof(TextMeshProUGUI))]
 
 public class TextLocaliserUI : MonoBehaviour
@@ -48,11 +51,11 @@ public class TextLocaliserUI : MonoBehaviour
 
         if (key == "errorPara")
         {
-            string value1 = LocalizationSystem.GetLocalisedValue(key);
+            string value1 = LocalizationSystem.Instance.GetLocalisedValue(key);
             value1 = value1.TrimStart(' ', '"'); value1 = value1.Replace("\"", "");
 
             textField = GetComponent<TextMeshProUGUI>();
-            string value2 = LocalizationSystem.GetLocalisedValue(Optional2ndKey);
+            string value2 = LocalizationSystem.Instance.GetLocalisedValue(Optional2ndKey);
             value2 = value2.TrimStart(' ', '"'); value2 = value2.Replace("\"", "");
 
             string ValueMerged = value1 + "\n\n" + value2;
@@ -62,7 +65,7 @@ public class TextLocaliserUI : MonoBehaviour
         else
         {
             //print(key);
-            string value = LocalizationSystem.GetLocalisedValue(key);
+            string value = LocalizationSystem.Instance.GetLocalisedValue(key);
             //print("GameObject Name: " + gameObject.name + " localizing key: " + key);
             value = value.TrimStart(' ', '"'); value = value.Replace("\"", "");
             //print("localized");
@@ -80,7 +83,7 @@ public class TextLocaliserUI : MonoBehaviour
 
         if (menuData != null)
         {
-            textField.font = menuData.appropriateFont;
+            textField.font = LocalizationSystem.Instance.AppropriateFont;
             language = menuData.currentLanguage;
         }
         if(gameData != null)
@@ -105,17 +108,9 @@ public class TextLocaliserUI : MonoBehaviour
         prevFontDetails = new FontDetails(textField.fontMaterial.GetColor("_FaceColor"), textField.fontMaterial.GetFloat("_OutlineSoftness"),
             textField.fontMaterial.GetFloat("_FaceDilate"), textField.fontMaterial.GetColor("_OutlineColor"), (textField.fontMaterial.GetFloat("_OutlineWidth")));
 
-        if (menuData != null)
-        {
 
-            textField.font = menuData.GiveAppropriateFont(transform.parent.gameObject.GetComponent<LanguageToggle>().storedLanguage);
-            language = UserGameData.Instance.currentLanguage;
-        }
-        if (gameData != null)
-        {
-            textField.font = gameData.GiveAppropriateFont(transform.parent.gameObject.GetComponent<LanguageToggle>().storedLanguage);
-            language = gameData.currentLanguage;
-        }
+        textField.font = LocalizationSystem.Instance.GiveAppropriateFont(transform.parent.gameObject.GetComponent<LanguageToggle>().storedLanguage);
+        language = LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower();
 
         ApplyFontDetails();
     }

@@ -6,13 +6,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.Events;
 
 using PlatformIntegrations;
-using UnityEngine.Analytics;
 using Architecture.Localisation;
 using Backend;
 
 namespace Architecture
 {
-    public class UserGameData : Backend.AbstractSingleton<UserGameData>
+    public class UserGameData : AbstractSingleton<UserGameData>
     {
         #region EVENTS
         //Emits an event containing the current language index
@@ -133,7 +132,7 @@ namespace Architecture
             allTimeHighscore = data.highscore;
             musicOn = data.musicOn;
             soundsOn = data.soundsOn;
-            LocalizationSystem.language = (LocalizationSystem.Language)data.langIndex;
+            LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)data.langIndex;
 
             langIndex = data.langIndex;
             gold = data.gold;
@@ -181,17 +180,15 @@ namespace Architecture
             silver = 300;
             tutorialComplete = false;
             ads = 0;
-            //To be implemented
-            //langIndex = LocalisationClass.GetSystemLang();
+            langIndex = (int)LocalizationSystem.Instance.CurrentLanguage;
 
             unlockedColours.Add("FFFFFF");
             unlockedColours.Add("373737");
 
-            //////////////
             //unlockedPremiums.Add("lpqok951139");
             unlockedPremiums = new List<string>{ "lpqok951139", "bonvmm916571", "jkhqys871421", "xxclpu871531", "kljqye098901", "opiuqa9815211", "loiqyv904091", "gqulpo090861"
                 , "oilpqu876019", "vbtqeq651064"};
-            /////////////
+
 
             unlockedSkins.Add("109651fc");
 
@@ -212,7 +209,7 @@ namespace Architecture
             SaveData data = new SaveData(
                 this.allTimeHighscore,
                 this.musicOn, this.soundsOn,
-                LocalizationSystem.language.ToString().ToLower(), this.langIndex,
+                LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower(), this.langIndex,
                 this.gold, this.silver,
                 tutorialComplete,
                 this.ads,
@@ -268,6 +265,22 @@ namespace Architecture
                 //killing an app without saving could be dangerous. Potential of losing a premium purchase
             }
 #endif
+        }
+
+        private void OnApplicationQuit()
+        {
+            if (EULA_Accepted)
+            {
+                //There isnt a check here for if the error screen is open (Really Bad)
+                    Debug.Log("Saving on exit");
+                    SaveGameData();
+            }
+            else
+            {
+                //shut game, delete all gamedata, hard factory reset
+                DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+                dataDir.Delete(true);
+            }
         }
     }
 }

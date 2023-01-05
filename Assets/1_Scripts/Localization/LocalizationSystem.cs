@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Architecture.Localisation
 {
-    public class LocalizationSystem
+    public class LocalizationSystem : Backend.AbstractSingleton<LocalizationSystem>
     {
         public enum Language
         {
@@ -13,7 +14,7 @@ namespace Architecture.Localisation
             Spanish,
             Russian,
             German,
-            Portugese,
+            Portuguese,
             Malay,
             Polish,
             Italian,
@@ -26,8 +27,23 @@ namespace Architecture.Localisation
             Arabic
         }
 
-        public static Language language = Language.English;
+        #region INTERFACE
+        [Header("Language Fonts")]
+        [SerializeField] TMP_FontAsset Latin_Cyrillic;
+        [SerializeField] TMP_FontAsset Latin;
+        [SerializeField] TMP_FontAsset Vietnamese;
+        [SerializeField] TMP_FontAsset Chinese;
+        [SerializeField] TMP_FontAsset Hindi;
+        [SerializeField] TMP_FontAsset Arabic;
+        #endregion
 
+        public TMP_FontAsset AppropriateFont { get; private set; }
+
+        readonly Dictionary<string, TMP_FontAsset> appropriateFonts = new Dictionary<string, TMP_FontAsset>();
+
+        public Language CurrentLanguage = Language.English;
+
+        #region GAME_TRANSLATIONS
         private static Dictionary<string, string> localisedEN;
         private static Dictionary<string, string> localisedFR;
         private static Dictionary<string, string> localisedES;
@@ -44,14 +60,11 @@ namespace Architecture.Localisation
         private static Dictionary<string, string> localisedHI;
         private static Dictionary<string, string> localisedIN;
         private static Dictionary<string, string> localisedAR;
+        #endregion
 
-        public static bool isInit;
-
-        public static CSVLoader csvLoader;
-
-        public static void Init()
+        protected override void SingletonAwake()
         {
-            csvLoader = new CSVLoader();
+            CSVLoader csvLoader = new CSVLoader();
             csvLoader.LoadCSV();
 
             localisedEN = csvLoader.GetDictionaryValues("en");
@@ -71,17 +84,63 @@ namespace Architecture.Localisation
             localisedIN = csvLoader.GetDictionaryValues("in");
             localisedAR = csvLoader.GetDictionaryValues("ar");
 
-            isInit = true;
-
+            InitialiseAppropriateFonts();
         }
 
-        public static string GetLocalisedValue(string key)
+        public Language GetSystemLanguage()
         {
-            if (!isInit) { Init(); }
+            switch (Application.systemLanguage)
+            {
+                case SystemLanguage.Arabic:
+                    return Language.Arabic;
 
+                case SystemLanguage.Chinese:
+                    return Language.Chinese;
+
+                case SystemLanguage.French:
+                    return Language.French;
+
+                case SystemLanguage.German:
+                    return Language.German;
+
+                case SystemLanguage.Indonesian:
+                    return Language.Indonesian;
+
+                case SystemLanguage.Italian:
+                    return Language.Italian;
+
+                case SystemLanguage.Polish:
+                    return Language.Polish;
+
+                case SystemLanguage.Portuguese:
+                    return Language.Portuguese;
+
+                case SystemLanguage.Russian:
+                    return Language.Russian;
+
+                case SystemLanguage.Spanish:
+                    return Language.Spanish;
+
+                case SystemLanguage.Turkish:
+                    return Language.Turkish;
+
+                case SystemLanguage.Ukrainian:
+                    return Language.Ukrainian;
+
+                case SystemLanguage.Vietnamese:
+                    return Language.Vietnamese;
+
+                //DEFAULT TO ENGLISH
+                default:
+                    return Language.English;
+            }
+        }
+
+        public string GetLocalisedValue(string key)
+        {
             string value = key;
 
-            switch (language)
+            switch (CurrentLanguage)
             {
                 case Language.English:
                     localisedEN.TryGetValue(key, out value);
@@ -134,6 +193,64 @@ namespace Architecture.Localisation
             }
 
             return value;
+        }
+
+        void InitialiseAppropriateFonts()
+        {
+            appropriateFonts.Add("english", Latin);
+            appropriateFonts.Add("french", Latin_Cyrillic);
+            appropriateFonts.Add("spanish", Latin_Cyrillic);
+            appropriateFonts.Add("russian", Latin_Cyrillic);
+            appropriateFonts.Add("german", Latin_Cyrillic);
+            appropriateFonts.Add("portugese", Latin_Cyrillic);
+            appropriateFonts.Add("malay", Latin_Cyrillic);
+            appropriateFonts.Add("polish", Latin_Cyrillic);
+            appropriateFonts.Add("italian", Latin_Cyrillic);
+            appropriateFonts.Add("chinese", Chinese);
+            appropriateFonts.Add("turkish", Latin_Cyrillic);
+            appropriateFonts.Add("vietnamese", Vietnamese);
+            appropriateFonts.Add("ukrainian", Latin_Cyrillic);
+            appropriateFonts.Add("hindi", Hindi);
+            appropriateFonts.Add("indonesian", Latin_Cyrillic);
+            appropriateFonts.Add("arabic", Arabic);
+        }
+
+        void FindAppropriateFont()
+        {
+            TMP_FontAsset value;
+            appropriateFonts.TryGetValue(CurrentLanguage.ToString().ToLower(), out value);
+
+            AppropriateFont = value;
+        }
+
+        public TMP_FontAsset GiveAppropriateFont(string language)
+        {
+            TMP_FontAsset value;
+            appropriateFonts.TryGetValue(language, out value);
+
+            return value;
+        }
+
+        public void ReLocalizeTexts()
+        {
+            Debug.Log("TRANSLATING TEXTS TO: " + CurrentLanguage.ToString());
+
+            FindAppropriateFont();
+
+            TextLocaliserUI[] textItems = FindObjectsOfType(typeof(TextLocaliserUI)) as TextLocaliserUI[];
+            foreach (TextLocaliserUI text in textItems)
+            {
+                if (text.key == "localLang")
+                {
+                    text.language = CurrentLanguage.ToString().ToLower();
+                    text.ApplyFontForLangMenu();
+                }
+                else
+                {
+                    text.language = CurrentLanguage.ToString().ToLower();
+                    text.Localize();
+                }
+            }
         }
     }
 }
