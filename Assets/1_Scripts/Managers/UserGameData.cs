@@ -139,6 +139,8 @@ namespace Architecture.Managers
                         Debug.Log("E. CREATED FIRST GAME DATA FILE");
 
                         ShowEULA = true;
+
+                        localFile.Close();
                     }
                 }
                 else
