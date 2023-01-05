@@ -51,56 +51,56 @@ public class MenuData : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
-        path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
+        //path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
 
-        LeanTween.cancelAll();
+        //LeanTween.cancelAll();
 
-        //InitialiseAppropriateFonts();
+        ////InitialiseAppropriateFonts();
 
-        //social manager will have loaded data cached
-        //CreateFirstDataFile();
-        //LoadGameData();
-        Debug.Log("WE LOADED IN TO THE MAIN MENU POG POG POG");
-        Debug.Log("MENU DATA - ATTEMPTING TO GET SAVED DATA FROM CACHE");
-        Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
-        Debug.Log((SaveData)IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
+        ////social manager will have loaded data cached
+        ////CreateFirstDataFile();
+        ////LoadGameData();
+        //Debug.Log("WE LOADED IN TO THE MAIN MENU POG POG POG");
+        //Debug.Log("MENU DATA - ATTEMPTING TO GET SAVED DATA FROM CACHE");
+        //Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
+        //Debug.Log((SaveData)IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
     }
 
     private void Start()
     {
-        errorOpened = false;
+//        errorOpened = false;
 
-        curtainCG.alpha = 1f;
-        LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
+//        curtainCG.alpha = 1f;
+//        LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
 
-        sm = IntegrationsManager.Instance.socialManager;
-        sm.SaveDataWriteCallback.AddListener((bool status) => {
-            if (!status)
-            {
-                Debug.Log("MenuData: Save data cloud write unsuccessful");
-            } else
-            {
-                Debug.Log("MenuData: Save data written to cloud successfully");
-            }
-        });
+//        sm = IntegrationsManager.Instance.socialManager;
+//        sm.SaveDataWriteCallback.AddListener((bool status) => {
+//            if (!status)
+//            {
+//                Debug.Log("MenuData: Save data cloud write unsuccessful");
+//            } else
+//            {
+//                Debug.Log("MenuData: Save data written to cloud successfully");
+//            }
+//        });
 
-#if !UNITY_EDITOR
-        SaveData loadedSaveData = (SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame();
-        Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
-        Debug.Log(loadedSaveData);
+//#if !UNITY_EDITOR
+//        SaveData loadedSaveData = (SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame();
+//        Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
+//        Debug.Log(loadedSaveData);
 
 
-        ReLocalizeTexts();
-        //load the vloud
-#else
-        //create default save data to create dummy file
-        //create first data file()
-        CreateFirstDataFile();
-        LoadGameData();
-        //ReLocalizeTexts();
-#endif
+//        ReLocalizeTexts();
+//        //load the vloud
+//#else
+//        //create default save data to create dummy file
+//        //create first data file()
+//        CreateFirstDataFile();
+//        LoadGameData();
+//        //ReLocalizeTexts();
+//#endif
 
     }
 

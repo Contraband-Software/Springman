@@ -128,12 +128,12 @@ public class ConfirmBuySkin : MonoBehaviour
     {
         if(purchaseType == PurchaseType.Silver)
         {
-            cosmeticsData.menuData.silver -= cost;
+            Architecture.Managers.UserGameData.Instance.silver -= cost;
             silverUpdateVal.CurrencyChangeDetails(UpdateValue.ValueType.Silver);
         }
         if(purchaseType == PurchaseType.Gold)
         {
-            cosmeticsData.menuData.gold -= cost;
+            Architecture.Managers.UserGameData.Instance.gold -= cost;
             goldUpdateVal.CurrencyChangeDetails(UpdateValue.ValueType.Gold);
         }
     }

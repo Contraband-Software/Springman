@@ -99,9 +99,9 @@ public class SkinSelector_Premium : MonoBehaviour
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
-            premDemo.targetColor = cosmeticsData.StringToColor(cosmeticsData.glowColours[child]);
-            premDemo.hasSpecialColourMode = cosmeticsData.hasSpecialColour[child];
-            premDemo.colourShift = cosmeticsData.specialColourModes[child];
+            premDemo.targetColor = cosmeticsData.StringToColor(UserGameData.Instance.glowColours[child]);
+            premDemo.hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[child];
+            premDemo.colourShift = UserGameData.Instance.specialColourModes[child];
         }
     }
 

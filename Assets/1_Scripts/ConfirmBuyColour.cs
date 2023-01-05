@@ -122,7 +122,8 @@ public class ConfirmBuyColour : MonoBehaviour
 
     public void ChangeCurrencyValues()
     {
-        cosmeticsData.menuData.silver -= cost;
+        Debug.Log("C-b-c");
+        Architecture.Managers.UserGameData.Instance.silver -= cost;
         silverUpdateVal.CurrencyChangeDetails(UpdateValue.ValueType.Silver);
     }
     public void MoveToCentre()
