@@ -7,24 +7,26 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-using Architecture;
-using Architecture.Localisation;
+using Architecture.Managers;
 
-public class ConfirmButton : MonoBehaviour
+namespace Architecture.Localisation
 {
-    public LanguageOrganiser langOrganiser;
-
-    Scene currentScene;
-
-    public void OnClick()
+    public class ConfirmButton : MonoBehaviour
     {
-        if(langOrganiser.selectedLanguage != "")
-        {
-            Enum.TryParse(langOrganiser.selectedLanguage, out LocalizationSystem.Instance.CurrentLanguage);
-            UserGameData.Instance.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
+        public LanguageOrganiser langOrganiser;
 
-            UserGameData.Instance.SaveGameData();
-            LocalizationSystem.Instance.ReLocalizeTexts();
+        Scene currentScene;
+
+        public void OnClick()
+        {
+            if (langOrganiser.selectedLanguage != "")
+            {
+                Enum.TryParse(langOrganiser.selectedLanguage, out LocalizationSystem.Instance.CurrentLanguage);
+                UserGameData.Instance.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
+
+                UserGameData.Instance.SaveGameData();
+                LocalizationSystem.Instance.ReLocalizeTexts();
+            }
         }
     }
 }

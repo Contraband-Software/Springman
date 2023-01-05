@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using PlatformIntegrations;
-using static UpdateValue;
 
 public class Loading : MonoBehaviour
 {

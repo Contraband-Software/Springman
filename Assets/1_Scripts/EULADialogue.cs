@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace Architecture
 {
+    using Managers;
+
     public class EULADialogue : MonoBehaviour
     {
         private void Awake()

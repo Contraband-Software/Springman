@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.UI;
+
+using Architecture.Localisation;
 
 public class tutorialController : MonoBehaviour
 {

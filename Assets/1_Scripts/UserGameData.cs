@@ -9,7 +9,7 @@ using PlatformIntegrations;
 using Architecture.Localisation;
 using Backend;
 
-namespace Architecture
+namespace Architecture.Managers
 {
     public class UserGameData : AbstractSingleton<UserGameData>
     {
