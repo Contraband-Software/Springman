@@ -7,6 +7,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 using SimpleDiskUtils;
 using PlatformIntegrations;
 
+/*
+ * 
+ * 
+ * 
+ * 
+ * DONT FIX ANYTHING HERE, THE IDEA IS TO REMOVE THIS FROM THE PROJECT
+ * 
+ * 
+ * 
+ * 
+ */
 public class MenuData : MonoBehaviour
 {
     public int allTimeHighscore;

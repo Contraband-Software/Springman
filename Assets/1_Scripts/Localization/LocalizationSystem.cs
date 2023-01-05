@@ -157,7 +157,7 @@ namespace Architecture.Localisation
                 case Language.German:
                     localisedGE.TryGetValue(key, out value);
                     break;
-                case Language.Portugese:
+                case Language.Portuguese:
                     localisedPO.TryGetValue(key, out value);
                     break;
                 case Language.Malay:

@@ -23,13 +23,13 @@ namespace Architecture.Managers
         #endregion
 
         #region GAME_DATA
-        public int allTimeHighscore { get; set; }
-        public bool musicOn { get; set; }
-        public bool soundsOn { get; set; }
-        public int langIndex { get; set; }
-        public int gold { get; set; }
-        public int silver { get; set; }
-        public int ads { get; set; }
+        public int allTimeHighscore { get; set; } = 0;
+        public bool musicOn { get; set; } = true;
+        public bool soundsOn { get; set; } = true;
+        public int langIndex { get; set; } = 0;
+        public int gold { get; set; } = 0;
+        public int silver { get; set; } = 0;
+        public int ads { get; set; } = 0;
         public bool tutorialComplete { get; set; } = false;
 
         public bool EULA_Accepted { get; set; } = false;
@@ -45,38 +45,42 @@ namespace Architecture.Managers
         [SerializeField] Vector3 bottomObject;
         [SerializeField] Vector3 springObject;
 
-        public List<string> unlockedColours = new List<string>();
-        public List<string> allColours = new List<string>();
+        [SerializeField] List<string> unlockedColours = new List<string>();
+        [SerializeField] List<string> allColours = new List<string>();
 
         [Header("Skin Data")]
-        public string currentSkin;
+        [SerializeField] string currentSkin;
 
-        public SkinSpecsSolid cSpecs = new SkinSpecsSolid();
+        [SerializeField] SkinSpecsSolid cSpecs = new SkinSpecsSolid();
 
-        public List<string> unlockedSkins = new List<string>();
-        public List<string> allSkins = new List<string>();
+        [SerializeField] List<string> unlockedSkins = new List<string>();
+        [SerializeField] List<string> allSkins = new List<string>();
 
-        public List<string> allSkinsCodes = new List<string>();
-        public List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
+        [SerializeField] List<string> allSkinsCodes = new List<string>();
+        [SerializeField] List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
 
         public enum PlayerCosmeticType { None, Color };
-        public PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
+        [SerializeField] PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
 
         [Header("Premium Skins")]
-        public bool currentSkinPremium = false;
-        public string activePremiumSkinName;
-        public List<string> unlockedPremiums = new List<string>();
-        public List<string> allPremiums = new List<string>();
-        public List<string> allPremiumCodes = new List<string>();
+        [SerializeField] bool currentSkinPremium = false;
+        [SerializeField] string activePremiumSkinName;
+        [SerializeField] List<string> unlockedPremiums = new List<string>();
+        [SerializeField] List<string> allPremiums = new List<string>();
+        [SerializeField] List<string> allPremiumCodes = new List<string>();
 
-        public List<string> glowColours = new List<string>();
-        public List<bool> hasSpecialColour = new List<bool>();
-        public List<bool> specialColourModes = new List<bool>();
+        [SerializeField] List<string> glowColours = new List<string>();
+        [SerializeField] List<bool> hasSpecialColour = new List<bool>();
+        [SerializeField] List<bool> specialColourModes = new List<bool>();
         #endregion
 
         string gameDataPath = "";
-        SocialManager socialManager = null;
 
+#pragma warning disable S1450
+        SocialManager socialManager = null;
+#pragma warning restore S1450
+
+        #region UNITY
         protected override void SingletonAwake()
         {
             LanguageLoadEvent = new LanguageLoadEventType();
@@ -137,7 +141,25 @@ namespace Architecture.Managers
 #endif
         }
 
-        void CreateFirstDataFile()
+        private void OnApplicationQuit()
+        {
+            if (EULA_Accepted)
+            {
+                //There isnt a check here for if the error screen is open (Really Bad)
+                Debug.Log("Saving on exit");
+                SaveGameData();
+            }
+            else
+            {
+                //shut game, delete all gamedata, hard factory reset
+                DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+                dataDir.Delete(true);
+            }
+        }
+        #endregion
+
+        #region SAVING
+        private void CreateFirstDataFile()
         {
             float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
             if (availableSpace > 10)
@@ -170,7 +192,7 @@ namespace Architecture.Managers
             allTimeHighscore = data.highscore;
             musicOn = data.musicOn;
             soundsOn = data.soundsOn;
-            LocalizationSystem.language = (LocalizationSystem.Language)data.langIndex;
+            LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)data.langIndex;
 
             langIndex = data.langIndex;
             gold = data.gold;
@@ -181,9 +203,9 @@ namespace Architecture.Managers
             EULA_Accepted = true;
 
             //COSMETICS DATA
-            topColor = UserGameDataHandlingUtilities.StringToColor(data.topColor);
-            bottomColor = UserGameDataHandlingUtilities.StringToColor(data.bottomColor);
-            springColor = UserGameDataHandlingUtilities.StringToColor(data.springColor);
+            topColor = Utilities.StringToColor(data.topColor);
+            bottomColor = Utilities.StringToColor(data.bottomColor);
+            springColor = Utilities.StringToColor(data.springColor);
 
             topObject = data.topObject.V3;
             bottomObject = data.bottomObject.V3;
@@ -206,6 +228,9 @@ namespace Architecture.Managers
             }
         }
 
+        /// <summary>
+        /// Initializes the user data to its default state
+        /// </summary>
         private void DefaultDataFileSettings()
         {
             EULA_Accepted = false;
@@ -239,6 +264,10 @@ namespace Architecture.Managers
             springColor = Utilities.StringToColor("373737");
         }
 
+        /// <summary>
+        /// Packs the user data into a dedicated struct
+        /// </summary>
+        /// <returns>A class ready to be serialized</returns>
         private SaveData PackSaveDataWithCurrentValues()
         {
             SaveData data = new SaveData(
@@ -261,7 +290,9 @@ namespace Architecture.Managers
 
             return data;
         }
+        #endregion
 
+        #region PUBLIC_INTERFACE
         public void SaveGameData()
         {
             SaveData data = PackSaveDataWithCurrentValues();
@@ -301,22 +332,7 @@ namespace Architecture.Managers
             }
 #endif
         }
-
-        private void OnApplicationQuit()
-        {
-            if (EULA_Accepted)
-            {
-                //There isnt a check here for if the error screen is open (Really Bad)
-                    Debug.Log("Saving on exit");
-                    SaveGameData();
-            }
-            else
-            {
-                //shut game, delete all gamedata, hard factory reset
-                DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
-                dataDir.Delete(true);
-            }
-        }
+        #endregion
     }
 }
 

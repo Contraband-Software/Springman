@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Architecture.Localisation;
+
 public class ConfirmBuySkin : MonoBehaviour
 {
     [Header("Purchase Details")]

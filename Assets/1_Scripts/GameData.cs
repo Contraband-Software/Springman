@@ -7,6 +7,19 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using SimpleDiskUtils;
 
+using Architecture.Localisation;
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * DONT FIX ANYTHING HERE, THE IDEA IS TO REMOVE THIS FROM THE PROJECT
+ * 
+ * 
+ * 
+ * 
+ */
 public class GameData : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
@@ -248,7 +261,7 @@ public class GameData : MonoBehaviour
 
     public void ReLocalizeTexts()
     {
-        LocalizationSystem.language = (LocalizationSystem.Language)langIndex;
+        LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)langIndex;
 
         FindAppropriateFont();
 
