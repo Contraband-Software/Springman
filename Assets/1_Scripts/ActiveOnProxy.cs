@@ -10,8 +10,6 @@ public class ActiveOnProxy : MonoBehaviour
     public Animator animator;
     public PlayerController pController;
 
-    public GameData gamedata;
-
     public AudioSource activationSound;
     public bool playedActivation = false;
 
@@ -59,7 +57,7 @@ public class ActiveOnProxy : MonoBehaviour
             animator.Play("Activate");
             if (!playedActivation)
             {
-                if (gamedata.soundsOn)
+                if (Architecture.Managers.UserGameData.Instance.soundsOn)
                 {
                     activationSound.Play();
                 }

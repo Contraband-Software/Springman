@@ -5,7 +5,6 @@ using UnityEngine;
 public class Arrange : MonoBehaviour
 {
     //GAME DATA REFERENCE
-    GameData gameData;
 
     public GameObject mid;
     public GameObject left;
@@ -25,7 +24,6 @@ public class Arrange : MonoBehaviour
 
     public void ArrangePlatform()
     {
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
         Resize();
         PlaceCaps();
         PositionIndicator();

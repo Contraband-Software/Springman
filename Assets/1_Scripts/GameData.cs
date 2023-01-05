@@ -127,7 +127,7 @@ public class GameData : MonoBehaviour
 
     public void CalculateMinPlatLength()
     {
-        if(score > 0)
+        if (score > 0)
         {
             float percentage = (CapShrinkAtScore - score) / CapShrinkAtScore;
             minPlatLength = Mathf.Max(0.4f, maxPlatLength * percentage);
@@ -140,11 +140,11 @@ public class GameData : MonoBehaviour
 
     void UpdateHighscore()
     {
-        if(Convert.ToInt32(score) > currentGameHighscore)
+        if (Convert.ToInt32(score) > currentGameHighscore)
         {
             currentGameHighscore = Convert.ToInt32(score);
         }
-        if(currentGameHighscore > allTimeHighscore)
+        if (currentGameHighscore > allTimeHighscore)
         {
             allTimeHighscore = currentGameHighscore;
 
