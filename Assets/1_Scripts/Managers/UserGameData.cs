@@ -66,9 +66,9 @@ namespace Architecture.Managers
         List<string> allPremiumCodes = new List<string>();
 
         //COSMETICS PUBLIC INTERFACE
-        [HideInInspector] public List<string> glowColours = new List<string>();
-        [HideInInspector] public List<bool> hasSpecialColour = new List<bool>();
-        [HideInInspector] public List<bool> specialColourModes = new List<bool>();
+        [HideInInspector] public List<string> glowColours { get; set; } = new List<string>();
+        [HideInInspector] public List<bool> hasSpecialColour { get; set; } = new List<bool>();
+        [HideInInspector] public List<bool> specialColourModes { get; set; } = new List<bool>();
         #endregion
 
         string gameDataPath = "";
@@ -119,41 +119,45 @@ namespace Architecture.Managers
 
             ReLocalizeTexts();
 #else
+            #region LOCAL_FALLBACK
             // Unity editor local fallback
             // create default save data to create dummy file
+            float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
+            if (availableSpace > 10)
             {
-                float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
-                if (availableSpace > 10)
+                if (!File.Exists(gameDataPath))
                 {
-                    if (!File.Exists(gameDataPath))
-                    {
-                        BinaryFormatter bf = new BinaryFormatter();
-                        FileStream localFile = new FileStream(gameDataPath, FileMode.OpenOrCreate);
+                    BinaryFormatter bf = new BinaryFormatter();
+                    FileStream localFile = new FileStream(gameDataPath, FileMode.OpenOrCreate);
 
-                        DefaultDataFileSettings();
-                        SaveData saveData = PackSaveDataWithCurrentValues();
+                    DefaultDataFileSettings();
+                    SaveData saveData = PackSaveDataWithCurrentValues();
 
-                        bf.Serialize(localFile, saveData);
-                        localFile.Close();
+                    bf.Serialize(localFile, saveData);
+                    localFile.Close();
 
-                        Debug.Log("E. CREATED FIRST GAME DATA FILE");
+                    Debug.Log("E. CREATED FIRST GAME DATA FILE");
 
-                        ShowEULA = true;
+                    ShowEULA = true;
 
-                        localFile.Close();
-                    }
-                }
-                else
-                {
-                    ErrorEvent.Invoke();
+                    localFile.Close();
                 }
             }
+            else
+            {
+                ErrorEvent.Invoke();
+            }
+            #endregion
 
             File.SetAttributes(gameDataPath, FileAttributes.Normal);
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(gameDataPath, FileMode.Open);
 
+#pragma warning disable S5773
+            // Dangerous unsafe code
             SaveData data = formatter.Deserialize(stream) as SaveData;
+#pragma warning restore S5773
+
             stream.Close();
             UnpackLoadedSaveDataFile(data);
 #endif
@@ -229,24 +233,33 @@ namespace Architecture.Managers
         private void DefaultDataFileSettings()
         {
             EULA_Accepted = false;
+            tutorialComplete = false;
+
             musicOn = true;
             soundsOn = true;
+            langIndex = (int)LocalizationSystem.Instance.CurrentLanguage;
+
             gold = 60;
             silver = 300;
-            tutorialComplete = false;
             ads = 0;
-            langIndex = (int)LocalizationSystem.Instance.CurrentLanguage;
 
             unlockedColours.Add("FFFFFF");
             unlockedColours.Add("373737");
 
-            //unlockedPremiums.Add("lpqok951139");
-            unlockedPremiums = new List<string>{ "lpqok951139", "bonvmm916571", "jkhqys871421", "xxclpu871531", "kljqye098901", "opiuqa9815211", "loiqyv904091", "gqulpo090861"
-                , "oilpqu876019", "vbtqeq651064"};
-
+            unlockedPremiums = new List<string>{
+                "lpqok951139", 
+                "bonvmm916571", 
+                "jkhqys871421", 
+                "xxclpu871531", 
+                "kljqye098901", 
+                "opiuqa9815211", 
+                "loiqyv904091", 
+                "gqulpo090861", 
+                "oilpqu876019", 
+                "vbtqeq651064"
+            };
 
             unlockedSkins.Add("109651fc");
-
             currentSkin = "109651fc";
 
             RequestColourData.Invoke();

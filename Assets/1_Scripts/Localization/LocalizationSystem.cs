@@ -41,7 +41,7 @@ namespace Architecture.Localisation
 
         readonly Dictionary<string, TMP_FontAsset> appropriateFonts = new Dictionary<string, TMP_FontAsset>();
 
-        public Language CurrentLanguage = Language.English;
+        public Language CurrentLanguage { get; set; } = Language.English;
 
         #region GAME_TRANSLATIONS
         private static Dictionary<string, string> localisedEN;
@@ -67,6 +67,7 @@ namespace Architecture.Localisation
             CSVLoader csvLoader = new CSVLoader();
             csvLoader.LoadCSV();
 
+#pragma warning disable S2696
             localisedEN = csvLoader.GetDictionaryValues("en");
             localisedFR = csvLoader.GetDictionaryValues("fr");
             localisedES = csvLoader.GetDictionaryValues("es");
@@ -83,6 +84,7 @@ namespace Architecture.Localisation
             localisedHI = csvLoader.GetDictionaryValues("hi");
             localisedIN = csvLoader.GetDictionaryValues("in");
             localisedAR = csvLoader.GetDictionaryValues("ar");
+#pragma warning restore S2696
 
             InitialiseAppropriateFonts();
         }
