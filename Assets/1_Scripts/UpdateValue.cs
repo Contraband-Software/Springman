@@ -45,10 +45,10 @@ namespace Architecture
         // Update is called once per frame
         void Update()
         {
-            if (currentScene.name != "Game")
+            /*if (currentScene.name != "Game")
             {
                 UpdateCurrency(valueType);
-            }
+            }*/
         }
 
         public void UpdateCurrency(ValueType type)
@@ -108,10 +108,9 @@ namespace Architecture
             {
                 currentValue = op(currentValue, startAmount, targetAmount);
 
-                //print(op(currentValue));
                 thisText.text = Format(currentValue);
 
-                yield return new WaitForSecondsRealtime(0.001f);
+                yield return new WaitForEndOfFrame();
             }
             UserGameData.Instance.SaveGameData();
         }
@@ -129,9 +128,9 @@ namespace Architecture
         private int Decrement(int val, int init, int targ)
         {
             int v;
-            if (val - Mathf.RoundToInt(DecIncValue * 50f * Time.deltaTime) > targ)
+            if (val - Mathf.CeilToInt(DecIncValue * 50f * Time.deltaTime) > targ)
             {
-                v = val - Mathf.RoundToInt(DecIncValue * 50f * Time.deltaTime);
+                v = val - Mathf.CeilToInt(DecIncValue * 50f * Time.deltaTime);
             }
             else
             {
@@ -143,9 +142,9 @@ namespace Architecture
         private int Incriment(int val, int init, int targ)
         {
             int v;
-            if (val + Mathf.RoundToInt(DecIncValue * 50f * Time.deltaTime) < targ)
+            if (val + Mathf.CeilToInt(DecIncValue * 50f * Time.deltaTime) < targ)
             {
-                v = val + Mathf.RoundToInt(DecIncValue * 50f * Time.deltaTime);
+                v = val + Mathf.CeilToInt(DecIncValue * 50f * Time.deltaTime);
             }
             else
             {
