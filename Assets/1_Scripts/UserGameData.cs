@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using PlatformIntegrations;
 using UnityEngine.Analytics;
 using Architecture.Localisation;
+using Backend;
 
 namespace Architecture
 {
@@ -37,19 +38,18 @@ namespace Architecture
 
         #region COSMETICS_DATA
         [Header("Colour Data")]
-        public Color topColor;
-        public Color bottomColor;
-        public Color springColor;
+        [SerializeField] Color topColor;
+        [SerializeField] Color bottomColor;
+        [SerializeField] Color springColor;
 
-        public Vector3 topObject;
-        public Vector3 bottomObject;
-        public Vector3 springObject;
+        [SerializeField] Vector3 topObject;
+        [SerializeField] Vector3 bottomObject;
+        [SerializeField] Vector3 springObject;
 
         public List<string> unlockedColours = new List<string>();
         public List<string> allColours = new List<string>();
 
         [Header("Skin Data")]
-
         public string currentSkin;
 
         public SkinSpecsSolid cSpecs = new SkinSpecsSolid();
@@ -204,7 +204,7 @@ namespace Architecture
             playerCosmeticType = PlayerCosmeticType.Color;
             topColor = Color.white;
             bottomColor = Color.white;
-            springColor = UserGameDataHandlingUtilities.StringToColor("373737");
+            springColor = Utilities.StringToColor("373737");
         }
 
         private SaveData PackSaveDataWithCurrentValues()
@@ -216,9 +216,9 @@ namespace Architecture
                 this.gold, this.silver,
                 tutorialComplete,
                 this.ads,
-                UserGameDataHandlingUtilities.ColorToString(topColor),
-                UserGameDataHandlingUtilities.ColorToString(bottomColor),
-                UserGameDataHandlingUtilities.ColorToString(springColor),
+                Utilities.ColorToString(topColor),
+                Utilities.ColorToString(bottomColor),
+                Utilities.ColorToString(springColor),
                 topObject, bottomObject, springObject, 
                 (int)playerCosmeticType, 
                 unlockedColours, unlockedSkins, 
@@ -268,59 +268,6 @@ namespace Architecture
                 //killing an app without saving could be dangerous. Potential of losing a premium purchase
             }
 #endif
-        }
-    }
-
-    public static class UserGameDataHandlingUtilities
-    {
-        public static int HexToDec(string hex)
-        {
-            int dec = System.Convert.ToInt32(hex, 16);
-            return dec;
-        }
-
-        public static string DecToHex(int value)
-        {
-            return value.ToString("X2");
-        }
-
-        public static string FloatToNormalizedToHex(float value)
-        {
-            return DecToHex(Mathf.RoundToInt(value * 255f));
-        }
-
-        public static float HexToFloatNormalized(string hex)
-        {
-            return HexToDec(hex) / 255f;
-        }
-
-        public static Color StringToColor(string hexString)
-        {
-            float red = HexToFloatNormalized(hexString.Substring(0, 2));
-            float green = HexToFloatNormalized(hexString.Substring(2, 2));
-            float blue = HexToFloatNormalized(hexString.Substring(4, 2));
-            float alpha = 1f;
-            if (hexString.Length >= 8)
-            {
-                alpha = HexToFloatNormalized(hexString.Substring(6, 2));
-            }
-
-            return new Color(red, green, blue, alpha);
-        }
-        public static string ColorToString(Color color, bool useAlpha = false)
-        {
-            string red = FloatToNormalizedToHex(color.r);
-            string green = FloatToNormalizedToHex(color.g);
-            string blue = FloatToNormalizedToHex(color.b);
-            if (!useAlpha)
-            {
-                return red + green + blue;
-            }
-            else
-            {
-                string alpha = FloatToNormalizedToHex(color.a);
-                return red + green + blue + alpha;
-            }
         }
     }
 }
