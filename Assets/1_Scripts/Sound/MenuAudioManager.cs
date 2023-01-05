@@ -2,21 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuAudioManager : MonoBehaviour
+namespace Architecture.Audio
 {
-    public static bool instanced = false;
-
-    void Start()
+    public class MenuAudioManager : Backend.AbstractSingleton<MenuAudioManager>
     {
-        DontDestroyOnLoad(gameObject);
-
-        if (!instanced)
+        protected override void SingletonAwake()
         {
-            instanced = true;
-        }
-        else
-        {
-            Destroy(gameObject);
+            
         }
     }
 }

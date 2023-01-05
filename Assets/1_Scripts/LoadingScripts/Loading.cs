@@ -6,66 +6,68 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using PlatformIntegrations;
 
-public class Loading : MonoBehaviour
+namespace Architecture
 {
-    public enum SceneIndexes
+    public class Loading : MonoBehaviour
     {
-        LOADING = 0,
-        MAINMENU = 1,
-        GAME = 2
-    }
-
-    [Header("Important References")]
-    [SerializeField] SceneIndexes Scene;
-    [Header("Settings")]
-    [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
-    [SerializeField] Slider slider;
-
-    private UnityEngine.AsyncOperation operation;
-
-    void Awake()
-    {
-        StartCoroutine(LoadScene((int)Scene));
-
-    }
-
-    IEnumerator LoadScene(int sceneIndex)
-    {
-        yield return null;
-
-        operation = SceneManager.LoadSceneAsync(sceneIndex);
-        operation.allowSceneActivation = false;
-
-        while (!operation.isDone)
+        public enum SceneIndexes
         {
-            yield return StartCoroutine(UpdateLoadingBar(operation.progress));
+            LOADING = 0,
+            MAINMENU = 1,
+            GAME = 2
+        }
 
-            if (slider.value >= 0.88f && !operation.allowSceneActivation)
+        [Header("Important References")]
+        [SerializeField] SceneIndexes Scene;
+        [Header("Settings")]
+        [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
+        [SerializeField] Slider slider;
+
+        private UnityEngine.AsyncOperation operation;
+
+        void Awake()
+        {
+            StartCoroutine(LoadScene((int)Scene));
+
+        }
+
+        IEnumerator LoadScene(int sceneIndex)
+        {
+            yield return null;
+
+            operation = SceneManager.LoadSceneAsync(sceneIndex);
+            operation.allowSceneActivation = false;
+
+            while (!operation.isDone)
             {
-                //start coroutine to check if save data has been loaded
-                Debug.Log("LOADED ASSETS");
-                operation.allowSceneActivation = true;
-                StartCoroutine(WaitForSaveDataToLoad());
+                yield return StartCoroutine(UpdateLoadingBar(operation.progress));
+
+                if (slider.value >= 0.88f && !operation.allowSceneActivation)
+                {
+                    //start coroutine to check if save data has been loaded
+                    Debug.Log("LOADED ASSETS");
+                    operation.allowSceneActivation = true;
+                    StartCoroutine(WaitForSaveDataToLoad());
+                    yield return null;
+                }
+
                 yield return null;
             }
-
-            yield return null;
         }
-    }
 
-    IEnumerator UpdateLoadingBar(float targetValue)
-    {
-        while (targetValue - slider.value > 0.005f)
+        IEnumerator UpdateLoadingBar(float targetValue)
         {
-            slider.value += (targetValue - slider.value) * updateSpeed;
+            while (targetValue - slider.value > 0.005f)
+            {
+                slider.value += (targetValue - slider.value) * updateSpeed;
 
-            yield return null;
+                yield return null;
+            }
         }
-    }
 
 
-    IEnumerator WaitForSaveDataToLoad()
-    {
+        IEnumerator WaitForSaveDataToLoad()
+        {
 #if !UNITY_EDITOR
         while (!IntegrationsManager.instance.socialManager.HasLoadedFromCloud())
         {
@@ -82,10 +84,11 @@ public class Loading : MonoBehaviour
                 
         }
 #endif
-        Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
-        Debug.Log("ALLOWING SCENE ACTIVATION");
-        Debug.Log("Scene Activation Allowed?: " + operation.allowSceneActivation);
-        operation.allowSceneActivation = true;
-        yield break;
+            Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
+            Debug.Log("ALLOWING SCENE ACTIVATION");
+            Debug.Log("Scene Activation Allowed?: " + operation.allowSceneActivation);
+            operation.allowSceneActivation = true;
+            yield break;
+        }
     }
 }

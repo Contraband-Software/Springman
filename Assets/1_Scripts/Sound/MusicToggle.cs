@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Architecture
+namespace Architecture.Audio
 {
 	public class MusicToggle : MonoBehaviour
 	{
