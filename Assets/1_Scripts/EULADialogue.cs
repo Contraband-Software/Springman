@@ -11,11 +11,14 @@ namespace Architecture
     {
         private void Awake()
         {
-            UserGameData.Instance.ShowEULA.AddListener(() =>
+            Debug.Log("################################################");
+            if (UserGameData.Instance.ShowEULA)
             {
                 Show();
-            });
-            gameObject.SetActive(false);
+            } else
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         public void Show()
@@ -25,12 +28,14 @@ namespace Architecture
 
         public void Accept()
         {
-            gameObject.SetActive(false);
             UserGameData.Instance.EULA_Accepted = true;
+            gameObject.SetActive(false);
         }
 
         public void Deny()
         {
+            UserGameData.Instance.EULA_Accepted = false;
+
             //shut game, delete all gamedata, hard factory reset
             DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
             dataDir.Delete(true);

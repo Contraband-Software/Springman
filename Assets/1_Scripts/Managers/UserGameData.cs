@@ -16,10 +16,9 @@ namespace Architecture.Managers
         #region EVENTS
         //Emits an event containing the current language index
         public sealed class LanguageLoadEventType : UnityEvent<int> { }
-        public LanguageLoadEventType LanguageLoadEvent { private set; get; }
-        public UnityEvent ErrorEvent { private set; get; }
-        public UnityEvent ShowEULA { private set; get; }
-        public UnityEvent RequestColourData { private set; get; }
+        public LanguageLoadEventType LanguageLoadEvent { private set; get; } = new LanguageLoadEventType();
+        public UnityEvent ErrorEvent { private set; get; } = new UnityEvent();
+        public UnityEvent RequestColourData { private set; get; } = new UnityEvent();
         #endregion
 
         #region GAME_DATA
@@ -81,11 +80,6 @@ namespace Architecture.Managers
         #region UNITY
         protected override void SingletonAwake()
         {
-            LanguageLoadEvent = new LanguageLoadEventType();
-            ErrorEvent = new UnityEvent();
-            ShowEULA = new UnityEvent();
-            RequestColourData = new UnityEvent();
-
             gameDataPath = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
 
             socialManager = IntegrationsManager.Instance.socialManager;
@@ -115,7 +109,7 @@ namespace Architecture.Managers
                 if(loadedSaveData == null){
                     DefaultDataFileSettings();
                     SaveGameData();
-                    ShowEULA.Invoke();    
+                    ShowEULA = true;  
                 }
                 else{
                     UnpackLoadedSaveDataFile(loadedSaveData);
@@ -142,9 +136,9 @@ namespace Architecture.Managers
                         bf.Serialize(localFile, saveData);
                         localFile.Close();
 
-                        Debug.Log("CREATED FIRST GAME DATA FILE");
+                        Debug.Log("E. CREATED FIRST GAME DATA FILE");
 
-                        ShowEULA.Invoke();
+                        ShowEULA = true;
                     }
                 }
                 else
@@ -292,6 +286,8 @@ namespace Architecture.Managers
         #endregion
 
         #region PUBLIC_INTERFACE
+        public bool ShowEULA { private set; get; } = false;
+
         public void SaveGameData()
         {
             SaveData data = PackSaveDataWithCurrentValues();

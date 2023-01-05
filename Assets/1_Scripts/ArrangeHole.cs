@@ -5,8 +5,6 @@ using UnityEngine;
 public class ArrangeHole : MonoBehaviour
 {
     //GAME DATA REFERENCE
-    GameData gameData;
-
     public GameObject leftFlat;
     public GameObject rightFlat;
     public GameObject leftCap;
@@ -17,7 +15,6 @@ public class ArrangeHole : MonoBehaviour
     Bounds rightBounds;
 
     public float holeWidth = 1.5f;
-
 
     private Camera cam;
     private Vector3 topRight;
@@ -39,7 +36,6 @@ public class ArrangeHole : MonoBehaviour
         leftBounds = leftCap.GetComponent<BoxCollider2D>().bounds;
         rightBounds = rightCap.GetComponent<BoxCollider2D>().bounds;
 
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
         Resize();
         PlaceFlats();
         PlaceCaps();
