@@ -108,12 +108,17 @@ namespace Architecture
             Debug.Log(loadedSaveData);
 
             //no data in loadedSaveData, but the load from cloud was succesful = save a default file onto the cloud
-            if(PlatformIntegrations.IntegrationsManager.Instance.socialManager.HasLoadedFromCloud()
-            && loadedSaveData == null){
+            if(PlatformIntegrations.IntegrationsManager.Instance.socialManager.HasLoadedFromCloud()){
                 
-                DefaultDataFileSettings();
-                SaveGameData();
-                ShowEULA.Invoke();
+                if(loadedSaveData == null){
+                    DefaultDataFileSettings();
+                    SaveGameData();
+                    ShowEULA.Invoke();    
+                }
+                else{
+                    UnpackLoadedSaveDataFile(loadedSaveData);
+                }
+                
             }
 
             ReLocalizeTexts();
@@ -128,19 +133,7 @@ namespace Architecture
 
             SaveData data = formatter.Deserialize(stream) as SaveData;
             stream.Close();
-
-            allTimeHighscore = data.highscore;
-            musicOn = data.musicOn;
-            soundsOn = data.soundsOn;
-            LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)data.langIndex;
-
-            langIndex = data.langIndex;
-            gold = data.gold;
-            silver = data.silver;
-            tutorialComplete = data.tutorialComplete;
-            ads = data.ads;
-
-            EULA_Accepted = true;
+            UnpackLoadedSaveDataFile(data);
 #endif
         }
 
@@ -168,6 +161,48 @@ namespace Architecture
             else
             {
                 ErrorEvent.Invoke();
+            }
+        }
+
+        private void UnpackLoadedSaveDataFile(SaveData data)
+        {
+            //GAMEDATA
+            allTimeHighscore = data.highscore;
+            musicOn = data.musicOn;
+            soundsOn = data.soundsOn;
+            LocalizationSystem.language = (LocalizationSystem.Language)data.langIndex;
+
+            langIndex = data.langIndex;
+            gold = data.gold;
+            silver = data.silver;
+            tutorialComplete = data.tutorialComplete;
+            ads = data.ads;
+
+            EULA_Accepted = true;
+
+            //COSMETICS DATA
+            topColor = UserGameDataHandlingUtilities.StringToColor(data.topColor);
+            bottomColor = UserGameDataHandlingUtilities.StringToColor(data.bottomColor);
+            springColor = UserGameDataHandlingUtilities.StringToColor(data.springColor);
+
+            topObject = data.topObject.V3;
+            bottomObject = data.bottomObject.V3;
+            springObject = data.springObject.V3;
+
+            playerCosmeticType = (PlayerCosmeticType)data.cosType;
+            unlockedColours = data.unlockedColours;
+            unlockedSkins = data.unlockedSkins;
+            currentSkin = data.currentSkin;
+            unlockedPremiums = data.unlockedPremiums;
+            currentSkinPremium = data.currentSkinPremium;
+            glowColours = data.glowColours;
+            hasSpecialColour = data.hasSpecialColour;
+            specialColourModes = data.specColModes;
+
+            //Ensures the premium skin name is set if the current skin is premium
+            if (currentSkinPremium)
+            {
+                activePremiumSkinName = allPremiums[allPremiumCodes.IndexOf(currentSkin)];
             }
         }
 
