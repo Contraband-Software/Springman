@@ -6,29 +6,27 @@ public class ScrewScript : MonoBehaviour
 {
     private float topTarget;
     public LeanTweenType easingType;
-    public GameData gameData;
     public AudioSource collectSound;
     private void Start()
     {
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
         topTarget = transform.position.y + 0.2f;
         LeanTween.moveY(gameObject, topTarget, 0.8f).setEase(easingType).setLoopPingPong().setIgnoreTimeScale(true);
     }
 
     public void OnCollect()
     {
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             collectSound.Play();
         }
         
         if (name == "GoldScrew" || name == "GoldScrew(Clone)")
         {
-            gameData.gold++;
+            Architecture.Managers.UserGameData.Instance.gold++;
         }
         if(name == "SilverScrew" || name == "SilverScrew(Clone)")
         {
-            gameData.silver++;
+            Architecture.Managers.UserGameData.Instance.silver++;
         }
     }
 

@@ -11,7 +11,6 @@ namespace Architecture
     {
         private void Awake()
         {
-            Debug.Log("################################################");
             if (UserGameData.Instance.ShowEULA)
             {
                 Show();

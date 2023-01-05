@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PauseButton : MonoBehaviour
 {
     public Canvas PauseMenu;
-    public GameData gameData;
     public CanvasGroup gameCanvasGroup;
     public Button pausebutton;
     public PlayerController pController;
@@ -21,10 +20,10 @@ public class PauseButton : MonoBehaviour
         PauseMenu.gameObject.SetActive(true);
         PauseMenu.enabled = true;
         Time.timeScale = 0;
-        gameData.Paused = true;
+        Architecture.Managers.GamePlay.GetReference().Paused = true;
 
         PauseMenu.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
-        gameData.SaveGameData();
+        Architecture.Managers.UserGameData.Instance.SaveGameData();
 
         LeanTween.alphaCanvas(gameCanvasGroup, 0f, 0.2f).setIgnoreTimeScale(true);
 
@@ -48,7 +47,6 @@ public class PauseButton : MonoBehaviour
     private void Start()
     {
         PauseMenu.enabled = false;
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
 
         GatherAudioSources();
         pController.revive_Reassign += ReassignPCon;
@@ -82,7 +80,7 @@ public class PauseButton : MonoBehaviour
         GatherAudioSources();
         for (int i = 0; i < audios.Length; i++)
         {
-            if (gameData.soundsOn)
+            if (Architecture.Managers.UserGameData.Instance.soundsOn)
             {
                 audios[i].UnPause();
             }

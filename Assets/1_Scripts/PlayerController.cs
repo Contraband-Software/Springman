@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 using Architecture.Audio;
+using Architecture.Managers;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Duplication Reference")]
@@ -69,8 +70,6 @@ public class PlayerController : MonoBehaviour {
 
     public Vector3 bounds;
 
-    //GameData variables
-    public GameData gamedata;
 
     // Jump Variables
     public float jumpVelocity;
@@ -214,11 +213,11 @@ public class PlayerController : MonoBehaviour {
 
 #region REMOVENEMIES
         //REMOVE ENEMIES
-        foreach (GameObject enemy in gamedata.enemiesActive)
+        foreach (GameObject enemy in GamePlay.GetReference().EnemiesActive)
         {
             Destroy(enemy);
         }
-        gamedata.enemiesActive = new List<GameObject>();
+        GamePlay.GetReference().EnemiesActive = new List<GameObject>();
 #endregion
 
         //Active other player copy
@@ -346,7 +345,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(state == State.Dead)
         {
-            deathScreenManager.DeathScreenShow(gamedata.score);
+            deathScreenManager.DeathScreenShow(GamePlay.GetReference().Score);
 
             effectCon.DeathAllEffect();//_EFFECT
 
@@ -378,7 +377,7 @@ public class PlayerController : MonoBehaviour {
     IEnumerator DelayedSaveGame()
     {
         yield return new WaitForSecondsRealtime(0.25f);
-        gamedata.SaveGameData();
+        UserGameData.Instance.SaveGameData();
     }
 
 
@@ -424,7 +423,7 @@ public class PlayerController : MonoBehaviour {
                 splashSound.volume = defaultSplashVol;
                 splashSound.volume = Mathf.Abs(lastNonZeroVelY / 20f) * splashSound.volume;
 
-                if (gamedata.soundsOn)
+                if (UserGameData.Instance.soundsOn)
                 {
                     splashSound.Play();//EFFECT
                 }
@@ -500,7 +499,7 @@ public class PlayerController : MonoBehaviour {
             deathSound.clip = death_by_spike.clip;
             deathSound.volume = death_by_spike.volume;
 
-            if (gamedata.soundsOn)
+            if (UserGameData.Instance.soundsOn)
             {
                 deathSound.Play();//EFFECT
             }
@@ -543,7 +542,7 @@ public class PlayerController : MonoBehaviour {
                     splashSound.volume = defaultSplashVol;
                     splashSound.volume = Mathf.Abs(lastNonZeroVelY / 20) * splashSound.volume;
 
-                    if (gamedata.soundsOn)
+                    if (UserGameData.Instance.soundsOn)
                     {
                         splashSound.Play();//EFFECT
                     }
@@ -555,7 +554,7 @@ public class PlayerController : MonoBehaviour {
                     splashSound.volume = defaultSplashVol;
                     splashSound.volume = Mathf.Abs(lastNonZeroVelY / 20f) * splashSound.volume;
 
-                    if (gamedata.soundsOn)
+                    if (UserGameData.Instance.soundsOn)
                     {
                         splashSound.Play();//EFFECT
                     }
@@ -605,7 +604,7 @@ public class PlayerController : MonoBehaviour {
             deathSound.clip = death_by_proj.clip;
             deathSound.volume = death_by_proj.volume;
 
-            if (gamedata.soundsOn)
+            if (UserGameData.Instance.soundsOn)
             {
                 deathSound.Play();//EFFECT
             }
@@ -843,7 +842,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(rayhit.collider.tag == "Platform" && LastPlatY < rayhit.collider.transform.position.y)
         {
-            gamedata.score++;
+            GamePlay.GetReference().Score++;
             LastPlatY = rayhit.collider.transform.position.y;
             highestPlatformHit = rayhit.collider.transform.root.gameObject;
         }

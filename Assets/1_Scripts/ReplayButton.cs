@@ -6,8 +6,6 @@ using PlatformIntegrations;
 
 public class ReplayButton : MonoBehaviour
 {
-    public GameData gameData;
-
     private AdvertisementsManager adManager;
 
     private void Start()
@@ -17,7 +15,7 @@ public class ReplayButton : MonoBehaviour
 
     public void OnClick()
     {
-        gameData.SaveGameData();
+        Architecture.Managers.UserGameData.Instance.SaveGameData();
         adManager.HideBannerAd();
         SceneManager.LoadScene("Game");
         Time.timeScale = 1;

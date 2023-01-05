@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class CollectScrewPC : MonoBehaviour
 {
-    [SerializeField]private GameData gameData;
     [SerializeField] private Animator anim;
     private int silvers;
     private int golds;
     // Start is called before the first frame update
     void Start()
     {
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
         UpdateCurrency();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(gameData.silver != silvers || gameData.gold != golds)
+        if(Architecture.Managers.UserGameData.Instance.silver != silvers || Architecture.Managers.UserGameData.Instance.gold != golds)
         {
             UpdateCurrency();
             anim.Play("pc_flash_money");
@@ -27,8 +25,8 @@ public class CollectScrewPC : MonoBehaviour
 
     private void UpdateCurrency()
     {
-        silvers = gameData.silver;
-        golds = gameData.gold;
+        silvers = Architecture.Managers.UserGameData.Instance.silver;
+        golds = Architecture.Managers.UserGameData.Instance.gold;
     }
 
     public void MoneyCollected()

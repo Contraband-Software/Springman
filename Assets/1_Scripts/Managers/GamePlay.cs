@@ -14,10 +14,15 @@ namespace Architecture.Managers
         [SerializeField] TextMeshProUGUI highscore;
         [SerializeField] CanvasGroup curtainCG;
 
-        [Header("Settings")]
+        [Header("Flying Enemy Settings")]
         [SerializeField] float highestSpawnTime = 15f;
+        public float HighestSpawnTime { get { return highestSpawnTime; } }
         [SerializeField] float lowestSpawnTime = 3f;
+        public float LowestSpawnTime { get { return lowestSpawnTime; } }
         [SerializeField] float sinGraphExaggeration = 1f;
+        public float SinGraphExaggeration { get { return sinGraphExaggeration; } }
+
+        [Header("Platform Settings")]
         [SerializeField] float CapShrinkAtScore;
 
         #region STATE
@@ -26,7 +31,7 @@ namespace Architecture.Managers
         {
             TutorialComplete = true;
         }
-        public bool AllowSlideMove { get; private set; } = true;
+        public bool AllowSlideMove { get; set; } = true;
         public int Score { get; set; } = 0;
         public bool Paused { get; set; } = false;
         public float MinPlatLength { get; set; } = 0;
@@ -34,7 +39,7 @@ namespace Architecture.Managers
         public float PlatLength { get; set; } = 0;
         public bool NextPlatIsHole { get; set; } = false;
         public int FlyingEnemiesKilled { get; set; } = 0;
-        public List<GameObject> enemiesActive { get; set; } = new List<GameObject>();
+        public List<GameObject> EnemiesActive { get; set; } = new List<GameObject>();
         #endregion
 
         Camera cam;
@@ -53,9 +58,8 @@ namespace Architecture.Managers
             CalculateMinPlatLength();
         }
 
-        public void Start()
+        void Start()
         {
-
             LeanTween.cancelAll();
             curtainCG.alpha = 1f;
             LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
@@ -102,6 +106,11 @@ namespace Architecture.Managers
             {
                 MinPlatLength = MaxPlatLength;
             }
+        }
+
+        public static GamePlay GetReference()
+        {
+            return GameObject.FindGameObjectWithTag("GameController").GetComponent<GamePlay>();
         }
     }
 }

@@ -15,8 +15,6 @@ public class Death_Effects : MonoBehaviour
     public PlayerController playerCon;
     [HideInInspector]
     public EffectController effectCon;
-    [HideInInspector]
-    public GameData gameData;
 
     [Header("Details")]
     public string deathPassiveName;
@@ -83,7 +81,7 @@ public class Death_Effects : MonoBehaviour
         {
             death_animator.Play(deathPassiveName);
         }
-        if (gameData.soundsOn && hasDeathPassiveSound)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn && hasDeathPassiveSound)
         {
             passive_death_audioSource.Play();
         }

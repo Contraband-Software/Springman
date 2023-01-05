@@ -6,12 +6,12 @@ using System;
 using System.Linq;
 
 using Architecture.Localisation;
+using Architecture.Managers;
 
 public class SlideScoreText : MonoBehaviour
 {
     public TextMeshProUGUI text;
     RectTransform textRect;
-    public GameData gameData;
 
     public RectTransform bigTextAbove;
     TextMeshProUGUI bigTextAboveText;
@@ -34,8 +34,6 @@ public class SlideScoreText : MonoBehaviour
 
     void Start()
     {
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
-
         CloseButton closeButton = GameObject.Find("Options Menu/OptionsTab/CancelButton").GetComponent<CloseButton>();
         closeButton.OnOptionsExit += OnOptionsClose;
 
@@ -70,11 +68,11 @@ public class SlideScoreText : MonoBehaviour
         if (textType == TextType.Score)
         {
             text.text = "";
-            if (gameData.currentLanguage == "arabic")
+            if (Architecture.Localisation.LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower() == "arabic")
             {
                 puretext = puretext.Remove(puretext.Length - 1);
 
-                string scoreBackwards = gameData.score.ToString();
+                string scoreBackwards = GamePlay.GetReference().Score.ToString();
                 List<string> charList = new List<string>();
                 for(int i = scoreBackwards.Length - 1; i >= 0; i--)
                 {
@@ -86,17 +84,17 @@ public class SlideScoreText : MonoBehaviour
             }
             else
             {
-                text.text = puretext + " " + gameData.score.ToString();
+                text.text = puretext + " " + GamePlay.GetReference().Score.ToString();
             }
         }
         if(textType == TextType.HS)
         {
             text.text = "";
-            if (gameData.currentLanguage == "arabic")
+            if (LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower() == "arabic")
             {
                 puretext = puretext.Remove(puretext.Length - 1);
 
-                string scoreBackwards = gameData.allTimeHighscore.ToString();
+                string scoreBackwards = UserGameData.Instance.allTimeHighscore.ToString();
                 List<string> charList = new List<string>();
                 for (int i = scoreBackwards.Length - 1; i >= 0; i--)
                 {
@@ -108,7 +106,7 @@ public class SlideScoreText : MonoBehaviour
             }
             else
             {
-                text.text = puretext + " " + gameData.allTimeHighscore.ToString();
+                text.text = puretext + " " + UserGameData.Instance.allTimeHighscore.ToString();
             }
         }
     }

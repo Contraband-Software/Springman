@@ -14,7 +14,6 @@ public class EffectController : MonoBehaviour
     public CosmeticsData cosData;
     public PlayerController playerCon;
     public GameObject premiumPlayer;
-    public GameData gameData;
 
     [Header("Sound Effect DataBase")]
     public List<Sound> death_sounds = new List<Sound>();
@@ -33,7 +32,6 @@ public class EffectController : MonoBehaviour
     void Start()
     {
         cosData = GameObject.Find("CosmeticsController").GetComponent<CosmeticsData>();
-        gameData = playerCon.gamedata;
         //check if the current skin is premium
         if (cosData.currentSkinPremium)
         {
@@ -47,7 +45,6 @@ public class EffectController : MonoBehaviour
             {
                 premium_bounce_effects.playerCon = playerCon;
                 premium_bounce_effects.effectCon = this;
-                premium_bounce_effects.gameData = gameData;
             }
 
             //DEATH
@@ -56,7 +53,6 @@ public class EffectController : MonoBehaviour
             {
                 premium_death_effects.playerCon = playerCon;
                 premium_death_effects.effectCon = this;
-                premium_death_effects.gameData = gameData;
             }
 
             //KILL FLYING
@@ -90,7 +86,7 @@ public class EffectController : MonoBehaviour
             playerCon.animator.Play(playerCon.bounce_animation);//EFFECT
             playerCon.bounceDust.Play();//EFFECT
 
-            if (gameData.soundsOn)
+            if (Architecture.Managers.UserGameData.Instance.soundsOn)
             {
                 playerCon.bounceSound.Play();//EFFECT
             }

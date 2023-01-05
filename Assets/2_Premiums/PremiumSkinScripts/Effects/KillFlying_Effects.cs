@@ -98,7 +98,6 @@ public class KillFlying_Effects : MonoBehaviour
         missileScript.target = flyingEnemyObject;
         missileScript.pCon = playerCon;
         missileScript.tapToKillReference = tapToKillReference;
-        missileScript.gameData = playerCon.gamedata;
         missileScript.playerConAnimator = artifactAnimator;
     }
 
