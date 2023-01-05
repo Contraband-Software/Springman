@@ -18,6 +18,9 @@ using PlatformIntegrations;
  * 
  * 
  */
+
+#pragma warning disable
+
 public class MenuData : MonoBehaviour
 {
     public int allTimeHighscore;

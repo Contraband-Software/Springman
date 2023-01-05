@@ -8,7 +8,7 @@ using UnityEngine.Analytics;
 public class CreatePlatforms : MonoBehaviour
 {
 	//GAMEDATA REFERENCE
-	GameData gameData;
+	Architecture.Managers.GamePlay gameData;
 
 	//Camera Variables
 	public Camera cam;
@@ -46,10 +46,10 @@ public class CreatePlatforms : MonoBehaviour
 	public float platDistance = 3f;
 
 	void Start()
-	{
-		gameData = GameObject.Find("GameController").GetComponent<GameData>();
+    {
+        gameData = Architecture.Managers.GamePlay.GetReference();
 
-		bounds = platform.transform.Find("PlatformMID").GetComponent<BoxCollider2D>().bounds;
+        bounds = platform.transform.Find("PlatformMID").GetComponent<BoxCollider2D>().bounds;
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		zeroToEdge = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)).x;
 		halfPlatSize = bounds.extents.y;
@@ -81,42 +81,42 @@ public class CreatePlatforms : MonoBehaviour
 				{
 
 					ChangePlatLength();
-					if (gameData.tutorialComplete)
+					if (Architecture.Managers.UserGameData.Instance.tutorialComplete)
 					{
 
 						//random chance to spawn a hole platform instead
 						if(rnd.Next(0, 100) < holePlatformChance)
                         {
-							gameData.nextPlatIsHole = true;
+							gameData.NextPlatIsHole = true;
                         }
 
 						if (rnd.Next(0, 2) == 1)
 						{
 							//spawns left side
-							spawnEdge = -zeroToEdge - (gameData.platLength / 2) - 0.05f;
+							spawnEdge = -zeroToEdge - (gameData.PlatLength / 2) - 0.05f;
 
 						}
 						else
 						{
 							//spawns right side
-							spawnEdge = zeroToEdge + (gameData.platLength / 2) + 0.05f;
+							spawnEdge = zeroToEdge + (gameData.PlatLength / 2) + 0.05f;
 						}
 					}
 					else
 					{
 						if(camScript.yPositions.Count() == 1)
 						{
-							spawnEdge = spawnEdge = zeroToEdge + (gameData.platLength / 2) + 0.05f;
+							spawnEdge = spawnEdge = zeroToEdge + (gameData.PlatLength / 2) + 0.05f;
 						}
 						if(camScript.yPositions.Count() == 2)
 						{
-							spawnEdge = -zeroToEdge - (gameData.platLength / 2) - 0.05f;
+							spawnEdge = -zeroToEdge - (gameData.PlatLength / 2) - 0.05f;
 						}
 					}
 					//platform = GameObject.FindWithTag("Platform");
 
 					GameObject Platform;
-                    if (!gameData.nextPlatIsHole)
+                    if (!gameData.NextPlatIsHole)
                     {
 						Platform = Instantiate(platform, new Vector3(spawnEdge, highestPlat + platDistance, 0f), new Quaternion(0f, 0f, 0f, 0f));
 					}
@@ -126,10 +126,9 @@ public class CreatePlatforms : MonoBehaviour
 					}
 
 					SlideMove sm = Platform.GetComponent<SlideMove>();
-					sm.thisPlatLength = gameData.platLength;
+					sm.thisPlatLength = gameData.PlatLength;
 					sm.player = gameObject;
 					sm.pController = pCon;
-					sm.gameData = gameData;
 					sm.mainCamera = cam.gameObject;
 					sm.cam = cam;
 				}
@@ -141,10 +140,10 @@ public class CreatePlatforms : MonoBehaviour
 	{
 		gameData.CalculateMinPlatLength();
 
-		int maxPlat = (int)Math.Truncate(gameData.maxPlatLength * 1000);
-		int minPlat = (int)Math.Truncate(gameData.minPlatLength * 1000);
+		int maxPlat = (int)Math.Truncate(gameData.MaxPlatLength * 1000);
+		int minPlat = (int)Math.Truncate(gameData.MinPlatLength * 1000);
 
-		gameData.platLength = rnd.Next(minPlat, maxPlat) / 1000f;
+		gameData.PlatLength = rnd.Next(minPlat, maxPlat) / 1000f;
 	}
 
 	public void CalculateHighestPlat()
@@ -161,13 +160,12 @@ public class CreatePlatforms : MonoBehaviour
 	{
 		ChangePlatLength();
 
-		GameObject Platform = Instantiate(platform, new Vector3(-zeroToEdge - (gameData.platLength / 2) -0.05f, firstPlatPosY, 0f), new Quaternion(0f, 0f, 0f, 0f));
+		GameObject Platform = Instantiate(platform, new Vector3(-zeroToEdge - (gameData.PlatLength / 2) -0.05f, firstPlatPosY, 0f), new Quaternion(0f, 0f, 0f, 0f));
 		SlideMove sm = Platform.GetComponent<SlideMove>();
-		sm.thisPlatLength = gameData.platLength;
+		sm.thisPlatLength = gameData.PlatLength;
 		highestPlat = firstPlatPosY;
 		sm.player = gameObject;
 		sm.pController = pCon;
-		sm.gameData = gameData;
 		sm.mainCamera = cam.gameObject;
 		sm.cam = cam;
 	}

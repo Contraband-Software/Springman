@@ -19,8 +19,6 @@ public class Bounce_Effects : MonoBehaviour
     public PlayerController playerCon;
     [HideInInspector]
     public EffectController effectCon;
-    [HideInInspector]
-    public GameData gameData;
 
     [Header("Details")]
     public float colourVariation = 0.4f;
@@ -189,7 +187,7 @@ public class Bounce_Effects : MonoBehaviour
         bounce_animator.Play("bounce");
 
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -204,7 +202,7 @@ public class Bounce_Effects : MonoBehaviour
         bounce_animator.Play("bounce_effect");
 
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -217,7 +215,7 @@ public class Bounce_Effects : MonoBehaviour
         bounce_animator.Play("bounce");
         bounce_animator.Play("bounce_alien_dude");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -229,7 +227,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -241,7 +239,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -253,7 +251,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -283,7 +281,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -295,7 +293,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -307,7 +305,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }
@@ -356,7 +354,7 @@ public class Bounce_Effects : MonoBehaviour
     {
         bounce_animator.Play("bounce");
         //Bounce Sound
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             playerCon.bounceSound.Play();
         }

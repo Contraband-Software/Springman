@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Beam : MonoBehaviour {
 
 	public Transform playerTransform;
 	public LineRenderer linerenderer;
 	public GameObject projectile;
-	public GameData gameData;
 	public SpawnFlyingEnemy spawnFEScript;
 	private Movement movementScript;
 
 	public AudioSource gunFire;
-
 
 	//Beam Variables
 	public System.Random rnd = new System.Random();
@@ -38,11 +37,14 @@ public class Beam : MonoBehaviour {
 	public float autoKillDelay;
 	//Projectile Variables
 
+	Architecture.Managers.GamePlay gameData;
+
 
 	void Start ()
 	{
-		linerenderer.useWorldSpace = true;
-		gameData = GameObject.Find("GameController").GetComponent<GameData>();
+        gameData = Architecture.Managers.GamePlay.GetReference();
+
+        linerenderer.useWorldSpace = true;
 		spawnFEScript = GameObject.Find("Player").GetComponent<SpawnFlyingEnemy>();
 		movementScript = gameObject.transform.root.GetComponent<Movement>();
 		PreDetermineShots();
@@ -80,7 +82,7 @@ public class Beam : MonoBehaviour {
 	{
 		if(score > 0)
 		{
-			score = gameData.score;
+			score = gameData.Score;
 			float percentage = (capBeamAtScore - score) / capBeamAtScore;
 
 			beamTime = Mathf.Max(minBeamTime, maxBeamTime * percentage);
@@ -173,11 +175,9 @@ public class Beam : MonoBehaviour {
 		Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, 0f);
 		GameObject spawnedProjectile = Instantiate(projectile, spawnPos, transform.rotation, null);
 
-		spawnedProjectile.GetComponent<Projectile>().gamedata = gameData;
-
 		animator.Play("Recoil");
 
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
 			gunFire.Play();
 		}
@@ -187,7 +187,7 @@ public class Beam : MonoBehaviour {
 	public void Die()
 	{
 		spawnFEScript.flyingEnemySpawned = false;
-		gameData.flyingEnemiesKilled++;
+		gameData.FlyingEnemiesKilled++;
 
 		movementScript.hovering = false;
 		movementScript.FadeHumOut();

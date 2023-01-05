@@ -8,7 +8,6 @@ public class ArtifactMissile : MonoBehaviour
     [HideInInspector] public PremSkinDetailsDemo premDetails;
     [HideInInspector] public PlayerController pCon;
     [HideInInspector] public TapToKill tapToKillReference;
-    [HideInInspector] public GameData gameData;
     [HideInInspector] public Animator playerConAnimator;
 
     [Header("Details")]
@@ -69,7 +68,7 @@ public class ArtifactMissile : MonoBehaviour
 
         AdjustEnemyEffects();
 
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             whistle_effect.Play();
         }

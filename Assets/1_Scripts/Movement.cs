@@ -42,16 +42,16 @@ public class Movement : MonoBehaviour {
 	public bool hovering = true;
 
 	[Header("GameData ref")]
-	public GameData gameData;
+	public Architecture.Managers.GamePlay gameData;
 
 	// Use this for initialization
 	void Start ()
 	{
-		gameData = GameObject.Find("GameController").GetComponent<GameData>();
+		gameData = Architecture.Managers.GamePlay.GetReference();
 
-		hoverSound.volume = 0f;
+        hoverSound.volume = 0f;
 
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
 			hoverSound.Play();
 		}
@@ -101,7 +101,7 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if(gameData.soundsOn == false)
+		if (Architecture.Managers.UserGameData.Instance.soundsOn == false)
         {
 			hoverSound.volume = 0f;
         }

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Managers;
+
 public class SpawnFlyingEnemy : MonoBehaviour {
 
 	public CameraFollow camScript;
-	public GameData gameData;
 	public Camera cam;
 	public PlayerController pController;
 	float zeroToEdge;
@@ -32,7 +33,6 @@ public class SpawnFlyingEnemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		gameData = GameObject.Find("GameController").GetComponent<GameData>();
 		pController = gameObject.GetComponent<PlayerController>();
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>();
 		camScript = cam.GetComponent<CameraFollow>();
@@ -41,7 +41,7 @@ public class SpawnFlyingEnemy : MonoBehaviour {
 
 		prevPeak = 0;
 		lastSpawnTime = Time.time;
-		timeUntilNextSpawn = gameData.highestSpawnTime;
+		timeUntilNextSpawn = GamePlay.GetReference().HighestSpawnTime;
 		nextSpawn = Time.time + timeUntilNextSpawn; //Initialises the first spawn time
 	}
 	
@@ -57,7 +57,7 @@ public class SpawnFlyingEnemy : MonoBehaviour {
 	public void PotentialFlyingEnemySpawn()
 	{
 		//Make them spawn only if they are going to be above the top most platfrom
-		if (camScript.yPositions.Count > 0 && pController.state != PlayerController.State.Dead && gameData.tutorialComplete == true)
+		if (camScript.yPositions.Count > 0 && pController.state != PlayerController.State.Dead && UserGameData.Instance.tutorialComplete == true)
 		{
 			if (CanSpawnFlyingEnemy() && flyingEnemySpawned == false)
 			{
@@ -76,7 +76,7 @@ public class SpawnFlyingEnemy : MonoBehaviour {
 				lastSpawnTime = Time.time;
 				flyingEnemySpawned = true;
 
-				gameData.enemiesActive.Add(flyingEnemy);
+                GamePlay.GetReference().EnemiesActive.Add(flyingEnemy);
 			}
 
 
@@ -106,11 +106,11 @@ public class SpawnFlyingEnemy : MonoBehaviour {
 	}
 	public void ControlSpawnRate()
 	{
-		float hst = gameData.highestSpawnTime;               //Score here will be based off of Flying Enemies Killed rather than actual game score
-		float lowest = gameData.lowestSpawnTime;
+		float hst = GamePlay.GetReference().HighestSpawnTime;               //Score here will be based off of Flying Enemies Killed rather than actual game score
+		float lowest = GamePlay.GetReference().LowestSpawnTime;
 		float highCap = hst - lowest;
-		int kills = gameData.flyingEnemiesKilled;
-		float exaggeration = gameData.sinGraphExaggeration;
+		int kills = GamePlay.GetReference().FlyingEnemiesKilled;
+		float exaggeration = GamePlay.GetReference().SinGraphExaggeration;
 
 		float graphPos;
 		float exagScore = kills * exaggeration;

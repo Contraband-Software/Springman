@@ -367,8 +367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiToClose: {fileID: 761074066}
-  menuData: {fileID: 0}
-  gameData: {fileID: 0}
 --- !u!114 &59605279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,8 +515,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &92400275
 GameObject:
@@ -571,8 +567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: music
@@ -918,8 +912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -1073,8 +1065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -1230,8 +1220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   langOrganiser: {fileID: 1349680471}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
 --- !u!114 &162048557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1356,8 +1344,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &164918971
 GameObject:
@@ -1508,8 +1494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: tapToCont
@@ -1565,8 +1549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: confirm
@@ -2523,7 +2505,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiToClose: {fileID: 1916355047}
-  gameData: {fileID: 0}
   pauseButton: {fileID: 276265459}
 --- !u!114 &254538059
 MonoBehaviour:
@@ -2555,8 +2536,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &264013623
 GameObject:
@@ -2836,15 +2815,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: italian
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 693285200}
   langSELECTED: {fileID: 1887075505}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &266129002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3087,11 +3062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d41c6b800ce4f4e833e7b285de6b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   thisText: {fileID: 0}
   valueType: 0
-  DecIncValue: 0
 --- !u!1 &273455635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,8 +3115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: confirm
@@ -3453,7 +3423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 1916355047}
-  gameData: {fileID: 0}
   gameCanvasGroup: {fileID: 908951147}
   pausebutton: {fileID: 276265456}
   pController: {fileID: 0}
@@ -3680,7 +3649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892b46bcc0c0bb6499c09618eb7c9b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 646998404}
 --- !u!114 &286231709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3711,8 +3679,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &310004782
 GameObject:
@@ -3770,15 +3736,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: english
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 508683462}
   langSELECTED: {fileID: 1774493175}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &310004785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4214,7 +4176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e5000a2d3bdba4b8af698c5168f7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 646998404}
   curtainCG: {fileID: 430724915}
 --- !u!114 &435060667
 MonoBehaviour:
@@ -4246,8 +4207,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &439094817
 GameObject:
@@ -4759,7 +4718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  gameData: {fileID: 0}
   bigTextAbove: {fileID: 1255189713}
   textType: 0
   OpenDelay: 0.1
@@ -4781,8 +4739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: highscore
@@ -5096,8 +5052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: on
@@ -5442,8 +5396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -5549,15 +5501,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: vietnamese
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 885398013}
   langSELECTED: {fileID: 1741751515}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &561276384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5859,8 +5807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -6066,8 +6012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -6269,15 +6213,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: french
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 116187671}
   langSELECTED: {fileID: 976057093}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &620331658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6555,9 +6495,10 @@ GameObject:
   m_Component:
   - component: {fileID: 646998405}
   - component: {fileID: 646998404}
+  - component: {fileID: 646998406}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6569,7 +6510,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646998403}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39967c985f4433e43b01a5661dde8cb3, type: 3}
   m_Name: 
@@ -6624,6 +6565,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &646998406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646998403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800a09d34da2927498f16aa151df16bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1158410339}
+  highscore: {fileID: 1604461180}
+  curtainCG: {fileID: 1443504466}
+  highestSpawnTime: 15
+  lowestSpawnTime: 1
+  sinGraphExaggeration: 15
+  CapShrinkAtScore: 70
 --- !u!1 &649854532
 GameObject:
   m_ObjectHideFlags: 0
@@ -6772,8 +6732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -6926,8 +6884,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -7080,8 +7036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -7234,8 +7188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -7296,15 +7248,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: spanish
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1498515266}
   langSELECTED: {fileID: 665642112}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &695768622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7547,8 +7495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -7760,15 +7706,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: german
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1613974683}
   langSELECTED: {fileID: 1945719925}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &760543483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8193,8 +8135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -8250,8 +8190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: off
@@ -8404,8 +8342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: sounds
@@ -8792,8 +8728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -9249,8 +9183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -9602,15 +9534,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: turkish
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1382799048}
   langSELECTED: {fileID: 2093723637}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &943013069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9758,7 +9686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e5000a2d3bdba4b8af698c5168f7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 646998404}
   curtainCG: {fileID: 1527800516}
 --- !u!114 &943216990
 MonoBehaviour:
@@ -9884,8 +9811,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &956288007
 GameObject:
@@ -9988,15 +9913,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: portugese
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1417290443}
   langSELECTED: {fileID: 698516828}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &961149385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10342,8 +10263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -10496,8 +10415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -10572,8 +10489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4377d7f7e9828a54c896463699a19df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   musicOnText: {fileID: 1979538876}
   ToggleON: {fileID: 535716041}
   musicOffText: {fileID: 92400278}
@@ -10704,8 +10619,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 1
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &1022769428
 GameObject:
@@ -10836,7 +10749,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  gameData: {fileID: 0}
   bigTextAbove: {fileID: 1074606815}
   textType: 0
   OpenDelay: 0.1
@@ -10955,8 +10867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: highscore
@@ -11164,8 +11074,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &1038880744
 GameObject:
@@ -11218,8 +11126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: language_current
@@ -11469,11 +11375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d41c6b800ce4f4e833e7b285de6b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   thisText: {fileID: 0}
   valueType: 1
-  DecIncValue: 0
 --- !u!1 &1074606814
 GameObject:
   m_ObjectHideFlags: 0
@@ -11525,8 +11428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: paused
@@ -11684,15 +11585,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: arabic
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1927183580}
   langSELECTED: {fileID: 147811902}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &1075896202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11923,15 +11820,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: hindi
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 590375744}
   langSELECTED: {fileID: 1620645048}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &1094719382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12336,8 +12229,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &1129670047
 GameObject:
@@ -12486,8 +12377,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!114 &1129672823
 MonoBehaviour:
@@ -12853,9 +12742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errorCanvas: {fileID: 1206171773}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
-  displayError: 0
 --- !u!1 &1251291438
 GameObject:
   m_ObjectHideFlags: 0
@@ -13124,8 +13010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: death
@@ -13211,7 +13095,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  gameData: {fileID: 0}
   bigTextAbove: {fileID: 1074606815}
   textType: 1
   OpenDelay: 0.2
@@ -13330,8 +13213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: score
@@ -13387,8 +13268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: off
@@ -13546,15 +13425,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: ukrainian
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 578853907}
   langSELECTED: {fileID: 775024095}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &1295905811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14045,8 +13920,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedLanguage: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   languages: []
 --- !u!1 &1358793215
 GameObject:
@@ -14104,15 +13977,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: malay
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 831097548}
   langSELECTED: {fileID: 649854534}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &1358793218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14355,8 +14224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -14509,8 +14376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -14739,8 +14604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -14917,8 +14780,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiToClose: {fileID: 2134269640}
-  menuData: {fileID: 0}
-  gameData: {fileID: 0}
 --- !u!114 &1445076548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15067,8 +14928,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &1461543359
 GameObject:
@@ -15411,8 +15270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: options
@@ -15662,11 +15519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d41c6b800ce4f4e833e7b285de6b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   thisText: {fileID: 0}
   valueType: 0
-  DecIncValue: 0
 --- !u!1 &1488244528
 GameObject:
   m_ObjectHideFlags: 0
@@ -15860,8 +15714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -16772,8 +16624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -16928,7 +16778,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  gameData: {fileID: 0}
   bigTextAbove: {fileID: 1255189713}
   textType: 1
   OpenDelay: 0.2
@@ -16950,8 +16799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: score
@@ -17105,8 +16952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -17167,15 +17012,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: russian
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1960317083}
   langSELECTED: {fileID: 1371478933}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &1624422243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17418,8 +17259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -17805,8 +17644,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &1725131012
 GameObject:
@@ -17859,8 +17696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: sounds
@@ -18086,7 +17921,6 @@ MonoBehaviour:
   speechBubble: {fileID: 178275895}
   speechBubbleText: {fileID: 2009332681}
   tutorialTL: {fileID: 2009332683}
-  gameData: {fileID: 646998404}
   pController: {fileID: 5005137631159096663}
   flameAnimator: {fileID: 1561387139}
   gameCanvas: {fileID: 908951145}
@@ -18164,8 +17998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: select_language
@@ -18416,8 +18248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -18693,8 +18523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: on
@@ -19350,7 +19178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892b46bcc0c0bb6499c09618eb7c9b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 646998404}
 --- !u!114 &1886013054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19475,8 +19302,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &1886620740
 GameObject:
@@ -19737,8 +19562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -20066,8 +19889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -20427,11 +20248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d41c6b800ce4f4e833e7b285de6b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   thisText: {fileID: 0}
   valueType: 1
-  DecIncValue: 0
 --- !u!1 &1927183578
 GameObject:
   m_ObjectHideFlags: 0
@@ -20581,8 +20399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -20735,8 +20551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -20797,15 +20611,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: chinese
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1910303632}
   langSELECTED: {fileID: 2093185655}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &1956719307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21048,8 +20858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -21183,8 +20991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: music
@@ -21337,8 +21143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: language
@@ -21496,15 +21300,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: indonesian
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 986009465}
   langSELECTED: {fileID: 539292027}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &2008274244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21747,8 +21547,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: tut1
@@ -22069,8 +21867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -22223,8 +22019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   language: 
   defaultStyle: 0
   key: localLang
@@ -22285,15 +22079,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storedLanguage: polish
   langOrganiser: {fileID: 0}
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   langUnselected: {fileID: 1632394872}
   langSELECTED: {fileID: 650555568}
   SELECTED: {fileID: 21300000, guid: 5ff9b20ae08869d41908d0a1a6b0d8ea, type: 3}
   UNSELECTED: {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   click_sound: {fileID: 0}
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
 --- !u!114 &2103586707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22458,8 +22248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d98b2e25c308d444b2af64608206130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 0}
-  menuData: {fileID: 0}
   soundsOnText: {fileID: 1725131015}
   ToggleON: {fileID: 1772748225}
   soundsOffText: {fileID: 796526169}
@@ -22590,8 +22378,6 @@ MonoBehaviour:
   ignoreClick: 0
   single_click: 1
   single_on_up: 0
-  menuData_Fetched: {fileID: 0}
-  gameData_Fetched: {fileID: 0}
   disabledButton: 0
 --- !u!1 &2116413544
 GameObject:

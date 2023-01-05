@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 public class SlideMove : MonoBehaviour {
 
-	public GameData gameData;
+	public Architecture.Managers.GamePlay gameData;
 
 	public Rigidbody2D rb;
 	public GameObject player;
@@ -92,7 +92,9 @@ public class SlideMove : MonoBehaviour {
 
 		sittingEnemySpawned = false;
 
-		//flyingEnemySpawned = false;
+		gameData = Architecture.Managers.GamePlay.GetReference();
+
+        //flyingEnemySpawned = false;
 }
 	void Start()
 	{
@@ -100,7 +102,7 @@ public class SlideMove : MonoBehaviour {
 		topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)); //Coords of top right corner of screen
 		bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
 
-        if (gameData.nextPlatIsHole) { isHolePlatform = true; }
+        if (gameData.NextPlatIsHole) { isHolePlatform = true; }
 
 		if (!isHolePlatform) { arrangeScript.ArrangePlatform(); }
         else { arrangeHoleScript.ArrangePlatform(); }
@@ -109,17 +111,17 @@ public class SlideMove : MonoBehaviour {
 		Visibility();
         if (!isHolePlatform) { PotentialSittingEnemySpawn(); }
 
-		if(gameData.tutorialComplete == false && transform.position.y == 1.5f)
+		if(Architecture.Managers.UserGameData.Instance.tutorialComplete == false && transform.position.y == 1.5f)
 		{
 			gameObject.name = "DemoPlatform";
 		}
-		if(gameData.tutorialComplete == false && transform.position.y == -1.5f)
+		if(Architecture.Managers.UserGameData.Instance.tutorialComplete == false && transform.position.y == -1.5f)
 		{
 			gameObject.name = "LowestPlatform";
 		}
 
 		pController.revive_Reassign += ReassignPCon;
-		gameData.nextPlatIsHole = false;
+		gameData.NextPlatIsHole = false;
 	}
 
 	public void ReassignPCon(PlayerController pCon)
@@ -139,7 +141,7 @@ public class SlideMove : MonoBehaviour {
 		WhenToDestroy();
 		//PotentialEnemySpawn
 
-		if (!gameData.Paused && pController.state == PlayerController.State.Alive && gameData.allowSlideMove == true && !disableMovement)
+		if (!gameData.Paused && pController.state == PlayerController.State.Alive && gameData.AllowSlideMove == true && !disableMovement)
 		{
 			if (Input.touchCount > 0)
 			{
@@ -243,7 +245,7 @@ public class SlideMove : MonoBehaviour {
 
 	public void RampSESpawnChance()
 	{
-		float score = gameData.score;
+		float score = gameData.Score;
 		if (score > 0)
 		{
 			float percentage = score / capChanceAtScore;
@@ -284,7 +286,7 @@ public class SlideMove : MonoBehaviour {
 
 	public void PotentialSittingEnemySpawn()
 	{
-		if(ChanceRoll(chanceToSpawnSE) && sittingEnemySpawned == false && thisPlatLength >= 1f && gameData.score > 3f)
+		if(ChanceRoll(chanceToSpawnSE) && sittingEnemySpawned == false && thisPlatLength >= 1f && gameData.Score > 3f)
 		{
 			Vector3 offset = new Vector3(transform.position.x, transform.position.y + halfPlatHeight + (sittingEnemyPrefab.GetComponent<Renderer>().bounds.size.y / 2), transform.position.z);
 			GameObject sittingEnemy = Instantiate(sittingEnemyPrefab, new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f));
@@ -299,7 +301,7 @@ public class SlideMove : MonoBehaviour {
 
 			//FLASH INDICATOR RED
 			//print("SPAWNED SITTING");
-			gameData.enemiesActive.Add(sittingEnemy);
+			gameData.EnemiesActive.Add(sittingEnemy);
 			indicatorSprite = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>();
 			FlashRed();
 		}
