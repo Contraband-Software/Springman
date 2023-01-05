@@ -254,6 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454096218}
   - component: {fileID: 454096217}
+  - component: {fileID: 454096219}
   m_Layer: 0
   m_Name: GameSystems
   m_TagString: Untagged
@@ -273,7 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18060e982e082b449915b7cfc81a8dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eulaDialogue: {fileID: 0}
+  glowColours: []
+  hasSpecialColour: 
+  specialColourModes: 
 --- !u!4 &454096218
 Transform:
   m_ObjectHideFlags: 0
@@ -289,6 +292,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454096219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454096216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2311b17634b7714c9eb02a86acd7589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Latin_Cyrillic: {fileID: 0}
+  Latin: {fileID: 0}
+  Vietnamese: {fileID: 0}
+  Chinese: {fileID: 0}
+  Hindi: {fileID: 0}
+  Arabic: {fileID: 0}
+  CurrentLanguage: 0
 --- !u!1 &539792364
 GameObject:
   m_ObjectHideFlags: 0

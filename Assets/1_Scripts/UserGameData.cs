@@ -36,43 +36,40 @@ namespace Architecture.Managers
         #endregion
 
         #region COSMETICS_DATA
-        [Header("Colour Data")]
-        [SerializeField] Color topColor;
-        [SerializeField] Color bottomColor;
-        [SerializeField] Color springColor;
+        Color topColor;
+        Color bottomColor;
+        Color springColor;
 
-        [SerializeField] Vector3 topObject;
-        [SerializeField] Vector3 bottomObject;
-        [SerializeField] Vector3 springObject;
+        Vector3 topObject;
+        Vector3 bottomObject;
+        Vector3 springObject;
 
-        [SerializeField] List<string> unlockedColours = new List<string>();
-        [SerializeField] List<string> allColours = new List<string>();
+        List<string> unlockedColours = new List<string>();
+        List<string> allColours = new List<string>();
 
-        [Header("Skin Data")]
-        [SerializeField] string currentSkin;
+        string currentSkin;
 
-        [SerializeField] SkinSpecsSolid cSpecs = new SkinSpecsSolid();
+        SkinSpecsSolid cSpecs = new SkinSpecsSolid();
 
-        [SerializeField] List<string> unlockedSkins = new List<string>();
-        [SerializeField] List<string> allSkins = new List<string>();
+        List<string> unlockedSkins = new List<string>();
+        List<string> allSkins = new List<string>();
 
-        [SerializeField] List<string> allSkinsCodes = new List<string>();
-        [SerializeField] List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
+        List<string> allSkinsCodes = new List<string>();
+        List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
 
         public enum PlayerCosmeticType { None, Color };
-        [SerializeField] PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
+        PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
 
-        [Header("Premium Skins")]
-        [SerializeField] bool currentSkinPremium = false;
-        [SerializeField] string activePremiumSkinName;
-        [SerializeField] List<string> unlockedPremiums = new List<string>();
-        [SerializeField] List<string> allPremiums = new List<string>();
-        [SerializeField] List<string> allPremiumCodes = new List<string>();
+        bool currentSkinPremium = false;
+        string activePremiumSkinName;
+        List<string> unlockedPremiums = new List<string>();
+        List<string> allPremiums = new List<string>();
+        List<string> allPremiumCodes = new List<string>();
 
         //COSMETICS PUBLIC INTERFACE
-        public List<string> glowColours = new List<string>();
-        public List<bool> hasSpecialColour = new List<bool>();
-        public List<bool> specialColourModes = new List<bool>();
+        [HideInInspector] public List<string> glowColours = new List<string>();
+        [HideInInspector] public List<bool> hasSpecialColour = new List<bool>();
+        [HideInInspector] public List<bool> specialColourModes = new List<bool>();
         #endregion
 
         string gameDataPath = "";

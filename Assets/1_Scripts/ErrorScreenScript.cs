@@ -9,7 +9,9 @@ namespace Architecture
 
     public class ErrorScreenScript : MonoBehaviour
     {
-        public Canvas errorCanvas { get; set; }
+#pragma warning disable S1104
+        public Canvas errorCanvas;
+#pragma warning restore S1104
 
         private void Start()
         {

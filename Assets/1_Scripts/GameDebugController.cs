@@ -43,13 +43,10 @@ namespace Development
 
         private void OnLevelWasLoaded(int level)
         {
-            if (level == 2)
+            if (level == 2 && spawnFlyingEnemyOnStart)
             {
-                if (spawnFlyingEnemyOnStart)
-                {
-                    GameObject fe = Instantiate(flyingEnemyPrefab);
-                    fe.transform.position = new Vector3(-1.5f, 3.1f, 0f);
-                }
+                GameObject fe = Instantiate(flyingEnemyPrefab);
+                fe.transform.position = new Vector3(-1.5f, 3.1f, 0f);
             }
         }
 
