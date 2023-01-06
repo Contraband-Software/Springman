@@ -10,12 +10,11 @@ using SimpleDiskUtils;
 
 public class CosmeticsData : MonoBehaviour
 {
-    [Header("TEST")]
+    /*[Header("TEST")]
     public Text testText;
 
     [Header("menu data")]
 
-    public MenuData menuData;
     public SkinSelector_Premium skinSelectorPremium;
 
     [Header("Colour Data")]
@@ -57,9 +56,9 @@ public class CosmeticsData : MonoBehaviour
 
     public List<string> glowColours = new List<string>();
     public List<bool> hasSpecialColour = new List<bool>();
-    public List<bool> specialColourModes = new List<bool>();
+    public List<bool> specialColourModes = new List<bool>();*/
 
-    public void Awake()
+    /*public void Awake()
     {
         CreateFirstCosDataFile();
     }
@@ -285,6 +284,6 @@ public class CosmeticsData : MonoBehaviour
     public void DisplayErrorScreen()
     {
         menuData.errorOpened = true;
-    }
+    }*/
 }
 
