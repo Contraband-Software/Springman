@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Architecture.Audio;
+using Architecture.Managers;
 
 public class Death_Effects : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class Death_Effects : MonoBehaviour
     void Start()
     {
         premDetails = gameObject.GetComponent<PremSkinDetailsDemo>();
-        premium_name = premDetails.cosData.activePremiumSkinName;
+        premium_name = UserGameData.Instance.activePremiumSkinName;
 
         //LOAD AUDIO EFFECTS
         if (hasDeathPassiveSound)

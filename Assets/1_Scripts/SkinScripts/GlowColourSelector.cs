@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 using Architecture.Managers;
+using Backend;
 
 public class GlowColourSelector : MonoBehaviour
 {
@@ -113,7 +114,7 @@ public class GlowColourSelector : MonoBehaviour
 
 
             colorChosen = colBtn.getButtonColour();
-            UserGameData.Instance.glowColours[indexOfPremium] = UserGameData.Instance.ColorToString(colorChosen); 
+            UserGameData.Instance.glowColours[indexOfPremium] = Utilities.ColorToString(colorChosen); 
 
             premDemoCon.activePremiumSkin.UpdateSkin();
         }

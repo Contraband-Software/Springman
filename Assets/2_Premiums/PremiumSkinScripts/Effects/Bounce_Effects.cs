@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Architecture.Audio;
+using Architecture.Managers;
+using Backend;
 
 public class Bounce_Effects : MonoBehaviour
 {
@@ -47,7 +49,7 @@ public class Bounce_Effects : MonoBehaviour
     public void Start()
     {
         premDetails = gameObject.GetComponent<PremSkinDetailsDemo>();
-        premium_name = premDetails.cosData.activePremiumSkinName;
+        premium_name = UserGameData.Instance.activePremiumSkinName;
 
         //Sound Loading
         Sound loadedBounceSound = playerCon.FindSound(bounceSoundName, effectCon.bounce_sounds);
@@ -326,11 +328,11 @@ public class Bounce_Effects : MonoBehaviour
         if(playerCon.state != PlayerController.State.Dead)
         {
             currentColour = premDetails.targetColor;
-            string currentColString = premDetails.cosData.ColorToString(currentColour);
+            string currentColString = Utilities.ColorToString(currentColour);
             List<string> colourChoicesString = new List<string>();
             foreach (Color col in premDetails.colorChoices)
             {
-                colourChoicesString.Add(premDetails.cosData.ColorToString(col));
+                colourChoicesString.Add(Utilities.ColorToString(col));
             }
 
             int currentIndex = colourChoicesString.IndexOf(currentColString);

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Backend;
+
 public class ArtifactMissile : MonoBehaviour
 {
     [Header("Important References")]
@@ -258,12 +260,12 @@ public class ArtifactMissile : MonoBehaviour
 
     private void ChangeColourToSkin()
     {
-        string targetColString = premDetails.cosData.ColorToString(premDetails.targetColor);
+        string targetColString = Utilities.ColorToString(premDetails.targetColor);
         List<string> colourChoicesString = new List<string>();
 
         foreach (Color col in premDetails.colorChoices)
         {
-            colourChoicesString.Add(premDetails.cosData.ColorToString(col));
+            colourChoicesString.Add(Utilities.ColorToString(col));
         }
 
         int colourIndex = colourChoicesString.IndexOf(targetColString);
