@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 using Architecture.Localisation;
+using Architecture.Managers;
 
 public class BuyAdsSkinCon : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class BuyAdsSkinCon : MonoBehaviour
     public List<string> possiblePurchases;
 
     [Header("Misc References")]
-    public CosmeticsData cosmeticsData;
     public SkinsController skinsController;
     public CosmeticsMenuController cosMenuCon;
 
@@ -39,7 +39,7 @@ public class BuyAdsSkinCon : MonoBehaviour
         possiblePurchases = new List<string>();
         foreach (string skinID in selector.tabSkinCodes)
         {
-            if (!cosmeticsData.unlockedSkins.Contains(skinID) && !possiblePurchases.Contains(skinID))
+            if (!Architecture.Managers.UserGameData.Instance.unlockedSkins.Contains(skinID) && !possiblePurchases.Contains(skinID))
             {
                 possiblePurchases.Add(skinID);
             }
@@ -52,12 +52,10 @@ public class BuyAdsSkinCon : MonoBehaviour
         int purchaseIndex = rnd.Next(0, possiblePurchases.Count);
         unlockedSkin = possiblePurchases[purchaseIndex];
 
-        cosmeticsData.unlockedSkins.Add(unlockedSkin);
+        Architecture.Managers.UserGameData.Instance.unlockedSkins.Add(unlockedSkin);
 
-        cosmeticsData.SaveCosData();
+        Architecture.Managers.UserGameData.Instance.SaveGameData();
         skinsController.OpenNewTab(cosMenuCon.canvases[0].name);
-
-        cosmeticsData.menuData.SaveGameData();
         /*
         else
         {
@@ -72,7 +70,7 @@ public class BuyAdsSkinCon : MonoBehaviour
 
     public void ChangeToUnlockedSkin()
     {
-        unlockedSkinDemo.sprite = cosmeticsData.allSkinSpecs[cosmeticsData.allSkinsCodes.IndexOf(unlockedSkin)].demoSkin;
+        unlockedSkinDemo.sprite = Architecture.Managers.UserGameData.Instance.allSkinSpecs[Architecture.Managers.UserGameData.Instance.allSkinsCodes.IndexOf(unlockedSkin)].demoSkin;
         var topcolor = top.color;
         var fadeOutColor = topcolor;
         fadeOutColor.a = 0f;

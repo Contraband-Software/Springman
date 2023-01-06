@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Cosmetics")]
     public CosmeticsController cosCon;
-    public CosmeticsData cosData;
 
     public SpriteRenderer skinTopSprite;
     public SpriteRenderer eyesSprite;
@@ -160,13 +159,13 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         //loads standard bounce anim and sound
-        bounce_animation = cosData.cSpecs.bounce_anim;//EFFECT
+        bounce_animation = UserGameData.Instance.cSpecs.bounce_anim;//EFFECT
         firstLanding = false;
         splashed = false;
 
         loadedInAt = Time.time;
 
-        alternative_bounce_sound = cosData.cSpecs.alt_BounceSound;//EFFECT
+        alternative_bounce_sound = UserGameData.Instance.cSpecs.alt_BounceSound;//EFFECT
         Sound loaded_BounceSound;
         if(alternative_bounce_sound != null && alternative_bounce_sound != "")
         {
@@ -177,7 +176,7 @@ public class PlayerController : MonoBehaviour {
             loaded_BounceSound = FindSound(bounce_animation, effectCon.bounce_sounds);
         }
 
-        if (!cosData.currentSkinPremium)
+        if (!UserGameData.Instance.currentSkinPremium)
         {
             bounceSound.clip = loaded_BounceSound.clip;
             bounceSound.volume = loaded_BounceSound.volume;
@@ -349,9 +348,9 @@ public class PlayerController : MonoBehaviour {
 
             effectCon.DeathAllEffect();//_EFFECT
 
-            if(cosData.cSpecs.eyes_death != null)
+            if(UserGameData.Instance.cSpecs.eyes_death != null)
             {
-                eyesSprite.sprite = cosData.cSpecs.eyes_death;
+                eyesSprite.sprite = UserGameData.Instance.cSpecs.eyes_death;
             }
             if (!gameSaved)
             {
@@ -650,10 +649,10 @@ public class PlayerController : MonoBehaviour {
             }
         }
         
-        if(xLoc > transform.position.x && cosData.cSpecs.skin_name != "imposter") //next target RIGHT
+        if(xLoc > transform.position.x && UserGameData.Instance.cSpecs.skin_name != "imposter") //next target RIGHT
         {
             eyesSprite.flipX = true;
-            if (cosData.cSpecs.skin_Top_Flippable)
+            if (UserGameData.Instance.cSpecs.skin_Top_Flippable)
             {
                 skinTopSprite.flipX = true;
 
@@ -663,10 +662,10 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if(xLoc < transform.position.x && cosData.cSpecs.skin_name != "imposter")
+        if(xLoc < transform.position.x && UserGameData.Instance.cSpecs.skin_name != "imposter")
         {
             eyesSprite.flipX = false;
-            if (cosData.cSpecs.skin_Top_Flippable)
+            if (UserGameData.Instance.cSpecs.skin_Top_Flippable)
             {
                 skinTopSprite.flipX = false;
 

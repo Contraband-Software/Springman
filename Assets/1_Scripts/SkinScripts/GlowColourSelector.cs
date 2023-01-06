@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using Architecture.Managers;
+
 public class GlowColourSelector : MonoBehaviour
 {
     [SerializeField] private List<GameObject> coloursButtons = new List<GameObject>();
@@ -11,7 +13,6 @@ public class GlowColourSelector : MonoBehaviour
 
 
     [SerializeField] private PremiumDemoContoller premDemoCon;
-    [SerializeField] private CosmeticsData cosData;
 
     [SerializeField] private GameObject colourChoiceParent;
     [SerializeField] private Sprite colourShiftImage;
@@ -32,22 +33,22 @@ public class GlowColourSelector : MonoBehaviour
     //grabs premDetails and sets all colour options to match premiums colour variants
     public void UpdateColourOptions()
     {
-        if (!cosData.currentSkinPremium)
+        if (!UserGameData.Instance.currentSkinPremium)
         {
             return;
         }
 
         //if different skin to last time, change potentially colour shift button sprite back to normal
-        if (lastPremiumName != null && lastPremiumName != cosData.activePremiumSkinName)
+        if (lastPremiumName != null && lastPremiumName != UserGameData.Instance.activePremiumSkinName)
         {
             colourBtnImages[currentOptionsCount - 1].sprite = basicBtnImage;
             colourBtnImages[currentOptionsCount - 1].color = Color.white;
         }
-        lastPremiumName = cosData.activePremiumSkinName;
+        lastPremiumName = UserGameData.Instance.activePremiumSkinName;
 
         int skinColourChoicesCount = premDemoCon.activePremiumSkin.colorChoices.Count;
         bool hasSpecialColourMode = false;
-        lastPremiumName = cosData.activePremiumSkinName;
+        lastPremiumName = UserGameData.Instance.activePremiumSkinName;
 
         if (premDemoCon.activePremiumSkin.hasSpecialColourMode)
         {
@@ -100,25 +101,25 @@ public class GlowColourSelector : MonoBehaviour
         //convert to a string to swap into glow colours array
         //feed into the premdetails and update the demo
 
-        int indexOfPremium = cosData.allPremiums.IndexOf(cosData.activePremiumSkinName);
+        int indexOfPremium = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
         if (!colBtn.isColorShiftButton())
         {
 
             if (premDemoCon.activePremiumSkin.hasSpecialColourMode)
             {
-                cosData.specialColourModes[indexOfPremium] = false;
+                UserGameData.Instance.specialColourModes[indexOfPremium] = false;
                 premDemoCon.activePremiumSkin.colourShift = false;
             }
 
 
             colorChosen = colBtn.getButtonColour();
-            cosData.glowColours[indexOfPremium] = cosData.ColorToString(colorChosen); 
+            UserGameData.Instance.glowColours[indexOfPremium] = UserGameData.Instance.ColorToString(colorChosen); 
 
             premDemoCon.activePremiumSkin.UpdateSkin();
         }
         else
         {
-            cosData.specialColourModes[indexOfPremium] = true;
+            UserGameData.Instance.specialColourModes[indexOfPremium] = true;
             premDemoCon.activePremiumSkin.colourShift = true;
         }
     }

@@ -35,35 +35,35 @@ namespace Architecture.Managers
         #endregion
 
         #region COSMETICS_DATA
-        Color topColor;
-        Color bottomColor;
-        Color springColor;
+        public Color topColor;
+        public Color bottomColor;
+        public Color springColor;
 
-        Vector3 topObject;
-        Vector3 bottomObject;
-        Vector3 springObject;
+        public Vector3 topObject;
+        public Vector3 bottomObject;
+        public Vector3 springObject;
 
-        List<string> unlockedColours = new List<string>();
-        List<string> allColours = new List<string>();
+        public List<string> unlockedColours = new List<string>();
+        public List<string> allColours = new List<string>();
 
-        string currentSkin;
+        public string currentSkin;
 
-        SkinSpecsSolid cSpecs = new SkinSpecsSolid();
+        public SkinSpecsSolid cSpecs = new SkinSpecsSolid();
 
-        List<string> unlockedSkins = new List<string>();
-        List<string> allSkins = new List<string>();
+        public List<string> unlockedSkins = new List<string>();
+        public List<string> allSkins = new List<string>();
 
-        List<string> allSkinsCodes = new List<string>();
-        List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
+        public List<string> allSkinsCodes = new List<string>();
+        public List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
 
         public enum PlayerCosmeticType { None, Color };
-        PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
+        public PlayerCosmeticType playerCosmeticType = PlayerCosmeticType.None;
 
-        bool currentSkinPremium = false;
-        string activePremiumSkinName;
-        List<string> unlockedPremiums = new List<string>();
-        List<string> allPremiums = new List<string>();
-        List<string> allPremiumCodes = new List<string>();
+        public bool currentSkinPremium = false;
+        public string activePremiumSkinName;
+        public List<string> unlockedPremiums = new List<string>();
+        public List<string> allPremiums = new List<string>();
+        public List<string> allPremiumCodes = new List<string>();
 
         //COSMETICS PUBLIC INTERFACE
         [HideInInspector] public List<string> glowColours { get; set; } = new List<string>();
@@ -267,8 +267,6 @@ namespace Architecture.Managers
 
             RequestColourData.Invoke();
 
-            //skinSelectorPremium.CollectGlowColours(); RequestColourData.Invoke() does this to avoid needing a reference
-
             playerCosmeticType = PlayerCosmeticType.Color;
             topColor = Color.white;
             bottomColor = Color.white;
@@ -344,6 +342,15 @@ namespace Architecture.Managers
                 //killing an app without saving could be dangerous. Potential of losing a premium purchase
             }
 #endif
+        }
+
+        /// <summary>
+        /// Setter for the current skin ID, which is a fucking public variable lol
+        /// </summary>
+        /// <param name="ID"></param>
+        public void HardPassSkinID(string ID)
+        {
+            currentSkin = ID;
         }
         #endregion
     }

@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Architecture.Managers;
+using Backend;
 
 public class SkinSelector_Premium : MonoBehaviour
 {
     [Header("Important References")]
-    public CosmeticsData cosmeticsData;
     public SkinsController skinsCon;
     public CosmeticsMenuController cosMenuCon;
 
@@ -57,8 +57,8 @@ public class SkinSelector_Premium : MonoBehaviour
                 premTabSkinCodes.Add(premSI.ID);
                 premTabSkinNames.Add(premSI.skin_name);
             }
-            cosmeticsData.allPremiums = premTabSkinNames;
-            cosmeticsData.allPremiumCodes = premTabSkinCodes;
+            UserGameData.Instance.allPremiums = premTabSkinNames;
+            UserGameData.Instance.allPremiumCodes = premTabSkinCodes;
             tabSkinsCollected = true;
         }
     }
@@ -74,7 +74,7 @@ public class SkinSelector_Premium : MonoBehaviour
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
             glowColoursGathered.Add(Backend.Utilities.ColorToString(premDemo.targetColor));
-            //print(premDemo.name + ": "+ cosmeticsData.ColorToString(premDemo.targetColor));
+            //print(premDemo.name + ": "+ UserGameData.Instance.ColorToString(premDemo.targetColor));
 
             hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
             sCMgathered.Add(premDemo.colourShift);
@@ -99,7 +99,7 @@ public class SkinSelector_Premium : MonoBehaviour
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
-            premDemo.targetColor = cosmeticsData.StringToColor(UserGameData.Instance.glowColours[child]);
+            premDemo.targetColor = Utilities.StringToColor(UserGameData.Instance.glowColours[child]);
             premDemo.hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[child];
             premDemo.colourShift = UserGameData.Instance.specialColourModes[child];
         }
@@ -262,9 +262,9 @@ public class SkinSelector_Premium : MonoBehaviour
     
     public void SendSkinDetailsToController()
     {
-        if (cosmeticsData.unlockedPremiums.Contains(selectedSkin.ID))
+        if (UserGameData.Instance.unlockedPremiums.Contains(selectedSkin.ID))
         {
-            cosmeticsData.currentSkinPremium = true;
+            UserGameData.Instance.currentSkinPremium = true;
 
             skinsCon.currentObject = selectedObject;
             skinsCon.currentSkinID = selectedSkin.ID;

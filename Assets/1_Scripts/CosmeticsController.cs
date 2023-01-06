@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class CosmeticsController : MonoBehaviour
 {
-    public CosmeticsData cosData;
     public SkinSpawner skinSpawner;
     private Scene currentScene;
 
@@ -33,7 +32,7 @@ public class CosmeticsController : MonoBehaviour
 
         //if (currentScene.name == "Game")
         //{
-        //    springSprite.color = cosData.springColor;
+        //    springSprite.color = Architecture.Managers.UserGameData.Instance.springColor;
         //}
     }
 
@@ -44,13 +43,12 @@ public class CosmeticsController : MonoBehaviour
         {
             GameObject player = GameObject.Find("Player");
             player.GetComponent<PlayerController>().cosCon = this;
-            player.GetComponent<PlayerController>().cosData = gameObject.GetComponent<CosmeticsData>();
             topSkinSprite = player.GetComponent<SpriteRenderer>();
             eyesSprite = GameObject.Find("Player/Eyes").GetComponent<SpriteRenderer>();
             topSprite = GameObject.Find("Player/Base").GetComponent<SpriteRenderer>();
             bottomSprite = GameObject.Find("Player/PlayerBottom").GetComponent<SpriteRenderer>();
             springSprite = GameObject.Find("Player/PlayerBottom/Spring").GetComponent<SpriteRenderer>();
-            springSprite.color = cosData.springColor;
+            springSprite.color = Architecture.Managers.UserGameData.Instance.springColor;
 
             LoadCosmeticValues();
         }
@@ -60,12 +58,12 @@ public class CosmeticsController : MonoBehaviour
     {
         if(currentScene.name == "Game")
         {
-            if (!cosData.currentSkinPremium)
+            if (!Architecture.Managers.UserGameData.Instance.currentSkinPremium)
             {
-                cosData.cSpecs = cosData.allSkinSpecs[cosData.allSkinsCodes.IndexOf(cosData.currentSkin)];
-                SkinSpecsSolid cSpecs = cosData.cSpecs;
+                Architecture.Managers.UserGameData.Instance.cSpecs = Architecture.Managers.UserGameData.Instance.allSkinSpecs[Architecture.Managers.UserGameData.Instance.allSkinsCodes.IndexOf(Architecture.Managers.UserGameData.Instance.currentSkin)];
+                SkinSpecsSolid cSpecs = Architecture.Managers.UserGameData.Instance.cSpecs;
 
-                //print(cosData.cSpecs.altBounceSound);
+                //print(Architecture.Managers.UserGameData.Instance.cSpecs.altBounceSound);
 
                 if (!cSpecs.alt_base)
                 {
@@ -114,7 +112,7 @@ public class CosmeticsController : MonoBehaviour
             }
             else
             {
-                skinSpawner.SpawnPremium(cosData.activePremiumSkinName);
+                skinSpawner.SpawnPremium(Architecture.Managers.UserGameData.Instance.activePremiumSkinName);
             }
             
         }
@@ -124,7 +122,7 @@ public class CosmeticsController : MonoBehaviour
     {
         if (cSpecs.colour_changeable_top)
         {
-            topSprite.color = cosData.topColor;
+            topSprite.color = Architecture.Managers.UserGameData.Instance.topColor;
         }
         else
         {
@@ -133,7 +131,7 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_changeable_bottom)
         {
-            bottomSprite.color = cosData.bottomColor;
+            bottomSprite.color = Architecture.Managers.UserGameData.Instance.bottomColor;
         }
         else
         {
@@ -142,7 +140,7 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_changeable_eyes)
         {
-            eyesSprite.color = cosData.topColor;
+            eyesSprite.color = Architecture.Managers.UserGameData.Instance.topColor;
         }
         else
         {
@@ -151,14 +149,14 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_top_equal_to_bottom)
         {
-            bottomSprite.color = cosData.topColor;
+            bottomSprite.color = Architecture.Managers.UserGameData.Instance.topColor;
         }
         else
         {
             bottomSprite.color = bottomSprite.color;
         }
 
-        springSprite.color = cosData.springColor;
+        springSprite.color = Architecture.Managers.UserGameData.Instance.springColor;
         topSkinSprite.color = Color.white;
     }
 

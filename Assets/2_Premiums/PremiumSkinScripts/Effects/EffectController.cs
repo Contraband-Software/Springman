@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Architecture.Audio;
+using Architecture.Managers;
 
 public class EffectController : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class EffectController : MonoBehaviour
 
     //this script should have references to the sound database used in PlayerController, as well as references to default effects.
     [Header("Important References")]
-    public CosmeticsData cosData;
     public PlayerController playerCon;
     public GameObject premiumPlayer;
 
@@ -31,12 +31,11 @@ public class EffectController : MonoBehaviour
          
     void Start()
     {
-        cosData = GameObject.Find("CosmeticsController").GetComponent<CosmeticsData>();
         //check if the current skin is premium
-        if (cosData.currentSkinPremium)
+        if (UserGameData.Instance.currentSkinPremium)
         {
             premiumSkinActive = true;
-            premiumPlayer = GameObject.Find("Player/" + (cosData.activePremiumSkinName + "(Clone)"));
+            premiumPlayer = GameObject.Find("Player/" + (UserGameData.Instance.activePremiumSkinName + "(Clone)"));
 
 
             //BOUNCE

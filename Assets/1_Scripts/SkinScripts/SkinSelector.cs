@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Architecture.Managers;
+
 public class SkinSelector : MonoBehaviour
 {
     public RectTransform masterCanvasRect;
     public RectTransform maskRect;
-    public CosmeticsData cosmeticsData;
     public SkinsController skinsCon;
     public CosmeticsMenuController cosMenuCon;
 
@@ -84,9 +85,9 @@ public class SkinSelector : MonoBehaviour
                 //
                 tabSkinSpecs.Add(copiedSpecs);
             }
-            cosmeticsData.allSkins.AddRange(tabSkins);
-            cosmeticsData.allSkinSpecs.AddRange(tabSkinSpecs);
-            cosmeticsData.allSkinsCodes.AddRange(tabSkinCodes);
+            UserGameData.Instance.allSkins.AddRange(tabSkins);
+            UserGameData.Instance.allSkinSpecs.AddRange(tabSkinSpecs);
+            UserGameData.Instance.allSkinsCodes.AddRange(tabSkinCodes);
             tabSkinsCollected = true;
         }
     }
@@ -241,9 +242,9 @@ public class SkinSelector : MonoBehaviour
 
     public void SendSkinDetailsToController()
     {
-        if (cosmeticsData.unlockedSkins.Contains(selectedSkin.ID))
+        if (UserGameData.Instance.unlockedSkins.Contains(selectedSkin.ID))
         {
-            cosmeticsData.currentSkinPremium = false;
+            UserGameData.Instance.currentSkinPremium = false;
 
 
             skinsCon.currentSkin = selectedSkin;
@@ -259,7 +260,7 @@ public class SkinSelector : MonoBehaviour
             skinsCon.prevSelectedImage.color = onSelectColour;
 
             skinsCon.SendData();
-            cosmeticsData.activePremiumSkinName = null;
+            UserGameData.Instance.activePremiumSkinName = null;
             cosMenuCon.UpdateDemo();
         }
     }

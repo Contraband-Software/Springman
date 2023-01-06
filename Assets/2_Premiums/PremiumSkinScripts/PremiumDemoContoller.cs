@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Managers;
+
 public class PremiumDemoContoller : MonoBehaviour
 {
-    public CosmeticsData cosData;
     public PremSkinDetailsDemo activePremiumSkin;
     public GameObject AllPremiumDemos;
     public List<GameObject> DemoObjects = new List<GameObject>();
@@ -22,7 +23,7 @@ public class PremiumDemoContoller : MonoBehaviour
     {
         HidePremiumSkin();
 
-        int indexOfPremium = cosData.allPremiums.IndexOf(cosData.activePremiumSkinName);
+        int indexOfPremium = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
         DemoObjects[indexOfPremium].gameObject.SetActive(true);
         activePremiumSkin = DemoObjects[indexOfPremium].gameObject.GetComponent<PremSkinDetailsDemo>();
         activePremiumSkin.UpdateSkin();

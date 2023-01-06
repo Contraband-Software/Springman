@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Architecture.Localisation;
+using Architecture.Managers;
 using Architecture;
 
 public class ConfirmBuySkin : MonoBehaviour
@@ -16,7 +17,6 @@ public class ConfirmBuySkin : MonoBehaviour
     public PurchaseType purchaseType;
 
     [Header("Misc References")]
-    public CosmeticsData cosmeticsData;
     public SkinsController skinsController;
     public RectTransform masterCanvasRect;
     public CosmeticsMenuController cosMenuCon;
@@ -85,7 +85,7 @@ public class ConfirmBuySkin : MonoBehaviour
         possiblePurchases = new List<string>();
         foreach (string skinID in selector.tabSkinCodes)
         {
-            if (!cosmeticsData.unlockedSkins.Contains(skinID) && !possiblePurchases.Contains(skinID))
+            if (!UserGameData.Instance.unlockedSkins.Contains(skinID) && !possiblePurchases.Contains(skinID))
             {
                 possiblePurchases.Add(skinID);
             }
@@ -104,13 +104,12 @@ public class ConfirmBuySkin : MonoBehaviour
             int purchaseIndex = rnd.Next(0, possiblePurchases.Count);
             unlockedSkin = possiblePurchases[purchaseIndex];
 
-            cosmeticsData.unlockedSkins.Add(unlockedSkin);
+            UserGameData.Instance.unlockedSkins.Add(unlockedSkin);
 
-            cosmeticsData.SaveCosData();
             skinsController.OpenNewTab(cosMenuCon.canvases[0].name);
 
             ChangeCurrencyValues();
-            cosmeticsData.menuData.SaveGameData();
+            UserGameData.Instance.SaveGameData();
 
             FadeButtonOut();
             MoveToCentre();
@@ -182,7 +181,7 @@ public class ConfirmBuySkin : MonoBehaviour
 
     public void ChangeToUnlockedSkin()
     {
-        unlockedSkinDemo.sprite = cosmeticsData.allSkinSpecs[cosmeticsData.allSkinsCodes.IndexOf(unlockedSkin)].demoSkin;
+        unlockedSkinDemo.sprite = UserGameData.Instance.allSkinSpecs[UserGameData.Instance.allSkinsCodes.IndexOf(unlockedSkin)].demoSkin;
         var topcolor = top.color;
         var fadeOutColor = topcolor;
         fadeOutColor.a = 0f;

@@ -14,7 +14,6 @@ public class ConfirmBuyColour : MonoBehaviour
     public List<string> possiblePurchases;
 
     [Header("Misc References")]
-    public CosmeticsData cosmeticsData;
     public ColoursController coloursController;
     public RectTransform masterCanvasRect;
     public CosmeticsMenuController cosMenuCon;
@@ -79,9 +78,9 @@ public class ConfirmBuyColour : MonoBehaviour
     public void PopulatePossiblePurchases()
     {
         possiblePurchases = new List<string>();
-        foreach (string color in cosmeticsData.allColours)
+        foreach (string color in Architecture.Managers.UserGameData.Instance.allColours)
         {
-            if (!cosmeticsData.unlockedColours.Contains(color) && !possiblePurchases.Contains(color))
+            if (!Architecture.Managers.UserGameData.Instance.unlockedColours.Contains(color) && !possiblePurchases.Contains(color))
             {
                 possiblePurchases.Add(color);
             }
@@ -97,16 +96,15 @@ public class ConfirmBuyColour : MonoBehaviour
 
             System.Random rnd = new System.Random();
             int purchaseIndex = rnd.Next(0, possiblePurchases.Count);
-            unlockedColor = cosmeticsData.StringToColor(possiblePurchases[purchaseIndex]);
+            unlockedColor = Backend.Utilities.StringToColor(possiblePurchases[purchaseIndex]);
 
             string colorAsString = possiblePurchases[purchaseIndex];
-            cosmeticsData.unlockedColours.Add(colorAsString);
+            Architecture.Managers.UserGameData.Instance.unlockedColours.Add(colorAsString);
 
-            cosmeticsData.SaveCosData();
             coloursController.LockedColours();
 
             ChangeCurrencyValues();
-            cosmeticsData.menuData.SaveGameData();
+            Architecture.Managers.UserGameData.Instance.SaveGameData();
 
             FadeButtonOut();
             MoveToCentre();
@@ -122,7 +120,6 @@ public class ConfirmBuyColour : MonoBehaviour
 
     public void ChangeCurrencyValues()
     {
-        Debug.Log("C-b-c");
         Architecture.Managers.UserGameData.Instance.silver -= cost;
         silverUpdateVal.CurrencyChangeDetails(UpdateValue.ValueType.Silver);
     }

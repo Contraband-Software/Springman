@@ -16,7 +16,6 @@ public class SkinSpawner : MonoBehaviour
         spawnedSkin.transform.position = new Vector3(0f, 1f, 0f);
         InGamePremCon gamePremCon = GameObject.Find("GameExclusivePremiumController").GetComponent<InGamePremCon>();
         gamePremCon.spawnedSkin = spawnedSkin;
-        gamePremCon.spawnedSkin.GetComponent<PremSkinDetailsDemo>().cosData = cosData;
         gamePremCon.ApplySkin();
         gamePremCon.skinIndex = skinIndex;
     }

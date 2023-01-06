@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Architecture.Managers;
+using Backend;
+
 public class PremSkinDetailsDemo : MonoBehaviour
 {
     public int skinIndex;
     [Header("Important References")]
-    public CosmeticsData cosData;
 
     [Header("Base")]
     public List<Image> TopPieces = new List<Image>();
@@ -52,13 +54,13 @@ public class PremSkinDetailsDemo : MonoBehaviour
 
     public void UpdateSkin()
     {
-        skinIndex = cosData.allPremiums.IndexOf(cosData.activePremiumSkinName);
-        targetColor = cosData.StringToColor(cosData.glowColours[skinIndex]);
+        skinIndex = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
+        targetColor = Utilities.StringToColor(UserGameData.Instance.glowColours[skinIndex]);
 
-        hasSpecialColourMode = cosData.hasSpecialColour[skinIndex];
+        hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[skinIndex];
         if (hasSpecialColourMode)
         {
-            colourShift = cosData.specialColourModes[skinIndex];
+            colourShift = UserGameData.Instance.specialColourModes[skinIndex];
         }
 
         if (!forGame)
@@ -96,15 +98,15 @@ public class PremSkinDetailsDemo : MonoBehaviour
     {
         foreach(Image element in TopPieces)
         {
-            element.color = cosData.topColor;
+            element.color = UserGameData.Instance.topColor;
         }
         foreach (Image element in BottomPieces)
         {
-            element.color = cosData.bottomColor;
+            element.color = UserGameData.Instance.bottomColor;
         }
         foreach (Image element in SpringPieces)
         {
-            element.color = cosData.springColor;
+            element.color = UserGameData.Instance.springColor;
         }
     }
 
@@ -121,12 +123,12 @@ public class PremSkinDetailsDemo : MonoBehaviour
         element_variants.Add(Element7_Variants);
 
 
-        string targetColString = cosData.ColorToString(targetColor);
+        string targetColString = Utilities.ColorToString(targetColor);
         List<string> colourChoicesString = new List<string>();
 
         foreach(Color col in colorChoices)
         {
-            colourChoicesString.Add(cosData.ColorToString(col));
+            colourChoicesString.Add(Utilities.ColorToString(col));
         }
 
         int colourIndex = colourChoicesString.IndexOf(targetColString);
@@ -151,15 +153,15 @@ public class PremSkinDetailsDemo : MonoBehaviour
     {
         foreach (SpriteRenderer element in TopPieces_)
         {
-            element.color = cosData.topColor;
+            element.color = UserGameData.Instance.topColor;
         }
         foreach (SpriteRenderer element in BottomPieces_)
         {
-            element.color = cosData.bottomColor;
+            element.color = UserGameData.Instance.bottomColor;
         }
         foreach (SpriteRenderer element in SpringPieces_)
         {
-            element.color = cosData.springColor;
+            element.color = UserGameData.Instance.springColor;
         }
     }
     public void ChangeGlowColour_Game()
@@ -175,12 +177,12 @@ public class PremSkinDetailsDemo : MonoBehaviour
         element_variants.Add(Element7_Variants);
 
 
-        string targetColString = cosData.ColorToString(targetColor);
+        string targetColString = Utilities.ColorToString(targetColor);
         List<string> colourChoicesString = new List<string>();
 
         foreach (Color col in colorChoices)
         {
-            colourChoicesString.Add(cosData.ColorToString(col));
+            colourChoicesString.Add(Utilities.ColorToString(col));
         }
 
         int colourIndex = colourChoicesString.IndexOf(targetColString);
