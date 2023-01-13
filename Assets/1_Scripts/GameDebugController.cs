@@ -41,14 +41,14 @@ namespace Development
         //    return alwaysFirstRun;
         //}
 
-        private void OnLevelWasLoaded(int level)
+        /*private void OnLevelWasLoaded(int level)
         {
             if (level == 2 && spawnFlyingEnemyOnStart)
             {
                 GameObject fe = Instantiate(flyingEnemyPrefab);
                 fe.transform.position = new Vector3(-1.5f, 3.1f, 0f);
             }
-        }
+        }*/
 
         protected override void SingletonAwake()
         {

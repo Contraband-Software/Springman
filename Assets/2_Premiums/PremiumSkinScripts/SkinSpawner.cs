@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Managers;
+
 public class SkinSpawner : MonoBehaviour
 {
     public CosmeticsData cosData;
@@ -11,7 +13,7 @@ public class SkinSpawner : MonoBehaviour
     private GameObject playerRef;
     public void SpawnPremium(string skin_name)
     {
-        int skinIndex = cosData.allPremiums.IndexOf(skin_name);
+        int skinIndex = UserGameData.Instance.allPremiums.IndexOf(skin_name);
         GameObject spawnedSkin = Instantiate(AllPremiumPrefabs[skinIndex], null);
         spawnedSkin.transform.position = new Vector3(0f, 1f, 0f);
         InGamePremCon gamePremCon = GameObject.Find("GameExclusivePremiumController").GetComponent<InGamePremCon>();

@@ -31,10 +31,13 @@ public class SkinSelector_Premium : MonoBehaviour
 
     private void Start()
     {
+        //hand UserGameData info on Glow colours and special modes
         UserGameData.Instance.RequestColourData.AddListener(CollectGlowColours);
         tabSkinsCollected = false;
 
         CollectSkins();
+
+        UserGameData.Instance.CheckIfLoadedSkinPremium();
     }
 
     public void Update()

@@ -14,6 +14,7 @@ public class SaveData
     public int langIndex = 0;
     public int gold;
     public int silver;
+    public bool eulaAccepted = false;
     public bool tutorialComplete = false;
     public int ads;
 
@@ -41,13 +42,14 @@ public class SaveData
 
     public List<bool> specColModes;
 
-    public SaveData(int allTimeHighscore, 
-        bool musicOn, 
-        bool soundsOn, 
-        string language, 
-        int langIndex, 
-        int gold, 
-        int silver, 
+    public SaveData(int allTimeHighscore,
+        bool musicOn,
+        bool soundsOn,
+        string language,
+        int langIndex,
+        int gold,
+        int silver,
+        bool eulaAccepted,
         bool tutorialComplete, 
         int ads,
         string tcol, 
@@ -74,6 +76,7 @@ public class SaveData
         this.langIndex = langIndex;
         this.gold = gold;
         this.silver = silver;
+        this.eulaAccepted = eulaAccepted;
         this.tutorialComplete = tutorialComplete;
         this.ads = ads;
 

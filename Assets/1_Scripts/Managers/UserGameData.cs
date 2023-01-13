@@ -199,10 +199,9 @@ namespace Architecture.Managers
 
             gold = data.gold;
             silver = data.silver;
+            EULA_Accepted = data.eulaAccepted;
             tutorialComplete = data.tutorialComplete;
             ads = data.ads;
-
-            EULA_Accepted = true;
 
             //COSMETICS DATA
             topColor = Utilities.StringToColor(data.topColor);
@@ -223,6 +222,11 @@ namespace Architecture.Managers
             hasSpecialColour = data.hasSpecialColour;
             specialColourModes = data.specColModes;
 
+            
+        }
+
+        public void CheckIfLoadedSkinPremium()
+        {
             //Ensures the premium skin name is set if the current skin is premium
             if (currentSkinPremium)
             {
@@ -279,11 +283,14 @@ namespace Architecture.Managers
         /// <returns>A class ready to be serialized</returns>
         private SaveData PackSaveDataWithCurrentValues()
         {
+            RequestColourData.Invoke();
+
             SaveData data = new SaveData(
                 this.allTimeHighscore,
                 this.musicOn, this.soundsOn,
                 LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower(), this.langIndex,
                 this.gold, this.silver,
+                EULA_Accepted,
                 tutorialComplete,
                 this.ads,
                 Utilities.ColorToString(topColor),
