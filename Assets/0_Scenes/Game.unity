@@ -2813,7 +2813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: italian
+  storedLanguage: Italian
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 693285200}
   langSELECTED: {fileID: 1887075505}
@@ -3734,7 +3734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: english
+  storedLanguage: English
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 508683462}
   langSELECTED: {fileID: 1774493175}
@@ -5499,7 +5499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: vietnamese
+  storedLanguage: Vietnamese
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 885398013}
   langSELECTED: {fileID: 1741751515}
@@ -6211,7 +6211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: french
+  storedLanguage: French
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 116187671}
   langSELECTED: {fileID: 976057093}
@@ -6515,41 +6515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39967c985f4433e43b01a5661dde8cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1158410339}
-  highscore: {fileID: 1604461180}
-  curtainCG: {fileID: 1443504466}
-  tutorialComplete: 0
-  allowSlideMove: 1
-  appropriateFont: {fileID: 0}
-  Latin_Cyrillic: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
-  Latin: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
-  Vietnamese: {fileID: 11400000, guid: 1809abd2f5466dd4b9656dbcb0c950e0, type: 2}
-  Chinese: {fileID: 11400000, guid: 4cfeec32b1cc67146a110c9cab30e1bf, type: 2}
-  Hindi: {fileID: 11400000, guid: 2d6bfc8895898e147ae53ab2fd6ff11e, type: 2}
-  Arabic: {fileID: 11400000, guid: 15e9bf9b2518ca343bfd2c0ffc84ba33, type: 2}
-  errorOpened: 0
-  allTimeHighscore: 0
-  musicOn: 0
-  soundsOn: 0
-  currentLanguage: 
-  langIndex: 0
-  gold: 0
-  silver: 0
-  ads: 0
-  score: 0
-  currentGameHighscore: 0
-  Paused: 0
-  cam: {fileID: 0}
-  minPlatLength: 0
-  maxPlatLength: 0
-  CapShrinkAtScore: 70
-  platLength: 0
-  nextPlatIsHole: 0
-  highestSpawnTime: 15
-  lowestSpawnTime: 1
-  sinGraphExaggeration: 15
-  flyingEnemiesKilled: 0
-  enemiesActive: []
 --- !u!4 &646998405
 Transform:
   m_ObjectHideFlags: 0
@@ -7246,7 +7211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: spanish
+  storedLanguage: Spanish
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1498515266}
   langSELECTED: {fileID: 665642112}
@@ -7704,7 +7669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: german
+  storedLanguage: German
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1613974683}
   langSELECTED: {fileID: 1945719925}
@@ -9532,7 +9497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: turkish
+  storedLanguage: Turkish
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1382799048}
   langSELECTED: {fileID: 2093723637}
@@ -9911,7 +9876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: portugese
+  storedLanguage: Portugese
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1417290443}
   langSELECTED: {fileID: 698516828}
@@ -11583,7 +11548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: arabic
+  storedLanguage: Arabic
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1927183580}
   langSELECTED: {fileID: 147811902}
@@ -11818,7 +11783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: hindi
+  storedLanguage: Hindi
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 590375744}
   langSELECTED: {fileID: 1620645048}
@@ -13423,7 +13388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: ukrainian
+  storedLanguage: Ukrainian
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 578853907}
   langSELECTED: {fileID: 775024095}
@@ -13975,7 +13940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: malay
+  storedLanguage: Malay
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 831097548}
   langSELECTED: {fileID: 649854534}
@@ -17010,7 +16975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: russian
+  storedLanguage: Russian
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1960317083}
   langSELECTED: {fileID: 1371478933}
@@ -20609,7 +20574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: chinese
+  storedLanguage: Chinese
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1910303632}
   langSELECTED: {fileID: 2093185655}
@@ -21298,7 +21263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: indonesian
+  storedLanguage: Indonesian
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 986009465}
   langSELECTED: {fileID: 539292027}
@@ -22077,7 +22042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e70ecf618d4c245895f84653d90924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedLanguage: polish
+  storedLanguage: Polish
   langOrganiser: {fileID: 0}
   langUnselected: {fileID: 1632394872}
   langSELECTED: {fileID: 650555568}

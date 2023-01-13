@@ -19,18 +19,16 @@ namespace Architecture.Localisation
 			languages = new string[transform.childCount];
 			langButScripts = new LanguageToggle[transform.childCount];
 
-			StartCoroutine(GetChildren());
+			GetChildren();
 
 		}
 
-		public IEnumerator GetChildren()
+		public void GetChildren()
 		{
 			for (int button = 0; button <= transform.childCount - 1; button++)
 			{
 				langButScripts[button] = transform.GetChild(button).GetComponent<LanguageToggle>();
 				languages[button] = langButScripts[button].storedLanguage;
-
-				yield return null;
 			}
 		}
 

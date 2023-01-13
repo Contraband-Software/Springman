@@ -167,17 +167,19 @@ public class PlayerController : MonoBehaviour {
 
         alternative_bounce_sound = UserGameData.Instance.cSpecs.alt_BounceSound;//EFFECT
         Sound loaded_BounceSound;
-        if(alternative_bounce_sound != null && alternative_bounce_sound != "")
-        {
-            loaded_BounceSound = FindSound(alternative_bounce_sound, effectCon.bounce_sounds);
-        }
-        else
-        {
-            loaded_BounceSound = FindSound(bounce_animation, effectCon.bounce_sounds);
-        }
+        
 
         if (!UserGameData.Instance.currentSkinPremium)
         {
+            if (alternative_bounce_sound != null && alternative_bounce_sound != "")
+            {
+                loaded_BounceSound = FindSound(alternative_bounce_sound, effectCon.bounce_sounds);
+            }
+            else
+            {
+                loaded_BounceSound = FindSound(bounce_animation, effectCon.bounce_sounds);
+            }
+
             bounceSound.clip = loaded_BounceSound.clip;
             bounceSound.volume = loaded_BounceSound.volume;
 

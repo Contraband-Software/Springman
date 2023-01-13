@@ -19,7 +19,7 @@ public class Bounce_Effects : MonoBehaviour
     public PremSkinDetailsDemo premDetails;
     [HideInInspector]
     public PlayerController playerCon;
-    [HideInInspector]
+    
     public EffectController effectCon;
 
     [Header("Details")]
@@ -52,6 +52,9 @@ public class Bounce_Effects : MonoBehaviour
         premium_name = UserGameData.Instance.activePremiumSkinName;
 
         //Sound Loading
+        effectCon = transform.parent.gameObject.GetComponent<EffectController>();
+        playerCon = transform.parent.gameObject.GetComponent<PlayerController>();
+
         Sound loadedBounceSound = playerCon.FindSound(bounceSoundName, effectCon.bounce_sounds);
         playerCon.bounceSound.clip = loadedBounceSound.clip;
         playerCon.bounceSound.volume = loadedBounceSound.volume;

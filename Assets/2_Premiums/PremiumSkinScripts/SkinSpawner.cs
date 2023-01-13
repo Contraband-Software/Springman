@@ -13,6 +13,8 @@ public class SkinSpawner : MonoBehaviour
     private GameObject playerRef;
     public void SpawnPremium(string skin_name)
     {
+        print("SPAWNING PREMIUM: " + skin_name);
+
         int skinIndex = UserGameData.Instance.allPremiums.IndexOf(skin_name);
         GameObject spawnedSkin = Instantiate(AllPremiumPrefabs[skinIndex], null);
         spawnedSkin.transform.position = new Vector3(0f, 1f, 0f);

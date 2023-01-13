@@ -26,8 +26,6 @@ public class InGamePremCon : MonoBehaviour
         spawnedSkin.transform.SetParent(player.transform);
         spawnedSkin.transform.localPosition = Vector3.zero;
 
-        //player.GetComponent<PlayerController>().enabled = false;
-
         spawnedSkin.GetComponent<PremSkinDetailsDemo>().UpdateSkin();
     }
 }

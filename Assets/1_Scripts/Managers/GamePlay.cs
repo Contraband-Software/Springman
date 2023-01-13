@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using Backend;
 
 namespace Architecture.Managers
 {
@@ -63,6 +64,8 @@ namespace Architecture.Managers
             LeanTween.cancelAll();
             curtainCG.alpha = 1f;
             LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
+
+            Localisation.LocalizationSystem.Instance.ReLocalizeTexts();
         }
 
         void Update()

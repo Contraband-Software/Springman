@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Architecture.Managers;
 
 public class CosmeticsController : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class CosmeticsController : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        print(scene.name);
         currentScene = scene;
         if (scene.name == "Game")// && this!=null
         {
@@ -48,9 +50,10 @@ public class CosmeticsController : MonoBehaviour
             topSprite = GameObject.Find("Player/Base").GetComponent<SpriteRenderer>();
             bottomSprite = GameObject.Find("Player/PlayerBottom").GetComponent<SpriteRenderer>();
             springSprite = GameObject.Find("Player/PlayerBottom/Spring").GetComponent<SpriteRenderer>();
-            springSprite.color = Architecture.Managers.UserGameData.Instance.springColor;
+            springSprite.color = UserGameData.Instance.springColor;
 
             LoadCosmeticValues();
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 
@@ -58,10 +61,10 @@ public class CosmeticsController : MonoBehaviour
     {
         if(currentScene.name == "Game")
         {
-            if (!Architecture.Managers.UserGameData.Instance.currentSkinPremium)
+            if (!UserGameData.Instance.currentSkinPremium)
             {
-                Architecture.Managers.UserGameData.Instance.cSpecs = Architecture.Managers.UserGameData.Instance.allSkinSpecs[Architecture.Managers.UserGameData.Instance.allSkinsCodes.IndexOf(Architecture.Managers.UserGameData.Instance.currentSkin)];
-                SkinSpecsSolid cSpecs = Architecture.Managers.UserGameData.Instance.cSpecs;
+                UserGameData.Instance.cSpecs = UserGameData.Instance.allSkinSpecs[UserGameData.Instance.allSkinsCodes.IndexOf(UserGameData.Instance.currentSkin)];
+                SkinSpecsSolid cSpecs = UserGameData.Instance.cSpecs;
 
                 //print(Architecture.Managers.UserGameData.Instance.cSpecs.altBounceSound);
 
@@ -112,7 +115,7 @@ public class CosmeticsController : MonoBehaviour
             }
             else
             {
-                skinSpawner.SpawnPremium(Architecture.Managers.UserGameData.Instance.activePremiumSkinName);
+                skinSpawner.SpawnPremium(UserGameData.Instance.activePremiumSkinName);
             }
             
         }

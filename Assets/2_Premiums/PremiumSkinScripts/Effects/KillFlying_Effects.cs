@@ -43,6 +43,8 @@ public class KillFlying_Effects : MonoBehaviour
 
     public void Start()
     {
+        playerCon = transform.parent.gameObject.GetComponent<PlayerController>();
+
         premDetails = gameObject.GetComponent<PremSkinDetailsDemo>();
         premium_name = UserGameData.Instance.activePremiumSkinName;
         tapToKillReference = playerCon.GetComponent<TapToKill>();
