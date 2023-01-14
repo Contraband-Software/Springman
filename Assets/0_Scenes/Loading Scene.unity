@@ -274,6 +274,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18060e982e082b449915b7cfc81a8dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topColor: {r: 0, g: 0, b: 0, a: 0}
+  bottomColor: {r: 0, g: 0, b: 0, a: 0}
+  springColor: {r: 0, g: 0, b: 0, a: 0}
+  topObject: {x: 0, y: 0, z: 0}
+  bottomObject: {x: 0, y: 0, z: 0}
+  springObject: {x: 0, y: 0, z: 0}
+  unlockedColours: []
+  allColours: []
+  currentSkin: 
+  unlockedSkins: []
+  allSkins: []
+  allSkinsCodes: []
+  playerCosmeticType: 0
+  currentSkinPremium: 0
+  activePremiumSkinName: 
+  unlockedPremiums: []
+  allPremiums: []
+  allPremiumCodes: []
 --- !u!4 &454096218
 Transform:
   m_ObjectHideFlags: 0

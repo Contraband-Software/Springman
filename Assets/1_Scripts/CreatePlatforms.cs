@@ -93,20 +93,20 @@ public class CreatePlatforms : MonoBehaviour
 						if (rnd.Next(0, 2) == 1)
 						{
 							//spawns left side
-							spawnEdge = -zeroToEdge - (gameData.PlatLength / 2) - 0.05f;
+							spawnEdge = -zeroToEdge - (gameData.PlatLength / 2) + 0.05f;
 
 						}
 						else
 						{
 							//spawns right side
-							spawnEdge = zeroToEdge + (gameData.PlatLength / 2) + 0.05f;
+							spawnEdge = zeroToEdge + (gameData.PlatLength / 2) - 0.05f;
 						}
 					}
 					else
 					{
 						if(camScript.yPositions.Count() == 1)
 						{
-							spawnEdge = spawnEdge = zeroToEdge + (gameData.PlatLength / 2) + 0.05f;
+							spawnEdge = zeroToEdge + (gameData.PlatLength / 2) + 0.05f;
 						}
 						if(camScript.yPositions.Count() == 2)
 						{
@@ -162,6 +162,9 @@ public class CreatePlatforms : MonoBehaviour
 
 		GameObject Platform = Instantiate(platform, new Vector3(-zeroToEdge - (gameData.PlatLength / 2) -0.05f, firstPlatPosY, 0f), new Quaternion(0f, 0f, 0f, 0f));
 		SlideMove sm = Platform.GetComponent<SlideMove>();
+
+		print(-zeroToEdge - (gameData.PlatLength / 2) - 0.05f);
+
 		sm.thisPlatLength = gameData.PlatLength;
 		highestPlat = firstPlatPosY;
 		sm.player = gameObject;

@@ -39,7 +39,6 @@ public class CosmeticsController : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        print(scene.name);
         currentScene = scene;
         if (scene.name == "Game")// && this!=null
         {
@@ -125,7 +124,7 @@ public class CosmeticsController : MonoBehaviour
     {
         if (cSpecs.colour_changeable_top)
         {
-            topSprite.color = Architecture.Managers.UserGameData.Instance.topColor;
+            topSprite.color = UserGameData.Instance.topColor;
         }
         else
         {
@@ -134,7 +133,7 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_changeable_bottom)
         {
-            bottomSprite.color = Architecture.Managers.UserGameData.Instance.bottomColor;
+            bottomSprite.color = UserGameData.Instance.bottomColor;
         }
         else
         {
@@ -143,7 +142,7 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_changeable_eyes)
         {
-            eyesSprite.color = Architecture.Managers.UserGameData.Instance.topColor;
+            eyesSprite.color = UserGameData.Instance.topColor;
         }
         else
         {
@@ -152,14 +151,14 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_top_equal_to_bottom)
         {
-            bottomSprite.color = Architecture.Managers.UserGameData.Instance.topColor;
+            bottomSprite.color = UserGameData.Instance.topColor;
         }
         else
         {
             bottomSprite.color = bottomSprite.color;
         }
 
-        springSprite.color = Architecture.Managers.UserGameData.Instance.springColor;
+        springSprite.color = UserGameData.Instance.springColor;
         topSkinSprite.color = Color.white;
     }
 

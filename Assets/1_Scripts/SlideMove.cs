@@ -122,7 +122,10 @@ public class SlideMove : MonoBehaviour {
 
 		pController.revive_Reassign += ReassignPCon;
 		gameData.NextPlatIsHole = false;
-	}
+
+		print(bottomLeft.x - (thisPlatLength / 2) - 0.05f);
+		AdjustInitialPosition();
+	} 
 
 	public void ReassignPCon(PlayerController pCon)
 	{
@@ -419,7 +422,7 @@ public class SlideMove : MonoBehaviour {
 
 	private void ClampToScreen()
 	{
-		float trueSize = thisPlatLength - 0.02f;
+		float trueSize = thisPlatLength;
 
         if (isHolePlatform)
         {
@@ -462,4 +465,15 @@ public class SlideMove : MonoBehaviour {
 			transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeft.x - (trueSize / 2) - 0.05f, topRight.x + (trueSize / 2) +0.05f), transform.position.y, transform.position.z);
 		}
 	}
+
+	private void AdjustInitialPosition()
+    {
+		if(transform.position.x < 0f)
+        {
+			transform.position = new Vector3(bottomLeft.x - (thisPlatLength / 2) - 0.05f, transform.position.y, transform.position.z);
+			return;
+        }
+		transform.position = new Vector3(topRight.x + (thisPlatLength / 2) + 0.05f, transform.position.y, transform.position.z);
+		return;
+    }
 }
