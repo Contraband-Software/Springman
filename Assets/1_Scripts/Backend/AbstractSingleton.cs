@@ -33,6 +33,7 @@ namespace Backend
             if (instance == null)
             {
                 instance = (T)this;
+                SingletonAwake();
             }
             else
             {
@@ -56,7 +57,7 @@ namespace Backend
             {
                 instance = (T)this;
 
-                Init();
+                SingletonAwake();
             }
             else
             {
@@ -84,7 +85,7 @@ namespace Backend
         private void Awake()
         {
             MakeSingleton();
-            SingletonAwake();
+            
         }
 
         /// <summary>

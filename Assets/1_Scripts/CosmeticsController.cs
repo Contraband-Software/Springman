@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Architecture.Managers;
 
-public class CosmeticsController : MonoBehaviour
+public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController>
 {
     public SkinSpawner skinSpawner;
     private Scene currentScene;
@@ -17,31 +17,21 @@ public class CosmeticsController : MonoBehaviour
     public SpriteRenderer bottomSprite;
     public SpriteRenderer springSprite;
 
-    private void Awake()
+    protected override void SingletonAwake()
     {
-        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    public void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-        //if (currentScene.name == "Game")
-        //{
-        //    springSprite.color = Architecture.Managers.UserGameData.Instance.springColor;
-        //}
+        print("COSMETICS CONTROLLER AWAKE");
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        print("LOADED SCENE: " + scene.name);
+
         currentScene = scene;
         if (scene.name == "Game")// && this!=null
         {
+            print("LOADING COSMETICS");
+
             GameObject player = GameObject.Find("Player");
             player.GetComponent<PlayerController>().cosCon = this;
             topSkinSprite = player.GetComponent<SpriteRenderer>();
@@ -52,7 +42,6 @@ public class CosmeticsController : MonoBehaviour
             springSprite.color = UserGameData.Instance.springColor;
 
             LoadCosmeticValues();
-            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 

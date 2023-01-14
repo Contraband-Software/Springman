@@ -122,8 +122,8 @@ public class SlideMove : MonoBehaviour {
 
 		pController.revive_Reassign += ReassignPCon;
 		gameData.NextPlatIsHole = false;
+		gameData.NextPlatIsHole = false;
 
-		print(bottomLeft.x - (thisPlatLength / 2) - 0.05f);
 		AdjustInitialPosition();
 	} 
 
