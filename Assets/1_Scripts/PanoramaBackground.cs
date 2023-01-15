@@ -88,7 +88,6 @@ public class PanoramaBackground : MonoBehaviour
         spawnedFirstPattern.transform.rotation = Quaternion.identity;
 
         PatSpecs firstPatternSpecs = spawnedFirstPattern.GetComponent<PatSpecs>();
-        SpriteRenderer firstPatternSprite = spawnedFirstPattern.GetComponent<SpriteRenderer>();
 
         currentBounds = spawnedFirstPattern.GetComponent<BoxCollider2D>().bounds;
 
@@ -106,12 +105,12 @@ public class PanoramaBackground : MonoBehaviour
 
             case Orientation.FlippedInX:
                 currentOrientationSpecs = firstPatternSpecs.flippedInX;
-                firstPatternSprite.flipX = true;
+                Flip(firstPatternSpecs, true, false);
                 break;
 
             case Orientation.FlippedInY:
                 currentOrientationSpecs = firstPatternSpecs.flippedInY;
-                firstPatternSprite.flipY = true;
+                Flip(firstPatternSpecs, false, true);
                 break;
 
             case Orientation.Rot180:
@@ -157,19 +156,16 @@ public class PanoramaBackground : MonoBehaviour
             spawnedPattern.SetActive(true);
             spawnedPattern.transform.position = Vector3.zero;
             spawnedPattern.transform.rotation = Quaternion.identity;
-            SpriteRenderer sP_renderer = spawnedPattern.GetComponent<SpriteRenderer>();
-            sP_renderer.flipX = false;
-            sP_renderer.flipY = false;
 
             //get the specs of the spawned pattern
             spawnedPatternSpecs = spawnedPattern.GetComponent<PatSpecs>();
-
+            Flip(spawnedPatternSpecs, false, false);
 
 
             spawnedPattern.transform.position = new Vector3(spawnedPattern.transform.position.x, spawnY, spawnedPattern.transform.position.z);
 
             currentY = spawnedPattern.transform.position.y;
-            currentBounds = sP_renderer.bounds;
+            currentBounds = spawnedPatternSpecs.overlay.bounds;
         }
            
     }
@@ -196,8 +192,7 @@ public class PanoramaBackground : MonoBehaviour
             }
             else
             {
-
-                SpriteRenderer spawnedPatternSprite = spawnedPattern.GetComponent<SpriteRenderer>();
+                PatSpecs spawnPatSpecs = spawnedPattern.GetComponent<PatSpecs>();
 
                 //Adjusting the pattern to the correct orientation
 
@@ -212,12 +207,12 @@ public class PanoramaBackground : MonoBehaviour
 
                     case Orientation.FlippedInX:
                         currentOrientationSpecs = spawnedPatternSpecs.flippedInX;
-                        spawnedPatternSprite.flipX = true;
+                        Flip(spawnPatSpecs, true, false);
                         break;
 
                     case Orientation.FlippedInY:
                         currentOrientationSpecs = spawnedPatternSpecs.flippedInY;
-                        spawnedPatternSprite.flipY = true;
+                        Flip(spawnPatSpecs, false, true);
                         break;
 
                     case Orientation.Rot180:
@@ -228,12 +223,23 @@ public class PanoramaBackground : MonoBehaviour
                 }
                 currentPatternSpecs = spawnedPatternSpecs;
                 currentY = spawnedPattern.transform.position.y;
-                currentBounds = spawnedPattern.GetComponent<SpriteRenderer>().bounds;
+                currentBounds = spawnPatSpecs.overlay.bounds;
 
                 ranOrientationInt = -1;
                 potentialNextBottomSpecs = Vector2.zero;
                 finishedInit = true;
             }
         }
+    }
+
+    void Flip(PatSpecs patSpecs, bool flipX, bool flipY)
+    {
+        patSpecs.overlay.flipX = flipX;
+        patSpecs.colour.flipX = flipX;
+        patSpecs.underlay.flipX = flipX;
+
+        patSpecs.overlay.flipY = flipY;
+        patSpecs.colour.flipY = flipY;
+        patSpecs.underlay.flipY = flipY;
     }
 }
