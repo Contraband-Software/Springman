@@ -132,7 +132,7 @@ public class PanoramaBackground : MonoBehaviour
         {
             finishedInit = false;
 
-            float spawnY = currentY + (currentBounds.extents.y * 2) - 0.01f;
+            float spawnY = currentY + (currentBounds.extents.y * 2); //- 0.01f;
 
             bool patternFound = false;
             string pattern = patterns[rnd.Next(0, 3)].gameObject.name;
