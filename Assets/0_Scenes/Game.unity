@@ -15110,10 +15110,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1468728524, guid: 239337a800b42fd48b67e8bda7dc80f5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1468728524, guid: 239337a800b42fd48b67e8bda7dc80f5, type: 3}
       propertyPath: pController
       value: 
       objectReference: {fileID: 5005137631159096663}
@@ -15130,7 +15126,7 @@ PrefabInstance:
     - target: {fileID: 2963595202163653315, guid: 239337a800b42fd48b67e8bda7dc80f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.9
+      value: -11.06
       objectReference: {fileID: 0}
     - target: {fileID: 2963595202163653315, guid: 239337a800b42fd48b67e8bda7dc80f5,
         type: 3}
@@ -15176,11 +15172,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Water
-      objectReference: {fileID: 0}
-    - target: {fileID: 2963595202163653324, guid: 239337a800b42fd48b67e8bda7dc80f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 239337a800b42fd48b67e8bda7dc80f5, type: 3}

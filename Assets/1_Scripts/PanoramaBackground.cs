@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Architecture.Managers;
 
 public class PanoramaBackground : MonoBehaviour
 {
@@ -124,6 +125,10 @@ public class PanoramaBackground : MonoBehaviour
 
         firstSpawn = true;
         finishedInit = true;
+
+
+        //apply theme colour from UserGameData
+        firstPatternSpecs.colour.color = UserGameData.Instance.themeColour;
     }
 
     void SpawnNextPattern()
@@ -166,6 +171,9 @@ public class PanoramaBackground : MonoBehaviour
 
             currentY = spawnedPattern.transform.position.y;
             currentBounds = spawnedPatternSpecs.overlay.bounds;
+
+            //apply theme colour from UserGameData
+            spawnedPatternSpecs.colour.color = UserGameData.Instance.themeColour;
         }
            
     }

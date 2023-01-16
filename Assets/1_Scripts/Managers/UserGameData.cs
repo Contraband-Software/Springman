@@ -35,6 +35,8 @@ namespace Architecture.Managers
         #endregion
 
         #region COSMETICS_DATA
+        public Color themeColour;
+
         public Color topColor;
         public Color bottomColor;
         public Color springColor;
@@ -204,6 +206,8 @@ namespace Architecture.Managers
             ads = data.ads;
 
             //COSMETICS DATA
+            themeColour = Utilities.StringToColor(data.themeColour);
+
             topColor = Utilities.StringToColor(data.topColor);
             bottomColor = Utilities.StringToColor(data.bottomColor);
             springColor = Utilities.StringToColor(data.springColor);
@@ -250,6 +254,8 @@ namespace Architecture.Managers
             silver = 300;
             ads = 0;
 
+            themeColour = Utilities.StringToColor("9900BE");
+
             unlockedColours.Add("FFFFFF");
             unlockedColours.Add("373737");
 
@@ -293,6 +299,7 @@ namespace Architecture.Managers
                 EULA_Accepted,
                 tutorialComplete,
                 this.ads,
+                Utilities.ColorToString(themeColour),
                 Utilities.ColorToString(topColor),
                 Utilities.ColorToString(bottomColor),
                 Utilities.ColorToString(springColor),

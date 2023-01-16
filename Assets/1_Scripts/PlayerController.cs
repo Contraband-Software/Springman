@@ -167,6 +167,8 @@ public class PlayerController : MonoBehaviour {
 
         alternative_bounce_sound = UserGameData.Instance.cSpecs.alt_BounceSound;//EFFECT
         Sound loaded_BounceSound;
+
+        InitialiseSplashColour();
         
 
         if (!UserGameData.Instance.currentSkinPremium)
@@ -380,7 +382,6 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSecondsRealtime(0.25f);
         UserGameData.Instance.SaveGameData();
     }
-
 
     float decel = 1f;
     float yVelOnEntry;
@@ -993,6 +994,56 @@ public class PlayerController : MonoBehaviour {
                 deathBy = DeathBy.Mine;
             }
         }
+    }
+
+    private void InitialiseSplashColour()
+    {
+        var main = splash.main;
+
+        float a = 1f;
+
+        Color themeColour = UserGameData.Instance.themeColour;
+        int r = Mathf.RoundToInt(themeColour.r * 255f);
+        int g = Mathf.RoundToInt(themeColour.g * 255f);
+        int b = Mathf.RoundToInt(themeColour.b * 255f);
+
+        List<int> colorVals255 = new List<int>() { r, g, b };
+        List<int> newColor = new List<int>() { r, g, b };
+
+        //find highest
+        int highest = 0;
+        foreach (int val in colorVals255)
+        {
+            if (val > highest)
+            {
+                highest = val;
+            }
+        }
+        colorVals255.Remove(highest);
+
+        //find 2nd highest
+        int _2ndHighest = 0;
+        foreach (int val in colorVals255)
+        {
+            if (val > _2ndHighest)
+            {
+                _2ndHighest = val;
+            }
+        }
+        colorVals255.Remove(_2ndHighest);
+
+        //last remaining is lowest
+        int lowest = colorVals255[0];
+
+        int d = Mathf.RoundToInt(highest * 0.34f);
+
+        //insert back in correctly
+        newColor[newColor.IndexOf(highest)] = highest + d;
+        newColor[newColor.IndexOf(_2ndHighest)] = _2ndHighest + Mathf.RoundToInt(((float)_2ndHighest / (float)highest) * d);
+        newColor[newColor.IndexOf(lowest)] = lowest + Mathf.RoundToInt(((float)lowest / (float)highest) * d); ;
+
+        Color newCol = new Color(newColor[0] / 255f, newColor[1] / 255f, newColor[2] / 255f, a);
+        main.startColor = new ParticleSystem.MinMaxGradient(newCol, newCol);
     }
 }
 

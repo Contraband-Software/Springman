@@ -19,6 +19,8 @@ public class SaveData
     public int ads;
 
     //COSMETICS DATA
+    public string themeColour;
+
     public string topColor;
     public string bottomColor;
     public string springColor;
@@ -52,6 +54,7 @@ public class SaveData
         bool eulaAccepted,
         bool tutorialComplete, 
         int ads,
+        string themeColour,
         string tcol, 
         string bcol, 
         string scol, 
@@ -81,6 +84,8 @@ public class SaveData
         this.ads = ads;
 
         //COSMETICS
+        this.themeColour = themeColour;
+
         topColor = tcol;
         bottomColor = bcol;
         springColor = scol;
