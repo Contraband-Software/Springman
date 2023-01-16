@@ -41,6 +41,8 @@ public class PremiumButton : MonoBehaviour
         text.text = "Customise";
         thisButton.interactable = true;
         btnDownScript.disabledButton = false;
+
+        //relocalise that one text
     }
 
     private void ChangeToSaySelect()
@@ -49,6 +51,8 @@ public class PremiumButton : MonoBehaviour
         text.text = "Select A Skin";
         thisButton.interactable = false;
         btnDownScript.disabledButton = true;
+
+        //relocalise that one text
     }
 
 
