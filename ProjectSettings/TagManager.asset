@@ -11,6 +11,7 @@ TagManager:
   - Platform
   - Screw
   - SittingEnemy
+  - BackgroundController
   layers:
   - Default
   - TransparentFX

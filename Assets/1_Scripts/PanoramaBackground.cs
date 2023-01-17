@@ -6,6 +6,10 @@ using Architecture.Managers;
 
 public class PanoramaBackground : MonoBehaviour
 {
+    [Header("Colour Changeables")]
+    public List<SpriteRenderer> backgroundColors = new List<SpriteRenderer>();
+
+    [Header("Rest")]
     public GameObject objectPool;
 
     //Pattern Variables
@@ -58,7 +62,13 @@ public class PanoramaBackground : MonoBehaviour
     }
     private void Start()
     {
+        CollectBackgroundColorRefs();
         FirstPattern();
+    }
+
+    public static PanoramaBackground GetReference()
+    {
+        return GameObject.FindGameObjectWithTag("BackgroundController").GetComponent<PanoramaBackground>();
     }
 
     void Update()
@@ -67,6 +77,28 @@ public class PanoramaBackground : MonoBehaviour
 
         if (finishedInit) { SpawnNextPattern(); }
         else { InitialisePattern(spawnedPattern); }
+    }
+    /// <summary>
+    /// Accesses all children of the object pool to add a reference to the water color
+    /// to the list of colours
+    /// </summary>
+    void CollectBackgroundColorRefs()
+    {
+        for (int child = 0; child < objectPool.transform.childCount; child++)
+        {
+            backgroundColors.Add(objectPool.transform.GetChild(child).GetChild(1).GetComponent<SpriteRenderer>());
+        }
+    }
+
+    /// <summary>
+    /// Updates each background of the object pool to match the theme color
+    /// </summary>
+    public void UpdateBackgroundColours()
+    {
+        for(int c = 0; c < backgroundColors.Count; c++)
+        {
+            backgroundColors[c].color = UserGameData.Instance.themeColour;
+        }
     }
 
     void FirstPattern()
