@@ -163,8 +163,6 @@ public class CreatePlatforms : MonoBehaviour
 		GameObject Platform = Instantiate(platform, new Vector3(-zeroToEdge - (gameData.PlatLength / 2) -0.05f, firstPlatPosY, 0f), new Quaternion(0f, 0f, 0f, 0f));
 		SlideMove sm = Platform.GetComponent<SlideMove>();
 
-		print(-zeroToEdge - (gameData.PlatLength / 2) - 0.05f);
-
 		sm.thisPlatLength = gameData.PlatLength;
 		highestPlat = firstPlatPosY;
 		sm.player = gameObject;

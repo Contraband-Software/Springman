@@ -26,7 +26,7 @@ namespace Backend
 #else
         protected
 #endif
-            void MakeSingleton()
+        void MakeSingleton()
         {
             DontDestroyOnLoad(gameObject);
 

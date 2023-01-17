@@ -71117,7 +71117,6 @@ GameObject:
   - component: {fileID: 1243343504}
   - component: {fileID: 1243343505}
   - component: {fileID: 1243343506}
-  - component: {fileID: 1243343507}
   - component: {fileID: 1243343508}
   m_Layer: 0
   m_Name: CosmeticsController
@@ -71171,22 +71170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403c93cfa9743d94091bf48a87be66ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1243343507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243343503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05d744eb18fe884798d9480f52ea788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOld: 1
-  destroyNew: 0
-  timeAlive: 0
-  spawnedByScene: 0
 --- !u!114 &1243343508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101603,7 +101586,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782169663}
-  - component: {fileID: 1782169664}
   - component: {fileID: 1782169665}
   m_Layer: 0
   m_Name: MenuAudio
@@ -101631,22 +101613,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1782169664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782169662}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05d744eb18fe884798d9480f52ea788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOld: 0
-  destroyNew: 1
-  timeAlive: 0
-  spawnedByScene: 0
 --- !u!114 &1782169665
 MonoBehaviour:
   m_ObjectHideFlags: 0
