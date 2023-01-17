@@ -28,7 +28,6 @@ namespace Architecture
         void Awake()
         {
             StartCoroutine(LoadScene((int)Scene));
-
         }
 
         IEnumerator LoadScene(int sceneIndex)
@@ -46,8 +45,16 @@ namespace Architecture
                 {
                     //start coroutine to check if save data has been loaded
                     Debug.Log("LOADED ASSETS");
-                    operation.allowSceneActivation = true;
+                    
                     StartCoroutine(WaitForSaveDataToLoad());
+
+                    yield return StartCoroutine(UpdateLoadingBar(1f));
+
+                    if(slider.value >= 0.99f && !operation.allowSceneActivation)
+                    {
+                        operation.allowSceneActivation = true;
+                    }
+
                     yield return null;
                 }
 
@@ -87,7 +94,7 @@ namespace Architecture
             Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
             Debug.Log("ALLOWING SCENE ACTIVATION");
             Debug.Log("Scene Activation Allowed?: " + operation.allowSceneActivation);
-            operation.allowSceneActivation = true;
+            //operation.allowSceneActivation = true;
             yield break;
         }
     }
