@@ -112223,8 +112223,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Water
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ca4522b89b50e514ca26ab9f97aa6aba, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: bc0a1ea855f006f4a9afcc6c354821de, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
+  m_sharedMaterial: {fileID: -2029253568049753643, guid: 168fdf3083766e146b732e349b1696ab,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -112248,7 +112249,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
+  m_fontSize: 74.15
   m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 1
