@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Architecture.Managers;
 
 public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -33,10 +34,6 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public bool single_click = false;
     public bool single_on_up = false;
 
-    [Header("Menu/Game Data")]
-    public MenuData menuData_Fetched;
-    public GameData gameData_Fetched;
-
     [Header("BLOCK CLICKS (DISABLE BUTTON")]
     public bool disabledButton = false;
 
@@ -52,14 +49,7 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             CheckForClick();
         }
 
-        if(menuData_Fetched != null)
-        {
-            soundsOn = menuData_Fetched.soundsOn;
-        }
-        if(gameData_Fetched != null)
-        {
-            soundsOn = gameData_Fetched.soundsOn;
-        }
+        soundsOn = UserGameData.Instance.soundsOn;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -119,19 +109,7 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private bool soundsOn;
     private void GetAudioRules()
     {
-        GameObject mainMenuObj = GameObject.Find("MenuController");
-        GameObject gameObj = GameObject.Find("GameController");
-
-        if(mainMenuObj != null)
-        {
-            menuData_Fetched = mainMenuObj.GetComponent<MenuData>();
-            soundsOn = menuData_Fetched.soundsOn;
-        }
-        if(gameObj != null)
-        {
-            gameData_Fetched = gameObj.GetComponent<GameData>();
-            soundsOn = gameData_Fetched.soundsOn;
-        }
+        soundsOn = UserGameData.Instance.soundsOn;
     }
 
     private void Start()

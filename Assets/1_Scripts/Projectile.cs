@@ -21,8 +21,6 @@ public class Projectile : MonoBehaviour {
 
 	private Vector2 movementVector;
 
-	public GameData gamedata;
-
 	// Use this for initialization
 	void Start () 
 	{
@@ -87,7 +85,7 @@ public class Projectile : MonoBehaviour {
 			FireworkExplosion.gameObject.transform.position = new Vector2(hitpoint.x, hitpoint.y);
 			FireworkExplosion.Play();
 
-            if (gamedata.soundsOn)
+            if (Architecture.Managers.UserGameData.Instance.soundsOn)
             {
 				projhit.Play();
 			}

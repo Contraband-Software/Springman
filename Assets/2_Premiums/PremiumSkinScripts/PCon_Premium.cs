@@ -10,8 +10,6 @@ public class PCon_Premium : MonoBehaviour
     public enum State { Alive, Dead }
     public enum DeathBy { Water, Mine, Projectile }
     public enum Direction { Falling, Rising, Stationary }
-    [Header("Importants Refs")]
-    public GameData gamadata;
 
     [Header("Player State")]
     public State state = State.Alive;
@@ -91,7 +89,6 @@ public class PCon_Premium : MonoBehaviour
         jumpVelocity = OGPCon.jumpVelocity;
         fallMultiplier = OGPCon.fallMultiplier;
 
-        gamadata = GameObject.Find("GameController").GetComponent<GameData>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         halfPlatHeight = GameObject.FindGameObjectWithTag("Platform").GetComponent<BoxCollider2D>().bounds.extents.y;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -277,7 +274,7 @@ public class PCon_Premium : MonoBehaviour
     {
         if (rayhit.collider.tag == "Platform" && LastPlatY < rayhit.collider.transform.position.y)
         {
-            gamadata.score++;
+            Architecture.Managers.GamePlay.GetReference().Score++;
             LastPlatY = rayhit.collider.transform.position.y;
         }
     }

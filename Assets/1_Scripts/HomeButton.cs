@@ -6,19 +6,18 @@ using PlatformIntegrations;
 
 public class HomeButton : MonoBehaviour
 {
-    public GameData gameData;
     public CanvasGroup curtainCG;
 
     private AdvertisementsManager adManager;
 
     private void Start()
     {
-        adManager = IntegrationsManager.instance.advertisementsManager;
+        adManager = IntegrationsManager.Instance.advertisementsManager;
     }
 
     public void OnClick()
     {
-        gameData.SaveGameData();
+        Architecture.Managers.UserGameData.Instance.SaveGameData();
 
         //AdvertisementsManager.HideBannerAd();
         adManager.HideBannerAd();

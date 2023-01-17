@@ -7,55 +7,28 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class ConfirmButton : MonoBehaviour
+using Architecture.Managers;
+
+namespace Architecture.Localisation
 {
-    public LanguageOrganiser langOrganiser;
-
-    public GameData gameData;
-    public MenuData menuData;
-
-    Scene currentScene;
-
-    public void OnClick()
+    public class ConfirmButton : MonoBehaviour
     {
-        if(langOrganiser.selectedLanguage != "")
+        public LanguageOrganiser langOrganiser;
+
+        Scene currentScene;
+
+        public void OnClick()
         {
-            if (currentScene.name == "Main Menu")
+            if (langOrganiser.selectedLanguage != "")
             {
-                menuData.currentLanguage = langOrganiser.selectedLanguage;
-                menuData.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
+                LocalizationSystem.Language lang = LocalizationSystem.Language.English;
+                Enum.TryParse(langOrganiser.selectedLanguage, out lang);
+                LocalizationSystem.Instance.CurrentLanguage = lang;
+                UserGameData.Instance.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
 
-                LocalizationSystem.language = (LocalizationSystem.Language)menuData.langIndex;
-                menuData.SaveGameData();
-                menuData.ReLocalizeTexts();
+                UserGameData.Instance.SaveGameData();
+                LocalizationSystem.Instance.ReLocalizeTexts();
             }
-
-
-
-            if (currentScene.name == "Game")
-            {
-                gameData.currentLanguage = langOrganiser.selectedLanguage;
-                gameData.langIndex = Array.IndexOf(langOrganiser.languages, langOrganiser.selectedLanguage);
-
-                LocalizationSystem.language = (LocalizationSystem.Language)gameData.langIndex;
-                gameData.SaveGameData();
-                gameData.ReLocalizeTexts();
-            }
-        }
-
-
-    }
-
-    private void Start()
-    {
-        currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "Main Menu")
-        {
-            menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
-        }
-        if (currentScene.name == "Game")
-        {
-            gameData = GameObject.Find("GameController").GetComponent<GameData>();
         }
     }
 }

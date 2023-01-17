@@ -28,7 +28,6 @@ public class ColourSelector : MonoBehaviour
     public ColoursController coloursCon;
     public CosmeticsController cosmeticsCon;
     public CosmeticsMenuController cosMenuCon;
-    public CosmeticsData cosmeticsData;
     public bool scrolled = false;
 
     private void Start()
@@ -55,9 +54,9 @@ public class ColourSelector : MonoBehaviour
                 colourButtonScripts.Add(transform.GetChild(child).GetComponent<ColourButton>());
                 colourButtonScripts[child - 1].AssignValues();
 
-                colours.Add(cosmeticsData.ColorToString(colourButtonScripts[child - 1].storedColour));
+                colours.Add(Backend.Utilities.ColorToString(colourButtonScripts[child - 1].storedColour));
             }
-            cosmeticsData.allColours = colours;
+            Architecture.Managers.UserGameData.Instance.allColours = colours;
             coloursCollected = true;
         }
     }
@@ -163,7 +162,7 @@ public class ColourSelector : MonoBehaviour
     {
         //when a colour is clicked, it is checked to see on which frame it was clicked and sets 
         //the corresponding values.
-        if (cosmeticsData.unlockedColours.Contains(cosmeticsData.ColorToString(selectedColor)))
+        if (Architecture.Managers.UserGameData.Instance.unlockedColours.Contains(Backend.Utilities.ColorToString(selectedColor)))
         {
             coloursCon.currentColour = selectedColor;
             coloursCon.currentObject = selectedObject;
@@ -184,7 +183,7 @@ public class ColourSelector : MonoBehaviour
                 coloursCon.springObject = selectedObject;
             }
 
-            cosmeticsData.playerCosmeticType = CosmeticsData.PlayerCosmeticType.Color;
+            Architecture.Managers.UserGameData.Instance.playerCosmeticType = Architecture.Managers.UserGameData.PlayerCosmeticType.Color;
             coloursCon.PlaceTick();
             cosMenuCon.UpdateDemo();
         }

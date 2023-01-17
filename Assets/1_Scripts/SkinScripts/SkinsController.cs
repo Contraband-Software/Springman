@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
+using Architecture.Managers;
+
 public class SkinsController : MonoBehaviour
 {
     public SkinSelector silverSelector;
@@ -11,7 +13,6 @@ public class SkinsController : MonoBehaviour
     public SkinSelector adsSelector;
     public SkinSelector_Premium premiumSelector;
 
-    public CosmeticsData cosmeticsData;
     public CosmeticsMenuController cosMenuCon;
 
     public GameObject blackTint;
@@ -102,7 +103,7 @@ public class SkinsController : MonoBehaviour
         int index;
         foreach(string skin in selector.tabSkinCodes)
         {
-            if (cosmeticsData.unlockedSkins.Contains(skin))
+            if (UserGameData.Instance.unlockedSkins.Contains(skin))
             {
                 index = selector.tabSkinCodes.IndexOf(skin);
                 selector.skinButtonScripts[index].gameObject.SetActive(true);
@@ -123,14 +124,14 @@ public class SkinsController : MonoBehaviour
         goldSelector.CollectSkins();
         adsSelector.CollectSkins();
         premiumSelector.CollectSkins();
-        if (!cosmeticsData.currentSkinPremium)
+        if (!UserGameData.Instance.currentSkinPremium)
         {
-            currentSkin = cosmeticsData.allSkinSpecs[cosmeticsData.allSkinsCodes.IndexOf(currentSkinID)].ConvertToSolid(currentSkin, cosmeticsData.allSkinSpecs[cosmeticsData.allSkinsCodes.IndexOf(currentSkinID)]);
+            currentSkin = UserGameData.Instance.allSkinSpecs[UserGameData.Instance.allSkinsCodes.IndexOf(currentSkinID)].ConvertToSolid(currentSkin, UserGameData.Instance.allSkinSpecs[UserGameData.Instance.allSkinsCodes.IndexOf(currentSkinID)]);
         }
         else
         {
             currentSkin = null;
-            currentSkinID = cosmeticsData.currentSkin;
+            currentSkinID = UserGameData.Instance.currentSkin;
         }
         
     }
@@ -146,13 +147,13 @@ public class SkinsController : MonoBehaviour
 
     public void SendData()
     {
-        cosmeticsData.currentSkin = currentSkinID;
-        cosmeticsData.activePremiumSkinName = selectedPremium;
-        cosmeticsData.HardPassSkinID(currentSkinID);
+        UserGameData.Instance.currentSkin = currentSkinID;
+        UserGameData.Instance.activePremiumSkinName = selectedPremium;
+        UserGameData.Instance.HardPassSkinID(currentSkinID);
     }
 
     public void FetchData()
     {
-        currentSkinID = cosmeticsData.currentSkin;
+        currentSkinID = UserGameData.Instance.currentSkin;
     }
 }

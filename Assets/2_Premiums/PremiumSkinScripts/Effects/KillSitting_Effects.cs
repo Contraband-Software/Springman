@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Managers;
 public class KillSitting_Effects : MonoBehaviour
 {
     private string premium_name;
@@ -37,7 +38,7 @@ public class KillSitting_Effects : MonoBehaviour
     void Start()
     {
         premDetails = gameObject.GetComponent<PremSkinDetailsDemo>();
-        premium_name = premDetails.cosData.activePremiumSkinName;
+        premium_name = UserGameData.Instance.activePremiumSkinName;
     }
 
     public void PlayEffect(GameObject sittingEnemyObject = null)

@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Architecture.Managers;
 
-public class CosmeticsController : MonoBehaviour
+public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController>
 {
-    public CosmeticsData cosData;
     public SkinSpawner skinSpawner;
     private Scene currentScene;
 
@@ -17,40 +17,29 @@ public class CosmeticsController : MonoBehaviour
     public SpriteRenderer bottomSprite;
     public SpriteRenderer springSprite;
 
-    private void Awake()
+    protected override void SingletonAwake()
     {
-        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    public void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-        //if (currentScene.name == "Game")
-        //{
-        //    springSprite.color = cosData.springColor;
-        //}
+        print("COSMETICS CONTROLLER AWAKE");
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        print("LOADED SCENE: " + scene.name);
+
         currentScene = scene;
-        if (scene.name == "Game" && this!=null)
+        if (scene.name == "Game")// && this!=null
         {
+            print("LOADING COSMETICS");
+
             GameObject player = GameObject.Find("Player");
             player.GetComponent<PlayerController>().cosCon = this;
-            player.GetComponent<PlayerController>().cosData = gameObject.GetComponent<CosmeticsData>();
             topSkinSprite = player.GetComponent<SpriteRenderer>();
             eyesSprite = GameObject.Find("Player/Eyes").GetComponent<SpriteRenderer>();
             topSprite = GameObject.Find("Player/Base").GetComponent<SpriteRenderer>();
             bottomSprite = GameObject.Find("Player/PlayerBottom").GetComponent<SpriteRenderer>();
             springSprite = GameObject.Find("Player/PlayerBottom/Spring").GetComponent<SpriteRenderer>();
-            springSprite.color = cosData.springColor;
+            springSprite.color = UserGameData.Instance.springColor;
 
             LoadCosmeticValues();
         }
@@ -60,12 +49,12 @@ public class CosmeticsController : MonoBehaviour
     {
         if(currentScene.name == "Game")
         {
-            if (!cosData.currentSkinPremium)
+            if (!UserGameData.Instance.currentSkinPremium)
             {
-                cosData.cSpecs = cosData.allSkinSpecs[cosData.allSkinsCodes.IndexOf(cosData.currentSkin)];
-                SkinSpecsSolid cSpecs = cosData.cSpecs;
+                UserGameData.Instance.cSpecs = UserGameData.Instance.allSkinSpecs[UserGameData.Instance.allSkinsCodes.IndexOf(UserGameData.Instance.currentSkin)];
+                SkinSpecsSolid cSpecs = UserGameData.Instance.cSpecs;
 
-                //print(cosData.cSpecs.altBounceSound);
+                //print(Architecture.Managers.UserGameData.Instance.cSpecs.altBounceSound);
 
                 if (!cSpecs.alt_base)
                 {
@@ -114,7 +103,7 @@ public class CosmeticsController : MonoBehaviour
             }
             else
             {
-                skinSpawner.SpawnPremium(cosData.activePremiumSkinName);
+                skinSpawner.SpawnPremium(UserGameData.Instance.activePremiumSkinName);
             }
             
         }
@@ -124,7 +113,7 @@ public class CosmeticsController : MonoBehaviour
     {
         if (cSpecs.colour_changeable_top)
         {
-            topSprite.color = cosData.topColor;
+            topSprite.color = UserGameData.Instance.topColor;
         }
         else
         {
@@ -133,7 +122,7 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_changeable_bottom)
         {
-            bottomSprite.color = cosData.bottomColor;
+            bottomSprite.color = UserGameData.Instance.bottomColor;
         }
         else
         {
@@ -142,7 +131,7 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_changeable_eyes)
         {
-            eyesSprite.color = cosData.topColor;
+            eyesSprite.color = UserGameData.Instance.topColor;
         }
         else
         {
@@ -151,14 +140,14 @@ public class CosmeticsController : MonoBehaviour
 
         if (cSpecs.colour_top_equal_to_bottom)
         {
-            bottomSprite.color = cosData.topColor;
+            bottomSprite.color = UserGameData.Instance.topColor;
         }
         else
         {
             bottomSprite.color = bottomSprite.color;
         }
 
-        springSprite.color = cosData.springColor;
+        springSprite.color = UserGameData.Instance.springColor;
         topSkinSprite.color = Color.white;
     }
 

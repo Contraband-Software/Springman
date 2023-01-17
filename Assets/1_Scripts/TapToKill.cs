@@ -5,7 +5,6 @@ using UnityEngine;
 public class TapToKill : MonoBehaviour
 {
     public SpawnFlyingEnemy spawnFEscript;
-    public GameData gameData;
     public PlayerController pController;
 
     public EffectController effectCon;
@@ -18,13 +17,12 @@ public class TapToKill : MonoBehaviour
     void Start()
     {
         spawnFEscript = gameObject.GetComponent<SpawnFlyingEnemy>();
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
         pController = spawnFEscript.gameObject.GetComponent<PlayerController>();
     }
     void Update()
     {
         //POR3 - EventSystem
-        if (!gameData.Paused && pController.state == PlayerController.State.Alive)
+        if (!Architecture.Managers.GamePlay.GetReference().Paused && pController.state == PlayerController.State.Alive)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -95,15 +93,15 @@ public class TapToKill : MonoBehaviour
 
         FlyingEnemyAnimation(tempFEKilled);
         spawnFEscript.flyingEnemySpawned = false;
-        gameData.flyingEnemiesKilled++;
+        Architecture.Managers.GamePlay.GetReference().FlyingEnemiesKilled++;
         spawnFEscript.ControlSpawnRate();
         tempFEKilled = null;
-        gameData.enemiesActive.Remove(externalTarget);
+        Architecture.Managers.GamePlay.GetReference().EnemiesActive.Remove(externalTarget);
     }
 
     void SittingEnemyAnimation(GameObject se)
     {
-        gameData.enemiesActive.Remove(se);
+        Architecture.Managers.GamePlay.GetReference().EnemiesActive.Remove(se);
 
         bottomfall = se.transform.GetChild(0).gameObject;
         explosion = se.transform.GetChild(1).GetComponent<ParticleSystem>();
@@ -117,7 +115,7 @@ public class TapToKill : MonoBehaviour
         sEm_SE = se.transform.Find("Sound_Emitter").gameObject;
         sEm2_SE = se.transform.Find("Sound_Emitter (1)").gameObject;
 
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             sEm2_SE.GetComponent<AudioSource>().Play();
         }
@@ -148,7 +146,7 @@ public class TapToKill : MonoBehaviour
         sEm2_FE.transform.SetParent(null);
         hover_emitter.transform.SetParent(null);
 
-        if (gameData.soundsOn)
+        if (Architecture.Managers.UserGameData.Instance.soundsOn)
         {
             sEm_FE.GetComponent<AudioSource>().Play();
         }

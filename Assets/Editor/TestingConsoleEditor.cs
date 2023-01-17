@@ -4,61 +4,47 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
-[CustomEditor(typeof(GameDebugController))]
-public class TestingConsoleEditor : Editor
+using Development;
+using Architecture.Managers;
+
+namespace Development
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(GameDebugController))]
+    public class TestingConsoleEditor : Editor
     {
-        base.OnInspectorGUI();
-
-        GameDebugController controller = (GameDebugController)target;
-
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Cheats", EditorStyles.boldLabel);
-        if (GUILayout.Button("+100 Silver Bolts"))
+        public override void OnInspectorGUI()
         {
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "Main Menu":
-                    MenuData menuObj = GameObject.Find("MenuController").GetComponent<MenuData>();
-                    menuObj.silver += 100;
-                    break;
-                case "Game":
-                    GameData gameObj = GameObject.Find("GameController").GetComponent<GameData>();
-                    gameObj.silver += 100;
-                    break;
-            }
-        }
-        if (GUILayout.Button("+100 Golden Bolts"))
-        {
-            switch (SceneManager.GetActiveScene().name)
-            {
-                case "Main Menu":
-                    MenuData menuObj = GameObject.Find("MenuController").GetComponent<MenuData>();
-                    menuObj.gold += 100;
-                    break;
-                case "Game":
-                    GameData gameObj = GameObject.Find("GameController").GetComponent<GameData>();
-                    gameObj.gold += 100;
-                    break;
-            }
-        }
+            base.OnInspectorGUI();
 
-        //EditorGUILayout.Space();
-        //EditorGUILayout.LabelField("Actions", EditorStyles.boldLabel);
-        //if (GUILayout.Button("Reset progression"))
-        //{
-        //    switch (SceneManager.GetActiveScene().name)
-        //    {
-        //        case "Main Menu":
-        //            MenuData menuObj = GameObject.Find("MenuController").GetComponent<MenuData>();
-        //            menuObj.ads
-        //            break;
-        //        case "Game":
-        //            GameData gameObj = GameObject.Find("GameController").GetComponent<GameData>();
-        //            gameObj.gold += 100;
-        //            break;
-        //    }
-        //}
+            GameDebugController controller = (GameDebugController)target;
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Cheats", EditorStyles.boldLabel);
+            if (GUILayout.Button("+100 Silver Bolts"))
+            {
+                UserGameData.Instance.silver += 100;
+            }
+            if (GUILayout.Button("+100 Golden Bolts"))
+            {
+                UserGameData.Instance.gold += 100;
+            }
+
+            //EditorGUILayout.Space();
+            //EditorGUILayout.LabelField("Actions", EditorStyles.boldLabel);
+            //if (GUILayout.Button("Reset progression"))
+            //{
+            //    switch (SceneManager.GetActiveScene().name)
+            //    {
+            //        case "Main Menu":
+            //            MenuData menuObj = GameObject.Find("MenuController").GetComponent<MenuData>();
+            //            menuObj.ads
+            //            break;
+            //        case "Game":
+            //            GameData gameObj = GameObject.Find("GameController").GetComponent<GameData>();
+            //            gameObj.gold += 100;
+            //            break;
+            //    }
+            //}
+        }
     }
 }

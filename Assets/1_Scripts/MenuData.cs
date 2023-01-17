@@ -7,12 +7,26 @@ using System.Runtime.Serialization.Formatters.Binary;
 using SimpleDiskUtils;
 using PlatformIntegrations;
 
+/*
+ * 
+ * 
+ * 
+ * 
+ * DONT FIX ANYTHING HERE, THE IDEA IS TO REMOVE THIS FROM THE PROJECT
+ * 
+ * 
+ * 
+ * 
+ */
+
+#pragma warning disable
+
 public class MenuData : MonoBehaviour
 {
     public int allTimeHighscore;
     public bool musicOn;
     public bool soundsOn;
-    public string currentLanguage;
+    public string currentLanguage; //Localisation
     public int langIndex;
     public int gold;
     public int silver;
@@ -22,15 +36,6 @@ public class MenuData : MonoBehaviour
 
     //[Header("Legal")]
 
-    [Header("Language Fonts")]
-    public TMP_FontAsset appropriateFont;
-    public TMP_FontAsset Latin_Cyrillic;
-    public TMP_FontAsset Latin;
-    public TMP_FontAsset Vietnamese;
-    public TMP_FontAsset Chinese;
-    public TMP_FontAsset Hindi;
-    public TMP_FontAsset Arabic;
-
     public CanvasGroup curtainCG;
     [Header("Tutorial Status")]
     public bool tutorialComplete = false;
@@ -38,53 +43,68 @@ public class MenuData : MonoBehaviour
     [Header("Error Stuff")]
     public bool errorOpened = false;
 
-    [Header("First load systems")]
-    [SerializeField] EULADialogue eula;
-
     string path;
     bool EULA_Accepted = false;
     PlatformIntegrations.SocialManager sm;
 
-    public void SetEULA_Accepted()
+    public void SetEulaAccepted()
     {
         EULA_Accepted = true;
     }
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
-        path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
+        //path = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
 
-        LeanTween.cancelAll();
+        //LeanTween.cancelAll();
 
-        InitialiseAppropriateFonts();
-        CreateFirstDataFile();
-        LoadGameData();
+        ////InitialiseAppropriateFonts();
+
+        ////social manager will have loaded data cached
+        ////CreateFirstDataFile();
+        ////LoadGameData();
+        //Debug.Log("WE LOADED IN TO THE MAIN MENU POG POG POG");
+        //Debug.Log("MENU DATA - ATTEMPTING TO GET SAVED DATA FROM CACHE");
+        //Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
+        //Debug.Log((SaveData)IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
     }
 
     private void Start()
     {
-        errorOpened = false;
+//        errorOpened = false;
 
-        curtainCG.alpha = 1f;
-        LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
+//        curtainCG.alpha = 1f;
+//        LeanTween.alphaCanvas(curtainCG, 0f, 0.4f).setIgnoreTimeScale(true);
 
-        sm = IntegrationsManager.instance.socialManager;
-        sm.SaveDataWriteCallback.AddListener((bool status) => {
-            if (!status)
-            {
-                Debug.Log("MenuData: Save data cloud write unsuccessful");
-            } else
-            {
-                Debug.Log("MenuData: Save data written to cloud successfully");
-            }
-        });
-        sm.SaveDataLoadCallback.AddListener((bool status, object data) => {
-            Debug.Log("MenuData: Cloud save status: " + status.ToString());
-            //MenuData dartar = (MenuData)data;
-            //load the vloud
-        });
+//        sm = IntegrationsManager.Instance.socialManager;
+//        sm.SaveDataWriteCallback.AddListener((bool status) => {
+//            if (!status)
+//            {
+//                Debug.Log("MenuData: Save data cloud write unsuccessful");
+//            } else
+//            {
+//                Debug.Log("MenuData: Save data written to cloud successfully");
+//            }
+//        });
+
+//#if !UNITY_EDITOR
+//        SaveData loadedSaveData = (SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame();
+//        Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
+//        Debug.Log(loadedSaveData);
+
+
+//        ReLocalizeTexts();
+//        //load the vloud
+//#else
+//        //create default save data to create dummy file
+//        //create first data file()
+//        CreateFirstDataFile();
+//        LoadGameData();
+//        //ReLocalizeTexts();
+//#endif
+
     }
 
     public void CreateFirstDataFile()
@@ -102,9 +122,11 @@ public class MenuData : MonoBehaviour
                 tutorialComplete = false;
                 ads = 0;
 
+                //Localisation
                 List<string> langsTemp = new List<string>{ "english", "french", "spanish", "russian", "german", "portugese", "malay",
                 "polish", "italian", "chinese", "turkish", "vietnamese", "ukrainian", "hindi", "indonesian", "arabic"};
 
+                //Localisation
                 switch (Application.systemLanguage)
                 {
                     case SystemLanguage.Arabic:
@@ -152,28 +174,27 @@ public class MenuData : MonoBehaviour
                         currentLanguage = "english";
                         break;
                 }
-
+                //Localisation
                 langIndex = langsTemp.IndexOf(currentLanguage);
 
 
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
 
-                SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver,
-                    tutorialComplete, this.ads);
+                //SaveData data = new SaveData(this.allTimeHighscore, this.musicOn, this.soundsOn, this.currentLanguage, this.langIndex, this.gold, this.silver,
+                //    tutorialComplete, this.ads);
 
 #if !UNITY_EDITOR
                 File.SetAttributes(path, FileAttributes.ReadOnly);
 #endif
 
-                formatter.Serialize(stream, data);
+                //formatter.Serialize(stream, data);
                 stream.Close();
 
                 Debug.Log("CREATED FIRST GAME DATA FILE");
 
-                ReLocalizeTexts();
+                
 
-                eula.Show();
                 //if (sm.isAvailable()) { sm.ShowSaveGameSelectUI(); }
             } else
             {
@@ -210,33 +231,36 @@ public class MenuData : MonoBehaviour
 
         //Debug.Log("LOADED GAMEDATA FILE");
         
-        ReLocalizeTexts();
+        
     }
 
     public void SaveGameData()
     {
-        SaveData data = new SaveData(
-            this.allTimeHighscore, 
-            this.musicOn, 
-            this.soundsOn, 
-            this.currentLanguage, 
-            this.langIndex, 
-            this.gold, this.silver,
-            tutorialComplete, 
-            ads
-        );
+        //SaveData data = new SaveData(
+        //    this.allTimeHighscore, 
+        //    this.musicOn, 
+        //    this.soundsOn, 
+        //    this.currentLanguage, 
+        //    this.langIndex, 
+        //    this.gold, this.silver,
+        //    tutorialComplete, 
+        //    ads
+        //);
 
+#if UNITY_EDITOR
+        //SAVE TO LOCAL STORAGE ALWAYS ANYWAY
+        //SaveGameData_LocalFallback(data);
+#else
         if (sm.IsAvailable() && sm.SaveGameLoaded())
         {
-            sm.SaveGame(data);
+            //sm.SaveGame(data);
         }
         else
         {
             Debug.Log("integration not availible");
         }
+#endif
 
-        //SAVE TO LOCAL STORAGE ALWAYS ANYWAY
-        SaveGameData_LocalFallback(data);
     }
 
     private void SaveGameData_LocalFallback(SaveData data)
@@ -264,89 +288,6 @@ public class MenuData : MonoBehaviour
 
     public void DisplayErrorScreen()
     {
-        if (errorOpened == false)
-        {
-            errorOpened = true;    
-        }
-    }
-
-    public void ReLocalizeTexts()
-    {
-        print("TRANSLATING TEXTS");
-        LocalizationSystem.language = (LocalizationSystem.Language)langIndex;
-        print("TO: " + LocalizationSystem.language.ToString());
-
-        FindAppropriateFont();
-
-        TextLocaliserUI[] textItems = FindObjectsOfType(typeof(TextLocaliserUI)) as TextLocaliserUI[];
-        foreach(TextLocaliserUI text in textItems)
-        {
-            if (text.key == "localLang")
-            {
-                text.menuData = this;
-                text.language = currentLanguage;
-                text.ApplyFontForLangMenu();
-            }
-            else
-            {
-                text.menuData = this;
-                text.language = currentLanguage;
-                text.Localize();
-            }
-        }
-    }
-
-    Dictionary<string, TMP_FontAsset> appropriateFonts = new Dictionary<string, TMP_FontAsset>();
-
-    void InitialiseAppropriateFonts()
-    {
-        appropriateFonts.Add("english", Latin);
-        appropriateFonts.Add("french", Latin_Cyrillic);
-        appropriateFonts.Add("spanish", Latin_Cyrillic);
-        appropriateFonts.Add("russian", Latin_Cyrillic);
-        appropriateFonts.Add("german", Latin_Cyrillic);
-        appropriateFonts.Add("portugese", Latin_Cyrillic);
-        appropriateFonts.Add("malay", Latin_Cyrillic);
-        appropriateFonts.Add("polish", Latin_Cyrillic);
-        appropriateFonts.Add("italian", Latin_Cyrillic);
-        appropriateFonts.Add("chinese", Chinese);
-        appropriateFonts.Add("turkish", Latin_Cyrillic);
-        appropriateFonts.Add("vietnamese", Vietnamese);
-        appropriateFonts.Add("ukrainian", Latin_Cyrillic);
-        appropriateFonts.Add("hindi", Hindi);
-        appropriateFonts.Add("indonesian", Latin_Cyrillic);
-        appropriateFonts.Add("arabic", Arabic);
-    }
-
-    void FindAppropriateFont()
-    {
-        TMP_FontAsset value;
-        appropriateFonts.TryGetValue(currentLanguage, out value);
-
-        appropriateFont = value;
-    }
-
-    public TMP_FontAsset GiveAppropriateFont(string language)
-    {
-        TMP_FontAsset value;
-        appropriateFonts.TryGetValue(language, out value);
-
-        return value;
-    }
-
-    private void OnApplicationQuit()
-    {
-        if(errorOpened == false && EULA_Accepted)
-        {
-            Debug.Log("Saving on exit");
-            SaveGameData();
-        }
-
-        if (!EULA_Accepted)
-        {
-            //shut game, delete all gamedata, hard factory reset
-            DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
-            dataDir.Delete(true);
-        }
+        errorOpened = true;
     }
 }

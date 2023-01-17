@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicInit : MonoBehaviour
+namespace Architecture.Audio
 {
-    [SerializeField] string Song;
-
-    private void Awake()
+    public class MusicInit : MonoBehaviour
     {
-        GameObject.FindGameObjectWithTag("GameMusicController").GetComponent<JukeboxScript>().Play(Song);
+        [SerializeField] string Song;
+
+        private void Awake()
+        {
+            GameObject.FindGameObjectWithTag("GameMusicController").GetComponent<JukeboxScript>().Play(Song);
+        }
     }
 }

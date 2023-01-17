@@ -1,13 +1,16 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 
-[System.Serializable]
-public class Sound
+namespace Architecture.Audio
 {
-    public string name;
+    [System.Serializable]
+    public struct Sound
+    {
+        public string name;
 
-    public AudioClip clip;
+        public AudioClip clip;
 
-    [Range(0f, 1f)]
-    public float volume;
+        [Range(0f, 1f)]
+        public float volume;
+    }
 }

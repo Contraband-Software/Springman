@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Architecture;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+using Architecture.Managers;
+
 public class CloseButton : MonoBehaviour
 {
     public Canvas uiToClose;
-    public MenuData menuData;
-    public GameData gameData;
 
     private Scene currentScene;
 
@@ -22,16 +23,10 @@ public class CloseButton : MonoBehaviour
 
         uiToClose.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnClose();
 
-        if (currentScene.name == "Main Menu")
-        {
-            menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
-            menuData.SaveGameData();
-        }
+        UserGameData.Instance.SaveGameData();
+
         if (currentScene.name == "Game")
         {
-            gameData = GameObject.Find("GameController").GetComponent<GameData>();
-            gameData.SaveGameData();
-
             if (uiToClose.transform.root.gameObject.name == "Options Menu")
             {
                 OnOptionsExit?.Invoke();

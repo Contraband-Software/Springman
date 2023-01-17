@@ -15,7 +15,6 @@ public class EyeballController : MonoBehaviour
     public List<GameObject> enemiesActive = new List<GameObject>();
 
     private PlayerController playerCon;
-    private GameData gameData;
 
     private float eyeBallRadius = 0.13f;
 
@@ -25,7 +24,6 @@ public class EyeballController : MonoBehaviour
     void Start()
     {
         playerCon = transform.root.gameObject.GetComponent<PlayerController>();
-        gameData = playerCon.gamedata;
         playerRb = playerCon.rb;
     }
 
@@ -37,7 +35,7 @@ public class EyeballController : MonoBehaviour
 
     private void TargetOrIdle()
     {
-        if (gameData.enemiesActive.Count > 0)
+        if (Architecture.Managers.GamePlay.GetReference().EnemiesActive.Count > 0)
         {
             SnapToFirstEnemy();
         }
@@ -50,7 +48,7 @@ public class EyeballController : MonoBehaviour
 
     private void SnapToFirstEnemy()
     {
-        Vector3 target = gameData.enemiesActive[0].transform.position;
+        Vector3 target = Architecture.Managers.GamePlay.GetReference().EnemiesActive[0].transform.position;
         Vector3 centrePosition = eyeSocket.transform.position;
         Vector3 difference = (target - eyeSocket.transform.position).normalized * eyeBallRadius;
         

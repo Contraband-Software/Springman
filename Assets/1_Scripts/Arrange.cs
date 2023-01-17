@@ -5,7 +5,7 @@ using UnityEngine;
 public class Arrange : MonoBehaviour
 {
     //GAME DATA REFERENCE
-    GameData gameData;
+    Architecture.Managers.GamePlay gameData;
 
     public GameObject mid;
     public GameObject left;
@@ -18,13 +18,15 @@ public class Arrange : MonoBehaviour
 
     private void Awake()
     {
+        gameData = Architecture.Managers.GamePlay.GetReference();
+
         midBounds = mid.GetComponent<BoxCollider2D>().bounds;
         leftBounds = left.GetComponent<BoxCollider2D>().bounds;
         rightBounds = right.GetComponent<BoxCollider2D>().bounds;
     }
-    void Start()
+
+    public void ArrangePlatform()
     {
-        gameData = GameObject.Find("GameController").GetComponent<GameData>();
         Resize();
         PlaceCaps();
         PositionIndicator();
@@ -45,7 +47,7 @@ public class Arrange : MonoBehaviour
 
     void Resize()
     {
-        float excludeCaps = gameData.platLength - (leftBounds.extents.x * 4) - 0.02f;
+        float excludeCaps = gameData.PlatLength - (leftBounds.extents.x * 4) - 0.02f;
         float scaleMultiplier = excludeCaps / (midBounds.extents.x * 2);
 
         mid.transform.localScale = new Vector3(mid.transform.localScale.x * scaleMultiplier, mid.transform.localScale.y, mid.transform.localScale.z);

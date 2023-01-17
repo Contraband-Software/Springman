@@ -10,7 +10,6 @@ public class ColoursController : MonoBehaviour
     public ColourSelector colourSelector;
     public CosmeticsController cosmeticsController;
     public CosmeticsMenuController cosMenuCon;
-    public CosmeticsData cosmeticsData;
 
     public Image tick;
     public GameObject lockIcon;
@@ -42,7 +41,6 @@ public class ColoursController : MonoBehaviour
 
     public void OnColourPageOpen()
     {
-        cosmeticsData.LoadCosData();
         colourSelector.CollectColours();
         FetchData();
         if (cosMenuCon.canvases[0].name.ToLower() == "colours")
@@ -77,7 +75,7 @@ public class ColoursController : MonoBehaviour
     {
         //checks which frame is currently open, and makes sure the current colour and object is corresponding
         //to that frame
-        if(cosmeticsData.playerCosmeticType == CosmeticsData.PlayerCosmeticType.Color)
+        if(Architecture.Managers.UserGameData.Instance.playerCosmeticType == Architecture.Managers.UserGameData.PlayerCosmeticType.Color)
         {
             if (frameController.currentFrame == "TopFrame")
             {
@@ -117,7 +115,7 @@ public class ColoursController : MonoBehaviour
 
         foreach(string colour in colourSelector.colours)
         {
-            if (cosmeticsData.unlockedColours.Contains(colour))
+            if (Architecture.Managers.UserGameData.Instance.unlockedColours.Contains(colour))
             {
                 index = colourSelector.colours.IndexOf(colour);
                 colourSelector.colourButtonScripts[index].gameObject.SetActive(true);
@@ -138,22 +136,22 @@ public class ColoursController : MonoBehaviour
     }
     public void SendData()
     {
-        cosmeticsData.topColor = topColor;
-        cosmeticsData.bottomColor = bottomColor;
-        cosmeticsData.springColor = springColor;
+        Architecture.Managers.UserGameData.Instance.topColor = topColor;
+        Architecture.Managers.UserGameData.Instance.bottomColor = bottomColor;
+        Architecture.Managers.UserGameData.Instance.springColor = springColor;
 
-        cosmeticsData.topObject = topObject;
-        cosmeticsData.bottomObject = bottomObject;
-        cosmeticsData.springObject = springObject;
+        Architecture.Managers.UserGameData.Instance.topObject = topObject;
+        Architecture.Managers.UserGameData.Instance.bottomObject = bottomObject;
+        Architecture.Managers.UserGameData.Instance.springObject = springObject;
     }
     public void FetchData()
     {
-        topColor = cosmeticsData.topColor;
-        bottomColor = cosmeticsData.bottomColor;
-        springColor = cosmeticsData.springColor;
+        topColor = Architecture.Managers.UserGameData.Instance.topColor;
+        bottomColor = Architecture.Managers.UserGameData.Instance.bottomColor;
+        springColor = Architecture.Managers.UserGameData.Instance.springColor;
 
-        topObject = cosmeticsData.topObject;
-        bottomObject = cosmeticsData.bottomObject;
-        springObject = cosmeticsData.springObject;
+        topObject = Architecture.Managers.UserGameData.Instance.topObject;
+        bottomObject = Architecture.Managers.UserGameData.Instance.bottomObject;
+        springObject = Architecture.Managers.UserGameData.Instance.springObject;
     }
 }

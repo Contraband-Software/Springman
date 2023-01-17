@@ -4,54 +4,58 @@ using UnityEngine;
 using System;
 using UnityEngine.Audio;
 
-public class JukeboxScript : MonoBehaviour
+namespace Architecture.Audio
 {
-    [Serializable] public struct Song
+    public class JukeboxScript : MonoBehaviour
     {
-        public string name;
-        public IntroLoopMusicController Controller;
-    }
-    [SerializeField] List<Song> musicControllers = new List<Song>();
-
-    public AudioMixer am;
-    private Song GetSongByName(string name)
-    {
-        for (int i = 0; i < musicControllers.Count; i++)
+        [Serializable]
+        public struct Song
         {
-            if (name == musicControllers[i].name)
+            public string name;
+            public IntroLoopMusicController Controller;
+        }
+        [SerializeField] List<Song> musicControllers = new List<Song>();
+
+        public AudioMixer am;
+        private Song GetSongByName(string name)
+        {
+            for (int i = 0; i < musicControllers.Count; i++)
             {
-                return musicControllers[i];
+                if (name == musicControllers[i].name)
+                {
+                    return musicControllers[i];
+                }
+            }
+
+            throw new ArgumentException("Song name does not exist", nameof(name));
+        }
+
+        public IntroLoopMusicController GetSongController(string song)
+        {
+            return GetSongByName(song).Controller;
+        }
+
+        public void SetMute(bool mute)
+        {
+            for (int i = 0; i < musicControllers.Count; i++)
+            {
+                musicControllers[i].Controller.SetMute(mute);
             }
         }
 
-        throw new ArgumentException("Song name does not exist", nameof(name));
-    }
-
-    public IntroLoopMusicController GetSongController(string song)
-    {
-        return GetSongByName(song).Controller;
-    }
-
-    public void SetMute(bool mute)
-    {
-        for (int i = 0; i < musicControllers.Count; i++)
+        public void StopAll()
         {
-            musicControllers[i].Controller.SetMute(mute);
+            for (int i = 0; i < musicControllers.Count; i++)
+            {
+                musicControllers[i].Controller.Stop();
+            }
         }
-    }
 
-    public void StopAll()
-    {
-        for (int i = 0; i < musicControllers.Count; i++)
+        public void Play(string song)
         {
-            musicControllers[i].Controller.Stop();
+            StopAll();
+
+            GetSongByName(song).Controller.Play();
         }
-    }
-
-    public void Play(string song)
-    {
-        StopAll();
-
-        GetSongByName(song).Controller.Play();
     }
 }

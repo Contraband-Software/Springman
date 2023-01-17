@@ -3,51 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ErrorScreenScript : MonoBehaviour
+namespace Architecture
 {
-    public Canvas errorCanvas;
-    public GameData gameData;
-    public MenuData menuData;
-    public bool displayError = false;
-    Scene scene;
-    private void Start()
+    using Managers;
+
+    public class ErrorScreenScript : MonoBehaviour
     {
-        errorCanvas.enabled = false;
-        displayError = false;
+#pragma warning disable S1104
+        public Canvas errorCanvas;
+#pragma warning restore S1104
 
-        scene = SceneManager.GetActiveScene();
+        private void Start()
+        {
+            UserGameData.Instance.ErrorEvent.AddListener(() =>
+            {
+                DisplayError();
+            });
 
-        if(scene.name == "Main Menu")
-        {
-            menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
-        }
-        if(scene.name == "Game")
-        {
-            gameData = GameObject.Find("GameController").GetComponent<GameData>();
+            errorCanvas.enabled = false;
         }
 
-        DisplayError();
-    }
-
-    private void Update()
-    {
-        DisplayError();
-    }
-
-    void DisplayError()
-    {
-        if(scene.name == "Game" && gameData.errorOpened)
-        {
-            Time.timeScale = 0f;
-            errorCanvas.enabled = true;
-            gameObject.transform.GetChild(0).GetComponent<FilterFade>().FadeToBlack();
-            gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
-        }
-        if (scene.name == "Main Menu" && menuData.errorOpened)
+        void DisplayError()
         {
             errorCanvas.enabled = true;
+
             gameObject.transform.GetChild(0).GetComponent<FilterFade>().FadeToBlack();
             gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+
+            if (SceneManager.GetActiveScene().name == "Game")
+            {
+                Time.timeScale = 0f;
+            }
         }
     }
 }

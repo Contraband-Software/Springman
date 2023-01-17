@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: TestingConsole
   m_TagString: EditorOnly
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 387fdebfa1b5d9f40b7d187fb4ec710c, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -47,5 +47,5 @@ MonoBehaviour:
   flyingEnemyPrefab: {fileID: 152433443641657821, guid: 766ede31e464da141bc07542836bf1f0,
     type: 3}
   spawnFlyingEnemyOnStart: 1
-  waterDisabled: 1
+  waterDisabled: 0
   spawnSEOnAllPlatforms: 1

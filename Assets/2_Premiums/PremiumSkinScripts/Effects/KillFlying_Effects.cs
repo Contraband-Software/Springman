@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Managers;
+
 public class KillFlying_Effects : MonoBehaviour
 {
     private string premium_name;
@@ -41,8 +43,10 @@ public class KillFlying_Effects : MonoBehaviour
 
     public void Start()
     {
+        playerCon = transform.parent.gameObject.GetComponent<PlayerController>();
+
         premDetails = gameObject.GetComponent<PremSkinDetailsDemo>();
-        premium_name = premDetails.cosData.activePremiumSkinName;
+        premium_name = UserGameData.Instance.activePremiumSkinName;
         tapToKillReference = playerCon.GetComponent<TapToKill>();
     }
 
@@ -98,7 +102,6 @@ public class KillFlying_Effects : MonoBehaviour
         missileScript.target = flyingEnemyObject;
         missileScript.pCon = playerCon;
         missileScript.tapToKillReference = tapToKillReference;
-        missileScript.gameData = playerCon.gamedata;
         missileScript.playerConAnimator = artifactAnimator;
     }
 

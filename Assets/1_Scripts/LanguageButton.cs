@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LanguageButton : MonoBehaviour
+namespace Architecture.Localisation
 {
-    public Canvas LanguagesMenu;
-
-    private void Awake()
+    public class LanguageButton : MonoBehaviour
     {
-        LanguagesMenu.enabled = false;
-    }
+        public Canvas LanguagesMenu;
 
-    public void OnClick()
-    {
-        LanguagesMenu.gameObject.SetActive(true);
-        LanguagesMenu.enabled = true;
-        LanguagesMenu.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+        private void Awake()
+        {
+            LanguagesMenu.enabled = false;
+        }
 
-        GameObject.Find("ButtonGroup").GetComponent<LanguageOrganiser>().HighlightCurrentLanguage();
+        public void OnClick()
+        {
+            LanguagesMenu.gameObject.SetActive(true);
+            LanguagesMenu.enabled = true;
+            LanguagesMenu.gameObject.transform.GetChild(1).GetComponent<ScaleTween>().OnOpen();
+
+            GameObject.Find("ButtonGroup").GetComponent<LanguageOrganiser>().HighlightCurrentLanguage();
+        }
     }
 }

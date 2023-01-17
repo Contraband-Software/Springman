@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Architecture;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Architecture.Managers;
 
 public class BuyButton : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class BuyButton : MonoBehaviour
     public enum PurchaseType { Color, Silver, Gold};
     public PurchaseType purchaseType;
     public ConfirmBuyColour confirmBuyColor;
-    public MenuData menuData;
+    //public MenuData menuData;
     bool defaultsSet = false;
 
     public void Start()
@@ -28,7 +30,7 @@ public class BuyButton : MonoBehaviour
     public void OnClick()
     {
 
-        if (purchaseType == PurchaseType.Color && menuData.silver >= cost)
+        if (purchaseType == PurchaseType.Color && UserGameData.Instance.silver >= cost)
         {
             confirmBuyColor.PopulatePossiblePurchases();
             if(confirmBuyColor.possiblePurchases.Count > 0)

@@ -2,9 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Architecture.Managers;
 
 public class PanoramaBackground : MonoBehaviour
 {
+    [Header("Colour Changeables")]
+    public List<SpriteRenderer> backgroundColors = new List<SpriteRenderer>();
+
+    [Header("Rest")]
     public GameObject objectPool;
 
     //Pattern Variables
@@ -57,7 +62,13 @@ public class PanoramaBackground : MonoBehaviour
     }
     private void Start()
     {
+        CollectBackgroundColorRefs();
         FirstPattern();
+    }
+
+    public static PanoramaBackground GetReference()
+    {
+        return GameObject.FindGameObjectWithTag("BackgroundController").GetComponent<PanoramaBackground>();
     }
 
     void Update()
@@ -66,6 +77,28 @@ public class PanoramaBackground : MonoBehaviour
 
         if (finishedInit) { SpawnNextPattern(); }
         else { InitialisePattern(spawnedPattern); }
+    }
+    /// <summary>
+    /// Accesses all children of the object pool to add a reference to the water color
+    /// to the list of colours
+    /// </summary>
+    void CollectBackgroundColorRefs()
+    {
+        for (int child = 0; child < objectPool.transform.childCount; child++)
+        {
+            backgroundColors.Add(objectPool.transform.GetChild(child).GetChild(1).GetComponent<SpriteRenderer>());
+        }
+    }
+
+    /// <summary>
+    /// Updates each background of the object pool to match the theme color
+    /// </summary>
+    public void UpdateBackgroundColours()
+    {
+        for(int c = 0; c < backgroundColors.Count; c++)
+        {
+            backgroundColors[c].color = UserGameData.Instance.themeColour;
+        }
     }
 
     void FirstPattern()
@@ -88,7 +121,6 @@ public class PanoramaBackground : MonoBehaviour
         spawnedFirstPattern.transform.rotation = Quaternion.identity;
 
         PatSpecs firstPatternSpecs = spawnedFirstPattern.GetComponent<PatSpecs>();
-        SpriteRenderer firstPatternSprite = spawnedFirstPattern.GetComponent<SpriteRenderer>();
 
         currentBounds = spawnedFirstPattern.GetComponent<BoxCollider2D>().bounds;
 
@@ -106,12 +138,12 @@ public class PanoramaBackground : MonoBehaviour
 
             case Orientation.FlippedInX:
                 currentOrientationSpecs = firstPatternSpecs.flippedInX;
-                firstPatternSprite.flipX = true;
+                Flip(firstPatternSpecs, true, false);
                 break;
 
             case Orientation.FlippedInY:
                 currentOrientationSpecs = firstPatternSpecs.flippedInY;
-                firstPatternSprite.flipY = true;
+                Flip(firstPatternSpecs, false, true);
                 break;
 
             case Orientation.Rot180:
@@ -125,6 +157,10 @@ public class PanoramaBackground : MonoBehaviour
 
         firstSpawn = true;
         finishedInit = true;
+
+
+        //apply theme colour from UserGameData
+        firstPatternSpecs.colour.color = UserGameData.Instance.themeColour;
     }
 
     void SpawnNextPattern()
@@ -133,7 +169,7 @@ public class PanoramaBackground : MonoBehaviour
         {
             finishedInit = false;
 
-            float spawnY = currentY + (currentBounds.extents.y * 2) - 0.01f;
+            float spawnY = currentY + (currentBounds.extents.y * 2); //- 0.01f;
 
             bool patternFound = false;
             string pattern = patterns[rnd.Next(0, 3)].gameObject.name;
@@ -157,19 +193,19 @@ public class PanoramaBackground : MonoBehaviour
             spawnedPattern.SetActive(true);
             spawnedPattern.transform.position = Vector3.zero;
             spawnedPattern.transform.rotation = Quaternion.identity;
-            SpriteRenderer sP_renderer = spawnedPattern.GetComponent<SpriteRenderer>();
-            sP_renderer.flipX = false;
-            sP_renderer.flipY = false;
 
             //get the specs of the spawned pattern
             spawnedPatternSpecs = spawnedPattern.GetComponent<PatSpecs>();
-
+            Flip(spawnedPatternSpecs, false, false);
 
 
             spawnedPattern.transform.position = new Vector3(spawnedPattern.transform.position.x, spawnY, spawnedPattern.transform.position.z);
 
             currentY = spawnedPattern.transform.position.y;
-            currentBounds = sP_renderer.bounds;
+            currentBounds = spawnedPatternSpecs.overlay.bounds;
+
+            //apply theme colour from UserGameData
+            spawnedPatternSpecs.colour.color = UserGameData.Instance.themeColour;
         }
            
     }
@@ -196,8 +232,7 @@ public class PanoramaBackground : MonoBehaviour
             }
             else
             {
-
-                SpriteRenderer spawnedPatternSprite = spawnedPattern.GetComponent<SpriteRenderer>();
+                PatSpecs spawnPatSpecs = spawnedPattern.GetComponent<PatSpecs>();
 
                 //Adjusting the pattern to the correct orientation
 
@@ -212,12 +247,12 @@ public class PanoramaBackground : MonoBehaviour
 
                     case Orientation.FlippedInX:
                         currentOrientationSpecs = spawnedPatternSpecs.flippedInX;
-                        spawnedPatternSprite.flipX = true;
+                        Flip(spawnPatSpecs, true, false);
                         break;
 
                     case Orientation.FlippedInY:
                         currentOrientationSpecs = spawnedPatternSpecs.flippedInY;
-                        spawnedPatternSprite.flipY = true;
+                        Flip(spawnPatSpecs, false, true);
                         break;
 
                     case Orientation.Rot180:
@@ -228,12 +263,23 @@ public class PanoramaBackground : MonoBehaviour
                 }
                 currentPatternSpecs = spawnedPatternSpecs;
                 currentY = spawnedPattern.transform.position.y;
-                currentBounds = spawnedPattern.GetComponent<SpriteRenderer>().bounds;
+                currentBounds = spawnPatSpecs.overlay.bounds;
 
                 ranOrientationInt = -1;
                 potentialNextBottomSpecs = Vector2.zero;
                 finishedInit = true;
             }
         }
+    }
+
+    void Flip(PatSpecs patSpecs, bool flipX, bool flipY)
+    {
+        patSpecs.overlay.flipX = flipX;
+        patSpecs.colour.flipX = flipX;
+        patSpecs.underlay.flipX = flipX;
+
+        patSpecs.overlay.flipY = flipY;
+        patSpecs.colour.flipY = flipY;
+        patSpecs.underlay.flipY = flipY;
     }
 }

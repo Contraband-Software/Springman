@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+using Architecture.Managers;
+
 public class PremiumButton : MonoBehaviour
 {
-    [SerializeField] CosmeticsData cosData;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Button thisButton;
     [SerializeField] ButtonMouseDown btnDownScript;
@@ -23,11 +24,11 @@ public class PremiumButton : MonoBehaviour
 
     private void Update()
     {
-        if(currentSkinPrem_stored == false && cosData.currentSkinPremium)
+        if(currentSkinPrem_stored == false && UserGameData.Instance.currentSkinPremium)
         {
             ChangeToSayCustomise();
         }
-        if(currentSkinPrem_stored == true && cosData.currentSkinPremium == false)
+        if(currentSkinPrem_stored == true && UserGameData.Instance.currentSkinPremium == false)
         {
             ChangeToSaySelect();
         }
@@ -40,6 +41,8 @@ public class PremiumButton : MonoBehaviour
         text.text = "Customise";
         thisButton.interactable = true;
         btnDownScript.disabledButton = false;
+
+        //relocalise that one text
     }
 
     private void ChangeToSaySelect()
@@ -48,12 +51,14 @@ public class PremiumButton : MonoBehaviour
         text.text = "Select A Skin";
         thisButton.interactable = false;
         btnDownScript.disabledButton = true;
+
+        //relocalise that one text
     }
 
 
     public void Clicked()
     {
-        if (cosData.currentSkinPremium)
+        if (UserGameData.Instance.currentSkinPremium)
         {
             premBuyCanvas.enabled = true;
             scaleTween.OnOpen();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Architecture.Managers;
+
 public class CosmeticsMenuController : MonoBehaviour
 {
     public Canvas cosmeticsCanvas;
@@ -10,7 +12,6 @@ public class CosmeticsMenuController : MonoBehaviour
     public CosmeticsButton cosmeticsButton;
     public RectTransform cmRect;
     public Canvas transitionCanvas;
-    public CosmeticsData cosData;
 
     public SkinsController skinsCon;
 
@@ -138,13 +139,13 @@ public class CosmeticsMenuController : MonoBehaviour
 
     public void UpdateDemo()
     {
-        if (!cosData.currentSkinPremium)
+        if (!UserGameData.Instance.currentSkinPremium)
         {
             skin_demo.SetActive(true);
 
             premDemoCon.HidePremiumSkin();
 
-            SkinSpecsSolid sSpecs = cosData.allSkinSpecs[cosData.allSkinsCodes.IndexOf(cosData.currentSkin)];
+            SkinSpecsSolid sSpecs = UserGameData.Instance.allSkinSpecs[UserGameData.Instance.allSkinsCodes.IndexOf(UserGameData.Instance.currentSkin)];
 
             BaseTop(sSpecs);
         }
@@ -216,7 +217,7 @@ public class CosmeticsMenuController : MonoBehaviour
     {
         if (sSpecs.colour_changeable_top)
         {
-            demo_top.color = cosData.topColor;
+            demo_top.color = UserGameData.Instance.topColor;
         }
         else
         {
@@ -225,7 +226,7 @@ public class CosmeticsMenuController : MonoBehaviour
 
         if (sSpecs.colour_changeable_bottom)
         {
-            demo_bottom.color = cosData.bottomColor;
+            demo_bottom.color = UserGameData.Instance.bottomColor;
         }
         else
         {
@@ -234,7 +235,7 @@ public class CosmeticsMenuController : MonoBehaviour
 
         if (sSpecs.colour_changeable_eyes)
         {
-            demo_eyes.color = cosData.topColor;
+            demo_eyes.color = UserGameData.Instance.topColor;
         }
         else
         {
@@ -243,14 +244,14 @@ public class CosmeticsMenuController : MonoBehaviour
 
         if (sSpecs.colour_top_equal_to_bottom)
         {
-            demo_bottom.color = cosData.topColor;
+            demo_bottom.color = UserGameData.Instance.topColor;
         }
         else
         {
             demo_bottom.color = demo_bottom.color;
         }
 
-        demo_spring.color = cosData.springColor;
+        demo_spring.color = UserGameData.Instance.springColor;
         demo_top_skin.color = Color.white;
     }
     public void HideMissing(SkinSpecsSolid sSpecs)

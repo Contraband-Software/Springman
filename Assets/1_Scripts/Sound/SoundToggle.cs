@@ -5,67 +5,48 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class SoundToggle : MonoBehaviour
+namespace Architecture.Audio
 {
-	public GameData gameData;
-	public MenuData menuData;
-
-    public TextMeshProUGUI soundsOnText;
-	public TextMeshProUGUI ToggleON;
-
-	public TextMeshProUGUI soundsOffText;
-	public TextMeshProUGUI ToggleOFF;
-
-	public Sprite ON;
-	public Sprite OFF;
-
-    private void SetMute(bool mute)
+    public class SoundToggle : MonoBehaviour
     {
-        gameObject.GetComponent<Image>().sprite = (mute) ? OFF : ON;
 
-        soundsOnText.enabled = !mute;
-        ToggleON.enabled = !mute;
+        public TextMeshProUGUI soundsOnText;
+        public TextMeshProUGUI ToggleON;
 
-        soundsOffText.enabled = mute;
-        ToggleOFF.enabled = mute;
+        public TextMeshProUGUI soundsOffText;
+        public TextMeshProUGUI ToggleOFF;
 
-        switch (SceneManager.GetActiveScene().name)
+        public Sprite ON;
+        public Sprite OFF;
+
+        private void SetMute(bool mute)
         {
-            case "Main Menu":
-                menuData.soundsOn = !mute;
-                break;
-            case "Game":
-                gameData.soundsOn = !mute;
-                break;
-        }
-    }
+            gameObject.GetComponent<Image>().sprite = (mute) ? OFF : ON;
 
-    public void Toggle()
-	{
-        if (gameObject.GetComponent<Image>().sprite == ON)
-        {
-            SetMute(true);
-        }
-        else
-        {
-            SetMute(false);
-        }
-    }
+            soundsOnText.enabled = !mute;
+            ToggleON.enabled = !mute;
 
-	private void Start()
-    {
-#region FINDSCENEDATA
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "Main Menu":
-                menuData = GameObject.Find("MenuController").GetComponent<MenuData>();
-                SetMute(!menuData.soundsOn);
-                break;
-            case "Game":
-                gameData = GameObject.Find("GameController").GetComponent<GameData>();
-                SetMute(!gameData.soundsOn);
-                break;
+            soundsOffText.enabled = mute;
+            ToggleOFF.enabled = mute;
+
+            Managers.UserGameData.Instance.soundsOn = !mute;
         }
-#endregion
+
+        public void Toggle()
+        {
+            if (gameObject.GetComponent<Image>().sprite == ON)
+            {
+                SetMute(true);
+            }
+            else
+            {
+                SetMute(false);
+            }
+        }
+
+        private void Start()
+        {
+            SetMute(!Managers.UserGameData.Instance.soundsOn);
+        }
     }
 }

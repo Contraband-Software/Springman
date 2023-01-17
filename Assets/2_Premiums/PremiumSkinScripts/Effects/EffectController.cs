@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Architecture.Audio;
+using Architecture.Managers;
+
 public class EffectController : MonoBehaviour
 {
     //This script is used to interface between an action happening and the correct effect playing as a result
@@ -9,10 +12,8 @@ public class EffectController : MonoBehaviour
 
     //this script should have references to the sound database used in PlayerController, as well as references to default effects.
     [Header("Important References")]
-    public CosmeticsData cosData;
     public PlayerController playerCon;
     public GameObject premiumPlayer;
-    public GameData gameData;
 
     [Header("Sound Effect DataBase")]
     public List<Sound> death_sounds = new List<Sound>();
@@ -30,13 +31,11 @@ public class EffectController : MonoBehaviour
          
     void Start()
     {
-        cosData = GameObject.Find("CosmeticsController").GetComponent<CosmeticsData>();
-        gameData = playerCon.gamedata;
         //check if the current skin is premium
-        if (cosData.currentSkinPremium)
+        if (UserGameData.Instance.currentSkinPremium)
         {
             premiumSkinActive = true;
-            premiumPlayer = GameObject.Find("Player/" + (cosData.activePremiumSkinName + "(Clone)"));
+            premiumPlayer = GameObject.Find("Player/" + (UserGameData.Instance.activePremiumSkinName + "(Clone)"));
 
 
             //BOUNCE
@@ -45,7 +44,6 @@ public class EffectController : MonoBehaviour
             {
                 premium_bounce_effects.playerCon = playerCon;
                 premium_bounce_effects.effectCon = this;
-                premium_bounce_effects.gameData = gameData;
             }
 
             //DEATH
@@ -54,7 +52,6 @@ public class EffectController : MonoBehaviour
             {
                 premium_death_effects.playerCon = playerCon;
                 premium_death_effects.effectCon = this;
-                premium_death_effects.gameData = gameData;
             }
 
             //KILL FLYING
@@ -88,7 +85,7 @@ public class EffectController : MonoBehaviour
             playerCon.animator.Play(playerCon.bounce_animation);//EFFECT
             playerCon.bounceDust.Play();//EFFECT
 
-            if (gameData.soundsOn)
+            if (Architecture.Managers.UserGameData.Instance.soundsOn)
             {
                 playerCon.bounceSound.Play();//EFFECT
             }

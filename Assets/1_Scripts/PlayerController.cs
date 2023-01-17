@@ -5,6 +5,9 @@ using System.Resources;
 using UnityEngine;
 using UnityEngine.Events;
 
+using Architecture.Audio;
+using Architecture.Managers;
+
 public class PlayerController : MonoBehaviour {
     [Header("Player Duplication Reference")]
     private GameObject playerCopy;
@@ -27,7 +30,6 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Cosmetics")]
     public CosmeticsController cosCon;
-    public CosmeticsData cosData;
 
     public SpriteRenderer skinTopSprite;
     public SpriteRenderer eyesSprite;
@@ -67,8 +69,6 @@ public class PlayerController : MonoBehaviour {
 
     public Vector3 bounds;
 
-    //GameData variables
-    public GameData gamedata;
 
     // Jump Variables
     public float jumpVelocity;
@@ -159,25 +159,29 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         //loads standard bounce anim and sound
-        bounce_animation = cosData.cSpecs.bounce_anim;//EFFECT
+        bounce_animation = UserGameData.Instance.cSpecs.bounce_anim;//EFFECT
         firstLanding = false;
         splashed = false;
 
         loadedInAt = Time.time;
 
-        alternative_bounce_sound = cosData.cSpecs.alt_BounceSound;//EFFECT
+        alternative_bounce_sound = UserGameData.Instance.cSpecs.alt_BounceSound;//EFFECT
         Sound loaded_BounceSound;
-        if(alternative_bounce_sound != null && alternative_bounce_sound != "")
-        {
-            loaded_BounceSound = FindSound(alternative_bounce_sound, effectCon.bounce_sounds);
-        }
-        else
-        {
-            loaded_BounceSound = FindSound(bounce_animation, effectCon.bounce_sounds);
-        }
 
-        if (!cosData.currentSkinPremium)
+        InitialiseSplashColour();
+        
+
+        if (!UserGameData.Instance.currentSkinPremium)
         {
+            if (alternative_bounce_sound != null && alternative_bounce_sound != "")
+            {
+                loaded_BounceSound = FindSound(alternative_bounce_sound, effectCon.bounce_sounds);
+            }
+            else
+            {
+                loaded_BounceSound = FindSound(bounce_animation, effectCon.bounce_sounds);
+            }
+
             bounceSound.clip = loaded_BounceSound.clip;
             bounceSound.volume = loaded_BounceSound.volume;
 
@@ -212,11 +216,11 @@ public class PlayerController : MonoBehaviour {
 
 #region REMOVENEMIES
         //REMOVE ENEMIES
-        foreach (GameObject enemy in gamedata.enemiesActive)
+        foreach (GameObject enemy in GamePlay.GetReference().EnemiesActive)
         {
             Destroy(enemy);
         }
-        gamedata.enemiesActive = new List<GameObject>();
+        GamePlay.GetReference().EnemiesActive = new List<GameObject>();
 #endregion
 
         //Active other player copy
@@ -230,18 +234,33 @@ public class PlayerController : MonoBehaviour {
         //prepare platform to spawn onto
         if(highestPlatformHit != null)
         {
-            Vector3 newPos = highestPlatformHit.transform.position;
-            newPos.x = 0f;
-            highestPlatformHit.transform.position = newPos;
+            //delete screw if on platform
+            Transform screw = highestPlatformHit.transform.Find("SilverScrew(Clone)");
+            if (screw != null)
+            {
+                screw.gameObject.SetActive(false);
+            }
+
+            highestPlatformHit.GetComponent<SlideMove>().disableMovement = true;
+
             Vector3 newScale = highestPlatformHit.transform.localScale;
             newScale.x = 8f;
             highestPlatformHit.transform.localScale = newScale;
 
-            //delete screw if on platform
-            Transform screw = highestPlatformHit.transform.Find("SilverScrew(Clone)");
-            if(screw != null)
+            if (highestPlatformHit.GetComponent<ArrangeHole>() != null)
             {
-                screw.gameObject.SetActive(false);
+                ArrangeHole ahs = highestPlatformHit.GetComponent<ArrangeHole>();
+                Vector3 newPos = highestPlatformHit.transform.position;
+                newPos.x = ahs.leftFlat.transform.position.x * -1f;
+                print(ahs.leftFlat.transform.position.x);
+                highestPlatformHit.transform.position = newPos;
+
+            }
+            else
+            {
+                Vector3 newPos = highestPlatformHit.transform.position;
+                newPos.x = 0f;
+                highestPlatformHit.transform.position = newPos;
             }
         }
 
@@ -318,7 +337,7 @@ public class PlayerController : MonoBehaviour {
                 return s;
             }
         }
-        return null;
+        throw new ArgumentException("Unknown sound name");
     }
 
 
@@ -329,13 +348,13 @@ public class PlayerController : MonoBehaviour {
     {
         if(state == State.Dead)
         {
-            deathScreenManager.DeathScreenShow(gamedata.score);
+            deathScreenManager.DeathScreenShow(GamePlay.GetReference().Score);
 
             effectCon.DeathAllEffect();//_EFFECT
 
-            if(cosData.cSpecs.eyes_death != null)
+            if(UserGameData.Instance.cSpecs.eyes_death != null)
             {
-                eyesSprite.sprite = cosData.cSpecs.eyes_death;
+                eyesSprite.sprite = UserGameData.Instance.cSpecs.eyes_death;
             }
             if (!gameSaved)
             {
@@ -361,9 +380,8 @@ public class PlayerController : MonoBehaviour {
     IEnumerator DelayedSaveGame()
     {
         yield return new WaitForSecondsRealtime(0.25f);
-        gamedata.SaveGameData();
+        UserGameData.Instance.SaveGameData();
     }
-
 
     float decel = 1f;
     float yVelOnEntry;
@@ -407,7 +425,7 @@ public class PlayerController : MonoBehaviour {
                 splashSound.volume = defaultSplashVol;
                 splashSound.volume = Mathf.Abs(lastNonZeroVelY / 20f) * splashSound.volume;
 
-                if (gamedata.soundsOn)
+                if (UserGameData.Instance.soundsOn)
                 {
                     splashSound.Play();//EFFECT
                 }
@@ -483,7 +501,7 @@ public class PlayerController : MonoBehaviour {
             deathSound.clip = death_by_spike.clip;
             deathSound.volume = death_by_spike.volume;
 
-            if (gamedata.soundsOn)
+            if (UserGameData.Instance.soundsOn)
             {
                 deathSound.Play();//EFFECT
             }
@@ -526,7 +544,7 @@ public class PlayerController : MonoBehaviour {
                     splashSound.volume = defaultSplashVol;
                     splashSound.volume = Mathf.Abs(lastNonZeroVelY / 20) * splashSound.volume;
 
-                    if (gamedata.soundsOn)
+                    if (UserGameData.Instance.soundsOn)
                     {
                         splashSound.Play();//EFFECT
                     }
@@ -538,7 +556,7 @@ public class PlayerController : MonoBehaviour {
                     splashSound.volume = defaultSplashVol;
                     splashSound.volume = Mathf.Abs(lastNonZeroVelY / 20f) * splashSound.volume;
 
-                    if (gamedata.soundsOn)
+                    if (UserGameData.Instance.soundsOn)
                     {
                         splashSound.Play();//EFFECT
                     }
@@ -588,7 +606,7 @@ public class PlayerController : MonoBehaviour {
             deathSound.clip = death_by_proj.clip;
             deathSound.volume = death_by_proj.volume;
 
-            if (gamedata.soundsOn)
+            if (UserGameData.Instance.soundsOn)
             {
                 deathSound.Play();//EFFECT
             }
@@ -634,10 +652,10 @@ public class PlayerController : MonoBehaviour {
             }
         }
         
-        if(xLoc > transform.position.x && cosData.cSpecs.skin_name != "imposter") //next target RIGHT
+        if(xLoc > transform.position.x && UserGameData.Instance.cSpecs.skin_name != "imposter") //next target RIGHT
         {
             eyesSprite.flipX = true;
-            if (cosData.cSpecs.skin_Top_Flippable)
+            if (UserGameData.Instance.cSpecs.skin_Top_Flippable)
             {
                 skinTopSprite.flipX = true;
 
@@ -647,10 +665,10 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if(xLoc < transform.position.x && cosData.cSpecs.skin_name != "imposter")
+        if(xLoc < transform.position.x && UserGameData.Instance.cSpecs.skin_name != "imposter")
         {
             eyesSprite.flipX = false;
-            if (cosData.cSpecs.skin_Top_Flippable)
+            if (UserGameData.Instance.cSpecs.skin_Top_Flippable)
             {
                 skinTopSprite.flipX = false;
 
@@ -826,7 +844,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(rayhit.collider.tag == "Platform" && LastPlatY < rayhit.collider.transform.position.y)
         {
-            gamedata.score++;
+            GamePlay.GetReference().Score++;
             LastPlatY = rayhit.collider.transform.position.y;
             highestPlatformHit = rayhit.collider.transform.root.gameObject;
         }
@@ -976,6 +994,56 @@ public class PlayerController : MonoBehaviour {
                 deathBy = DeathBy.Mine;
             }
         }
+    }
+
+    private void InitialiseSplashColour()
+    {
+        var main = splash.main;
+
+        float a = 1f;
+
+        Color themeColour = UserGameData.Instance.themeColour;
+        int r = Mathf.RoundToInt(themeColour.r * 255f);
+        int g = Mathf.RoundToInt(themeColour.g * 255f);
+        int b = Mathf.RoundToInt(themeColour.b * 255f);
+
+        List<int> colorVals255 = new List<int>() { r, g, b };
+        List<int> newColor = new List<int>() { r, g, b };
+
+        //find highest
+        int highest = 0;
+        foreach (int val in colorVals255)
+        {
+            if (val > highest)
+            {
+                highest = val;
+            }
+        }
+        colorVals255.Remove(highest);
+
+        //find 2nd highest
+        int _2ndHighest = 0;
+        foreach (int val in colorVals255)
+        {
+            if (val > _2ndHighest)
+            {
+                _2ndHighest = val;
+            }
+        }
+        colorVals255.Remove(_2ndHighest);
+
+        //last remaining is lowest
+        int lowest = colorVals255[0];
+
+        int d = Mathf.RoundToInt(highest * 0.34f);
+
+        //insert back in correctly
+        newColor[newColor.IndexOf(highest)] = highest + d;
+        newColor[newColor.IndexOf(_2ndHighest)] = _2ndHighest + Mathf.RoundToInt(((float)_2ndHighest / (float)highest) * d);
+        newColor[newColor.IndexOf(lowest)] = lowest + Mathf.RoundToInt(((float)lowest / (float)highest) * d); ;
+
+        Color newCol = new Color(newColor[0] / 255f, newColor[1] / 255f, newColor[2] / 255f, a);
+        main.startColor = new ParticleSystem.MinMaxGradient(newCol, newCol);
     }
 }
 

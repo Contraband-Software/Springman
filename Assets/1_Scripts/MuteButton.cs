@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 
 public class MuteButton : MonoBehaviour {
-	public MenuData menuData;
-	public GameData gameData;
 
 	Scene currentScene;
 

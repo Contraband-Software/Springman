@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.UI;
+
+using Architecture.Localisation;
 
 public class tutorialController : MonoBehaviour
 {
@@ -16,7 +16,6 @@ public class tutorialController : MonoBehaviour
     public GameObject speechBubble;
     public TextMeshProUGUI speechBubbleText;
     public TextLocaliserUI tutorialTL;
-    public GameData gameData;
     public PlayerController pController;
     private RectTransform PABotRect;
     private RectTransform fadeRect;
@@ -82,7 +81,7 @@ public class tutorialController : MonoBehaviour
         floating = false;
         allowedToContinue = false;
 
-        tutorialComplete = gameData.tutorialComplete;
+        tutorialComplete = Architecture.Managers.UserGameData.Instance.tutorialComplete;
 
         topRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane)); //Coords of top right corner of screen
         bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
@@ -90,10 +89,10 @@ public class tutorialController : MonoBehaviour
         PABotRect = PABot.GetComponent<RectTransform>();
         fadeRect = fade.GetComponent<RectTransform>();
 
-        if(gameData.tutorialComplete == false)
+        if(Architecture.Managers.UserGameData.Instance.tutorialComplete == false)
         {
             waterRise.enabled = false;
-            gameData.allowSlideMove = false;
+            Architecture.Managers.GamePlay.GetReference().AllowSlideMove = false;
         }
 
     }
@@ -106,7 +105,7 @@ public class tutorialController : MonoBehaviour
             TutorialInitiate();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && tutorialPhase < keys.Length && allowedToContinue && tutorialComplete == false && gameData.Paused == false)
+        if (Input.GetKeyDown(KeyCode.Space) && tutorialPhase < keys.Length && allowedToContinue && tutorialComplete == false && Architecture.Managers.GamePlay.GetReference().Paused == false)
         {
             speechBubble.gameObject.SetActive(false);
             ShowSpeechBubble();
@@ -123,7 +122,7 @@ public class tutorialController : MonoBehaviour
 
     public void ContinueIfAllowed()
     {
-        if (tutorialPhase < keys.Length && allowedToContinue && tutorialComplete == false && gameData.Paused == false)
+        if (tutorialPhase < keys.Length && allowedToContinue && tutorialComplete == false && Architecture.Managers.GamePlay.GetReference().Paused == false)
         {
             speechBubble.gameObject.SetActive(false);
             tapToContinue.FadeOut();
@@ -134,7 +133,7 @@ public class tutorialController : MonoBehaviour
     void TutorialInitiate()
     {
         thisCanvas.enabled = true;
-        gameData.allowSlideMove = false;
+        Architecture.Managers.GamePlay.GetReference().AllowSlideMove = false;
 
         pController.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
@@ -308,7 +307,7 @@ public class tutorialController : MonoBehaviour
 
     void TutorialPhase_PreFinal()
     {
-        gameData.allowSlideMove = true;
+        Architecture.Managers.GamePlay.GetReference().AllowSlideMove = true;
 
         tapToContinue.FadeOutFinal();
 
@@ -356,7 +355,7 @@ public class tutorialController : MonoBehaviour
             .setOnComplete(DestroyTutorialItems);
 
         tutorialComplete = true;
-        gameData.tutorialComplete = true;
+        Architecture.Managers.UserGameData.Instance.tutorialComplete = true;
 
         waterRise.enabled = true;
     }

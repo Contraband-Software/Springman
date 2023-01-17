@@ -3,36 +3,46 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class EULADialogue : MonoBehaviour
+namespace Architecture
 {
-    public MenuData md;
+    using Managers;
 
-    private void Awake()
+    public class EULADialogue : MonoBehaviour
     {
-        gameObject.SetActive(false);
-    }
+        private void Awake()
+        {
+            if (UserGameData.Instance.ShowEULA)
+            {
+                Show();
+            } else
+            {
+                gameObject.SetActive(false);
+            }
+        }
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
 
-    public void Accept()
-    {
-        gameObject.SetActive(false);
-        md.SetEULA_Accepted();
-        //write EULA_Accepted to disk?
-    }
+        public void Accept()
+        {
+            UserGameData.Instance.EULA_Accepted = true;
+            gameObject.SetActive(false);
+        }
 
-    public void Deny()
-    {
-        //shut game, delete all gamedata, hard factory reset
-        DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
-        dataDir.Delete(true);
+        public void Deny()
+        {
+            UserGameData.Instance.EULA_Accepted = false;
+
+            //shut game, delete all gamedata, hard factory reset
+            DirectoryInfo dataDir = new DirectoryInfo(Application.persistentDataPath);
+            dataDir.Delete(true);
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
-         Application.Quit();
+            Application.Quit();
 #endif
+        }
     }
 }
