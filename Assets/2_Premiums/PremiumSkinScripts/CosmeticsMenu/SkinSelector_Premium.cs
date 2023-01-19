@@ -11,6 +11,7 @@ public class SkinSelector_Premium : MonoBehaviour
     [Header("Important References")]
     public SkinsController skinsCon;
     public CosmeticsMenuController cosMenuCon;
+    PremiumSelectLogic premSelectLogic;
 
     [Header("For Controlling Selection")]
     public Color onSelectColour;
@@ -38,6 +39,7 @@ public class SkinSelector_Premium : MonoBehaviour
         CollectSkins();
 
         UserGameData.Instance.CheckIfLoadedSkinPremium();
+        premSelectLogic = PremiumSelectLogic.GetReference();
     }
 
     public void Update()
@@ -63,6 +65,21 @@ public class SkinSelector_Premium : MonoBehaviour
             UserGameData.Instance.allPremiums = premTabSkinNames;
             UserGameData.Instance.allPremiumCodes = premTabSkinCodes;
             tabSkinsCollected = true;
+
+            RemoveLockIconOnOwnedSkins();
+        }
+    }
+
+    /// <summary>
+    /// This will remove the icon on any skins that are owned
+    /// </summary>
+    public void RemoveLockIconOnOwnedSkins()
+    {
+        foreach (PremiumSkinIcon premSI in premSkinIcons)
+        {
+            if (UserGameData.Instance.unlockedPremiums.Contains(premSI.ID)){
+                premSI.gameObject.transform.parent.transform.GetChild(3).gameObject.GetComponent<Image>().enabled = false;
+            }
         }
     }
 
@@ -282,6 +299,11 @@ public class SkinSelector_Premium : MonoBehaviour
 
             skinsCon.SendData();
             cosMenuCon.UpdateDemo();
+        }
+        else
+        {
+            //NOT OWNED
+            premSelectLogic.SelectedUnOwnedSkin(selectedSkin.skin_name);
         }
     }
     

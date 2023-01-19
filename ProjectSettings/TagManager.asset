@@ -12,6 +12,7 @@ TagManager:
   - Screw
   - SittingEnemy
   - BackgroundController
+  - PremiumCanvas
   layers:
   - Default
   - TransparentFX

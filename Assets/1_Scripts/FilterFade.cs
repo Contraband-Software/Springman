@@ -11,6 +11,14 @@ public class FilterFade : MonoBehaviour
     public Image filterImage;
     public bool filterActive = false;
 
+    private void Start()
+    {
+        if (!filterActive && filterImage != null)
+        {
+            filterImage.raycastTarget = false;
+        }
+    }
+
     public void FadeToBlack()
     {
         filterActive = true;
@@ -24,8 +32,15 @@ public class FilterFade : MonoBehaviour
 
     public void FadeToClear()
     {
+        print("fading to clear");
+
         filterActive = false;
-        LeanTween.alphaCanvas(filter, 0f, 0.2f).setIgnoreTimeScale(true);
+        LeanTween.alphaCanvas(filter, 0f, 0.2f).setIgnoreTimeScale(true).setOnComplete(disableClickBlock);
+        
+    }
+
+    private void disableClickBlock()
+    {
         if (filterImage != null)
         {
             filterImage.raycastTarget = false;

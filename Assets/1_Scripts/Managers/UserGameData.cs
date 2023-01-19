@@ -265,11 +265,7 @@ namespace Architecture.Managers
                 "jkhqys871421", 
                 "xxclpu871531", 
                 "kljqye098901", 
-                "opiuqa9815211", 
-                "loiqyv904091", 
-                "gqulpo090861", 
-                "oilpqu876019", 
-                "vbtqeq651064"
+                "opiuqa9815211"
             };
 
             unlockedSkins.Add("109651fc");

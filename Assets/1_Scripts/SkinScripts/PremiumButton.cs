@@ -102,6 +102,9 @@ public class PremiumButton : MonoBehaviour
             scaleTween.OnOpen();
             ff.FadeToBlack();
             cosMenuCon.buyCanvasOn = true;
+
+
+            //Ive selected a skin which I have already bought. 
         }
     }
 }
