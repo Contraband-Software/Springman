@@ -32,8 +32,6 @@ public class FilterFade : MonoBehaviour
 
     public void FadeToClear()
     {
-        print("fading to clear");
-
         filterActive = false;
         LeanTween.alphaCanvas(filter, 0f, 0.2f).setIgnoreTimeScale(true).setOnComplete(disableClickBlock);
         

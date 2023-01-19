@@ -133,17 +133,21 @@ public class PremiumSelectLogic : MonoBehaviour
 
     private void DisplayBuyingTab()
     {
-        print("Displaying BUy Tab");
-
         premBuyCanvas.enabled = true;
-        print(premBuyCanvas.enabled);
         scaleTween.OnOpen();
         ff.FadeToBlack();
         cosMenuCon.buyCanvasOn = true;
+
+
+        //Move in front of black filter
+        premDemoParent.transform.SetParent(premBuyCanvas.gameObject.transform);
+        premDemoParent.transform.SetSiblingIndex(1);
     }
 
-    private void ClosingBuyingTab()
+    public void ClosingBuyingTab()
     {
-
+        //moved back into place
+        premDemoParent.transform.SetParent(cosMenuCon.gameObject.transform);
+        premDemoParent.transform.SetSiblingIndex(1);
     }
 }
