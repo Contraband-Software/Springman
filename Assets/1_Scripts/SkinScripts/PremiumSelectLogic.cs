@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Architecture.Managers;
 
 public class PremiumSelectLogic : MonoBehaviour
@@ -29,6 +30,7 @@ public class PremiumSelectLogic : MonoBehaviour
     [Header("Buy UI Element References")]
     [SerializeField] GameObject yesButton;
     [SerializeField] GameObject noButton;
+    [SerializeField] TextMeshProUGUI premiumNameText;
 
     [Header("States (Mutables I know, cringe)")]
     [SerializeField] bool previousSkinWasPremium = false;
@@ -45,7 +47,7 @@ public class PremiumSelectLogic : MonoBehaviour
     public void SelectedToCustomiseAnOwnedSkin()
     {
         selectedUnownedPremium = false;
-        DisplayBuyingTab();
+        DisplayBuyingTab(UserGameData.Instance.activePremiumSkinName);
 
         yesButton.SetActive(false);
         noButton.SetActive(false);
@@ -59,7 +61,7 @@ public class PremiumSelectLogic : MonoBehaviour
 
         if (!ff.filterImage.raycastTarget)
         {
-            DisplayBuyingTab();
+            DisplayBuyingTab(skinName);
 
             yesButton.SetActive(true);
             noButton.SetActive(true);
@@ -131,8 +133,9 @@ public class PremiumSelectLogic : MonoBehaviour
         }
     }
 
-    private void DisplayBuyingTab()
+    private void DisplayBuyingTab(string skinName)
     {
+        premiumNameText.text = skinName;
         premBuyCanvas.enabled = true;
         scaleTween.OnOpen();
         ff.FadeToBlack();
