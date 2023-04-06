@@ -83,6 +83,14 @@ public class SkinSelector_Premium : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Collects the data from the each premium skin on what colour they had, if they have any special modes etc
+    /// 
+    /// Gives data to UserGameData to store
+    /// 
+    /// Say you set the colour of a premium glow to be purple, UserGameData stores purple in its index for that skin.
+    /// </summary>
     public void CollectGlowColours()
     {
         print("COLLECTING GLOW COLOURS");
@@ -93,7 +101,7 @@ public class SkinSelector_Premium : MonoBehaviour
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
-            glowColoursGathered.Add(Backend.Utilities.ColorToString(premDemo.targetColor));
+            glowColoursGathered.Add(Utilities.ColorToString(premDemo.targetColor));
             //print(premDemo.name + ": "+ UserGameData.Instance.ColorToString(premDemo.targetColor));
 
             hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
@@ -114,14 +122,41 @@ public class SkinSelector_Premium : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the premium skins to have the attributes that were saved in the file.
+    /// </summary>
     public void SetAllGlowColours()
     {
+        print("SetAllGlowColours()");
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
             PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
-            premDemo.targetColor = Utilities.StringToColor(UserGameData.Instance.glowColours[child]);
-            premDemo.hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[child];
-            premDemo.colourShift = UserGameData.Instance.specialColourModes[child];
+            if(UserGameData.Instance.glowColours.Count > child)
+            {
+                premDemo.targetColor = Utilities.StringToColor(UserGameData.Instance.glowColours[child]);
+            }
+            else
+            {
+                UserGameData.Instance.glowColours.Add(Utilities.ColorToString(premDemo.targetColor));
+            }
+
+            if (UserGameData.Instance.hasSpecialColour.Count > child)
+            {
+                premDemo.hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[child];
+            }
+            else
+            {
+                UserGameData.Instance.hasSpecialColour.Add(premDemo.hasSpecialColourMode);
+            }
+
+            if (UserGameData.Instance.specialColourModes.Count > child)
+            {
+                premDemo.colourShift = UserGameData.Instance.specialColourModes[child];
+            }
+            else
+            {
+                UserGameData.Instance.specialColourModes.Add(premDemo.colourShift);
+            }
         }
     }
 
