@@ -111,7 +111,7 @@ namespace Architecture.Managers
                 if(loadedSaveData == null){
                     DefaultDataFileSettings();
                     SaveGameData();
-                    ShowEULA = true;  
+                    EULA_Accepted = false;  
                 }
                 else{
                     UnpackLoadedSaveDataFile(loadedSaveData);
@@ -140,7 +140,7 @@ namespace Architecture.Managers
 
                     Debug.Log("E. CREATED FIRST GAME DATA FILE");
 
-                    ShowEULA = true;
+                    EULA_Accepted = false;
 
                     localFile.Close();
                 }
