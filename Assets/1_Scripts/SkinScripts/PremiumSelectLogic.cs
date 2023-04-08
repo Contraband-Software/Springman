@@ -104,6 +104,8 @@ public class PremiumSelectLogic : MonoBehaviour
         premDemoParent.transform.GetChild(premiumChildIndexClicked).gameObject.SetActive(true);
         premDemoCon.activePremiumSkin = premDemoParent.transform.GetChild(premiumChildIndexClicked).GetComponent<PremSkinDetailsDemo>();
 
+        premDemoCon.activePremiumSkin.UpdateSkin();
+
         //update color choices to match
         glowColourSelector.UpdateColourOptionsForTrialingSkin(skinName);
     }

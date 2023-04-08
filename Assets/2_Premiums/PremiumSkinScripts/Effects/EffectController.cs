@@ -34,6 +34,7 @@ public class EffectController : MonoBehaviour
         //check if the current skin is premium
         if (UserGameData.Instance.currentSkinPremium)
         {
+            print("EffecController Start()");
             premiumSkinActive = true;
             premiumPlayer = GameObject.Find("Player/" + (UserGameData.Instance.activePremiumSkinName + "(Clone)"));
 

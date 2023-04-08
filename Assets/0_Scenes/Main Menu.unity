@@ -54442,8 +54442,8 @@ RectTransform:
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1353552693}
   - {fileID: 1044693193}
+  - {fileID: 1353552693}
   - {fileID: 1317417881}
   m_Father: {fileID: 1994375395}
   m_RootOrder: 0
@@ -61699,11 +61699,11 @@ GameObject:
   - component: {fileID: 1044693199}
   - component: {fileID: 1044693198}
   - component: {fileID: 1044693197}
-  - component: {fileID: 1044693196}
   - component: {fileID: 1044693195}
   - component: {fileID: 1044693194}
+  - component: {fileID: 1044693200}
   m_Layer: 5
-  m_Name: YesButton
+  m_Name: TryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61723,7 +61723,7 @@ RectTransform:
   m_Children:
   - {fileID: 1848725646}
   m_Father: {fileID: 940680600}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -61792,55 +61792,6 @@ MonoBehaviour:
   single_click: 0
   single_on_up: 0
   disabledButton: 0
---- !u!114 &1044693196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044693192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8576da7ffaa334b428d51df000377106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cost: 50
-  possiblePurchases: []
-  coloursController: {fileID: 684785814}
-  masterCanvasRect: {fileID: 477412708}
-  cosMenuCon: {fileID: 1624638535}
-  yesButton: {fileID: 1044693192}
-  yesButtonImage: {fileID: 1044693198}
-  yesButtonRect: {fileID: 1044693193}
-  noButton: {fileID: 1353552688}
-  noButtonImage: {fileID: 1353552689}
-  noButtonRect: {fileID: 1353552693}
-  easeInMove: 2
-  easeInFade: 15
-  easeOutFade: 14
-  yesButtonText: {fileID: 1848725648}
-  okText: {fileID: 0}
-  colourBG: {fileID: 0}
-  colourChangeEase: 0
-  qMarkRect: {fileID: 0}
-  qMarkImage: {fileID: 0}
-  easeOutQMark: 26
-  costText: {fileID: 0}
-  costTypeObj: {fileID: 0}
-  CostType: {fileID: 0}
-  fadeOutCost: 3
-  silverUpdateVal: {fileID: 1826724542}
-  goldUpdateVal: {fileID: 449766350}
-  buyText: {fileID: 985869295}
-  buyTextText: {fileID: 985869298}
-  noText: {fileID: 210165837}
-  fadeInBuyText: 2
-  easeInBuyText: 27
-  unlockedColor: {r: 0, g: 0, b: 0, a: 0}
-  pressedOnce: 0
-  buyTabScaleTween: {fileID: 1994375396}
-  buyTabFilterFade: {fileID: 688083485}
-  purchase_sound: {fileID: 0}
 --- !u!114 &1044693197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61884,7 +61835,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1044693198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1044693200}
+        m_TargetAssemblyTypeName: TrialPremiumButton, Assembly-CSharp
+        m_MethodName: LoadTrialLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1044693198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61923,6 +61886,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044693192}
   m_CullTransparentMesh: 0
+--- !u!114 &1044693200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044693192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02048c69fb55f04b9d8402997c2d1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1049738235
 GameObject:
   m_ObjectHideFlags: 0
@@ -78867,6 +78842,7 @@ GameObject:
   - component: {fileID: 1353552689}
   - component: {fileID: 1353552691}
   - component: {fileID: 1353552690}
+  - component: {fileID: 1353552694}
   m_Layer: 5
   m_Name: NoButton
   m_TagString: Untagged
@@ -78930,7 +78906,7 @@ MonoBehaviour:
   tintColor: {r: 1, g: 1, b: 1, a: 1}
   pos_click: {fileID: 0}
   neg_click: {fileID: 0}
-  negative_first: 1
+  negative_first: 0
   ignoreClick: 0
   single_click: 0
   single_on_up: 0
@@ -79002,13 +78978,44 @@ RectTransform:
   - {fileID: 210165840}
   - {fileID: 207468858}
   m_Father: {fileID: 940680600}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 72.8, y: -183.07}
   m_SizeDelta: {x: 234.11707, y: 115.16994}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1353552694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353552688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d172b789f69103247bd69c89e4246998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterCanvasRect: {fileID: 477412708}
+  buttonRect: {fileID: 1353552693}
+  targetRect: {fileID: 207468858}
+  text1: {fileID: 0}
+  text2: {fileID: 0}
+  deltaY: 4
+  buttonBeingPressed: 0
+  tintOnPress: 0
+  textDetails: {fileID: 0}
+  imageDetails: {fileID: 0}
+  org_color: {r: 1, g: 1, b: 1, a: 1}
+  tintColor: {r: 1, g: 1, b: 1, a: 1}
+  pos_click: {fileID: 0}
+  neg_click: {fileID: 0}
+  negative_first: 0
+  ignoreClick: 0
+  single_click: 0
+  single_on_up: 0
+  disabledButton: 0
 --- !u!1 &1354089587
 GameObject:
   m_ObjectHideFlags: 0
@@ -106857,7 +106864,7 @@ GameObject:
   - component: {fileID: 1848725649}
   - component: {fileID: 1848725648}
   m_Layer: 5
-  m_Name: YesText
+  m_Name: TryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

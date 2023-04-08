@@ -35,7 +35,12 @@ public class TapToKill : MonoBehaviour
                     if (hit.collider.tag == "SittingEnemy")
                     {
                         SlideMove slideMove = hit.collider.transform.root.gameObject.GetComponent<SlideMove>();
-                        slideMove.sittingEnemySpawned = false;
+                        //in case of having enemeis that arent placed on platforms
+                        if (slideMove != null)
+                        {
+                            slideMove.sittingEnemySpawned = false;
+                        }
+                        
 
                         if (effectCon.premiumSkinActive)
                         {
