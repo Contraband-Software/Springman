@@ -20,7 +20,8 @@ public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController
     protected override void SingletonAwake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        print("COSMETICS CONTROLLER AWAKE");
+        print("____________COSMETICS CONTROLLER AWAKE");
+
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -28,7 +29,7 @@ public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController
         print("LOADED SCENE: " + scene.name);
 
         currentScene = scene;
-        if (scene.name == "Game")// && this!=null
+        if (scene.name == "Game" || scene.name == "Trial")// && this!=null
         {
             print("LOADING COSMETICS");
 
@@ -47,7 +48,7 @@ public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController
 
     public void LoadCosmeticValues()
     {
-        if(currentScene.name == "Game")
+        if(currentScene.name == "Game" || currentScene.name == "Trial")
         {
             if (!UserGameData.Instance.currentSkinPremium)
             {
@@ -104,6 +105,7 @@ public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController
             else
             {
                 skinSpawner.SpawnPremium(UserGameData.Instance.activePremiumSkinName);
+                print("___________________SPAWNING PREMIUM");
             }
             
         }

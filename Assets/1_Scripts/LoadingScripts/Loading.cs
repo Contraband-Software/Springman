@@ -21,14 +21,13 @@ namespace Architecture
         [SerializeField] SceneIndexes Scene;
         [Header("Settings")]
         [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
-        [SerializeField] Slider slider;
+        [SerializeField] Image loadingBar;
 
         private UnityEngine.AsyncOperation operation;
 
         void Awake()
         {
             StartCoroutine(LoadScene((int)Scene));
-
         }
 
         IEnumerator LoadScene(int sceneIndex)
@@ -42,12 +41,20 @@ namespace Architecture
             {
                 yield return StartCoroutine(UpdateLoadingBar(operation.progress));
 
-                if (slider.value >= 0.88f && !operation.allowSceneActivation)
+                if (loadingBar.fillAmount >= 0.88f && !operation.allowSceneActivation)
                 {
                     //start coroutine to check if save data has been loaded
                     Debug.Log("LOADED ASSETS");
-                    operation.allowSceneActivation = true;
+                    
                     StartCoroutine(WaitForSaveDataToLoad());
+
+                    yield return StartCoroutine(UpdateLoadingBar(1f));
+
+                    if(loadingBar.fillAmount >= 0.99f && !operation.allowSceneActivation)
+                    {
+                        operation.allowSceneActivation = true;
+                    }
+
                     yield return null;
                 }
 
@@ -57,9 +64,9 @@ namespace Architecture
 
         IEnumerator UpdateLoadingBar(float targetValue)
         {
-            while (targetValue - slider.value > 0.005f)
+            while (targetValue - loadingBar.fillAmount > 0.005f)
             {
-                slider.value += (targetValue - slider.value) * updateSpeed;
+                loadingBar.fillAmount += (targetValue - loadingBar.fillAmount) * updateSpeed;
 
                 yield return null;
             }
@@ -87,7 +94,7 @@ namespace Architecture
             Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
             Debug.Log("ALLOWING SCENE ACTIVATION");
             Debug.Log("Scene Activation Allowed?: " + operation.allowSceneActivation);
-            operation.allowSceneActivation = true;
+            //operation.allowSceneActivation = true;
             yield break;
         }
     }

@@ -111,7 +111,7 @@ namespace Architecture.Managers
                 if(loadedSaveData == null){
                     DefaultDataFileSettings();
                     SaveGameData();
-                    ShowEULA = true;  
+                    EULA_Accepted = false;  
                 }
                 else{
                     UnpackLoadedSaveDataFile(loadedSaveData);
@@ -140,7 +140,7 @@ namespace Architecture.Managers
 
                     Debug.Log("E. CREATED FIRST GAME DATA FILE");
 
-                    ShowEULA = true;
+                    EULA_Accepted = false;
 
                     localFile.Close();
                 }
@@ -265,11 +265,7 @@ namespace Architecture.Managers
                 "jkhqys871421", 
                 "xxclpu871531", 
                 "kljqye098901", 
-                "opiuqa9815211", 
-                "loiqyv904091", 
-                "gqulpo090861", 
-                "oilpqu876019", 
-                "vbtqeq651064"
+                "opiuqa9815211"
             };
 
             unlockedSkins.Add("109651fc");

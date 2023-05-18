@@ -8,27 +8,47 @@ using Architecture.Managers;
 
 public class PremiumButton : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI text;
     [SerializeField] Button thisButton;
     [SerializeField] ButtonMouseDown btnDownScript;
+    [SerializeField] ButtonMouseDown btnDownScript2;
     [SerializeField] Canvas premBuyCanvas;
     [SerializeField] ScaleTween scaleTween;
     [SerializeField] FilterFade ff;
     [SerializeField] CosmeticsMenuController cosMenuCon;
     private bool currentSkinPrem_stored = false;
 
+
+    [Header("Text References")]
+    [SerializeField] TextMeshProUGUI customiseText;
+    [SerializeField] TextMeshProUGUI customiseTextPressed;
+    [SerializeField] TextMeshProUGUI selectText;
+    [SerializeField] TextMeshProUGUI selectTextPressed;
+
+    enum TextState { UNSET, CUSTOMISE, SELECT}
+    TextState currentState = TextState.UNSET;
+
     private void Start()
     {
         premBuyCanvas.enabled = false;
+
+        if (!UserGameData.Instance.currentSkinPremium)
+        {
+            ChangeToSaySelect();
+        }
     }
 
     private void Update()
     {
-        if(currentSkinPrem_stored == false && UserGameData.Instance.currentSkinPremium)
+        CheckWhatToSwitchTo();
+    }
+
+    private void CheckWhatToSwitchTo()
+    {
+        if (currentSkinPrem_stored == false && UserGameData.Instance.currentSkinPremium)
         {
             ChangeToSayCustomise();
         }
-        if(currentSkinPrem_stored == true && UserGameData.Instance.currentSkinPremium == false)
+        if (currentSkinPrem_stored == true && UserGameData.Instance.currentSkinPremium == false)
         {
             ChangeToSaySelect();
         }
@@ -38,21 +58,39 @@ public class PremiumButton : MonoBehaviour
     private void ChangeToSayCustomise()
     {
         currentSkinPrem_stored = true;
-        text.text = "Customise";
         thisButton.interactable = true;
         btnDownScript.disabledButton = false;
+        btnDownScript2.disabledButton = false;
 
-        //relocalise that one text
+        //hide select texts
+        if (currentState != TextState.CUSTOMISE)
+        {
+            customiseText.enabled = true;
+            customiseTextPressed.enabled = true;
+            selectText.enabled = false;
+            selectTextPressed.enabled = false;
+
+            currentState = TextState.CUSTOMISE;
+        }
     }
 
     private void ChangeToSaySelect()
     {
         currentSkinPrem_stored = false;
-        text.text = "Select A Skin";
         thisButton.interactable = false;
         btnDownScript.disabledButton = true;
+        btnDownScript2.disabledButton = true;
 
-        //relocalise that one text
+        //hide customise texts
+        if (currentState != TextState.SELECT)
+        {
+            customiseText.enabled = false;
+            customiseTextPressed.enabled = false;
+            selectText.enabled = true;
+            selectTextPressed.enabled = true;
+
+            currentState = TextState.SELECT;
+        }
     }
 
 
@@ -64,6 +102,9 @@ public class PremiumButton : MonoBehaviour
             scaleTween.OnOpen();
             ff.FadeToBlack();
             cosMenuCon.buyCanvasOn = true;
+
+
+            //Ive selected a skin which I have already bought. 
         }
     }
 }

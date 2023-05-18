@@ -235,11 +235,20 @@ public class ArtifactMissile : MonoBehaviour
                 baseSpriteRenderer.enabled = false;
 
 
-                //DONT DESTROY, CALL A DELAYEDCALL LEAN TWEEN
-                LeanTween.delayedCall(5f, selfDestruct).setIgnoreTimeScale(false);
+                //DONT DESTROY, CALL A COUNTDOWN
+                StartCoroutine(DestructionCountdown(5f));
             }
             
         }
+    }
+
+    private IEnumerator DestructionCountdown(float time)
+    {
+        // Wait for the specified amount of real time
+        yield return new WaitForSecondsRealtime(time);
+
+        // Call selfDestruct on this object
+        selfDestruct();
     }
 
     private void AdjustEnemyEffects()

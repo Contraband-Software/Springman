@@ -11,7 +11,7 @@ namespace Architecture
     {
         private void Awake()
         {
-            if (UserGameData.Instance.ShowEULA)
+            if (!UserGameData.Instance.EULA_Accepted)
             {
                 Show();
             } else
