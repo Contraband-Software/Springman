@@ -6,6 +6,11 @@ namespace Development
 {
     public class GameDebugController : Backend.AbstractSingleton<GameDebugController>
     {
+        protected override void SingletonAwake()
+        {
+
+        }
+
 #if UNITY_EDITOR
         //public static GameDebugController Instance { get; private set; }
 
@@ -49,11 +54,6 @@ namespace Development
                 fe.transform.position = new Vector3(-1.5f, 3.1f, 0f);
             }
         }*/
-
-        protected override void SingletonAwake()
-        {
-
-        }
 
 #endif
     }

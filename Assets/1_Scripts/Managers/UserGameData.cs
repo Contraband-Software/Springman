@@ -101,8 +101,8 @@ namespace Architecture.Managers
         private void Start()
         {
 #if !UNITY_EDITOR
-            SaveData loadedSaveData = (SaveData)IntegrationsManager.instance.socialManager.GetCachedSaveGame();
-            Debug.Log(IntegrationsManager.instance.socialManager.GetCachedSaveGame());
+            SaveData loadedSaveData = (SaveData)IntegrationsManager.Instance.socialManager.GetCachedSaveGame();
+            Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
             Debug.Log(loadedSaveData);
 
             //no data in loadedSaveData, but the load from cloud was succesful = save a default file onto the cloud
