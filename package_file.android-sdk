@@ -1,0 +1,12 @@
+extras;android;m2repository
+extras;google;m2repository
+extras;google;google_play_services
+build-tools;23.0.2
+platforms;android-23
+
+build-tools;30.0.2
+build-tools;30.0.3
+ndk;21.3.6528147
+
+cmdline-tools;2.1
+cmdline-tools;latest
