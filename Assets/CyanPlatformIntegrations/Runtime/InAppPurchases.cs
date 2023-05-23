@@ -70,6 +70,31 @@ namespace PlatformIntegrations
         }
 
         /// <summary>
+        /// Returns the relevant price for a product ID for the correct platform.
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public string GetProductPrice(string productID)
+        {
+            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                if (item.id == productID)
+                {
+#if UNITY_ANDROID
+                    return item.googlePrice.ToString();
+#elif UNITY_IOS
+                    return item.applePriceTier.ToString();
+#else
+                    throw new InvalidOperationException(logDecorator + "[ERROR] Invalid platform.");
+#endif
+                }
+            }
+            throw new ArgumentException(logDecorator + "[ERROR] Product ID: " + productID + " does not exist!");
+        }
+
+        /// <summary>
         /// Registers a function to handle the purchase for a specific product ID, call this on any script handling a purchase for a product in Start().
         /// </summary>
         /// <param name="productID"></param>
