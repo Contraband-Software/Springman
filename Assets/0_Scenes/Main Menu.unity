@@ -12767,7 +12767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: oilpqu876019
+  ID: software.contraband.springman.iap.neon
   skin_name: Neon
   rect: {fileID: 264152184}
 --- !u!114 &264152186
@@ -14480,7 +14480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: vbtqeq651064
+  ID: software.contraband.springman.iap.pc
   skin_name: PC
   rect: {fileID: 292574027}
 --- !u!114 &292574029
@@ -17732,7 +17732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: opiuqa9815211
+  ID: software.contraband.springman.iap.lightbulb
   skin_name: LightBulb
   rect: {fileID: 359665313}
 --- !u!114 &359665315
@@ -25391,7 +25391,6 @@ MonoBehaviour:
   scrolled: 0
   tabSkinsCollected: 0
   premSkinIcons: []
-  premTabSkinCodes: []
   selectedSkin: {fileID: 0}
   selectedObject: {x: 0, y: 0, z: 0}
   premiumDemosParent: {fileID: 1101203291}
@@ -26639,7 +26638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: loiqyv904091
+  ID: software.contraband.springman.iap.moltencore
   skin_name: Molten Core
   rect: {fileID: 509063145}
 --- !u!114 &509063147
@@ -67328,7 +67327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: lpqok951139
+  ID: software.contraband.springman.iap.artifact
   skin_name: Artifact
   rect: {fileID: 1154321046}
 --- !u!114 &1154321048
@@ -85715,7 +85714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: kljqye098901
+  ID: software.contraband.springman.iap.stomper
   skin_name: Stomper
   rect: {fileID: 1467702861}
 --- !u!114 &1467702863
@@ -102743,7 +102742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: gqulpo090861
+  ID: software.contraband.springman.iap.dualcannon
   skin_name: Dual Cannon
   rect: {fileID: 1787186663}
 --- !u!114 &1787186665
@@ -104878,7 +104877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: jkhqys871421
+  ID: software.contraband.springman.iap.alien
   skin_name: Alien
   rect: {fileID: 1819440416}
 --- !u!114 &1819440418
@@ -115831,7 +115830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: xxclpu871531
+  ID: software.contraband.springman.iap.gyrocube
   skin_name: Gyrocube
   rect: {fileID: 2000060055}
 --- !u!114 &2000060057
@@ -122077,7 +122076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c50be64af531d46b85733157034914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: bonvmm916571
+  ID: software.contraband.springman.iap.charged
   skin_name: Charged
   rect: {fileID: 2090424689}
 --- !u!114 &2090424691
