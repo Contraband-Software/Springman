@@ -96,39 +96,49 @@ namespace Architecture.Managers
                     Debug.Log("MenuData: Save data written to cloud successfully");
                 }
             });
+            socialManager.SaveDataLoadCallback.AddListener((bool status, object data) =>
+            {
+                if (status)
+                {
+#pragma warning disable S5773
+                    if (data == null)
+                    {
+                        Debug.Log("UserGameData: CREATED FIRST GAME DATA FILE (cloud)");
+                        DefaultDataFileSettings();
+                        SaveGameData();
+                        EULA_Accepted = false;
+                    }
+                    else
+                    {
+                        Debug.Log("UserGameData: READ GAME DATA FILE");
+                        UnpackLoadedSaveDataFile(data as SaveData);
+                    }
+#pragma warning restore S5773
+                }
+                else
+                {
+                    Debug.Log("UserGameData: no connection to cloud!");
+                }
+            });
         }
 
         private void Start()
         {
-#if !UNITY_EDITOR
-            SaveData loadedSaveData = (SaveData)IntegrationsManager.Instance.socialManager.GetCachedSaveGame();
-            Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
-            Debug.Log(loadedSaveData);
+#if UNITY_EDITOR
 
-            //no data in loadedSaveData, but the load from cloud was succesful = save a default file onto the cloud
-            if(PlatformIntegrations.IntegrationsManager.Instance.socialManager.HasLoadedFromCloud()){
-                
-                if(loadedSaveData == null){
-                    DefaultDataFileSettings();
-                    SaveGameData();
-                    EULA_Accepted = false;  
-                }
-                else{
-                    UnpackLoadedSaveDataFile(loadedSaveData);
-                }
-                
-            }
+            // This code allows the game to be tested in the editor
+            // without it, we start a fresh save every run (annoying).
 
-            
-#else
             #region LOCAL_FALLBACK
-            // Unity editor local fallback
-            // create default save data to create dummy file
+
+            // create default user data to save to dummy file
             float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
             if (availableSpace > 10)
             {
                 if (!File.Exists(gameDataPath))
                 {
+                    Debug.Log("UserGameData: CREATED FIRST GAME DATA FILE (local)");
+
                     BinaryFormatter bf = new BinaryFormatter();
                     FileStream localFile = new FileStream(gameDataPath, FileMode.OpenOrCreate);
 
@@ -137,8 +147,6 @@ namespace Architecture.Managers
 
                     bf.Serialize(localFile, saveData);
                     localFile.Close();
-
-                    Debug.Log("E. CREATED FIRST GAME DATA FILE");
 
                     EULA_Accepted = false;
 
@@ -149,19 +157,24 @@ namespace Architecture.Managers
             {
                 ErrorEvent.Invoke();
             }
-            #endregion
+
+            #region READ_FILE
 
             File.SetAttributes(gameDataPath, FileAttributes.Normal);
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(gameDataPath, FileMode.Open);
 
 #pragma warning disable S5773
-            // Dangerous unsafe code
+            // is actually safe
             SaveData data = formatter.Deserialize(stream) as SaveData;
 #pragma warning restore S5773
 
             stream.Close();
             UnpackLoadedSaveDataFile(data);
+
+            #endregion
+
+            #endregion
 #endif
         }
 
@@ -340,9 +353,9 @@ namespace Architecture.Managers
                 ErrorEvent.Invoke();
             }
 #else
-            if (socialManager.IsAvailable() && socialManager.SaveGameLoaded())
+            if (socialManager.IsSignedIn() && socialManager.HasConnectedToCloud())
             {
-                socialManager.SaveGame(data);
+                socialManager.WriteToCloudSave(data);
             }
             else
             {

@@ -25,7 +25,9 @@ namespace Architecture.Localisation
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-            string[] lines = csvFile.text.Split(lineSeperator);
+            string txt = csvFile.text;
+            Debug.Log(txt);
+            string[] lines = txt.Split(lineSeperator);
 
             int attributeIndex = -1;
 

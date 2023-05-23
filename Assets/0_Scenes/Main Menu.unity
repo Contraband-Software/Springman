@@ -22968,7 +22968,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444504073}
-  - component: {fileID: 444504074}
   - component: {fileID: 444504075}
   m_Layer: 0
   m_Name: MenuController
@@ -22992,30 +22991,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &444504074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444504072}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6915f476c261e8343be1e3d01bf908c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allTimeHighscore: 0
-  musicOn: 0
-  soundsOn: 0
-  currentLanguage: 
-  langIndex: 0
-  gold: 0
-  silver: 0
-  ads: 0
-  menuAudio: {fileID: 1782169662}
-  curtainCG: {fileID: 1903076422}
-  tutorialComplete: 0
-  errorOpened: 0
 --- !u!114 &444504075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94808,7 +94783,6 @@ GameObject:
   - component: {fileID: 1645898270}
   - component: {fileID: 1645898273}
   - component: {fileID: 1645898274}
-  - component: {fileID: 1645898275}
   m_Layer: 5
   m_Name: StoreButton
   m_TagString: Untagged
@@ -94880,7 +94854,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1645898275}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IAPTesting, Assembly-CSharp
         m_MethodName: DoPurchase
         m_Mode: 1
@@ -94973,19 +94947,6 @@ MonoBehaviour:
   single_click: 0
   single_on_up: 0
   disabledButton: 0
---- !u!114 &1645898275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645898268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90776721c82a59c44a0f38865536e0d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productID: software.contraband.springman.iap.removeads
 --- !u!1 &1646667548
 GameObject:
   m_ObjectHideFlags: 0
@@ -97723,7 +97684,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 444504074}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: ReLocalizeTexts
         m_Mode: 1
@@ -124161,12 +124122,12 @@ PrefabInstance:
         type: 3}
       propertyPath: menuData
       value: 
-      objectReference: {fileID: 444504074}
+      objectReference: {fileID: 0}
     - target: {fileID: 5482114566892641138, guid: 9fb657646fa357f4b83fd43d2592d1f1,
         type: 3}
       propertyPath: menuData
       value: 
-      objectReference: {fileID: 444504074}
+      objectReference: {fileID: 0}
     - target: {fileID: 5482114567344926944, guid: 9fb657646fa357f4b83fd43d2592d1f1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -124186,7 +124147,7 @@ PrefabInstance:
         type: 3}
       propertyPath: menuData
       value: 
-      objectReference: {fileID: 444504074}
+      objectReference: {fileID: 0}
     - target: {fileID: 5482114567344926945, guid: 9fb657646fa357f4b83fd43d2592d1f1,
         type: 3}
       propertyPath: skinsCon
@@ -124515,7 +124476,7 @@ PrefabInstance:
         type: 3}
       propertyPath: md
       value: 
-      objectReference: {fileID: 444504074}
+      objectReference: {fileID: 0}
     - target: {fileID: 6247285829545113244, guid: 09e67e236ce35d747925953b2136aa96,
         type: 3}
       propertyPath: m_Name

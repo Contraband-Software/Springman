@@ -76,10 +76,10 @@ namespace Architecture
         IEnumerator WaitForSaveDataToLoad()
         {
 #if !UNITY_EDITOR
-        while (!IntegrationsManager.Instance.socialManager.HasLoadedFromCloud())
+        while (!IntegrationsManager.Instance.socialManager.HasConnectedToCloud())
         {
             Debug.Log("Waiting to load data from GPGS...");
-            Debug.Log("Data loaded: " + IntegrationsManager.Instance.socialManager.HasLoadedFromCloud());
+            Debug.Log("Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
             
 
             Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());

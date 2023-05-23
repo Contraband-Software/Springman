@@ -26,10 +26,9 @@ namespace PlatformIntegrations
         public SaveDataWriteEvent SaveDataWriteCallback { get; private set; }
         #endregion
 
-        private const string cloudSaveFile = "UserGameSave.dat";
+        private const string cloudSaveFileName = "UserGameSave.dat";
 
-        bool available = false;
-        ISavedGameMetadata currentSavedGameMetadata = null;
+        bool userSignedIn = false;
         bool saveFileLoaded = false;
         byte[] cache;
 
@@ -44,19 +43,19 @@ namespace PlatformIntegrations
             AuthenticatorCallback = new AuthenticationEvent();
             AuthenticatorCallback.AddListener((bool status) =>
             {
-                Debug.Log(logDecorator + "Platform signin status: " + status.ToString());
+                Debug.Log(logDecorator + "[STATUS] Platform signin status: " + status.ToString());
             });
             SaveDataLoadCallback = new SaveDataLoadEvent();
             SaveDataLoadCallback.AddListener((bool status, object data) =>
             {
-                Debug.Log(logDecorator + "Cloud save loaded and read into memory: " + status.ToString());
+                Debug.Log(logDecorator + "[STATUS] Cloud save loaded and read into memory: " + status.ToString());
                 saveFileLoaded = status;
 
             });
             SaveDataWriteCallback = new SaveDataWriteEvent();
             SaveDataWriteCallback.AddListener((bool status) =>
             {
-                Debug.Log(logDecorator + "Game data write status: " + status.ToString());
+                Debug.Log(logDecorator + "[STATUS] Game data write status: " + status.ToString());
             });
 
 #if UNITY_ANDROID
@@ -64,7 +63,7 @@ namespace PlatformIntegrations
 #elif UNITY_IOS
             //Log into icloud/game center
 #else
-            throw new NotSupportedException(logDecorator + "INVALID PLATFORM, MUST BE ANDROID OR IOS");
+            throw new NotSupportedException(logDecorator + "[ERROR] INVALID PLATFORM, MUST BE ANDROID OR IOS");
 #endif
         }
 
@@ -81,19 +80,19 @@ namespace PlatformIntegrations
         }
 
         /// <summary>
-        /// Returns if google play game services is available currently (meaning the user is signed in and connected to the internet)
+        /// Returns if google play game services is userSignedIn currently (meaning the user is signed in and connected to the internet)
         /// </summary>
         /// <returns></returns>
-        public bool IsAvailable()
+        public bool IsSignedIn()
         {
-            return available;
+            return userSignedIn;
         }
 
         /// <summary>
-        /// Returns if the cloud file has been loaded
+        /// Returns if a cloud file has been loaded successfully
         /// </summary>
         /// <returns></returns>
-        public bool HasLoadedFromCloud()
+        public bool HasConnectedToCloud()
         {
             return saveFileLoaded;
         }
@@ -102,9 +101,9 @@ namespace PlatformIntegrations
         /// Returns if a cloud save is loaded
         /// </summary>
         /// <returns></returns>
-        public bool SaveGameLoaded()
+        public bool LoadedCloudSaveEmpty()
         {
-            return currentSavedGameMetadata != null;
+            return !(cache?.Length > 0);
         }
 
         /// <summary>
@@ -133,19 +132,19 @@ namespace PlatformIntegrations
                 //Activates unity social api integrations
                 PlayGamesPlatform.Activate();
 
+                Debug.Log(logDecorator + "[STATUS] Sign in success");
+
                 // Continue with Play Games Services
-                available = true;
-                OpenSavedGame(cloudSaveFile);
+                userSignedIn = true;
+                OpenSavedGame(cloudSaveFileName);
             }
             else
             {
-                available = false;
-                // Disable your integration with Play Games Services or show a login button
-                // to ask users to sign-in. Clicking it should call
-                // PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
+                userSignedIn = false;
+                // you can still manually authenticate the user with the manually authennticate function
             }
 
-            AuthenticatorCallback.Invoke(available);
+            AuthenticatorCallback.Invoke(userSignedIn);
         }
 
         /// <summary>
@@ -155,7 +154,7 @@ namespace PlatformIntegrations
         public void PostLeaderboardScore(int score, Action<bool> callback)
         {
             //CgkI6NDuufMeEAIQAQ is the API ID for OUR leaderboard
-            if (IsAvailable())
+            if (IsSignedIn())
             {
                 Social.ReportScore(score, "CgkI6NDuufMeEAIQAQ", (bool success) => {
                     callback(success);
@@ -171,18 +170,16 @@ namespace PlatformIntegrations
         {
             ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
             savedGameClient.OpenWithAutomaticConflictResolution(filename, DataSource.ReadCacheOrNetwork,
-                ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
+                ConflictResolutionStrategy.UseLongestPlaytime, StartSavedGameRead);
         }
-        private void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata game)
+        private void StartSavedGameRead(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
-            Debug.Log(logDecorator + "Game Data Load Status: " + status.ToString());
+            Debug.Log(logDecorator + "[STATUS] Game Data Load Status: " + status.ToString());
 
             if (status == SavedGameRequestStatus.Success)
             {
-                currentSavedGameMetadata = game;
-
                 ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-                savedGameClient.ReadBinaryData(game, OnSavedGameDataRead);
+                savedGameClient.ReadBinaryData(game, OnSavedGameRead);
             }
             else
             {
@@ -191,9 +188,9 @@ namespace PlatformIntegrations
             }
         }
 
-        private void OnSavedGameDataRead(SavedGameRequestStatus status, byte[] data)
+        private void OnSavedGameRead(SavedGameRequestStatus status, byte[] data)
         {
-            Debug.Log("GPGS: Game Data Read Status: " + status.ToString());
+            Debug.Log(logDecorator + "[STATUS] Game Data Read Status: " + status.ToString());
 
             if (status == SavedGameRequestStatus.Success)
             {
@@ -205,7 +202,7 @@ namespace PlatformIntegrations
             {
                 cache = null;
                 // handle error
-                Debug.Log(logDecorator + "Failed to read and return cloud save data: " + status.ToString());
+                Debug.Log(logDecorator + "[ERROR] Failed to read and return cloud save data: " + status.ToString());
                 SaveDataLoadCallback.Invoke(false, null);
             }
         }
@@ -215,27 +212,45 @@ namespace PlatformIntegrations
         /// </summary>
         /// <param name="savedData">A serializable object with some serializable fields to save</param>
         /// <param name="totalPlaytime">The total play time for this save so far</param>
-        public void SaveGame(object savedData)
+        public void WriteToCloudSave(object savedData)
         {
-            if (IsAvailable() && currentSavedGameMetadata != null)
+            if (IsSignedIn() && HasConnectedToCloud())
             {
                 ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-
-                SavedGameMetadataUpdate.Builder builder = new SavedGameMetadataUpdate.Builder();
-                builder = builder
-                    .WithUpdatedPlayedTime(
-                        currentSavedGameMetadata.TotalTimePlayed.Add(DateTime.Now.TimeOfDay.Subtract(sessionStart))
-                    );
-
-                SavedGameMetadataUpdate updatedMetadata = builder.Build();
-                savedGameClient.CommitUpdate(currentSavedGameMetadata, updatedMetadata, ObjectToByteArray(savedData), OnSavedGameWritten);
+                dataToSave = savedData;
+                savedGameClient.OpenWithAutomaticConflictResolution(cloudSaveFileName, DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLastKnownGood, StartSavedGameWrite);
             } else
             {
-                Debug.Log(logDecorator + "Internal save data error");
+                Debug.Log(logDecorator + "[ERROR] The user is either not signed in or no cloud save loaded!");
             }
         }
 
-        private void OnSavedGameWritten(SavedGameRequestStatus status, ISavedGameMetadata game)
+        private object dataToSave = null;
+
+        private void StartSavedGameWrite(SavedGameRequestStatus status, ISavedGameMetadata currentSavedGameMetadata)
+        {
+            switch (status)
+            {
+                case SavedGameRequestStatus.Success:
+                    ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+                    SavedGameMetadataUpdate.Builder builder = new SavedGameMetadataUpdate.Builder();
+                    builder = builder
+                        .WithUpdatedPlayedTime(
+                            currentSavedGameMetadata.TotalTimePlayed.Add(DateTime.Now.TimeOfDay.Subtract(sessionStart))
+                        );
+
+                    SavedGameMetadataUpdate updatedMetadata = builder.Build();
+                    savedGameClient.CommitUpdate(currentSavedGameMetadata, updatedMetadata, ObjectToByteArray(dataToSave), OnSavedGameWrite);
+                    break;
+                default:
+                    Debug.Log(logDecorator + "[ERROR] Writing save data to cloud failed: " + status.ToString());
+                    SaveDataWriteCallback.Invoke(false);
+                    break;
+            }
+
+        }
+
+        private void OnSavedGameWrite(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
             if (status == SavedGameRequestStatus.Success)
             {
@@ -243,13 +258,13 @@ namespace PlatformIntegrations
             }
             else
             {
-                Debug.Log(logDecorator + "Writing save data to cloud failed: " + status.ToString());
+                Debug.Log(logDecorator + "[ERROR] Cloud save write could not be finalised: " + status.ToString());
                 SaveDataWriteCallback.Invoke(false);
             }
         }
 #endregion
 
-        private byte[] ObjectToByteArray(object obj)
+        private static byte[] ObjectToByteArray(object obj)
         {
             if (obj == null)
                 return null;
@@ -260,7 +275,7 @@ namespace PlatformIntegrations
                 return ms.ToArray();
             }
         }
-        private object ByteArrayToObject(byte[] arrBytes)
+        private static object ByteArrayToObject(byte[] arrBytes)
         {
             using (MemoryStream memStream = new MemoryStream())
             {
