@@ -9,7 +9,7 @@ public class PremiumSelectLogic : MonoBehaviour
 {
     public static PremiumSelectLogic GetReference()
     {
-        return GameObject.FindGameObjectWithTag("PremiumCanvas").GetComponent<PremiumSelectLogic>().GetComponent<PremiumSelectLogic>();
+        return GameObject.FindGameObjectWithTag("PremiumCanvas").GetComponent<PremiumSelectLogic>();
     }
 
     /// <summary>
@@ -28,8 +28,8 @@ public class PremiumSelectLogic : MonoBehaviour
     [SerializeField] GlowColourSelector glowColourSelector;
 
     [Header("Buy UI Element References")]
-    [SerializeField] GameObject yesButton;
-    [SerializeField] GameObject noButton;
+    [SerializeField] GameObject tryButton;
+    [SerializeField] GameObject purchaseButton;
     [SerializeField] TextMeshProUGUI premiumNameText;
 
     [Header("States (Mutables I know, cringe)")]
@@ -49,11 +49,11 @@ public class PremiumSelectLogic : MonoBehaviour
         selectedUnownedPremium = false;
         DisplayBuyingTab(UserGameData.Instance.activePremiumSkinName);
 
-        yesButton.SetActive(false);
-        noButton.SetActive(false);
+        tryButton.SetActive(false);
+        purchaseButton.SetActive(false);
     }
 
-    public void SelectedUnOwnedSkin(string skinName)
+    public void SelectedUnOwnedSkin(string skinName, string productid)
     {
         selectedUnownedPremium = true;
 
@@ -62,9 +62,10 @@ public class PremiumSelectLogic : MonoBehaviour
         if (!ff.filterImage.raycastTarget)
         {
             DisplayBuyingTab(skinName);
+            SetProductIDForBuyButton(productid);
 
-            yesButton.SetActive(true);
-            noButton.SetActive(true);
+            tryButton.SetActive(true);
+            purchaseButton.SetActive(true);
 
             DisplayPremiumSkinDemoTemporarily(skinName);
         }
@@ -147,6 +148,13 @@ public class PremiumSelectLogic : MonoBehaviour
         //Move in front of black filter
         premDemoParent.transform.SetParent(premBuyCanvas.gameObject.transform);
         premDemoParent.transform.SetSiblingIndex(1);
+    }
+    /// <summary>
+    /// Sets the productid for the buy button based off of what skin was clicked.
+    /// </summary>
+    private void SetProductIDForBuyButton(string productid)
+    {
+        purchaseButton.GetComponent<BuyPremiumButton>().productID = productid;
     }
 
     public void ClosingBuyingTab()

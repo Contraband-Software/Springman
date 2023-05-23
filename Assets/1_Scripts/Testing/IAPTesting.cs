@@ -25,6 +25,12 @@ namespace Development
         {
             integrationsManager = IntegrationsManager.Instance;
 
+            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                
+            }
+
             integrationsManager.iapHandler.RegisterPurchaseProcessor(productID,
                 (bool status, PurchaseFailureReason failReason, PurchaseEventArgs args) =>
                 {

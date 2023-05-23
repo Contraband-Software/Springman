@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PlatformIntegrations;
 
 using Architecture.Managers;
 using Backend;
@@ -22,8 +23,6 @@ public class SkinSelector_Premium : MonoBehaviour
     public bool tabSkinsCollected = false;
 
     public List<PremiumSkinIcon> premSkinIcons = new List<PremiumSkinIcon>();
-    public List<string> premTabSkinCodes = new List<string>();
-    private List<string> premTabSkinNames = new List<string>();
 
     public PremiumSkinIcon selectedSkin;
     public Vector3 selectedObject;
@@ -59,11 +58,7 @@ public class SkinSelector_Premium : MonoBehaviour
             {
                 PremiumSkinIcon premSI = transform.GetChild(child).GetChild(0).GetComponent<PremiumSkinIcon>();
                 premSkinIcons.Add(premSI);
-                premTabSkinCodes.Add(premSI.ID);
-                premTabSkinNames.Add(premSI.skin_name);
             }
-            UserGameData.Instance.allPremiums = premTabSkinNames;
-            UserGameData.Instance.allPremiumCodes = premTabSkinCodes;
             tabSkinsCollected = true;
 
             RemoveLockIconOnOwnedSkins();
@@ -77,7 +72,7 @@ public class SkinSelector_Premium : MonoBehaviour
     {
         foreach (PremiumSkinIcon premSI in premSkinIcons)
         {
-            if (UserGameData.Instance.unlockedPremiums.Contains(premSI.ID)){
+            if (UserGameData.Instance.allPremiumCodes.Contains(premSI.ID)){
                 premSI.gameObject.transform.parent.transform.GetChild(3).gameObject.GetComponent<Image>().enabled = false;
             }
         }
@@ -317,7 +312,7 @@ public class SkinSelector_Premium : MonoBehaviour
     
     public void SendSkinDetailsToController()
     {
-        if (UserGameData.Instance.unlockedPremiums.Contains(selectedSkin.ID))
+        if (IntegrationsManager.Instance.iapHandler.purchasedProducts.Contains(selectedSkin.ID))
         {
             UserGameData.Instance.currentSkinPremium = true;
 
@@ -338,7 +333,7 @@ public class SkinSelector_Premium : MonoBehaviour
         else
         {
             //NOT OWNED
-            premSelectLogic.SelectedUnOwnedSkin(selectedSkin.skin_name);
+            premSelectLogic.SelectedUnOwnedSkin(selectedSkin.skin_name, selectedSkin.ID);
         }
     }
     

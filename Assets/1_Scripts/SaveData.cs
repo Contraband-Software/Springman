@@ -33,7 +33,6 @@ public class SaveData
 
     public List<string> unlockedColours;
     public List<string> unlockedSkins;
-    public List<string> unlockedPremiums;
 
     public string currentSkin;
     public bool currentSkinPremium;
@@ -65,7 +64,6 @@ public class SaveData
         List<string> unlockedCols, 
         List<string> unlockedSkins, 
         string currentSkin,
-        List<string> unlockedPremiums, 
         bool currentSkinPremium, 
         List<string> glowColours, 
         List<bool> hasSpecialColour, 
@@ -98,7 +96,6 @@ public class SaveData
 
         unlockedColours = unlockedCols;
         this.unlockedSkins = unlockedSkins;
-        this.unlockedPremiums = unlockedPremiums;
 
         this.currentSkin = currentSkin;
         this.currentSkinPremium = currentSkinPremium;

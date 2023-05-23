@@ -85,14 +85,14 @@ public class SkinsController : MonoBehaviour
         }
         if(name.ToLower() == "premium")
         {
-            if (premiumSelector.premTabSkinCodes.Contains(currentSkinID))
+            if (UserGameData.Instance.allPremiumCodes.Contains(currentSkinID))
             {
                 if (prevSelectedImage != null)
                 {
                     prevSelectedImage.color = Color.white;
                 }
 
-                prevSelectedImage = premiumSelector.premSkinIcons[premiumSelector.premTabSkinCodes.IndexOf(currentSkinID)].gameObject.GetComponent<Image>();
+                prevSelectedImage = premiumSelector.premSkinIcons[UserGameData.Instance.allPremiumCodes.IndexOf(currentSkinID)].gameObject.GetComponent<Image>();
                 prevSelectedImage.color = premiumSelector.onSelectColour;
             }
         }

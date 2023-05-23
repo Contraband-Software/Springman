@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using PlatformIntegrations;
 using Architecture.Localisation;
 using Backend;
+using UnityEngine.Purchasing;
 
 namespace Architecture.Managers
 {
@@ -63,7 +64,6 @@ namespace Architecture.Managers
 
         public bool currentSkinPremium = false;
         public string activePremiumSkinName;
-        public List<string> unlockedPremiums = new List<string>();
         public List<string> allPremiums = new List<string>();
         public List<string> allPremiumCodes = new List<string>();
 
@@ -82,6 +82,13 @@ namespace Architecture.Managers
         #region UNITY
         protected override void SingletonAwake()
         {
+            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                allPremiums.Add(item.defaultDescription.Title);
+                allPremiumCodes.Add(item.id);
+            }
+
 #if UNITY_EDITOR
             gameDataPath = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
 #endif
@@ -235,7 +242,6 @@ namespace Architecture.Managers
             unlockedColours = data.unlockedColours;
             unlockedSkins = data.unlockedSkins;
             currentSkin = data.currentSkin;
-            unlockedPremiums = data.unlockedPremiums;
             currentSkinPremium = data.currentSkinPremium;
             glowColours = data.glowColours;
             hasSpecialColour = data.hasSpecialColour;
@@ -274,15 +280,6 @@ namespace Architecture.Managers
             unlockedColours.Add("FFFFFF");
             unlockedColours.Add("373737");
 
-            unlockedPremiums = new List<string>{
-                "lpqok951139", 
-                "bonvmm916571", 
-                "jkhqys871421", 
-                "xxclpu871531", 
-                "kljqye098901", 
-                "opiuqa9815211"
-            };
-
             unlockedSkins.Add("109651fc");
             currentSkin = "109651fc";
 
@@ -317,7 +314,7 @@ namespace Architecture.Managers
                 topObject, bottomObject, springObject, 
                 (int)playerCosmeticType, 
                 unlockedColours, unlockedSkins, 
-                currentSkin, unlockedPremiums, 
+                currentSkin, 
                 currentSkinPremium, 
                 glowColours, hasSpecialColour, specialColourModes
             );
