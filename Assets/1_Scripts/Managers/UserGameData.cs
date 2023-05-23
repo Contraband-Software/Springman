@@ -82,7 +82,9 @@ namespace Architecture.Managers
         #region UNITY
         protected override void SingletonAwake()
         {
+#if UNITY_EDITOR
             gameDataPath = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
+#endif
 
             socialManager = IntegrationsManager.Instance.socialManager;
             socialManager.SaveDataWriteCallback.AddListener((bool status) =>

@@ -76,25 +76,23 @@ namespace Architecture
         IEnumerator WaitForSaveDataToLoad()
         {
 #if !UNITY_EDITOR
-        while (!IntegrationsManager.Instance.socialManager.HasConnectedToCloud())
-        {
-            Debug.Log("Waiting to load data from GPGS...");
-            Debug.Log("Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
-            
+            while (!IntegrationsManager.Instance.socialManager.HasConnectedToCloud())
+            {
+                Debug.Log("LOADING: Waiting to load data from GPGS...");
+                Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+                Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
 
-            Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
-            yield return new WaitForSeconds(0.1f);
-        }
+                yield return new WaitForSeconds(0.1f);
+            }
 
-        if(IntegrationsManager.Instance.socialManager.GetCachedSaveGame() == null){
-            Debug.Log("LOADED FROM GPGS, FILE SEEMS EMPTY...");
-                
-        }
+            if(IntegrationsManager.Instance.socialManager.LoadedCloudSaveEmpty()){
+                Debug.Log("LOADING: LOADED FROM GPGS, FILE SEEMS EMPTY...");
+            }
 #endif
-            Debug.Log("LOADING SCRIPT:  RECIEVED DATA FROM LOAD");
-            Debug.Log("ALLOWING SCENE ACTIVATION");
-            Debug.Log("Scene Activation Allowed?: " + operation.allowSceneActivation);
-            //operation.allowSceneActivation = true;
+            Debug.Log("LOADING: RECIEVED RESPONSE FROM LOAD");
+            Debug.Log("LOADING: ALLOWING SCENE ACTIVATION");
+            Debug.Log("LOADING: Scene Activation Allowed?: " + operation.allowSceneActivation);
+
             yield break;
         }
     }
