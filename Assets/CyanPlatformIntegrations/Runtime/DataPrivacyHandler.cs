@@ -10,6 +10,10 @@ namespace PlatformIntegrations
 
     public class DataPrivacyHandler
     {
+        #region CONFIG
+        public const string logDecorator = Config.globalLogDecorator + "DataPrivacy: ";
+        #endregion
+
         #region STATE
         Action<bool> successCallback;
         bool callbackSet = false;
@@ -51,7 +55,7 @@ namespace PlatformIntegrations
 
         void OnFailure(string reason)
         {
-            Debug.LogWarning(String.Format("Failed to get data privacy page URL: {0}", reason));
+            Debug.LogWarning(logDecorator + String.Format("Failed to get data privacy page URL: {0}", reason));
 
             if (callbackSet)
             {
