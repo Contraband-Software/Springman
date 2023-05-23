@@ -26,7 +26,7 @@ namespace PlatformIntegrations
 
         #region CONFIG
         public static string cloudSaveFileName = "UserGameSave.dat";
-        public static string logDecorator = "GPGS: ";
+        public const string logDecorator = Config.globalLogDecorator + "GPGS: ";
         public static ConflictResolutionStrategy conflictResolutionStrategy = ConflictResolutionStrategy.UseLastKnownGood;
         public static DataSource dataSource = DataSource.ReadCacheOrNetwork;
         #endregion
@@ -271,7 +271,6 @@ namespace PlatformIntegrations
                     SaveDataWriteCallback.Invoke(false);
                     break;
             }
-
         }
 
         private void OnSavedGameWrite(SavedGameRequestStatus status, ISavedGameMetadata game)

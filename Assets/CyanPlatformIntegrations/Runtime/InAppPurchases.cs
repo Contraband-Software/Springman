@@ -12,25 +12,28 @@ namespace PlatformIntegrations
 
     public class InAppPurchases : IStoreListener
     {
-        const string logDecorator = "IAP: ";
-
-#region EVENTS
-
+        #region EVENTS
         public class OnInitialize : UnityEvent<bool> { }
         public OnInitialize OnInitializeEvent { get; private set; }
+        #endregion
 
-#endregion
+        #region CONFIG
+        const string logDecorator = Config.globalLogDecorator + "IAP System: ";
+        public static string environment { get; internal set; } = "production";
+        #endregion
 
-        //store
+        #region STATE
+        private bool available = false;
+
+        //store api data
         private IStoreController controller;
         private IExtensionProvider extensions;
 
+        //individual purchase handling functions
         private Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>> purchaseProcessingCallbacks;
 
-        public static string environment { get; internal set; } = "production";
-        //public static bool FirstInit { get; private set; } = false;
-
-        private bool available = false;
+        public HashSet<string> purchasedProducts { private set; get; } = new();
+        #endregion
 
         public InAppPurchases()
         {
@@ -40,75 +43,9 @@ namespace PlatformIntegrations
             InitializeServices();
         }
 
-        private async void InitializeServices()
-        {
-            try
-            {
-                var options = new InitializationOptions()
-                    .SetEnvironmentName(environment);
-
-                await UnityServices.InitializeAsync(options);
-
-                Debug.Log(logDecorator + "INITALIZED UNITY GAMING SERVICES");
-
-                InitializeIAP();
-            }
-            catch (Exception exception)
-            {
-                Debug.Log(logDecorator + "FAILED TO INITIALIZE UNITY GAMING SERVICES, IAP ABORTED: " + exception.ToString());
-            }
-        }
-        private void InitializeIAP()
-        {
-            ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-
-            //Use the codeless IAP catalogue
-            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
-            foreach (ProductCatalogItem item in pc.allProducts)
-            {
-                builder.AddProduct(item.id, item.type);
-            }
-
-            UnityPurchasing.Initialize(this, builder);
-        }
-
-#region ISTORELISTENER_IMPLEMENTATION
-
-        public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
-        {
-            this.controller = controller;
-            this.extensions = extensions;
-
-            available = true;
-
-            OnInitializeEvent.Invoke(true);
-        }
-
-        public void OnInitializeFailed(InitializationFailureReason error)
-        {
-            OnInitializeEvent.Invoke(false);
-        }
-
-        public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
-        {
-            //OnPurchaseSuccessEvent.Invoke(purchaseEvent);
-            Debug.Log(logDecorator + "[" + purchaseProcessingCallbacks.Count.ToString() + "] Purchase processing: " + purchaseEvent.purchasedProduct.definition.id);
-            return purchaseProcessingCallbacks[purchaseEvent.purchasedProduct.definition.id](true, PurchaseFailureReason.Unknown, purchaseEvent);//PurchaseProcessingResult.Complete;
-        }
-
-        public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
-        {
-            //OnPurchaseFailEvent.Invoke(product, failureReason);
-            Debug.Log(logDecorator + "Purchase could not be processed: " + product.definition.id);
-            purchaseProcessingCallbacks[product.definition.id](false, failureReason, null);
-        }
-
-#endregion
-
-#region PUBLIC_INTERFACE
-
+        #region PUBLIC_INTERFACE
         /// <summary>
-        /// Initializes the public interface, independant of the IAP internals
+        /// Initializes all callbacks.
         /// </summary>
         public void InitState()
         {
@@ -117,10 +54,10 @@ namespace PlatformIntegrations
             OnInitializeEvent = new OnInitialize();
             OnInitializeEvent.AddListener((bool status) =>
             {
-                Debug.Log(logDecorator + "Initialized: " + status.ToString());
+                Debug.Log(logDecorator + "[STATUS] Initialized Store API: " + status.ToString());
             });
 
-            Debug.Log(logDecorator + "Initialized Internal State");
+            Debug.Log(logDecorator + "[STATUS] Registered Callbacks");
         }
 
         /// <summary>
@@ -144,14 +81,16 @@ namespace PlatformIntegrations
             {
                 if (!purchaseProcessingCallbacks.TryAdd(productID, callback))
                 {
-                    throw new Exception(logDecorator + "PURCHASE PROCESSING CALLBACK FAILED TO REGISTER");
-                } else
-                {
-                    Debug.Log(logDecorator + "[" + purchaseProcessingCallbacks.Count.ToString() + "] Registered callback: " + purchaseProcessingCallbacks.ToString());
+                    throw new Exception(logDecorator + "[ERROR] PURCHASE PROCESSING CALLBACK FAILED TO REGISTER");
                 }
-            } else
+                else
+                {
+                    Debug.Log(logDecorator + "[STATUS] [" + purchaseProcessingCallbacks.Count.ToString() + "] Registered callback: " + purchaseProcessingCallbacks.ToString());
+                }
+            }
+            else
             {
-                //Debug.Log(logDecorator + "PURCHASE PROCESSING CALLBACK ALREADY REGISTERED");
+                Debug.Log(logDecorator + "[WARN] PURCHASE PROCESSING CALLBACK ALREADY REGISTERED");
             }
         }
 
@@ -166,12 +105,90 @@ namespace PlatformIntegrations
             {
                 controller.InitiatePurchase(productID);
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
         }
+        #endregion
 
-#endregion
+        #region PRIVATE_INTERFACE
+        private async void InitializeServices()
+        {
+            try
+            {
+                var options = new InitializationOptions()
+                    .SetEnvironmentName(environment);
+
+                await UnityServices.InitializeAsync(options);
+
+                Debug.Log(logDecorator + "[STATUS] INITALIZED UNITY GAMING SERVICES");
+
+                InitializeIAP();
+            }
+            catch (Exception exception)
+            {
+                Debug.Log(logDecorator + "[ERROR] FAILED TO INITIALIZE UNITY GAMING SERVICES, IAP ABORTED: " + exception.ToString());
+            }
+        }
+
+        private void InitializeIAP()
+        {
+            ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+
+            //Use the codeless IAP catalogue
+            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                builder.AddProduct(item.id, item.type);
+            }
+
+            UnityPurchasing.Initialize(this, builder);
+        }
+        #endregion
+
+        #region ISTORELISTENER_IMPLEMENTATION
+        public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+        {
+            this.controller = controller;
+            this.extensions = extensions;
+
+            available = true;
+
+            OnInitializeEvent.Invoke(true);
+        }
+
+        public void OnInitializeFailed(InitializationFailureReason error)
+        {
+            available = false;
+
+            OnInitializeEvent.Invoke(false);
+        }
+
+        public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
+        {
+            // Successfull on the API side.
+
+            Debug.Log(logDecorator + "[STATUS] [" + purchaseProcessingCallbacks.Count.ToString() + "] Purchase processing: " + purchaseEvent.purchasedProduct.definition.id);
+
+            PurchaseProcessingResult res = purchaseProcessingCallbacks[purchaseEvent.purchasedProduct.definition.id]
+                (true, PurchaseFailureReason.Unknown, purchaseEvent);
+
+            if (res == PurchaseProcessingResult.Complete)
+            {
+                purchasedProducts.Add(purchaseEvent.purchasedProduct.definition.id);
+            }
+
+            return res;
+        }
+
+        public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+        {
+            Debug.Log(logDecorator + "[ERROR] Purchase could not be processed: " + product.definition.id);
+
+            purchaseProcessingCallbacks[product.definition.id](false, failureReason, null);
+        }
+        #endregion
     }
 }

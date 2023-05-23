@@ -10,15 +10,44 @@ namespace PlatformIntegrations
 
     public class DataPrivacyHandler
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-    [DllImport("__Internal")]
-    private static extern void OpenNewWindow(string url);
-#endif
-
+        #region STATE
         Action<bool> successCallback;
         bool callbackSet = false;
-
         bool urlOpened = false;
+        #endregion
+
+        public void OnApplicationFocus(bool hasFocus)
+        {
+            if (hasFocus && urlOpened)
+            {
+                urlOpened = false;
+                // Immediately refresh the remote config so new privacy settings can be enabled
+                // as soon as possible if they have changed.
+                RemoteSettings.ForceUpdate();
+            }
+        }
+
+        public void OpenDataPrivacyURL()
+        {
+            DataPrivacy.FetchPrivacyUrl(OnURLReceived, OnFailure);
+        }
+
+        public void OpenDataPrivacyURL(Action<bool> callback)
+        {
+            callbackSet = true;
+            successCallback = callback;
+            DataPrivacy.FetchPrivacyUrl(OnURLReceived, OnFailure);
+        }
+
+        public bool GetURLOpened()
+        {
+            return urlOpened;
+        }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        [DllImport("__Internal")]
+        private static extern void OpenNewWindow(string url);
+#endif
 
         void OnFailure(string reason)
         {
@@ -46,32 +75,5 @@ namespace PlatformIntegrations
                 callbackSet = false;
             }
         }
-
-        public void OnApplicationFocus(bool hasFocus)
-        {
-            if (hasFocus && urlOpened)
-            {
-                urlOpened = false;
-                // Immediately refresh the remote config so new privacy settings can be enabled
-                // as soon as possible if they have changed.
-                RemoteSettings.ForceUpdate();
-            }
-        }
-        public void OpenDataPrivacyURL()
-        {
-            DataPrivacy.FetchPrivacyUrl(OnURLReceived, OnFailure);
-        }
-        public void OpenDataPrivacyURL(Action<bool> callback)
-        {
-            callbackSet = true;
-            successCallback = callback;
-            DataPrivacy.FetchPrivacyUrl(OnURLReceived, OnFailure);
-        }
-
-        public bool GetURLOpened()
-        {
-            return urlOpened;
-        }
     }
 }
-//#endif

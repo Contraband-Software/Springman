@@ -7,6 +7,11 @@ using static PlatformIntegrations.AdvertisementsManager;
 
 namespace PlatformIntegrations
 {
+    internal static class Config
+    {
+        public const string globalLogDecorator = "PLATFORM_INTEGRATIONS::";
+    }
+
     public sealed class IntegrationsManager : MonoBehaviour
     {
         public static IntegrationsManager Instance { get; private set; } = null;
@@ -48,7 +53,7 @@ namespace PlatformIntegrations
 
         void Initialize()
         {
-            Debug.Log("Initializing Integrations");
+            Debug.Log(Config.globalLogDecorator + "Main: Initializing Integrations");
 
             if (Social) { socialManager = new SocialManager(); }
             if (InAppPurchases) { iapHandler = new InAppPurchases(); }

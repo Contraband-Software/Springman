@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 namespace PlatformIntegrations
 {
@@ -11,6 +9,9 @@ namespace PlatformIntegrations
 
     public class AdvertisementsManager : IUnityAdsInitializationListener
     {
+        #region CONFIG
+        public const string logDecorator = Config.globalLogDecorator + "Advertisements: ";
+
         [Serializable]
         public class AdUnit : IUnityAdsLoadListener, IUnityAdsShowListener
         {
@@ -164,7 +165,7 @@ namespace PlatformIntegrations
                 if (adUnitId.Equals(AdID))
                 {
                     Loaded = false;
-                    Debug.LogWarning($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
+                    Debug.LogWarning(logDecorator + $"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
                     Load();
                 }
             }
@@ -173,7 +174,7 @@ namespace PlatformIntegrations
             {
                 if (adUnitId.Equals(AdID))
                 {
-                    Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+                    Debug.Log(logDecorator + $"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
                     // Use the error details to determine whether to try to load another ad.
                     OnShowComplete.Invoke(false);
                     Load();
@@ -191,14 +192,14 @@ namespace PlatformIntegrations
 
         string AppleGameID;
         string GooglePlayGameID;
-
         List<AdUnit> AdUnits;
-
         BannerPosition BannerAdPosition;
-
         bool TestMode = false;
+        #endregion
 
+        #region STATE
         private string GameID;
+        #endregion
 
         private AdUnit GetAdUnitByName(string name)
         {
@@ -220,7 +221,7 @@ namespace PlatformIntegrations
                 GetAdUnitByName(name).ShowAd();
             } else
             {
-                Debug.Log("AD NOT INITIALIZED: " + name);
+                Debug.Log(logDecorator + "AD NOT INITIALIZED: " + name);
             }
         }
         public void HideBannerAd()
@@ -275,14 +276,15 @@ namespace PlatformIntegrations
 
         public void OnInitializationComplete()
         {
-            Debug.Log("Unity Ads initialization complete.");
+            Debug.Log(logDecorator + "Unity Ads initialization complete.");
+
             Advertisement.Banner.SetPosition(BannerAdPosition);
 
             InitializeAdUnits();
         }
         public void OnInitializationFailed(UnityAdsInitializationError error, string message)
         {
-            Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+            Debug.Log(logDecorator + $"Unity Ads Initialization Failed: {error.ToString()} - {message}");
 
             Advertisement.Initialize(GameID, TestMode, this);
         }
