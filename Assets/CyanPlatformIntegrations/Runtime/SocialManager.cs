@@ -151,12 +151,12 @@ namespace PlatformIntegrations
         /// Posts a score to the global game leaderboard
         /// </summary>
         /// <param name="score"></param>
-        public void PostLeaderboardScore(int score, Action<bool> callback)
+        public void PostLeaderboardScore(string id, int score, Action<bool> callback)
         {
             //CgkI6NDuufMeEAIQAQ is the API ID for OUR leaderboard
             if (IsSignedIn())
             {
-                Social.ReportScore(score, "CgkI6NDuufMeEAIQAQ", (bool success) => {
+                Social.ReportScore(score, id, (bool success) => {
                     callback(success);
                 });
             } else

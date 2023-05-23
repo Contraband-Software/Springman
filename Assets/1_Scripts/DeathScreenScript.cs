@@ -77,7 +77,7 @@ public class DeathScreenScript : MonoBehaviour
             //deathAd.Tick();
             adManager.PlayAd("DeathBanner");
 
-            socialManager.PostLeaderboardScore(finalScore, (bool status) =>
+            socialManager.PostLeaderboardScore(GPGSIds.leaderboard_score, finalScore, (bool status) =>
             {
                 Debug.Log("GPGS: Post leaderboard score status: " + status.ToString());
             });
