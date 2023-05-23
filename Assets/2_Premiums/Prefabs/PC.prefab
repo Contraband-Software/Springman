@@ -179,7 +179,6 @@ GameObject:
   - component: {fileID: 1215366909311681759}
   - component: {fileID: 1215366909311681758}
   - component: {fileID: 1667655022}
-  - component: {fileID: 1070052482590014681}
   - component: {fileID: 447085359}
   - component: {fileID: 732678764}
   - component: {fileID: 1487112230935702337}
@@ -285,62 +284,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1070052482590014681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215366909311681752}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 088931c99d7819b4190afb639ba3da0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  deathBy: 0
-  dir: 0
-  OGPlayer: {fileID: 0}
-  OGPCon: {fileID: 0}
-  rb: {fileID: 0}
-  boxCollider2D: {fileID: 0}
-  bounds: {x: 0, y: 0, z: 0}
-  loadedInAt: 0
-  initForce: 219
-  force: 0
-  groundedAfterDeath: 0
-  inWaterPostDeath: 0
-  jumpVelocity: 0
-  isGrounded: 0
-  lastObjectHitTransform: {fileID: 0}
-  jumpingOnY: 0
-  fallMultiplier: 0
-  LastPlatY: -4.5
-  bounceOneFrame: 0
-  betterJumpSystemReady: 0
-  firstLanding: 0
-  xLoc: 0
-  xLocSide: 
-  xLocDirection: 
-  smoothPositionX: 0
-  midX: 0
-  halfPlatHeight: 0
-  water: {fileID: 0}
-  waterBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  cam: {fileID: 0}
-  camScript: {fileID: 0}
-  zeroToEdge: 0
-  splashed: 0
-  maxNegVel: 0
-  igpc: {fileID: 0}
-  skinIndex: 0
-  animator: {fileID: 1667655022}
-  bounce_effects: {fileID: 0}
 --- !u!114 &447085359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces:
   - {fileID: 0}
   BottomPieces: []

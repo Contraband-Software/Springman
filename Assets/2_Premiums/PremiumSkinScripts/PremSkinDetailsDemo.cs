@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 using Architecture.Managers;
 using Backend;
+using PlatformIntegrations;
 
 public class PremSkinDetailsDemo : MonoBehaviour
 {
-    public int skinIndex;
+    public string skinID;
     [Header("Important References")]
 
     [Header("Base")]
@@ -54,13 +55,17 @@ public class PremSkinDetailsDemo : MonoBehaviour
 
     public void UpdateSkin()
     {
-        skinIndex = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
-        targetColor = Utilities.StringToColor(UserGameData.Instance.glowColours[skinIndex]);
+        skinID = InAppPurchases.TitleToProductID(UserGameData.Instance.activePremiumSkinName);
 
-        hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[skinIndex];
+        string colorRes;
+        UserGameData.Instance.glowColours.TryGetValue(skinID, out colorRes);
+        targetColor = Utilities.StringToColor(colorRes);
+
+        UserGameData.Instance.hasSpecialColour.TryGetValue(skinID, out hasSpecialColourMode);
+
         if (hasSpecialColourMode)
         {
-            colourShift = UserGameData.Instance.specialColourModes[skinIndex];
+            UserGameData.Instance.specialColourModes.TryGetValue(skinID, out colourShift);
         }
 
         if (!forGame)

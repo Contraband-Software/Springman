@@ -49,14 +49,15 @@ namespace Architecture.Managers
         public List<string> unlockedColours = new List<string>();
         public List<string> allColours = new List<string>();
 
+        // {IAP product ID} U {Legacy Id}
         public string currentSkin;
 
         public SkinSpecsSolid cSpecs = new SkinSpecsSolid();
 
-        public List<string> unlockedSkins = new List<string>();
-        public List<string> allSkins = new List<string>();
+        public List<string> unlockedSkins = new List<string>(); // skin name
+        public List<string> allSkins = new List<string>(); // the skin name
 
-        public List<string> allSkinsCodes = new List<string>();
+        public List<string> allSkinsCodes = new List<string>(); // legacy ID
         public List<SkinSpecsSolid> allSkinSpecs = new List<SkinSpecsSolid>();
 
         public enum PlayerCosmeticType { None, Color };
@@ -64,13 +65,16 @@ namespace Architecture.Managers
 
         public bool currentSkinPremium = false;
         public string activePremiumSkinName;
-        public List<string> allPremiums = new List<string>();
-        public List<string> allPremiumCodes = new List<string>();
+
+        // For every skin, not just purchased ones
+        public List<string> allPremiums = new List<string>(); // the skin name
+        public List<string> allPremiumCodes = new List<string>(); // IAP product ID
 
         //COSMETICS PUBLIC INTERFACE
-        [HideInInspector] public List<string> glowColours { get; set; } = new List<string>();
-        [HideInInspector] public List<bool> hasSpecialColour { get; set; } = new List<bool>();
-        [HideInInspector] public List<bool> specialColourModes { get; set; } = new List<bool>();
+        //dictionaries link productID's to the string of a colour
+        [HideInInspector] public Dictionary<string, string> glowColours { get; set; } = new();
+        [HideInInspector] public Dictionary<string, bool> hasSpecialColour { get; set; } = new();
+        [HideInInspector] public Dictionary<string, bool> specialColourModes { get; set; } = new();
         #endregion
 
         string gameDataPath = "";
@@ -123,6 +127,9 @@ namespace Architecture.Managers
                         UnpackLoadedSaveDataFile(data as SaveData);
                     }
 #pragma warning restore S5773
+
+                    // FURTHER INIT, ALL GAME DATA AVAILIBLE NOW
+
                 }
                 else
                 {

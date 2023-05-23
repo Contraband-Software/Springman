@@ -44,6 +44,34 @@ namespace PlatformIntegrations
         }
 
         #region PUBLIC_INTERFACE
+        public static string TitleToProductID(string title)
+        {
+            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                if (item.defaultDescription.Title == title)
+                {
+                    return item.id;
+                }
+            }
+
+            throw new System.ArgumentException(logDecorator + "No product with the name: " + title);
+        }
+
+        public static string ProductIDToTitle(string id)
+        {
+            ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                if (item.id == id)
+                {
+                    return item.defaultDescription.Title;
+                }
+            }
+
+            throw new System.ArgumentException(logDecorator + "No product with ID: " + id);
+        }
+
         /// <summary>
         /// Initializes all callbacks.
         /// </summary>
@@ -52,10 +80,9 @@ namespace PlatformIntegrations
             purchaseProcessingCallbacks = new Dictionary<string, Func<bool, PurchaseFailureReason, PurchaseEventArgs, PurchaseProcessingResult>>();
 
             OnInitializeEvent = new OnInitialize();
-            OnInitializeEvent.AddListener((bool status) =>
-            {
-                Debug.Log(logDecorator + "[STATUS] Initialized Store API: " + status.ToString());
-            });
+            //OnInitializeEvent.AddListener((bool status) =>
+            //{
+            //});
 
             Debug.Log(logDecorator + "[STATUS] Registered Callbacks");
         }
@@ -124,7 +151,7 @@ namespace PlatformIntegrations
         /// </summary>
         /// <param name="productID">The product ID defined in the IAP catalogue</param>
         /// <returns>If the purchase could be initiated</returns>
-        public bool InitiatePurchase(string productID)
+        public bool StartPurchase(string productID)
         {
             if (available)
             {
@@ -149,13 +176,13 @@ namespace PlatformIntegrations
                 await UnityServices.InitializeAsync(options);
 
                 Debug.Log(logDecorator + "[STATUS] INITALIZED UNITY GAMING SERVICES");
-
-                InitializeIAP();
             }
             catch (Exception exception)
             {
                 Debug.Log(logDecorator + "[ERROR] FAILED TO INITIALIZE UNITY GAMING SERVICES, IAP ABORTED: " + exception.ToString());
             }
+
+            InitializeIAP();
         }
 
         private void InitializeIAP()
@@ -180,6 +207,15 @@ namespace PlatformIntegrations
             this.extensions = extensions;
 
             available = true;
+
+            foreach(var p in controller.products.all) {
+                if (p.hasReceipt)
+                {
+                    purchasedProducts.Add(p.definition.id);
+                }
+            }
+
+            Debug.Log(logDecorator + "[STATUS] Initialized Store API: Successful");
 
             OnInitializeEvent.Invoke(true);
         }

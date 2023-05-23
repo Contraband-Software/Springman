@@ -6,6 +6,7 @@ using PlatformIntegrations;
 
 using Architecture.Managers;
 using Backend;
+using UnityEngine.Purchasing;
 
 public class SkinSelector_Premium : MonoBehaviour
 {
@@ -72,7 +73,8 @@ public class SkinSelector_Premium : MonoBehaviour
     {
         foreach (PremiumSkinIcon premSI in premSkinIcons)
         {
-            if (UserGameData.Instance.allPremiumCodes.Contains(premSI.ID)){
+            if (IntegrationsManager.Instance.iapHandler.purchasedProducts.Contains(premSI.ID)){
+                print("I OWN: " + premSI.ID);
                 premSI.gameObject.transform.parent.transform.GetChild(3).gameObject.GetComponent<Image>().enabled = false;
             }
         }
@@ -90,21 +92,28 @@ public class SkinSelector_Premium : MonoBehaviour
     {
         print("COLLECTING GLOW COLOURS");
 
-        List<string> glowColoursGathered = new List<string>();
-        List<bool> hasSpecialColourGathered = new List<bool>();
-        List<bool> sCMgathered = new List<bool>();
+        ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
+
+        UserGameData.Instance.glowColours.Clear();
+        UserGameData.Instance.hasSpecialColour.Clear();
+        UserGameData.Instance.specialColourModes.Clear();
+
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
-            PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
-            glowColoursGathered.Add(Utilities.ColorToString(premDemo.targetColor));
-            //print(premDemo.name + ": "+ UserGameData.Instance.ColorToString(premDemo.targetColor));
+            GameObject prem = premiumDemosParent.transform.GetChild(child).gameObject;
+            foreach (ProductCatalogItem item in pc.allProducts)
+            {
+                if (item.defaultDescription.Title == prem.name)
+                { 
+                    PremSkinDetailsDemo premDemo = prem.GetComponent<PremSkinDetailsDemo>();
+                    UserGameData.Instance.glowColours.Add(item.id, Utilities.ColorToString(premDemo.targetColor));
+                    //print(premDemo.name + ": "+ UserGameData.Instance.ColorToString(premDemo.targetColor));
 
-            hasSpecialColourGathered.Add(premDemo.hasSpecialColourMode);
-            sCMgathered.Add(premDemo.colourShift);
+                    UserGameData.Instance.hasSpecialColour.Add(item.id, premDemo.hasSpecialColourMode);
+                    UserGameData.Instance.specialColourModes.Add(item.id, premDemo.colourShift);
+                }
+            }
         }
-        UserGameData.Instance.glowColours = glowColoursGathered;
-        UserGameData.Instance.hasSpecialColour = hasSpecialColourGathered;
-        UserGameData.Instance.specialColourModes = sCMgathered;
         //ALSO GATHERS SPECIAL COLOUR EFFECTS
     }
     public void CollectSpecialColourSettings()
@@ -125,32 +134,37 @@ public class SkinSelector_Premium : MonoBehaviour
         print("SetAllGlowColours()");
         for (int child = 0; child < premiumDemosParent.transform.childCount; child++)
         {
-            PremSkinDetailsDemo premDemo = premiumDemosParent.transform.GetChild(child).gameObject.GetComponent<PremSkinDetailsDemo>();
+            GameObject prem = premiumDemosParent.transform.GetChild(child).gameObject;
+            string productID = InAppPurchases.TitleToProductID(prem.name);
+
+            PremSkinDetailsDemo premDemo = prem.GetComponent<PremSkinDetailsDemo>();
             if(UserGameData.Instance.glowColours.Count > child)
             {
-                premDemo.targetColor = Utilities.StringToColor(UserGameData.Instance.glowColours[child]);
+                string res;
+                UserGameData.Instance.glowColours.TryGetValue(productID, out res);
+                premDemo.targetColor = Utilities.StringToColor(res);
             }
             else
             {
-                UserGameData.Instance.glowColours.Add(Utilities.ColorToString(premDemo.targetColor));
+                UserGameData.Instance.glowColours.Add(productID, Utilities.ColorToString(premDemo.targetColor));
             }
 
             if (UserGameData.Instance.hasSpecialColour.Count > child)
             {
-                premDemo.hasSpecialColourMode = UserGameData.Instance.hasSpecialColour[child];
+                UserGameData.Instance.hasSpecialColour.TryGetValue(productID, out premDemo.hasSpecialColourMode);
             }
             else
             {
-                UserGameData.Instance.hasSpecialColour.Add(premDemo.hasSpecialColourMode);
+                UserGameData.Instance.hasSpecialColour.Add(productID, premDemo.hasSpecialColourMode);
             }
 
             if (UserGameData.Instance.specialColourModes.Count > child)
             {
-                premDemo.colourShift = UserGameData.Instance.specialColourModes[child];
+                UserGameData.Instance.specialColourModes.TryGetValue(productID, out premDemo.colourShift);
             }
             else
             {
-                UserGameData.Instance.specialColourModes.Add(premDemo.colourShift);
+                UserGameData.Instance.specialColourModes.Add(productID, premDemo.colourShift);
             }
         }
     }

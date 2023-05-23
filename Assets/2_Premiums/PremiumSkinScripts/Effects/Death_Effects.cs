@@ -104,7 +104,7 @@ public class Death_Effects : MonoBehaviour
                 Alien();
                 break;
 
-            case "LightBulb":
+            case "Light Bulb":
                 LightBulb();
                 break;
 

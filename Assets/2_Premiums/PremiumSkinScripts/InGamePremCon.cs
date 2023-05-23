@@ -5,7 +5,7 @@ using UnityEngine;
 public class InGamePremCon : MonoBehaviour
 {
     public GameObject spawnedSkin;
-    public int skinIndex;
+    //public int skinIndex;
     public GameObject player;
 
     [Header("Player Parts To Hide")]

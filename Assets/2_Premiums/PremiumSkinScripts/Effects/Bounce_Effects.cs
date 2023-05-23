@@ -105,7 +105,7 @@ public class Bounce_Effects : MonoBehaviour
                 Stomper();
                 break;
 
-            case "LightBulb":
+            case "Light Bulb":
                 LightBulb();
                 break;
 

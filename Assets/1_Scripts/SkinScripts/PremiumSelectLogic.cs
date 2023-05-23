@@ -35,8 +35,8 @@ public class PremiumSelectLogic : MonoBehaviour
     [Header("States (Mutables I know, cringe)")]
     [SerializeField] bool previousSkinWasPremium = false;
     private bool selectedUnownedPremium = false;
-    private int previousPremiumSkinIndex;
-    private int premiumChildIndexClicked;
+    private GameObject previousDemoSkinObject;
+    private GameObject currentDemoSkinObject;
     private string previousPremiumSkinName;
 
     private void Start()
@@ -59,6 +59,7 @@ public class PremiumSelectLogic : MonoBehaviour
 
         print("click on unowned skin: " + skinName);
 
+        // if button clicked, stops multiple
         if (!ff.filterImage.raycastTarget)
         {
             DisplayBuyingTab(skinName);
@@ -84,10 +85,14 @@ public class PremiumSelectLogic : MonoBehaviour
         //if it was, store the index of the child, and disable the current active premium, enable selected premium
         if (previousSkinWasPremium)
         {
+            if (!premDemoCon.DemoObjects.TryGetValue(UserGameData.Instance.activePremiumSkinName, out previousDemoSkinObject))
+            {
+                throw new System.InvalidOperationException("PremiumSelectLogic: Cannot find: " + UserGameData.Instance.activePremiumSkinName + " In DemoPremiums");
+            }
+
             //save index of previous skin then disable it (hide)
-            previousPremiumSkinIndex = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
             previousPremiumSkinName = UserGameData.Instance.activePremiumSkinName;
-            premDemoParent.transform.GetChild(previousPremiumSkinIndex).gameObject.SetActive(false);
+            previousDemoSkinObject.SetActive(false);
 
         }
         else
@@ -101,9 +106,12 @@ public class PremiumSelectLogic : MonoBehaviour
         //update demo
         //get index of the new selected skin and show it in the demo
         UserGameData.Instance.activePremiumSkinName = skinName;
-        premiumChildIndexClicked = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
-        premDemoParent.transform.GetChild(premiumChildIndexClicked).gameObject.SetActive(true);
-        premDemoCon.activePremiumSkin = premDemoParent.transform.GetChild(premiumChildIndexClicked).GetComponent<PremSkinDetailsDemo>();
+        if (!premDemoCon.DemoObjects.TryGetValue(UserGameData.Instance.activePremiumSkinName, out currentDemoSkinObject))
+        {
+            throw new System.InvalidOperationException("Cannot find: " + UserGameData.Instance.activePremiumSkinName + " In DemoPremiums");
+        }
+        currentDemoSkinObject.SetActive(true);
+        premDemoCon.activePremiumSkin = currentDemoSkinObject.GetComponent<PremSkinDetailsDemo>();
 
         premDemoCon.activePremiumSkin.UpdateSkin();
 
@@ -118,13 +126,13 @@ public class PremiumSelectLogic : MonoBehaviour
     {
         if (selectedUnownedPremium)
         {
-            premDemoParent.transform.GetChild(premiumChildIndexClicked).gameObject.SetActive(false);
+            currentDemoSkinObject.SetActive(false);
 
             if (previousSkinWasPremium)
             {
-                premDemoParent.transform.GetChild(previousPremiumSkinIndex).gameObject.SetActive(true);
+                previousDemoSkinObject.SetActive(true);
                 UserGameData.Instance.activePremiumSkinName = previousPremiumSkinName;
-                premDemoCon.activePremiumSkin = premDemoParent.transform.GetChild(previousPremiumSkinIndex).GetComponent<PremSkinDetailsDemo>();
+                premDemoCon.activePremiumSkin = previousDemoSkinObject.GetComponent<PremSkinDetailsDemo>();
             }
             else
             {

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 using Architecture.Managers;
+using PlatformIntegrations;
 using Backend;
 
 public class GlowColourSelector : MonoBehaviour
@@ -101,25 +102,24 @@ public class GlowColourSelector : MonoBehaviour
         //convert to a string to swap into glow colours array
         //feed into the premdetails and update the demo
 
-        int indexOfPremium = UserGameData.Instance.allPremiums.IndexOf(UserGameData.Instance.activePremiumSkinName);
+        string skinID = InAppPurchases.TitleToProductID(UserGameData.Instance.activePremiumSkinName);
         if (!colBtn.isColorShiftButton())
         {
 
             if (premDemoCon.activePremiumSkin.hasSpecialColourMode)
             {
-                UserGameData.Instance.specialColourModes[indexOfPremium] = false;
+                UserGameData.Instance.specialColourModes[skinID] = false;
                 premDemoCon.activePremiumSkin.colourShift = false;
             }
 
-
             colorChosen = colBtn.getButtonColour();
-            UserGameData.Instance.glowColours[indexOfPremium] = Utilities.ColorToString(colorChosen); 
+            UserGameData.Instance.glowColours[skinID] = Utilities.ColorToString(colorChosen); 
 
             premDemoCon.activePremiumSkin.UpdateSkin();
         }
         else
         {
-            UserGameData.Instance.specialColourModes[indexOfPremium] = true;
+            UserGameData.Instance.specialColourModes[skinID] = true;
             premDemoCon.activePremiumSkin.colourShift = true;
         }
     }

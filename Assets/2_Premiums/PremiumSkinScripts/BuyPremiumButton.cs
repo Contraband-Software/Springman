@@ -8,6 +8,7 @@ public class BuyPremiumButton : MonoBehaviour
 {
     public string productID { set; get; } = "";
     IntegrationsManager integrationsManager;
+    [SerializeField] SkinSelector_Premium skinSelectorPremium;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class BuyPremiumButton : MonoBehaviour
                 {
                     //someskin.allowedtouse = true;
                     //give the user the skin
+                    skinSelectorPremium.RemoveLockIconOnOwnedSkins();
                     Debug.Log("Fufilled User purchase of: " + item.id);
                     Debug.Log("RECEIPT: " + args.purchasedProduct.receipt.ToString());
 
@@ -41,6 +43,6 @@ public class BuyPremiumButton : MonoBehaviour
     public void DoPurchase()
     {
         Debug.Log("Started purchase for: " + productID);
-        integrationsManager.iapHandler.InitiatePurchase(productID);
+        integrationsManager.iapHandler.StartPurchase(productID);
     }
 }

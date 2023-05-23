@@ -56,7 +56,7 @@ namespace Development
         public void DoPurchase()
         {
             Debug.Log("Started purchase for: " + productID);
-            integrationsManager.iapHandler.InitiatePurchase(productID);
+            integrationsManager.iapHandler.StartPurchase(productID);
         }
     }
 }

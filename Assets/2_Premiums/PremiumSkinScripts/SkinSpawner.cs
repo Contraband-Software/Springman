@@ -15,12 +15,27 @@ public class SkinSpawner : MonoBehaviour
     {
         print("SPAWNING PREMIUM: " + skin_name);
 
-        int skinIndex = UserGameData.Instance.allPremiums.IndexOf(skin_name);
-        GameObject spawnedSkin = Instantiate(AllPremiumPrefabs[skinIndex], null);
-        spawnedSkin.transform.position = new Vector3(0f, 1f, 0f);
-        InGamePremCon gamePremCon = GameObject.Find("GameExclusivePremiumController").GetComponent<InGamePremCon>();
-        gamePremCon.spawnedSkin = spawnedSkin;
-        gamePremCon.ApplySkin();
-        gamePremCon.skinIndex = skinIndex;
+        int index = 0;
+        foreach(GameObject gameObject in AllPremiumPrefabs)
+        {
+            if (gameObject.name == skin_name)
+            {
+                GameObject spawnedSkin = Instantiate(gameObject, null);
+                spawnedSkin.transform.position = new Vector3(0f, 1f, 0f);
+                InGamePremCon gamePremCon = GameObject.Find("GameExclusivePremiumController").GetComponent<InGamePremCon>();
+                gamePremCon.spawnedSkin = spawnedSkin;
+                gamePremCon.ApplySkin();
+                //gamePremCon.skinIndex = index;
+            }
+            index++;
+        }
+
+        //int skinIndex = UserGameData.Instance.allPremiums.IndexOf(skin_name);
+        //GameObject spawnedSkin = Instantiate(AllPremiumPrefabs[skinIndex], null);
+        //spawnedSkin.transform.position = new Vector3(0f, 1f, 0f);
+        //InGamePremCon gamePremCon = GameObject.Find("GameExclusivePremiumController").GetComponent<InGamePremCon>();
+        //gamePremCon.spawnedSkin = spawnedSkin;
+        //gamePremCon.ApplySkin();
+        //gamePremCon.skinIndex = skinIndex;
     }
 }

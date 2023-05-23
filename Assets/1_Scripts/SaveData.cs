@@ -37,11 +37,11 @@ public class SaveData
     public string currentSkin;
     public bool currentSkinPremium;
 
-    public List<string> glowColours;
+    public Dictionary<string, string> glowColours;
 
-    public List<bool> hasSpecialColour;
+    public Dictionary<string, bool> hasSpecialColour;
 
-    public List<bool> specColModes;
+    public Dictionary<string, bool> specColModes;
 
     public SaveData(int allTimeHighscore,
         bool musicOn,
@@ -65,9 +65,9 @@ public class SaveData
         List<string> unlockedSkins, 
         string currentSkin,
         bool currentSkinPremium, 
-        List<string> glowColours, 
-        List<bool> hasSpecialColour, 
-        List<bool> specColModes)
+        Dictionary<string, string> glowColours, 
+        Dictionary<string, bool> hasSpecialColour, 
+        Dictionary<string, bool> specColModes)
     {
         //GAME
         highscore = allTimeHighscore;
