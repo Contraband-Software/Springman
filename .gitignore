@@ -62,7 +62,8 @@ sysinfo.txt
 *.unitypackage
 *.app
 
-.pwd
+# password text files
+*.pwd
 
 # Crashlytics generated file
 crashlytics-build.properties
