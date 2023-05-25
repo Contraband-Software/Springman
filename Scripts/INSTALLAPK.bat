@@ -1,0 +1,1 @@
+java -jar .\bundletool-all-1.15.1.jar install-apks --apks=../Build/apks/SpringmanAPK.apks 

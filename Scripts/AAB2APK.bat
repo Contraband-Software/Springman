@@ -1,0 +1,2 @@
+REM --connected-device
+java -jar .\bundletool-all-1.15.1.jar build-apks --bundle=../Build/apk.aab --output=../Build/apks/SpringmanAPK.apks --overwrite --ks=../DevelopmentAssets/springman.keystore --ks-key-alias=publishing --ks-pass=file:../keystore.pwd --key-pass=file:../alias.pwd
