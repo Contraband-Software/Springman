@@ -71,6 +71,12 @@ public class SkinSelector_Premium : MonoBehaviour
     /// </summary>
     public void RemoveLockIconOnOwnedSkins()
     {
+        print("Removing Lock Icons...");
+        foreach (var product in IntegrationsManager.Instance.iapHandler.purchasedProducts)
+        {
+            print(product);
+        }
+
         foreach (PremiumSkinIcon premSI in premSkinIcons)
         {
             if (IntegrationsManager.Instance.iapHandler.purchasedProducts.Contains(premSI.ID)){

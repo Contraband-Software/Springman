@@ -12440,7 +12440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces:
   - {fileID: 2087929288}
   BottomPieces:
@@ -31064,7 +31064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces:
   - {fileID: 816571625}
   BottomPieces: []
@@ -35189,7 +35189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces: []
   BottomPieces: []
   SpringPieces:
@@ -43569,7 +43569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces: []
   BottomPieces: []
   SpringPieces: []
@@ -44505,7 +44505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces: []
   BottomPieces: []
   SpringPieces: []
@@ -69993,7 +69993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces: []
   BottomPieces: []
   SpringPieces: []
@@ -79016,6 +79016,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinSelectorPremium: {fileID: 492080264}
+  skinsController: {fileID: 1624638536}
+  cosMenuCon: {fileID: 1624638535}
+  onPurchaseCloseTab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1994375396}
+        m_TargetAssemblyTypeName: ScaleTween, Assembly-CSharp
+        m_MethodName: OnClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 688083485}
+        m_TargetAssemblyTypeName: FilterFade, Assembly-CSharp
+        m_MethodName: FadeToClear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1624638535}
+        m_TargetAssemblyTypeName: CosmeticsMenuController, Assembly-CSharp
+        m_MethodName: TurnOffBuyCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2274980}
+        m_TargetAssemblyTypeName: PremiumSelectLogic, Assembly-CSharp
+        m_MethodName: ClosingBuyingTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1354089587
 GameObject:
   m_ObjectHideFlags: 0
@@ -81294,7 +81347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces:
   - {fileID: 895217223}
   BottomPieces:
@@ -98474,7 +98527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces: []
   BottomPieces: []
   SpringPieces: []
@@ -104349,7 +104402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces:
   - {fileID: 787422232}
   BottomPieces: []
@@ -122810,7 +122863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763ccb5e055a664d9feb5ad062bcb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinIndex: 0
+  skinID: 
   TopPieces:
   - {fileID: 871108840}
   BottomPieces:

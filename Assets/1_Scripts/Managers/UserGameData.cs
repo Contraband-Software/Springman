@@ -262,7 +262,7 @@ namespace Architecture.Managers
             //Ensures the premium skin name is set if the current skin is premium
             if (currentSkinPremium)
             {
-                activePremiumSkinName = allPremiums[allPremiumCodes.IndexOf(currentSkin)];
+                activePremiumSkinName = InAppPurchases.ProductIDToTitle(currentSkin);
             }
         }
 

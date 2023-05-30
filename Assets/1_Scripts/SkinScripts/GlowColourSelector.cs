@@ -127,6 +127,8 @@ public class GlowColourSelector : MonoBehaviour
     #region HACKY_SOLUTION_FOR_DEMO
     public void UpdateColourOptionsForTrialingSkin(string skinName)
     {
+        print("updating colour options for: " + skinName);
+
         //if different skin to last time, change potentially colour shift button sprite back to normal
         if (lastPremiumName != null && lastPremiumName != skinName)
         {

@@ -92,8 +92,16 @@ public class SkinsController : MonoBehaviour
                     prevSelectedImage.color = Color.white;
                 }
 
-                prevSelectedImage = premiumSelector.premSkinIcons[UserGameData.Instance.allPremiumCodes.IndexOf(currentSkinID)].gameObject.GetComponent<Image>();
-                prevSelectedImage.color = premiumSelector.onSelectColour;
+                //iterate through each premSkinIcon and check if its stored code matches the currentSkinID
+                foreach(PremiumSkinIcon prem in premiumSelector.premSkinIcons)
+                {
+                    if(prem.ID == currentSkinID)
+                    {
+                        prevSelectedImage = prem.gameObject.GetComponent<Image>();
+                        prevSelectedImage.color = premiumSelector.onSelectColour;
+                        break;
+                    }
+                }
             }
         }
     }

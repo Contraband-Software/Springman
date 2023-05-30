@@ -63,12 +63,4 @@ public class PremiumDemoContoller : MonoBehaviour
             }
         }
     }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            activePremiumSkin.UpdateSkin();
-        }
-    }
 }

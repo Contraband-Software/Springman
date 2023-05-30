@@ -151,6 +151,7 @@ public class CosmeticsMenuController : MonoBehaviour
         }
         else
         {
+            print("updating demo to show Premium Skin");
             skin_demo.SetActive(false);
             
             premDemoCon.ShowActivePremiumSkin();
