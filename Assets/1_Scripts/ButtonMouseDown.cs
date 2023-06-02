@@ -37,19 +37,16 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [Header("BLOCK CLICKS (DISABLE BUTTON")]
     public bool disabledButton = false;
 
-    public void Awake()
+    void Start()
     {
-        GetAudioRules();
-    }
-
-    public void Update()
-    {
-        if(gameObject.activeSelf == true)
+        if (text2 != null)
         {
-            CheckForClick();
+            text2.SetActive(false);
         }
 
-        soundsOn = UserGameData.Instance.soundsOn;
+        GameObject menuAudio = GameObject.Find("MenuAudio").gameObject;
+        pos_click = menuAudio.transform.Find("PosClick").gameObject.GetComponent<AudioSource>();
+        neg_click = menuAudio.transform.Find("NegClick").gameObject.GetComponent<AudioSource>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -58,7 +55,7 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             buttonBeingPressed = true;
 
-            if (soundsOn)
+            if (UserGameData.Instance.soundsOn)
             {
                 if (!ignoreClick && !single_on_up)
                 {
@@ -83,7 +80,7 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             buttonBeingPressed = false;
 
-            if (soundsOn)
+            if (UserGameData.Instance.soundsOn)
             {
                 if (!ignoreClick && !single_click)
                 {
@@ -104,142 +101,6 @@ public class ButtonMouseDown : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
             ReturnToDefault();
         }
-    }
-
-    private bool soundsOn;
-    private void GetAudioRules()
-    {
-        soundsOn = UserGameData.Instance.soundsOn;
-    }
-
-    private void Start()
-    {
-        if(text2 != null)
-        {
-            text2.SetActive(false);
-        }
-
-        GameObject menuAudio = GameObject.Find("MenuAudio").gameObject;
-        pos_click = menuAudio.transform.Find("PosClick").gameObject.GetComponent<AudioSource>();
-        neg_click = menuAudio.transform.Find("NegClick").gameObject.GetComponent<AudioSource>();
-    }
-
-    public void CheckForClick()
-    {
-        
-        /*
-        if (Input.GetMouseButtonDown(0))
-        {
-            thisClick = Input.mousePosition;
-
-            if(click_blocker != null)
-            {
-                if (click_blocker.filterActive == false && InMaskBounds(thisClick))
-                {
-                    buttonBeingPressed = true;
-
-                    if (!ignoreClick)
-                    {
-                        if (!negative_first)
-                        {
-                            pos_click.Play();
-                        }
-                        else
-                        {
-                            neg_click.Play();
-                        }
-                    }
-
-                    ChangeDueToPress();
-                }
-            }
-            else
-            {
-                if (InMaskBounds(thisClick))
-                {
-                    buttonBeingPressed = true;
-
-                    if (!ignoreClick)
-                    {
-                        if (!negative_first)
-                        {
-                            pos_click.Play();
-                        }
-                        else
-                        {
-                            neg_click.Play();
-                        }
-                    }
-
-                    ChangeDueToPress();
-                }
-            }
-        }
-
-        if(click_blocker != null)
-        {
-            if (click_blocker.filterActive == false && Input.GetMouseButtonUp(0) && buttonBeingPressed)
-            {
-                buttonBeingPressed = false;
-
-                if (!ignoreClick && !single_click)
-                {
-                    if (!negative_first)
-                    {
-                        neg_click.Play();
-                    }
-                    else
-                    {
-                        pos_click.Play();
-                    }
-                }
-
-                ReturnToDefault();
-            }
-        }
-        else
-        {
-            if (Input.GetMouseButtonUp(0) && buttonBeingPressed)
-            {
-                buttonBeingPressed = false;
-
-                if (!ignoreClick && !single_click)
-                {
-                    if (!negative_first)
-                    {
-                        neg_click.Play();
-                    }
-                    else
-                    {
-                        pos_click.Play();
-                    }
-                }
-
-                ReturnToDefault();
-            }
-        }
-        /*
-        if(Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-
-            if(touch.phase == TouchPhase.Began)
-            {
-                if (InMaskBounds(touch.position))
-                {
-                    buttonBeingPressed = true;
-                    ChangeDueToPress();
-                }
-            }
-            if(touch.phase == TouchPhase.Ended)
-            {
-                print(buttonBeingPressed);
-                print(gameObject.name + " return to default");
-                buttonBeingPressed = false;
-                ReturnToDefault();
-            }
-        }
-        */
     }
 
     private void ChangeDueToPress()

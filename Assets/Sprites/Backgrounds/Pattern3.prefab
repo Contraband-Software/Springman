@@ -93,16 +93,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5730044865843540958}
-  - component: {fileID: 5730044865843540957}
   - component: {fileID: 9108237681420278298}
   - component: {fileID: -857032267846160252}
   m_Layer: 10
   m_Name: Pattern3
-  m_TagString: Background
+  m_TagString: BackgroundInvisible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5730044865843540958
 Transform:
   m_ObjectHideFlags: 0
@@ -121,29 +120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5730044865843540957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5730044865843540960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0818a373551d24ab935b9fee620def, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  standard: {x: 2, y: 1, z: 2, w: 1}
-  flippedInX: {x: 1, y: 2, z: 1, w: 2}
-  flippedInY: {x: 2, y: 1, z: 2, w: 1}
-  Rot180: {x: 1, y: 2, z: 1, w: 2}
-  variants:
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 0, y: 0, z: 0, w: 0}
-  overlay: {fileID: 7545127820860602540}
-  colour: {fileID: 7548134468194378155}
-  underlay: {fileID: 3038506812668058647}
 --- !u!61 &9108237681420278298
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,6 +158,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98923d55090058f41bbdca2d2827a9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overlay: {fileID: 7545127820860602540}
+  color: {fileID: 7548134468194378155}
+  underlay: {fileID: 3038506812668058647}
+  patternSpecs:
+    standard: {x: 0, y: 0, z: 0, w: 0}
+    flippedInX: {x: 0, y: 0, z: 0, w: 0}
+    flippedInY: {x: 0, y: 0, z: 0, w: 0}
+    Rot180: {x: 0, y: 0, z: 0, w: 0}
+    variants: []
+    overlay: {fileID: 0}
+    colour: {fileID: 0}
+    underlay: {fileID: 0}
+    gameObject: {fileID: 0}
 --- !u!1 &5836217911379086749
 GameObject:
   m_ObjectHideFlags: 0

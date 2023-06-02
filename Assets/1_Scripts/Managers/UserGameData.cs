@@ -20,19 +20,57 @@ namespace Architecture.Managers
         public LanguageLoadEventType LanguageLoadEvent { private set; get; } = new LanguageLoadEventType();
         public UnityEvent ErrorEvent { private set; get; } = new UnityEvent();
         public UnityEvent RequestColourData { private set; get; } = new UnityEvent();
+        public UnityEvent SettingsChanged { private set; get; } = new();
         #endregion
 
         #region GAME_DATA
-        public int allTimeHighscore { get; set; } = 0;
-        public bool musicOn { get; set; } = true;
-        public bool soundsOn { get; set; } = true;
-        public int langIndex { get; set; } = 0;
+        #region USER_SETTINGS
+        bool _musicOn = true;
+        public bool musicOn
+        {
+            get
+            {
+                return _musicOn;
+            }
+            set
+            {
+                SettingsChanged.Invoke();
+                _musicOn = value;
+            }
+        }
+        bool _soundsOn = true;
+        public bool soundsOn
+        {
+            get
+            {
+                return _soundsOn;
+            }
+            set
+            {
+                SettingsChanged.Invoke();
+                _soundsOn = value;
+            }
+        }
+        int _langIndex = 0;
+        public int langIndex
+        {
+            get
+            {
+                return _langIndex;
+            }
+            set
+            {
+                SettingsChanged.Invoke();
+                _langIndex = value;
+            }
+        }
+        #endregion
         public int gold { get; set; } = 0;
         public int silver { get; set; } = 0;
         public int ads { get; set; } = 0;
         public bool tutorialComplete { get; set; } = false;
-
         public bool EULA_Accepted { get; set; } = false;
+        public int allTimeHighscore { get; set; } = 0;
         #endregion
 
         #region COSMETICS_DATA
@@ -222,10 +260,10 @@ namespace Architecture.Managers
         {
             //GAMEDATA
             allTimeHighscore = data.highscore;
-            musicOn = data.musicOn;
-            soundsOn = data.soundsOn;
+            _musicOn = data.musicOn;
+            _soundsOn = data.soundsOn;
 
-            langIndex = data.langIndex;
+            _langIndex = data.langIndex;
             LocalizationSystem.Instance.CurrentLanguage = (LocalizationSystem.Language)data.langIndex;
 
             gold = data.gold;
@@ -274,9 +312,9 @@ namespace Architecture.Managers
             EULA_Accepted = false;
             tutorialComplete = false;
 
-            musicOn = true;
-            soundsOn = true;
-            langIndex = (int)LocalizationSystem.Instance.CurrentLanguage;
+            _musicOn = true;
+            _soundsOn = true;
+            _langIndex = (int)LocalizationSystem.Instance.CurrentLanguage;
 
             gold = 60;
             silver = 300;
@@ -308,8 +346,8 @@ namespace Architecture.Managers
 
             SaveData data = new SaveData(
                 this.allTimeHighscore,
-                this.musicOn, this.soundsOn,
-                LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower(), this.langIndex,
+                this._musicOn, this._soundsOn,
+                LocalizationSystem.Instance.CurrentLanguage.ToString().ToLower(), this._langIndex,
                 this.gold, this.silver,
                 EULA_Accepted,
                 tutorialComplete,

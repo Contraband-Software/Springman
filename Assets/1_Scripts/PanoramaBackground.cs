@@ -6,22 +6,35 @@ using Architecture.Managers;
 
 public class PanoramaBackground : MonoBehaviour
 {
-    [Header("Colour Changeables")]
-    public List<SpriteRenderer> backgroundColors = new List<SpriteRenderer>();
-
     [Header("Rest")]
     public GameObject objectPool;
 
-    //Pattern Variables
-    public GameObject pattern1;
-    public GameObject pattern2;
-    public GameObject pattern3;
+    [Serializable]
+    public struct PatternSpecs
+    {
+        [Header("Specs")]
+        public Vector4 standard;
+        public Vector4 flippedInX;
+        public Vector4 flippedInY;
+        public Vector4 Rot180;
 
-    PatSpecs pat1Specs;
-    PatSpecs pat2Specs;
-    PatSpecs pat3Specs;
+        public Vector4[] variants;
 
-    PatSpecs[] patterns;
+        [Header("References")]
+        public Sprite overlay;
+        public Sprite colour;
+        public Sprite underlay;
+        public GameObject gameObject;
+
+        public void Init()
+        {
+            variants = new Vector4[] { standard, flippedInX, flippedInY, Rot180 };
+        }
+    }
+    [SerializeField] List<PatternSpecs> panoramaPatterns = new();
+
+    [Header("Colour Changeables")]
+    public List<SpriteRenderer> backgroundColors = new List<SpriteRenderer>();
 
     public enum Orientation { Standard, FlippedInX, FlippedInY, Rot180};
 
@@ -33,17 +46,24 @@ public class PanoramaBackground : MonoBehaviour
 
     bool firstSpawn;
     float currentY;
-    Bounds currentBounds;
+    Bounds currentBounds; 
 
-    Vector4 currentOrientationSpecs;
     Orientation currentOrientation;
-    PatSpecs currentPatternSpecs;
+    PatternSpecs currentPatternSpecs;
     GameObject spawnedPattern;
-    PatSpecs spawnedPatternSpecs;
+    PatternSpecs spawnedPatternSpecs;
 
     bool finishedInit = false;
 
-    public System.Random rnd = new System.Random();
+    System.Random rnd = new System.Random();
+
+    List<GameObject> activeTiles = new List<GameObject>();
+    List<GameObject> inactiveTiles = new List<GameObject>();
+
+
+    Vector2 potentialNextBottomSpecs = Vector2.zero;
+    int ranOrientationInt = -1;
+    private Vector4 currentOrientationSpecs;
 
     void Awake()
     {
@@ -53,13 +73,54 @@ public class PanoramaBackground : MonoBehaviour
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)); //coords of bottom left corner of screen
 
-        pat1Specs = pattern1.GetComponent<PatSpecs>();
-        pat2Specs = pattern2.GetComponent<PatSpecs>();
-        pat3Specs = pattern3.GetComponent<PatSpecs>();
+        //run the init func on all the pats -
+        //create the object pool -
+        //put the patspec ref on each pantile -
+        //sub event -
+        //cache inactive go -
+        int id = 0;
+        foreach (PatternSpecs p in panoramaPatterns)
+        {
+            p.Init();
 
-        patterns = new PatSpecs[] { pat1Specs, pat2Specs, pat3Specs };
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject tileInstance = Instantiate(p.gameObject, objectPool.transform);
+                inactiveTiles.Add(tileInstance);
+                PanoramaTile pt = tileInstance.GetComponent<PanoramaTile>();
+                pt.offscreenEvent.AddListener(MakeTileInactive);
+                pt.patternSpecs = p;
 
+                pt.Init();
+
+                tileInstance.name = "Tile." + id.ToString();
+
+                id++;
+            }
+        }
     }
+
+    private void MakeTileActive(GameObject tile)
+    {
+        spawnedPattern = tile;
+
+        tile.GetComponent<PanoramaTile>().panActive = true;
+
+        Debug.Log("Active" + tile.name);
+
+        activeTiles.Add(tile);
+        inactiveTiles.Remove(tile);
+    }
+
+    private void MakeTileInactive(GameObject tile)
+    {
+
+        Debug.Log("inActive" + tile.name);
+
+        activeTiles.Remove(tile);
+        inactiveTiles.Add(tile);
+    }
+
     private void Start()
     {
         CollectBackgroundColorRefs();
@@ -105,29 +166,19 @@ public class PanoramaBackground : MonoBehaviour
     {
         finishedInit = false;
 
-        string firstPattern = patterns[rnd.Next(0, 3)].gameObject.name;
-        GameObject spawnedFirstPattern = null;
-        for(int i = 0; i < objectPool.transform.childCount; i++)
-        {
-            GameObject child = objectPool.transform.GetChild(i).gameObject;
-            if(!child.activeSelf && child.name == firstPattern)
-            {
-                spawnedFirstPattern = child;
-                break;
-            }
-        }
-        spawnedFirstPattern.SetActive(true);
+        GameObject spawnedFirstPattern = inactiveTiles[rnd.Next(0, inactiveTiles.Count)].gameObject;
+        
+        MakeTileActive(spawnedFirstPattern);
         spawnedFirstPattern.transform.position = Vector3.zero;
         spawnedFirstPattern.transform.rotation = Quaternion.identity;
 
-        PatSpecs firstPatternSpecs = spawnedFirstPattern.GetComponent<PatSpecs>();
+        PanoramaTile firstPatternTile = spawnedFirstPattern.GetComponent<PanoramaTile>();
+        PatternSpecs firstPatternSpecs = firstPatternTile.patternSpecs;
 
         currentBounds = spawnedFirstPattern.GetComponent<BoxCollider2D>().bounds;
 
         spawnedFirstPattern.transform.position = new Vector3(spawnedFirstPattern.transform.position.x,
             bottomLeft.y + currentBounds.extents.y, spawnedFirstPattern.transform.position.z);
-
-
 
         currentOrientation = (Orientation)rnd.Next(0, 4);
         switch (currentOrientation)
@@ -138,12 +189,12 @@ public class PanoramaBackground : MonoBehaviour
 
             case Orientation.FlippedInX:
                 currentOrientationSpecs = firstPatternSpecs.flippedInX;
-                Flip(firstPatternSpecs, true, false);
+                Flip(firstPatternTile, true, false);
                 break;
 
             case Orientation.FlippedInY:
                 currentOrientationSpecs = firstPatternSpecs.flippedInY;
-                Flip(firstPatternSpecs, false, true);
+                Flip(firstPatternTile, false, true);
                 break;
 
             case Orientation.Rot180:
@@ -152,15 +203,15 @@ public class PanoramaBackground : MonoBehaviour
                 break;
 
         }
+
         currentY = spawnedFirstPattern.transform.position.y;
         currentPatternSpecs = firstPatternSpecs;
 
         firstSpawn = true;
         finishedInit = true;
 
-
         //apply theme colour from UserGameData
-        firstPatternSpecs.colour.color = UserGameData.Instance.themeColour;
+        firstPatternTile.color.color = UserGameData.Instance.themeColour;
     }
 
     void SpawnNextPattern()
@@ -171,55 +222,48 @@ public class PanoramaBackground : MonoBehaviour
 
             float spawnY = currentY + (currentBounds.extents.y * 2); //- 0.01f;
 
-            bool patternFound = false;
-            string pattern = patterns[rnd.Next(0, 3)].gameObject.name;
-            for (int i = 0; i < objectPool.transform.childCount; i++)
-            {
-                GameObject child = objectPool.transform.GetChild(i).gameObject;
-                if (!child.activeSelf && child.name == pattern)
-                {
-                    spawnedPattern = child;
-                    patternFound = true;
-                    break;
-                }
-            }
-            if (!patternFound)
-            {
-                GameObject clonedPattern = Instantiate(objectPool.transform.Find(pattern).gameObject, Vector3.zero, Quaternion.identity, objectPool.transform);
-                clonedPattern.name = pattern;
-                spawnedPattern = clonedPattern;
-            }
+            #region CHOOSE_PATTERN
 
-            spawnedPattern.SetActive(true);
+            //spawning code = just get some random ting off of inactive and bootstrap it VVVV
+
+            //selects random pattern
+            GameObject spawnedFirstPattern = inactiveTiles[rnd.Next(0, inactiveTiles.Count)].gameObject;
+
+            MakeTileActive(spawnedFirstPattern);
+
+            #endregion
+
+            #region PLACE_PATTERN
             spawnedPattern.transform.position = Vector3.zero;
             spawnedPattern.transform.rotation = Quaternion.identity;
 
             //get the specs of the spawned pattern
-            spawnedPatternSpecs = spawnedPattern.GetComponent<PatSpecs>();
-            Flip(spawnedPatternSpecs, false, false);
+            PanoramaTile spawnedPatternTile = spawnedPattern.GetComponent<PanoramaTile>();
+            spawnedPatternSpecs = spawnedPatternTile.patternSpecs;
+            Flip(spawnedPatternTile, false, false);
 
 
             spawnedPattern.transform.position = new Vector3(spawnedPattern.transform.position.x, spawnY, spawnedPattern.transform.position.z);
 
             currentY = spawnedPattern.transform.position.y;
-            currentBounds = spawnedPatternSpecs.overlay.bounds;
+            currentBounds = spawnedPatternTile.bounds;
 
             //apply theme colour from UserGameData
-            spawnedPatternSpecs.colour.color = UserGameData.Instance.themeColour;
+            spawnedPatternTile.color.color = UserGameData.Instance.themeColour;
+            #endregion
         }
-           
+
     }
 
-
-    Vector2 potentialNextBottomSpecs = Vector2.zero;
-    int ranOrientationInt = -1;
     void InitialisePattern(GameObject spawnedPattern)
     {
         if(finishedInit == false)
         {
             //top specs of the pattern spawned before this one being done now
-            Vector2 topCurrentSpecs = new Vector2(currentPatternSpecs.variants[(int)currentOrientation].x,
-                currentPatternSpecs.variants[(int)currentOrientation].y);
+            Vector2 topCurrentSpecs = new Vector2(
+                currentPatternSpecs.variants[(int)currentOrientation].x,
+                currentPatternSpecs.variants[(int)currentOrientation].y
+            );
 
             if (topCurrentSpecs != potentialNextBottomSpecs)
             {
@@ -232,7 +276,8 @@ public class PanoramaBackground : MonoBehaviour
             }
             else
             {
-                PatSpecs spawnPatSpecs = spawnedPattern.GetComponent<PatSpecs>();
+                PanoramaTile spawnPatTile = spawnedPattern.GetComponent<PanoramaTile>();
+                PatternSpecs spawnPatSpecs = spawnPatTile.patternSpecs;
 
                 //Adjusting the pattern to the correct orientation
 
@@ -247,12 +292,12 @@ public class PanoramaBackground : MonoBehaviour
 
                     case Orientation.FlippedInX:
                         currentOrientationSpecs = spawnedPatternSpecs.flippedInX;
-                        Flip(spawnPatSpecs, true, false);
+                        Flip(spawnPatTile, true, false);
                         break;
 
                     case Orientation.FlippedInY:
                         currentOrientationSpecs = spawnedPatternSpecs.flippedInY;
-                        Flip(spawnPatSpecs, false, true);
+                        Flip(spawnPatTile, false, true);
                         break;
 
                     case Orientation.Rot180:
@@ -272,14 +317,14 @@ public class PanoramaBackground : MonoBehaviour
         }
     }
 
-    void Flip(PatSpecs patSpecs, bool flipX, bool flipY)
+    void Flip(PanoramaTile patSpecs, bool flipX, bool flipY)
     {
         patSpecs.overlay.flipX = flipX;
-        patSpecs.colour.flipX = flipX;
+        patSpecs.color.flipX = flipX;
         patSpecs.underlay.flipX = flipX;
 
         patSpecs.overlay.flipY = flipY;
-        patSpecs.colour.flipY = flipY;
+        patSpecs.color.flipY = flipY;
         patSpecs.underlay.flipY = flipY;
     }
 }

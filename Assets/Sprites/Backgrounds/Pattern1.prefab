@@ -179,14 +179,13 @@ GameObject:
   - component: {fileID: 8616320452654749703}
   - component: {fileID: -3545222046801424102}
   - component: {fileID: -3564876128994282298}
-  - component: {fileID: 5994591339819472137}
   m_Layer: 10
   m_Name: Pattern1
-  m_TagString: Background
+  m_TagString: BackgroundInvisible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8616320452654749703
 Transform:
   m_ObjectHideFlags: 0
@@ -243,30 +242,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98923d55090058f41bbdca2d2827a9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5994591339819472137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7452554111908160120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa0818a373551d24ab935b9fee620def, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  standard: {x: 2, y: 1, z: 1, w: 2}
-  flippedInX: {x: 1, y: 2, z: 2, w: 1}
-  flippedInY: {x: 1, y: 2, z: 2, w: 1}
-  Rot180: {x: 2, y: 1, z: 1, w: 2}
-  variants:
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 0, y: 0, z: 0, w: 0}
-  - {x: 1, y: 2, z: 2, w: 1}
-  - {x: 0, y: 0, z: 0, w: 0}
   overlay: {fileID: 8915583965756161338}
-  colour: {fileID: 1452160024137057696}
+  color: {fileID: 1452160024137057696}
   underlay: {fileID: 4567790524401647359}
+  patternSpecs:
+    standard: {x: 0, y: 0, z: 0, w: 0}
+    flippedInX: {x: 0, y: 0, z: 0, w: 0}
+    flippedInY: {x: 0, y: 0, z: 0, w: 0}
+    Rot180: {x: 0, y: 0, z: 0, w: 0}
+    variants: []
+    overlay: {fileID: 0}
+    colour: {fileID: 0}
+    underlay: {fileID: 0}
+    gameObject: {fileID: 0}
 --- !u!1 &8040941377343816968
 GameObject:
   m_ObjectHideFlags: 0
