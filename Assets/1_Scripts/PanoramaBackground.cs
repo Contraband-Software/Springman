@@ -6,8 +6,9 @@ using Architecture.Managers;
 
 public class PanoramaBackground : MonoBehaviour
 {
-    [Header("Rest")]
+    [Header("Pool")]
     public GameObject objectPool;
+    public int instancesPerPattern = 3;
 
     [Serializable]
     public struct PatternSpecs
@@ -83,7 +84,7 @@ public class PanoramaBackground : MonoBehaviour
         {
             p.Init();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < instancesPerPattern; i++)
             {
                 GameObject tileInstance = Instantiate(p.gameObject, objectPool.transform);
                 inactiveTiles.Add(tileInstance);
