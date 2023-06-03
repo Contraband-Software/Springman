@@ -218,6 +218,8 @@ public class PanoramaBackground : MonoBehaviour
     {
         if (currentY + currentBounds.extents.y < topRight.y + 2f && firstSpawn == true && finishedInit == true)
         {
+            print("spawning pattern: currentY=" + currentY.ToString() + " bounds.y=" + currentBounds.extents.y.ToString());
+
             finishedInit = false;
 
             float spawnY = currentY + (currentBounds.extents.y * 2); //- 0.01f;
@@ -246,6 +248,7 @@ public class PanoramaBackground : MonoBehaviour
             spawnedPattern.transform.position = new Vector3(spawnedPattern.transform.position.x, spawnY, spawnedPattern.transform.position.z);
 
             currentY = spawnedPattern.transform.position.y;
+            print("new y bounds will be: " + spawnedPatternTile.bounds.extents.y.ToString());
             currentBounds = spawnedPatternTile.bounds;
 
             //apply theme colour from UserGameData
@@ -308,7 +311,6 @@ public class PanoramaBackground : MonoBehaviour
                 }
                 currentPatternSpecs = spawnedPatternSpecs;
                 currentY = spawnedPattern.transform.position.y;
-                currentBounds = spawnPatSpecs.overlay.bounds;
 
                 ranOrientationInt = -1;
                 potentialNextBottomSpecs = Vector2.zero;
