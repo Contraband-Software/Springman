@@ -66,6 +66,7 @@ namespace PlatformIntegrations
             });
 
 #if UNITY_ANDROID
+            Debug.Log(logDecorator + "[STATUS] Attempting to automatically authenticate");
             PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 #elif UNITY_IOS
             //Log into icloud/game center
@@ -83,6 +84,7 @@ namespace PlatformIntegrations
         public void TrySignIn()
         {
 #if UNITY_ANDROID
+            Debug.Log(logDecorator + "[STATUS] Attempting to manually authenticate");
             PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
 #elif UNITY_IOS
             //Log into icloud/game center

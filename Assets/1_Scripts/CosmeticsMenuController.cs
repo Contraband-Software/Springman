@@ -26,6 +26,7 @@ public class CosmeticsMenuController : MonoBehaviour
 
     [Header("Canvases")]
     public GameObject[] canvases = new GameObject[] { };
+    public Canvas[] canvasComponents = new Canvas[] { };
     public List<RectTransform> canvasesRects = new List<RectTransform>();
     public int currentCanvas = 0;
     public float canvasWidth = 0;
@@ -67,6 +68,11 @@ public class CosmeticsMenuController : MonoBehaviour
         {
             canvasesRects.Add(canvas.GetComponent<RectTransform>());
         }
+
+        foreach(Canvas canvas in canvasComponents)
+        {
+            canvas.enabled = false;
+        }
     }
 
     public void ChangePageNum()
@@ -80,6 +86,7 @@ public class CosmeticsMenuController : MonoBehaviour
 
     public void OpenMenu()
     {
+        canvasComponents[currentCanvasIndicative].enabled = true;
         LeanTween.value(cosmeticsCanvas.gameObject, MenuCallback, cmRect.transform.position.y, originalCoords.y, 0.4f).setIgnoreTimeScale(true).
             setOnComplete(FinishedOpening).setEase(openEase);
         UpdateDemo();
@@ -87,16 +94,20 @@ public class CosmeticsMenuController : MonoBehaviour
 
     public void CloseMenu()
     {
-        
         DepositIntoTransitionCanvas();
 
-        LeanTween.value(cosmeticsCanvas.gameObject, MenuCallback, cmRect.transform.position.y, hiddenCoords.y, 0.4f).setIgnoreTimeScale(true).setEase(closeEase);
+        LeanTween.value(cosmeticsCanvas.gameObject, MenuCallback, cmRect.transform.position.y, hiddenCoords.y, 0.4f).setIgnoreTimeScale(true).setEase(closeEase).setOnComplete(DeactivateCosmeticsCanvas);
         LeanTween.delayedCall(0.15f, cosmeticsButton.SlideMainMenuDown);
     }
 
     void MenuCallback(float y)
     {
         cmRect.transform.position = new Vector2(cmRect.transform.position.x, y);
+    }
+
+    void DeactivateCosmeticsCanvas()
+    {
+        cosmeticsCanvas.enabled = false; 
     }
 
     void FinishedOpening()

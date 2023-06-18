@@ -56,8 +56,12 @@ public class ChangeCanvas : MonoBehaviour
             {
                 if(allCanvases.localPosition.x % cosMenuCon.canvasWidth == 0)
                 {
-                    //changing active canvas to the one currently centred
-                    activeCanvas = cosMenuCon.canvases[0].gameObject.GetComponent<Canvas>();
+                    //unhide canvas we are moving on screen
+                    cosMenuCon.canvasComponents[(cosMenuCon.currentCanvasIndicative)].enabled = true;
+
+                    //set active canvas to the one we are on now, but moving off screen
+                    int result = (cosMenuCon.currentCanvasIndicative + 1) % (cosMenuCon.canvasComponents.Length);
+                    activeCanvas = cosMenuCon.canvasComponents[result];
 
                     //visually reordering the canvases PREP
                     cosMenuCon.currentCanvas = cosMenuCon.canvases.Length - 1;
@@ -97,8 +101,12 @@ public class ChangeCanvas : MonoBehaviour
             {
                 if(allCanvases.localPosition.x % cosMenuCon.canvasWidth == 0)
                 {
-                    //changing active canvas to the one currently centred
-                    activeCanvas = cosMenuCon.canvases[0].gameObject.GetComponent<Canvas>();
+                    //unhide canvas we are moving on screen
+                    cosMenuCon.canvasComponents[(cosMenuCon.currentCanvasIndicative)].enabled = true;
+
+                    //set active canvas to the one we are on now, but moving off screen
+                    int result = (cosMenuCon.currentCanvasIndicative + 1) % (cosMenuCon.canvasComponents.Length);
+                    activeCanvas = cosMenuCon.canvasComponents[result];
 
                     cosMenuCon.currentCanvas--;
 
@@ -138,10 +146,16 @@ public class ChangeCanvas : MonoBehaviour
             {
                 if(allCanvases.localPosition.x % cosMenuCon.canvasWidth == 0)
                 {
-                    //unhiding canvas to the direct right
-                    cosMenuCon.canvases[1].gameObject.GetComponent<Canvas>().enabled = true;
-                    //changing active canvas to the one currently centred
-                    activeCanvas = cosMenuCon.canvases[0].gameObject.GetComponent<Canvas>();
+                    //unhide canvas we are moving on screen
+                    cosMenuCon.canvasComponents[(cosMenuCon.currentCanvasIndicative)].enabled = true;
+
+                    //set active canvas to the one we are on now, but moving off screen
+                    int result = (cosMenuCon.currentCanvasIndicative - 1) % (cosMenuCon.canvasComponents.Length);
+                    if (result < 0)
+                    {
+                        result += cosMenuCon.canvasComponents.Length;
+                    }
+                    activeCanvas = cosMenuCon.canvasComponents[result];
 
                     targetCanvas = cosMenuCon.canvases[1];
                     cosMenuCon.currentCanvas = cosMenuCon.canvases.Length - 1;
@@ -178,8 +192,16 @@ public class ChangeCanvas : MonoBehaviour
             {
                 if (allCanvases.localPosition.x % cosMenuCon.canvasWidth == 0)
                 {
-                    //changing active canvas to the one currently centred
-                    activeCanvas = cosMenuCon.canvases[0].gameObject.GetComponent<Canvas>();
+                    //unhide canvas we are moving on screen
+                    cosMenuCon.canvasComponents[(cosMenuCon.currentCanvasIndicative)].enabled = true;
+
+                    //set active canvas to the one we are on now, but moving off screen
+                    int result = (cosMenuCon.currentCanvasIndicative - 1) % (cosMenuCon.canvasComponents.Length);
+                    if (result < 0)
+                    {
+                        result += cosMenuCon.canvasComponents.Length;
+                    }
+                    activeCanvas = cosMenuCon.canvasComponents[result];
 
                     cosMenuCon.currentCanvas++;
 
@@ -204,7 +226,7 @@ public class ChangeCanvas : MonoBehaviour
     }
     public void disableCanvas()
     {
-        //activeCanvas.enabled = false;
+        activeCanvas.enabled = false;
         cosMenuCon.ToggleCorrectRectMask();
     }
 

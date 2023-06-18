@@ -26,15 +26,17 @@ public class CosmeticsButton : MonoBehaviour
     {
         mmCanvasRect = mainMenuCanvas.GetComponent<RectTransform>();
         originalCoords = mmCanvasRect.transform.position;
+        cosmeticsCanvas.enabled = false;
     }
 
     public void SlideMainMenuUp()
     {
+        cosmeticsCanvas.enabled = true;
         transitionObjects.Add(currencyTab);
         DepositIntoTransitionCanvas();
 
         LeanTween.value(mainMenuCanvas.gameObject, SMMUCallback, mmCanvasRect.transform.position.y, mmCanvasRect.transform.position.y * 3, 0.4f).setIgnoreTimeScale(true)
-            .setEase(closeEase);
+            .setEase(closeEase).setOnComplete(DeactivateMainMenuCanvas);
 
 
         LeanTween.delayedCall(0.15f, cmCon.OpenMenu);
@@ -42,6 +44,9 @@ public class CosmeticsButton : MonoBehaviour
 
     public void SlideMainMenuDown()
     {
+        //enable main menu canvas
+        mainMenuCanvas.enabled = true;
+
         LeanTween.value(mainMenuCanvas.gameObject, SMMUCallback, mmCanvasRect.transform.position.y, originalCoords.y, 0.4f).setIgnoreTimeScale(true)
             .setEase(openEase).setOnComplete(CollectFromTransitionCanvas);
     }
@@ -68,4 +73,9 @@ public class CosmeticsButton : MonoBehaviour
             gameObj.transform.SetParent(transitionCanvas.transform);
         }
     }
+
+    public void DeactivateMainMenuCanvas()
+    {
+        mainMenuCanvas.enabled = false;
+    } 
 }

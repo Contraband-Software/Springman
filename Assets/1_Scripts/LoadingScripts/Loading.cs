@@ -45,8 +45,8 @@ namespace Architecture
                 {
                     //start coroutine to check if save data has been loaded
                     Debug.Log("LOADED ASSETS");
-                    
-                    StartCoroutine(WaitForSaveDataToLoad());
+
+                    yield return StartCoroutine(WaitForSaveDataToLoad());
 
                     yield return StartCoroutine(UpdateLoadingBar(1f));
 
@@ -76,14 +76,16 @@ namespace Architecture
         IEnumerator WaitForSaveDataToLoad()
         {
 #if !UNITY_EDITOR
-            while (!IntegrationsManager.Instance.socialManager.HasConnectedToCloud())
-            {
-                Debug.Log("LOADING: Waiting to load data from GPGS...");
-                Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
-                Debug.Log(IntegrationsManager.Instance.socialManager.GetCachedSaveGame());
+            IntegrationsManager.Instance.socialManager.TrySignIn();
 
-                yield return new WaitForSeconds(0.1f);
-            }
+            Debug.Log("LOADING: Waiting to load data from GPGS...");
+            Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+
+            yield return new WaitUntil(() => IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+
+            Debug.Log("LOADING: Waiting to load data from GPGS...");
+            Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+
 
             if(IntegrationsManager.Instance.socialManager.LoadedCloudSaveEmpty()){
                 Debug.Log("LOADING: LOADED FROM GPGS, FILE SEEMS EMPTY...");
