@@ -39,6 +39,8 @@ namespace PlatformIntegrations
         readonly TimeSpan sessionStart;
 
         private object dataToSave = null;
+
+        private bool attemptedManualAuth = false;
         #endregion
 
         public SocialManager()
@@ -51,6 +53,12 @@ namespace PlatformIntegrations
             AuthenticatorCallback.AddListener((bool status) =>
             {
                 Debug.Log(logDecorator + "[STATUS] Platform signin status: " + status.ToString());
+
+                if(status == false && !attemptedManualAuth)
+                {
+                    attemptedManualAuth = true;
+                    TrySignIn();
+                }
             });
             SaveDataLoadCallback = new SaveDataLoadEvent();
             SaveDataLoadCallback.AddListener((bool status, object data) =>
@@ -211,6 +219,7 @@ namespace PlatformIntegrations
             else
             {
                 userSignedIn = false;
+                Debug.Log("SIGN IN FAILED: " + status.ToString());
                 // you can still manually authenticate the user with the manually authennticate function
             }
 

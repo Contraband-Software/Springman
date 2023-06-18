@@ -76,8 +76,6 @@ namespace Architecture
         IEnumerator WaitForSaveDataToLoad()
         {
 #if !UNITY_EDITOR
-            IntegrationsManager.Instance.socialManager.TrySignIn();
-
             Debug.Log("LOADING: Waiting to load data from GPGS...");
             Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
 
