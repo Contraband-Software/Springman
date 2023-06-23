@@ -147,7 +147,27 @@ namespace Architecture.Managers
                     Debug.Log("MenuData: Save data written to cloud successfully");
                 }
             });
-            socialManager.SaveDataLoadCallback.AddListener((bool status, object data) =>
+
+            var data = socialManager.GetCachedSaveGame();
+#pragma warning disable S5773
+            if (data == null)
+            {
+                Debug.Log("UserGameData: CREATED FIRST GAME DATA FILE (cloud)");
+                DefaultDataFileSettings();
+                SaveGameData();
+                EULA_Accepted = false;
+            }
+            else
+            {
+                Debug.Log("UserGameData: READ GAME DATA FILE");
+                Debug.Log("DATA IS OF TYPE:");
+                Debug.Log(data.GetType().ToString());
+                SaveData saveData = data as SaveData;
+                UnpackLoadedSaveDataFile(saveData);
+            }
+#pragma warning restore S5773
+
+/*            socialManager.SaveDataLoadCallback.AddListener((bool status, object data) =>
             {
                 if (status)
                 {
@@ -173,7 +193,7 @@ namespace Architecture.Managers
                 {
                     Debug.Log("UserGameData: no connection to cloud!");
                 }
-            });
+            });*/
         }
 
         private void Start()

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &684579925858362544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684579925858362546}
+  - component: {fileID: 684579925858362545}
+  - component: {fileID: 684579925858362547}
+  m_Layer: 0
+  m_Name: GameSystems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &684579925858362546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684579925858362544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0728965, y: 78.48415, z: -0.10040982}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &684579925858362545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684579925858362544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18060e982e082b449915b7cfc81a8dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themeColour: {r: 0, g: 0, b: 0, a: 0}
+  topColor: {r: 0, g: 0, b: 0, a: 0}
+  bottomColor: {r: 0, g: 0, b: 0, a: 0}
+  springColor: {r: 0, g: 0, b: 0, a: 0}
+  topObject: {x: 0, y: 0, z: 0}
+  bottomObject: {x: 0, y: 0, z: 0}
+  springObject: {x: 0, y: 0, z: 0}
+  unlockedColours: []
+  allColours: []
+  currentSkin: 
+  unlockedSkins: []
+  allSkins: []
+  allSkinsCodes: []
+  playerCosmeticType: 0
+  currentSkinPremium: 0
+  activePremiumSkinName: 
+  allPremiums: []
+  allPremiumCodes: []
+--- !u!114 &684579925858362547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684579925858362544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2311b17634b7714c9eb02a86acd7589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Latin_Cyrillic: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
+  Latin: {fileID: 11400000, guid: 168fdf3083766e146b732e349b1696ab, type: 2}
+  Vietnamese: {fileID: 11400000, guid: 37ad30116d00c75448925925ef7bae3d, type: 2}
+  Chinese: {fileID: 11400000, guid: 4cfeec32b1cc67146a110c9cab30e1bf, type: 2}
+  Hindi: {fileID: 11400000, guid: 2d6bfc8895898e147ae53ab2fd6ff11e, type: 2}
+  Arabic: {fileID: 11400000, guid: 15e9bf9b2518ca343bfd2c0ffc84ba33, type: 2}

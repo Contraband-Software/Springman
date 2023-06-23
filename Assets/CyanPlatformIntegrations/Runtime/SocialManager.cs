@@ -228,7 +228,7 @@ namespace PlatformIntegrations
 
         private void StartSavedGameRead(SavedGameRequestStatus status, ISavedGameMetadata game)
         {
-            Debug.Log(logDecorator + "[STATUS] Game Data Load Status: " + status.ToString());
+            /*Debug.Log(logDecorator + "[STATUS] Game Data Load Status: " + status.ToString());*/
 
             if (status == SavedGameRequestStatus.Success)
             {
@@ -245,7 +245,7 @@ namespace PlatformIntegrations
 
         private void OnSavedGameRead(SavedGameRequestStatus status, byte[] data)
         {
-            Debug.Log(logDecorator + "[STATUS] Game Data Read Status: " + status.ToString());
+            /*Debug.Log(logDecorator + "[STATUS] Game Data Read Status: " + status.ToString());*/
 
             if (status == SavedGameRequestStatus.Success)
             {

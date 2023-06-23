@@ -49,10 +49,11 @@ namespace Architecture.Customization
         private AdvertisementsManager adManager;
         public Button btn;
 
-        UserGameData menuData = UserGameData.Instance;
+        UserGameData menuData;
 
         private void Start()
         {
+            menuData = UserGameData.Instance;
             canvasToOpen.enabled = false;
             brokeBoyCanvas.enabled = false;
             allBoughtCanvas.enabled = false;
@@ -66,16 +67,8 @@ namespace Architecture.Customization
                 {
                     if (status)
                     {
-                        try
-                        {
-                            menuData.ads++;
-                            menuData.SaveGameData();
-                        }
-                        catch
-                        {
-                            Debug.LogWarning("AD SKIN TRANSACTION FAILIURE");
-                            menuData.ads--;
-                        }
+                        menuData.ads++;
+                        menuData.SaveGameData();
                     }
                     else
                     {

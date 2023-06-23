@@ -112,7 +112,6 @@ namespace Architecture
 
                 yield return new WaitForEndOfFrame();
             }
-            UserGameData.Instance.SaveGameData();
         }
 
         public void AdjustDecIncVal(int initialval, int targetVal)

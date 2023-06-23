@@ -11,10 +11,4 @@ public class MenuController : MonoBehaviour
     {
         Architecture.Localisation.LocalizationSystem.Instance.ReLocalizeTexts();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
