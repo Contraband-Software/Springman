@@ -107,16 +107,12 @@ public class PanoramaBackground : MonoBehaviour
 
         tile.GetComponent<PanoramaTile>().panActive = true;
 
-        Debug.Log("Active" + tile.name);
-
         activeTiles.Add(tile);
         inactiveTiles.Remove(tile);
     }
 
     private void MakeTileInactive(GameObject tile)
     {
-
-        Debug.Log("inActive" + tile.name);
 
         activeTiles.Remove(tile);
         inactiveTiles.Add(tile);
@@ -219,7 +215,6 @@ public class PanoramaBackground : MonoBehaviour
     {
         if (currentY + currentBounds.extents.y < topRight.y + 2f && firstSpawn == true && finishedInit == true)
         {
-            print("spawning pattern: currentY=" + currentY.ToString() + " bounds.y=" + currentBounds.extents.y.ToString());
 
             finishedInit = false;
 
@@ -249,7 +244,6 @@ public class PanoramaBackground : MonoBehaviour
             spawnedPattern.transform.position = new Vector3(spawnedPattern.transform.position.x, spawnY, spawnedPattern.transform.position.z);
 
             currentY = spawnedPattern.transform.position.y;
-            print("new y bounds will be: " + spawnedPatternTile.bounds.extents.y.ToString());
             currentBounds = spawnedPatternTile.bounds;
 
             //apply theme colour from UserGameData

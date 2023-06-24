@@ -117,6 +117,12 @@ namespace Architecture.Managers
 
         string gameDataPath = "";
 
+        //saving
+        private UnityAction<bool, object> saveDataLoadCallback;
+        private enum DataSaveOnExitStatus { NOTSTARTED, STARTED, COMPLETED}
+        private DataSaveOnExitStatus dataSaveOnExitStatus = DataSaveOnExitStatus.NOTSTARTED;
+
+
 #pragma warning disable S1450
         SocialManager socialManager = null;
 #pragma warning restore S1450
@@ -133,6 +139,8 @@ namespace Architecture.Managers
 
 #if UNITY_EDITOR
             gameDataPath = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
+            DoUnityEditorLocalFallbackSave();
+            return;
 #endif
 
             socialManager = IntegrationsManager.Instance.socialManager;
@@ -196,10 +204,8 @@ namespace Architecture.Managers
             });*/
         }
 
-        private void Start()
+        private void DoUnityEditorLocalFallbackSave()
         {
-#if UNITY_EDITOR
-
             // This code allows the game to be tested in the editor
             // without it, we start a fresh save every run (annoying).
 
@@ -249,16 +255,63 @@ namespace Architecture.Managers
             #endregion
 
             #endregion
-#endif
+        }
+
+        private void Start()
+        {
+            #region SUBSCRIBE_LISTENERS
+            dataSaveOnExitStatus = DataSaveOnExitStatus.NOTSTARTED;
+            saveDataLoadCallback = (status, data) =>
+            {
+                dataSaveOnExitStatus = DataSaveOnExitStatus.COMPLETED;
+                socialManager.SaveDataLoadCallback.RemoveListener(saveDataLoadCallback);
+            };
+            #endregion
         }
 
         private void OnApplicationQuit()
         {
+            if(dataSaveOnExitStatus == DataSaveOnExitStatus.NOTSTARTED)
+            {
+                Debug.Log("Starting EXIT AUTOSAVE from OnAppQuit");
+                socialManager.SaveDataLoadCallback.AddListener(saveDataLoadCallback);
+                StartCoroutine(ShutdownCoroutine());
+            }
+            else
+            {
+                //wait for the already in progress save to finish
+                StartCoroutine(WaitForDataSaveInProgress());
+            }
+        }
+
+        private void OnApplicationPause()
+        {
+            if (dataSaveOnExitStatus == DataSaveOnExitStatus.NOTSTARTED)
+            {
+                Debug.Log("Starting EXIT AUTOSAVE from OnAppPause");
+                socialManager.SaveDataLoadCallback.AddListener(saveDataLoadCallback);
+                StartCoroutine(ShutdownCoroutine());
+            }
+            else
+            {
+                //wait for the already in progress save to finish
+                StartCoroutine(WaitForDataSaveInProgress());
+            }
+        }
+
+        private IEnumerator ShutdownCoroutine()
+        {
+            Debug.Log("EXITING SPRINGMAN");
             if (EULA_Accepted)
             {
                 //There isnt a check here for if the error screen is open (Really Bad)
+                dataSaveOnExitStatus = DataSaveOnExitStatus.STARTED;
                 Debug.Log("Saving on exit");
                 SaveGameData();
+
+                yield return new WaitUntil(() => dataSaveOnExitStatus == DataSaveOnExitStatus.COMPLETED);
+
+                dataSaveOnExitStatus = DataSaveOnExitStatus.NOTSTARTED;
             }
             else
             {
@@ -268,6 +321,11 @@ namespace Architecture.Managers
                 //reset cloud file?
                 dataDir.Delete(true);
             }
+        }
+
+        private IEnumerator WaitForDataSaveInProgress()
+        {
+            yield return new WaitUntil(() => dataSaveOnExitStatus == DataSaveOnExitStatus.COMPLETED);
         }
         #endregion
 

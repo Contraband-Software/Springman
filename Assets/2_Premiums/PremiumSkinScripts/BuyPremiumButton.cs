@@ -41,6 +41,11 @@ public class BuyPremiumButton : MonoBehaviour
                     print("active premium set to: " + UserGameData.Instance.activePremiumSkinName);
                     UserGameData.Instance.currentSkin = item.id;
                     skinsController.currentSkinID = item.id;
+
+
+                    //add to purchased item catalogue (cached)
+                    IntegrationsManager.Instance.iapHandler.purchasedProducts.Add(item.id);
+
                     skinSelectorPremium.RemoveLockIconOnOwnedSkins();
                     skinsController.OpenNewTab("premium");
                     onPurchaseCloseTab.Invoke();

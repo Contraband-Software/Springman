@@ -94,6 +94,7 @@ public class CosmeticsMenuController : MonoBehaviour
 
     public void CloseMenu()
     {
+        UserGameData.Instance.SaveGameData();
         DepositIntoTransitionCanvas();
 
         LeanTween.value(cosmeticsCanvas.gameObject, MenuCallback, cmRect.transform.position.y, hiddenCoords.y, 0.4f).setIgnoreTimeScale(true).setEase(closeEase).setOnComplete(DeactivateCosmeticsCanvas);
