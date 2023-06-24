@@ -359,7 +359,7 @@ public class PlayerController : MonoBehaviour {
             if (!gameSaved)
             {
                 OnDeath?.Invoke();
-                StartCoroutine(DelayedSaveGame());
+                UserGameData.Instance.SaveGameData();
                 gameSaved = true;
             }
             
@@ -376,11 +376,6 @@ public class PlayerController : MonoBehaviour {
                     break;
             }
         }
-    }
-    IEnumerator DelayedSaveGame()
-    {
-        yield return new WaitForSecondsRealtime(0.25f);
-        UserGameData.Instance.SaveGameData();
     }
 
     float decel = 1f;

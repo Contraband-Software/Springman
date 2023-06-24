@@ -9878,7 +9878,6 @@ MonoBehaviour:
   deathScreenManager: {fileID: 0}
   deathSprite: {fileID: 21300000, guid: 83992d7606fb1324c94bcac3e9ea2ec5, type: 3}
   cosCon: {fileID: 0}
-  cosData: {fileID: 0}
   skinTopSprite: {fileID: 355028767400031748}
   eyesSprite: {fileID: 4963861307876976283}
   baseSkin: {fileID: 4963861306804325589}
@@ -9901,7 +9900,6 @@ MonoBehaviour:
   zeroToEdge: 0
   state: 0
   bounds: {x: 0, y: 0, z: 0}
-  gamedata: {fileID: 0}
   jumpVelocity: 10
   fallMultiplier: 2.2
   jumpingOnY: 0
@@ -9960,6 +9958,7 @@ MonoBehaviour:
   highestPlat: 0
   firstPlatPosY: -1.5
   dontCreateFirstPlat: 0
+  holePlatformChance: 15
   spawnEdge: 0
   platDistance: 3
 --- !u!50 &50669560364393284
@@ -9996,7 +9995,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnFEscript: {fileID: 0}
-  gameData: {fileID: 0}
   pController: {fileID: 0}
   effectCon: {fileID: 5531641677264940234}
   layerMask:
@@ -10015,7 +10013,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camScript: {fileID: 0}
-  gameData: {fileID: 0}
   cam: {fileID: 0}
   pController: {fileID: 0}
   topRight: {x: 0, y: 0, z: 0}
@@ -10348,10 +10345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ccd2812ecad624c8f6cfd6aa09d683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cosData: {fileID: 0}
   playerCon: {fileID: 114559933295590350}
   premiumPlayer: {fileID: 0}
-  gameData: {fileID: 0}
   death_sounds:
   - name: spike
     clip: {fileID: 8300000, guid: 982479632223d2a488225ad492898620, type: 3}
