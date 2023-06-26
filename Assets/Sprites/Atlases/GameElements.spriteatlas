@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GameElements
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 0
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: ee102f3035852914e8a724050b6f47e1, type: 3}
+    - {fileID: 2800000, guid: 26be4895ea1030f4387e8992ced1a28e, type: 3}
+    - {fileID: 2800000, guid: 26bd5c0a31c31564491c29cce007afc3, type: 3}
+    - {fileID: 2800000, guid: 17ac2134fa0db8449be5926f1fde14b1, type: 3}
+    - {fileID: 2800000, guid: 6fa78494d9a529449a2e4be417e31dde, type: 3}
+    - {fileID: 2800000, guid: 5b796e68cf3b71a4f8f9ccd3e847c158, type: 3}
+    - {fileID: 2800000, guid: 113c1220023e97e4ca3c649fee63fa5c, type: 3}
+    - {fileID: 2800000, guid: 4a59b2f8d72fc1143b9716b6bdcd23e7, type: 3}
+    - {fileID: 2800000, guid: a79b834aef76e5149aedbe6335ce3a13, type: 3}
+    - {fileID: 2800000, guid: bd6463a56287edc429f2a88e7d7d7c63, type: 3}
+    - {fileID: 2800000, guid: 25298e3bb8c16eb478884ab8058cb7ac, type: 3}
+    - {fileID: 2800000, guid: 09b3a3ead8b6a9242aa367eb21e0c402, type: 3}
+    - {fileID: 2800000, guid: 5eac9c76c9ac50b4a8a9199d36c65865, type: 3}
+    - {fileID: 2800000, guid: ae1d232874ab6a7409a6e7eb5efa85ef, type: 3}
+    - {fileID: 2800000, guid: 95d517b12f31e94479d163745cd623f2, type: 3}
+    - {fileID: 2800000, guid: 78bc3393fd2c92b4a8ad03222b935542, type: 3}
+    - {fileID: 2800000, guid: 38a46f748f4a45841b8580e5b8425cae, type: 3}
+    - {fileID: 2800000, guid: d6221b0aa2090414c8ae5218228a5a63, type: 3}
+    - {fileID: 2800000, guid: 8d1c10ce93c13a146ad72568f2335c14, type: 3}
+    - {fileID: 2800000, guid: 08530646a9b986c458839566b74aeda1, type: 3}
+    - {fileID: 2800000, guid: 9af0f38cd127c914c99edf6a4d753068, type: 3}
+    - {fileID: 2800000, guid: efcb2a96ae6b2114d9193eac21b9a255, type: 3}
+    - {fileID: 2800000, guid: 17b5b8ea6d417364ca35a629ccf324f5, type: 3}
+    - {fileID: 2800000, guid: 1aeaf39f1da13284ea8a599c84ab047e, type: 3}
+    - {fileID: 2800000, guid: 730dbe310840e614fa767abb3ef72dca, type: 3}
+    - {fileID: 2800000, guid: 09f6c376de3abc44a9ea23ff31be3a3f, type: 3}
+    - {fileID: 2800000, guid: 10bcb059887cd2740a34182997bf8451, type: 3}
+    - {fileID: 2800000, guid: 5aa9cb12ff59ccf43bb2e838792fab42, type: 3}
+    - {fileID: 2800000, guid: c692e092b1c59b942aa3984eec8eaece, type: 3}
+    - {fileID: 2800000, guid: b31da7a6066b02843841a2408a1dd12d, type: 3}
+    - {fileID: 2800000, guid: 707756971e440f946b25c919ffa0fc61, type: 3}
+    - {fileID: 2800000, guid: e025fc01b3b318e42a747f81b62d0aa3, type: 3}
+    - {fileID: 2800000, guid: 0e71fac7fee52d543ad1e35e208a2108, type: 3}
+    - {fileID: 2800000, guid: dc18618a7f4fca04ba6dd18a66ded367, type: 3}
+    - {fileID: 2800000, guid: 80b31af1192d843418606d5cbe39864c, type: 3}
+    - {fileID: 2800000, guid: 28a993d6eb845784c8e374bd03c5ad3b, type: 3}
+    - {fileID: 2800000, guid: 86720e8008fc16346823d93c4000969e, type: 3}
+    - {fileID: 2800000, guid: 3eecc066b73c81344b4025c51b453090, type: 3}
+    - {fileID: 2800000, guid: 0f43f95c00ab22b4996b99ac1a4b3b69, type: 3}
+    - {fileID: 2800000, guid: 18c67af7b06f54c4697e25aa56e9ec2b, type: 3}
+    - {fileID: 2800000, guid: 31413288f3c2a4e46b981b1f01e84c54, type: 3}
+    - {fileID: 2800000, guid: 9bda4f845db5f174b86b59cc1d06d9ac, type: 3}
+    - {fileID: 2800000, guid: f34f463975a864c45b626ccd6d9c633a, type: 3}
+    - {fileID: 2800000, guid: b2af79808525e954a99bac70b6d5400a, type: 3}
+    - {fileID: 2800000, guid: 0ebc46c9ab160714ebcfac1a80b8992a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 113c1220023e97e4ca3c649fee63fa5c, type: 3}
+  - {fileID: 21300000, guid: ee102f3035852914e8a724050b6f47e1, type: 3}
+  - {fileID: 21300000, guid: b2af79808525e954a99bac70b6d5400a, type: 3}
+  - {fileID: 21300000, guid: 86720e8008fc16346823d93c4000969e, type: 3}
+  - {fileID: 21300000, guid: e025fc01b3b318e42a747f81b62d0aa3, type: 3}
+  - {fileID: 21300000, guid: 730dbe310840e614fa767abb3ef72dca, type: 3}
+  - {fileID: 21300000, guid: 95d517b12f31e94479d163745cd623f2, type: 3}
+  - {fileID: 21300000, guid: 80b31af1192d843418606d5cbe39864c, type: 3}
+  - {fileID: 21300000, guid: 5aa9cb12ff59ccf43bb2e838792fab42, type: 3}
+  - {fileID: 21300000, guid: c692e092b1c59b942aa3984eec8eaece, type: 3}
+  - {fileID: 21300000, guid: 78bc3393fd2c92b4a8ad03222b935542, type: 3}
+  - {fileID: 21300000, guid: 17ac2134fa0db8449be5926f1fde14b1, type: 3}
+  - {fileID: 21300000, guid: 38a46f748f4a45841b8580e5b8425cae, type: 3}
+  - {fileID: 21300000, guid: 9bda4f845db5f174b86b59cc1d06d9ac, type: 3}
+  - {fileID: 21300000, guid: 6fa78494d9a529449a2e4be417e31dde, type: 3}
+  - {fileID: 21300000, guid: 26be4895ea1030f4387e8992ced1a28e, type: 3}
+  - {fileID: 21300000, guid: bd6463a56287edc429f2a88e7d7d7c63, type: 3}
+  - {fileID: 21300000, guid: 08530646a9b986c458839566b74aeda1, type: 3}
+  - {fileID: 21300000, guid: 3eecc066b73c81344b4025c51b453090, type: 3}
+  - {fileID: 21300000, guid: 09f6c376de3abc44a9ea23ff31be3a3f, type: 3}
+  - {fileID: 21300000, guid: 5eac9c76c9ac50b4a8a9199d36c65865, type: 3}
+  - {fileID: 21300000, guid: efcb2a96ae6b2114d9193eac21b9a255, type: 3}
+  - {fileID: 21300000, guid: b31da7a6066b02843841a2408a1dd12d, type: 3}
+  - {fileID: 21300000, guid: 28a993d6eb845784c8e374bd03c5ad3b, type: 3}
+  - {fileID: 21300000, guid: 707756971e440f946b25c919ffa0fc61, type: 3}
+  - {fileID: 21300000, guid: 0e71fac7fee52d543ad1e35e208a2108, type: 3}
+  - {fileID: 21300000, guid: 18c67af7b06f54c4697e25aa56e9ec2b, type: 3}
+  - {fileID: 21300000, guid: ae1d232874ab6a7409a6e7eb5efa85ef, type: 3}
+  - {fileID: 21300000, guid: 5b796e68cf3b71a4f8f9ccd3e847c158, type: 3}
+  - {fileID: 21300000, guid: 31413288f3c2a4e46b981b1f01e84c54, type: 3}
+  - {fileID: 21300000, guid: 4a59b2f8d72fc1143b9716b6bdcd23e7, type: 3}
+  - {fileID: 21300000, guid: f34f463975a864c45b626ccd6d9c633a, type: 3}
+  - {fileID: 21300000, guid: 10bcb059887cd2740a34182997bf8451, type: 3}
+  - {fileID: 21300000, guid: 0ebc46c9ab160714ebcfac1a80b8992a, type: 3}
+  - {fileID: 21300000, guid: d6221b0aa2090414c8ae5218228a5a63, type: 3}
+  - {fileID: 21300000, guid: 26bd5c0a31c31564491c29cce007afc3, type: 3}
+  - {fileID: 21300000, guid: a79b834aef76e5149aedbe6335ce3a13, type: 3}
+  - {fileID: 21300000, guid: dc18618a7f4fca04ba6dd18a66ded367, type: 3}
+  - {fileID: 21300000, guid: 09b3a3ead8b6a9242aa367eb21e0c402, type: 3}
+  - {fileID: 21300000, guid: 17b5b8ea6d417364ca35a629ccf324f5, type: 3}
+  - {fileID: 21300000, guid: 25298e3bb8c16eb478884ab8058cb7ac, type: 3}
+  - {fileID: 21300000, guid: 0f43f95c00ab22b4996b99ac1a4b3b69, type: 3}
+  - {fileID: 21300000, guid: 9af0f38cd127c914c99edf6a4d753068, type: 3}
+  - {fileID: 21300000, guid: 8d1c10ce93c13a146ad72568f2335c14, type: 3}
+  - {fileID: 21300000, guid: 1aeaf39f1da13284ea8a599c84ab047e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - SittingEnemyFrame2
+  - PlatformLEFTCAP
+  - FlyingEnemyCannon
+  - default_Top
+  - SpringMIN
+  - Spring_15
+  - Spring_5
+  - default_death_eyes
+  - Spring_18
+  - Spring_19
+  - Spring_6
+  - waterFULL
+  - Spring_7
+  - Flame
+  - SittingEnemyUnactivated
+  - PlatformMID
+  - RedProjectile
+  - Spring_10
+  - plus_one_currency
+  - Spring_16
+  - Spring_3
+  - Spring_12
+  - Spring_20
+  - default_eyes
+  - SpringFULL
+  - AltBase
+  - SpawnIndicatorWhite 1
+  - Spring_4
+  - SittingEnemyFrame4
+  - Barrel
+  - SittingEnemyActivated
+  - FlyingEnemyBodyNOFLAME
+  - Spring_17
+  - Muzzle
+  - Spring_8
+  - PlatfromRIGHTCAP
+  - SittingEnemy_FrameHALF
+  - default_Bottom
+  - Spring_2
+  - Spring_13
+  - Spring_1
+  - DashLine
+  - Spring_11
+  - Spring_9
+  - Spring_14
+  m_RenderDataMap: {}
+  m_Tag: GameElements
+  m_IsVariant: 0
