@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Architecture.Audio;
 using Architecture.Managers;
+using UnityEngine.SceneManagement;
 
 public class EffectController : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class EffectController : MonoBehaviour
     void Start()
     {
         //check if the current skin is premium
-        if (UserGameData.Instance.currentSkinPremium)
+        if (UserGameData.Instance.currentSkinPremium || SceneManager.GetActiveScene().name == "Trial")
         {
             print("EffecController Start()");
             premiumSkinActive = true;

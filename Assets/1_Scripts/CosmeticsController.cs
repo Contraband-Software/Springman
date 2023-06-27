@@ -48,7 +48,7 @@ public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController
 
     public void LoadCosmeticValues()
     {
-        if(currentScene.name == "Game" || currentScene.name == "Trial")
+        if(currentScene.name == "Game")
         {
             if (!UserGameData.Instance.currentSkinPremium)
             {
@@ -108,6 +108,11 @@ public class CosmeticsController : Backend.AbstractSingleton<CosmeticsController
                 print("___________________SPAWNING PREMIUM");
             }
             
+        }
+        else if(currentScene.name == "Trial")
+        {
+            skinSpawner.SpawnPremium(UserGameData.Instance.activePremiumSkinName);
+            print("___________________SPAWNING PREMIUM");
         }
     }
 

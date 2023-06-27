@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 using Architecture.Audio;
 using Architecture.Managers;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Duplication Reference")]
@@ -171,7 +172,7 @@ public class PlayerController : MonoBehaviour {
         InitialiseSplashColour();
         
 
-        if (!UserGameData.Instance.currentSkinPremium)
+        if (!UserGameData.Instance.currentSkinPremium && SceneManager.GetActiveScene().name != "Trial")
         {
             if (alternative_bounce_sound != null && alternative_bounce_sound != "")
             {
@@ -337,7 +338,7 @@ public class PlayerController : MonoBehaviour {
                 return s;
             }
         }
-        throw new ArgumentException("Unknown sound name");
+        throw new ArgumentException("Unknown sound name: " + sound_name);
     }
 
 

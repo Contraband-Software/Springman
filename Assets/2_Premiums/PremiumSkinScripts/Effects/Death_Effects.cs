@@ -10,9 +10,8 @@ public class Death_Effects : MonoBehaviour
     private string premium_name;
 
     [Header("Important References")]
-    [HideInInspector]
+
     public PremSkinDetailsDemo premDetails;
-    [HideInInspector]
     public PlayerController playerCon;
     [HideInInspector]
     public EffectController effectCon;
