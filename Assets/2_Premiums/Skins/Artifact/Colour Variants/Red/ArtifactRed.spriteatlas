@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArtifactRed
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: abe56b2092491e14f892cc817fb3decd, type: 3}
+    - {fileID: 2800000, guid: 31d89fd00b3e7284aac3147232cfd2fa, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 31d89fd00b3e7284aac3147232cfd2fa, type: 3}
+  - {fileID: 21300000, guid: 3b76bb627904db64fa07b5397d334d7d, type: 3}
+  - {fileID: 21300000, guid: 7ae808540f596d948b145f29cdc76882, type: 3}
+  - {fileID: 21300000, guid: 74191079c7d6e1a4ba35ec7b10b2e950, type: 3}
+  - {fileID: 21300000, guid: 5e0935fab50d28745acf49bf6a108f81, type: 3}
+  - {fileID: 21300000, guid: b17768bf98551db43bb93f28d952da13, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - missile_red
+  - left_wing_glow
+  - right_wing_glow
+  - body_glow
+  - connectors_red
+  - connectors_red_single
+  m_RenderDataMap: {}
+  m_Tag: ArtifactRed
+  m_IsVariant: 0

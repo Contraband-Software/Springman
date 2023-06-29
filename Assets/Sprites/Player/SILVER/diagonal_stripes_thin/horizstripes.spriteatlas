@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: horizstripes
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 630d3c6a8e55b434db6d9fe499841f95, type: 3}
+    - {fileID: 2800000, guid: 7333860ffd08b28428fcac610963467f, type: 3}
+    - {fileID: 2800000, guid: 00fcba07ba36a304693b949089bc8ccf, type: 3}
+    - {fileID: 2800000, guid: 2322e2b7a34bd88409b94737f06e7fc5, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 00fcba07ba36a304693b949089bc8ccf, type: 3}
+  - {fileID: 21300000, guid: 2322e2b7a34bd88409b94737f06e7fc5, type: 3}
+  - {fileID: 21300000, guid: 630d3c6a8e55b434db6d9fe499841f95, type: 3}
+  - {fileID: 21300000, guid: 7333860ffd08b28428fcac610963467f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - diagonal_stripes_thin_death_eyes
+  - diagonal_stripes_thin_Bottom
+  - diagonal_stripes_thin_Top
+  - diagonal_stripes_thin_eyes
+  m_RenderDataMap: {}
+  m_Tag: horizstripes
+  m_IsVariant: 0

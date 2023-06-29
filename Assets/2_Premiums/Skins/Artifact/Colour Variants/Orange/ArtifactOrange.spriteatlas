@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArtifactOrange
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 8a9d59015b9435e4d9c34b586d3e378a, type: 3}
+    - {fileID: 2800000, guid: 86eb8353630faa043b60f082bafe1c92, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 5c39b8217ad4d91429c0b128efcd5480, type: 3}
+  - {fileID: 21300000, guid: 86eb8353630faa043b60f082bafe1c92, type: 3}
+  - {fileID: 21300000, guid: c5b634831eedaba4db4b089b58477821, type: 3}
+  - {fileID: 21300000, guid: 8cf94838e19766f4393f9d8ee3813e51, type: 3}
+  - {fileID: 21300000, guid: 9e753d89184b6ca4490882d96b499941, type: 3}
+  - {fileID: 21300000, guid: a6315e1b7180f11448466e3bf47b1121, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - connector_orange_single
+  - missile_orange
+  - body_glow
+  - left_wing_glow
+  - right_wing_glow
+  - connector_orange
+  m_RenderDataMap: {}
+  m_Tag: ArtifactOrange
+  m_IsVariant: 0

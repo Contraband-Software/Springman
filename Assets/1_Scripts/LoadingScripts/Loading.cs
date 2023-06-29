@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using PlatformIntegrations;
+using TMPro;
 
 namespace Architecture
 {
@@ -22,6 +23,7 @@ namespace Architecture
         [Header("Settings")]
         [SerializeField, Range(0, 1)] float updateSpeed = 0.3f;
         [SerializeField] Image loadingBar;
+        [SerializeField] TextMeshProUGUI loadingText;
 
         private UnityEngine.AsyncOperation operation;
 
@@ -39,12 +41,16 @@ namespace Architecture
 
             while (!operation.isDone)
             {
+                loadingText.text = "Loading Assets...";
+
                 yield return StartCoroutine(UpdateLoadingBar(operation.progress));
 
                 if (loadingBar.fillAmount >= 0.88f && !operation.allowSceneActivation)
                 {
                     //start coroutine to check if save data has been loaded
                     Debug.Log("LOADED ASSETS");
+
+                    loadingText.text = "Retrieving Cloud Save...";
 
                     yield return StartCoroutine(WaitForSaveDataToLoad());
 

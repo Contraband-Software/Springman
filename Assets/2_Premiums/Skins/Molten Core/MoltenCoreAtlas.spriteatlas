@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MoltenCoreAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c35657f4d1ce0554a84656591821f4d9, type: 3}
+    - {fileID: 102900000, guid: b02ca8ac3498fd342a693c25c2f9f100, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2a858e813af1a584c8bdc0e58b0ab3cf, type: 3}
+  - {fileID: 21300000, guid: a6110633693da014992e4c9413f31f6b, type: 3}
+  - {fileID: 21300000, guid: d47a9fc4a3ce1624e9af2cb6249f4c39, type: 3}
+  - {fileID: 21300000, guid: ba3b8b35985171b44925976a88e6ad81, type: 3}
+  - {fileID: 21300000, guid: 333f34b7cdc11c240a2193c6eb4148b2, type: 3}
+  - {fileID: 21300000, guid: 96014fa8fcf30c347800df1ce7c6e7ae, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Outline
+  - centre
+  - Base
+  - square_glow
+  - glow_frame
+  - centre_outer_glow
+  m_RenderDataMap: {}
+  m_Tag: MoltenCoreAtlas
+  m_IsVariant: 0

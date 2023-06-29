@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: demoexper
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 0e7578ec9564c2c42ad9242358f12b0f, type: 3}
+    - {fileID: 2800000, guid: 209ee0b123760134dbaa816406d2b94f, type: 3}
+    - {fileID: 2800000, guid: 2fd806ee62c8bec42961e0c665efc9cd, type: 3}
+    - {fileID: 2800000, guid: d62a989c03a18554db6bf175fe2a9f87, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 209ee0b123760134dbaa816406d2b94f, type: 3}
+  - {fileID: 21300000, guid: d62a989c03a18554db6bf175fe2a9f87, type: 3}
+  - {fileID: 21300000, guid: 0e7578ec9564c2c42ad9242358f12b0f, type: 3}
+  - {fileID: 21300000, guid: 2fd806ee62c8bec42961e0c665efc9cd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - demo_expert_Skin
+  - demo_expert_death_eyes
+  - demo_expert_Top
+  - demo_expert_eyes
+  m_RenderDataMap: {}
+  m_Tag: demoexper
+  m_IsVariant: 0

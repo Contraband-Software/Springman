@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: scientist
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: e31ad21bf3e2bcf46aadb918859e1550, type: 3}
+    - {fileID: 2800000, guid: fe972837d7c0ab64ab06221ea51d4ec0, type: 3}
+    - {fileID: 2800000, guid: 65259d5f8680c214dae7c5af53e13757, type: 3}
+    - {fileID: 2800000, guid: 87253ff5f0d5cdf4fb3beebe4d503e2f, type: 3}
+    - {fileID: 2800000, guid: f9da8dfa6c2f16841ae940ed761245f9, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 87253ff5f0d5cdf4fb3beebe4d503e2f, type: 3}
+  - {fileID: 21300000, guid: fe972837d7c0ab64ab06221ea51d4ec0, type: 3}
+  - {fileID: 21300000, guid: f9da8dfa6c2f16841ae940ed761245f9, type: 3}
+  - {fileID: 21300000, guid: e31ad21bf3e2bcf46aadb918859e1550, type: 3}
+  - {fileID: 21300000, guid: 65259d5f8680c214dae7c5af53e13757, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - scientist_Skin
+  - scientist_eyes
+  - scientist_Top
+  - scientist_Bottom
+  - scientist_glasses
+  m_RenderDataMap: {}
+  m_Tag: scientist
+  m_IsVariant: 0

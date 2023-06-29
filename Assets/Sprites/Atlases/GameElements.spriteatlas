@@ -89,6 +89,12 @@ SpriteAtlas:
     - {fileID: 2800000, guid: f34f463975a864c45b626ccd6d9c633a, type: 3}
     - {fileID: 2800000, guid: b2af79808525e954a99bac70b6d5400a, type: 3}
     - {fileID: 2800000, guid: 0ebc46c9ab160714ebcfac1a80b8992a, type: 3}
+    - {fileID: 2800000, guid: 0cbcd75ff6f42ba439dfe7927467e243, type: 3}
+    - {fileID: 2800000, guid: a00250317674f3744b936a53d743f5d5, type: 3}
+    - {fileID: 2800000, guid: 1f04864284dcc714abf986fcab1fd25e, type: 3}
+    - {fileID: 2800000, guid: 6076644e4aee78d429338bc6e94bde91, type: 3}
+    - {fileID: 2800000, guid: 2843b82ed3c648b4e9cb39b8280b3209, type: 3}
+    - {fileID: 2800000, guid: 5a856918fa7307e4c9b1c5bc677eec7d, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -99,10 +105,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b2af79808525e954a99bac70b6d5400a, type: 3}
   - {fileID: 21300000, guid: 86720e8008fc16346823d93c4000969e, type: 3}
   - {fileID: 21300000, guid: e025fc01b3b318e42a747f81b62d0aa3, type: 3}
+  - {fileID: 21300000, guid: a00250317674f3744b936a53d743f5d5, type: 3}
   - {fileID: 21300000, guid: 730dbe310840e614fa767abb3ef72dca, type: 3}
   - {fileID: 21300000, guid: 95d517b12f31e94479d163745cd623f2, type: 3}
   - {fileID: 21300000, guid: 80b31af1192d843418606d5cbe39864c, type: 3}
   - {fileID: 21300000, guid: 5aa9cb12ff59ccf43bb2e838792fab42, type: 3}
+  - {fileID: 21300000, guid: 1f04864284dcc714abf986fcab1fd25e, type: 3}
   - {fileID: 21300000, guid: c692e092b1c59b942aa3984eec8eaece, type: 3}
   - {fileID: 21300000, guid: 78bc3393fd2c92b4a8ad03222b935542, type: 3}
   - {fileID: 21300000, guid: 17ac2134fa0db8449be5926f1fde14b1, type: 3}
@@ -121,6 +129,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 707756971e440f946b25c919ffa0fc61, type: 3}
   - {fileID: 21300000, guid: 0e71fac7fee52d543ad1e35e208a2108, type: 3}
   - {fileID: 21300000, guid: 18c67af7b06f54c4697e25aa56e9ec2b, type: 3}
+  - {fileID: 21300000, guid: 5a856918fa7307e4c9b1c5bc677eec7d, type: 3}
   - {fileID: 21300000, guid: ae1d232874ab6a7409a6e7eb5efa85ef, type: 3}
   - {fileID: 21300000, guid: 5b796e68cf3b71a4f8f9ccd3e847c158, type: 3}
   - {fileID: 21300000, guid: 31413288f3c2a4e46b981b1f01e84c54, type: 3}
@@ -137,7 +146,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 25298e3bb8c16eb478884ab8058cb7ac, type: 3}
   - {fileID: 21300000, guid: 0f43f95c00ab22b4996b99ac1a4b3b69, type: 3}
   - {fileID: 21300000, guid: 9af0f38cd127c914c99edf6a4d753068, type: 3}
+  - {fileID: 21300000, guid: 2843b82ed3c648b4e9cb39b8280b3209, type: 3}
+  - {fileID: 21300000, guid: 6076644e4aee78d429338bc6e94bde91, type: 3}
   - {fileID: 21300000, guid: 8d1c10ce93c13a146ad72568f2335c14, type: 3}
+  - {fileID: 21300000, guid: 0cbcd75ff6f42ba439dfe7927467e243, type: 3}
   - {fileID: 21300000, guid: 1aeaf39f1da13284ea8a599c84ab047e, type: 3}
   m_PackedSpriteNamesToIndex:
   - SittingEnemyFrame2
@@ -145,10 +157,12 @@ SpriteAtlas:
   - FlyingEnemyCannon
   - default_Top
   - SpringMIN
+  - sittingEnemy_Top
   - Spring_15
   - Spring_5
   - default_death_eyes
   - Spring_18
+  - sittingEnemy_Bottom
   - Spring_19
   - Spring_6
   - waterFULL
@@ -167,6 +181,7 @@ SpriteAtlas:
   - SpringFULL
   - AltBase
   - SpawnIndicatorWhite 1
+  - barrel
   - Spring_4
   - SittingEnemyFrame4
   - Barrel
@@ -183,7 +198,10 @@ SpriteAtlas:
   - Spring_1
   - DashLine
   - Spring_11
+  - Top
+  - bottom
   - Spring_9
+  - CloudParticle
   - Spring_14
   m_RenderDataMap: {}
   m_Tag: GameElements

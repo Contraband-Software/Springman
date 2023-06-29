@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StomperColGreen
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 275e1bf4105d1cf4cbbc699536b406e1, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 95d029e3d4cdabf40a309b9c832f4b1a, type: 3}
+  - {fileID: 21300000, guid: ab7869b5efdba8944ab9503fa7a6f2c0, type: 3}
+  - {fileID: 21300000, guid: ed60a10b0d8f81145a199f4a12bae490, type: 3}
+  - {fileID: 21300000, guid: a166b3ee8d699a64e9853c50a4d57250, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - socket_green
+  - left_green
+  - right_green
+  - eye_green
+  m_RenderDataMap: {}
+  m_Tag: StomperColGreen
+  m_IsVariant: 0

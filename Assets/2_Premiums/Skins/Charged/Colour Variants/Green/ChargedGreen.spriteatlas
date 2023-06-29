@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChargedGreen
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 1c7b298a10ca4024ebee512e172727fa, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 82dc965165ec40449816023871a6c85a, type: 3}
+  - {fileID: 21300000, guid: 4a2c4ef79131fa042bc4683b3b0fdd22, type: 3}
+  - {fileID: 21300000, guid: f164f0d9fe4d31d48b4c5c6e825beaee, type: 3}
+  - {fileID: 21300000, guid: 7fdf071decc98da4a99bf86422179d5c, type: 3}
+  - {fileID: 21300000, guid: 717b6dff4ecbb2448bbedc59862c3e8f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - green-(3)
+  - green-(5)
+  - green-(2)
+  - green-(4)
+  - green-(1)
+  m_RenderDataMap: {}
+  m_Tag: ChargedGreen
+  m_IsVariant: 0

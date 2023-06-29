@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pixelspringman
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 624d9f738ae9a11459d8dbae5a341e21, type: 3}
+    - {fileID: 2800000, guid: df386bf701a66bc4d9c54f297c185c60, type: 3}
+    - {fileID: 2800000, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 624d9f738ae9a11459d8dbae5a341e21, type: 3}
+  - {fileID: 21300000, guid: df386bf701a66bc4d9c54f297c185c60, type: 3}
+  - {fileID: 5458433298464057218, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+  - {fileID: 1654536206404602581, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+  - {fileID: -2103786540987316754, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+  - {fileID: -6337618516096716278, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+  - {fileID: -7108702126052950653, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+  - {fileID: 6551548081029735319, guid: 5b59550814c67314ea23a4f148530771, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - pxielSpringMan_top
+  - pixelSpringMan_bottom
+  - springframes_3
+  - springframes_2
+  - springframes_1
+  - springframes_0
+  - springframes_5
+  - springframes_4
+  m_RenderDataMap: {}
+  m_Tag: pixelspringman
+  m_IsVariant: 0

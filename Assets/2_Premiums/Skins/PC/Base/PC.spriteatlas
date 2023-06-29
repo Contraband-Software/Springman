@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PC
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 11c025e70174acc4ea3eea4cfdfe6ce9, type: 3}
+    - {fileID: 102900000, guid: 0addbacb5ac27134884254362374b4d6, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: e93c1a80a64ab6b48a68cb492fe2c5a1, type: 3}
+  - {fileID: 21300000, guid: ea9397319a6305f49ade1a8a165dc841, type: 3}
+  - {fileID: 21300000, guid: 0d26965374b409d46a36527c0e45c30f, type: 3}
+  - {fileID: 21300000, guid: 5663ecb5a21630e4a86a9d9bb8312db9, type: 3}
+  - {fileID: 21300000, guid: 2a056347956a0e34b9c5833ae8a8c6af, type: 3}
+  - {fileID: 21300000, guid: c6879578416e56f489ea8b778c4f1de9, type: 3}
+  - {fileID: 21300000, guid: 3842a1ca48ce4f6478f274da66b03525, type: 3}
+  - {fileID: 21300000, guid: 0ffa37eac7680e24e84790d03f4e0232, type: 3}
+  - {fileID: 21300000, guid: 27eed1cc367dfdd449ef5d6c602742d0, type: 3}
+  - {fileID: 21300000, guid: a21bd1bd4e56adf4196f1bbfddf57331, type: 3}
+  - {fileID: 21300000, guid: 57c8e95f707e2de4d8f890027a853200, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - XP
+  - PixelScreen
+  - xx
+  - '!'
+  - Frame
+  - Keyboard
+  - $
+  - I
+  - sadface
+  - Monitor
+  - ^^
+  m_RenderDataMap: {}
+  m_Tag: PC
+  m_IsVariant: 0

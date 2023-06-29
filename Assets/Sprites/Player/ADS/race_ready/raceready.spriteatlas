@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: raceready
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 95cdf9ba161f37244867dea81e0d50c8, type: 3}
+    - {fileID: 2800000, guid: 47556dc68a22e8a498dcfcc5595a883e, type: 3}
+    - {fileID: 2800000, guid: 74c7eb67d46e56d44a58aa27a4469192, type: 3}
+    - {fileID: 2800000, guid: 25c8f43a0b0a2f343a239404e219e00d, type: 3}
+    - {fileID: 2800000, guid: c2dc54facf6ee9f47bbe5e3430f204e2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 47556dc68a22e8a498dcfcc5595a883e, type: 3}
+  - {fileID: 21300000, guid: 74c7eb67d46e56d44a58aa27a4469192, type: 3}
+  - {fileID: 21300000, guid: 25c8f43a0b0a2f343a239404e219e00d, type: 3}
+  - {fileID: 21300000, guid: 95cdf9ba161f37244867dea81e0d50c8, type: 3}
+  - {fileID: 21300000, guid: c2dc54facf6ee9f47bbe5e3430f204e2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - race_ready_Top
+  - race_ready_eyes_Top 1
+  - race_ready_death_eyes
+  - race_ready_Top_Skin
+  - race_ready_Bottom
+  m_RenderDataMap: {}
+  m_Tag: raceready
+  m_IsVariant: 0

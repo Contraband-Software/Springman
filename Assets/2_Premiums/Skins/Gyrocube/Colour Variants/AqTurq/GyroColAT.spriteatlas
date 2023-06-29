@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GyroColAT
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: d4ef0159c8906a94e901dbaec98d77bb, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 61cd5fb4276308849ba08b580c37a7dc, type: 3}
+  - {fileID: 21300000, guid: defa0bc760a589b409ca85135d9b65c1, type: 3}
+  - {fileID: 21300000, guid: 27154edaedd7ec0498f6f3def55fe4d4, type: 3}
+  - {fileID: 21300000, guid: f37d885c7bc22284c8df4bbedb5d6cb1, type: 3}
+  - {fileID: 21300000, guid: 5a23103dc6f9b4b4bbfcff2eb4bd01d6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tr
+  - c
+  - bl
+  - br
+  - tl
+  m_RenderDataMap: {}
+  m_Tag: GyroColAT
+  m_IsVariant: 0

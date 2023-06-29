@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NeonAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 197895749b34e8443ab6728e69bf98a0, type: 3}
+    - {fileID: 2800000, guid: d897b4856d4521b48809524fad0341e8, type: 3}
+    - {fileID: 2800000, guid: 04128770a575a0a4ba5b88943bea9a77, type: 3}
+    - {fileID: 102900000, guid: ba0bf758a07d5b24db6660acfdd23b6f, type: 3}
+    - {fileID: 102900000, guid: 57c1c50c33bc1cd4b99a35c2185a073a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 04128770a575a0a4ba5b88943bea9a77, type: 3}
+  - {fileID: 21300000, guid: 454174b0e3d6cec41b2525a9377d4451, type: 3}
+  - {fileID: 21300000, guid: b0f149c111e1e7a479f5fede2ee0b522, type: 3}
+  - {fileID: 21300000, guid: 2f737c5275190f54787dc7ab22e8109c, type: 3}
+  - {fileID: 21300000, guid: 197895749b34e8443ab6728e69bf98a0, type: 3}
+  - {fileID: 21300000, guid: 084809e46da40ce4b88314e0b14f29b3, type: 3}
+  - {fileID: 21300000, guid: 31138bf4fd6f84140a15d5f55c7f8b92, type: 3}
+  - {fileID: 21300000, guid: 86421525a1777c24d8fd53f69252b986, type: 3}
+  - {fileID: 21300000, guid: d897b4856d4521b48809524fad0341e8, type: 3}
+  - {fileID: 21300000, guid: 34efb4d5c06d9964c897a876872dd26d, type: 3}
+  - {fileID: 21300000, guid: a65897767c590024091ddd2dee0bd2c0, type: 3}
+  - {fileID: 21300000, guid: a4383ed8e26834a4da870e35377ddf7b, type: 3}
+  - {fileID: 21300000, guid: 96c0ef79d7540dc4fa87172a226dc49c, type: 3}
+  - {fileID: 21300000, guid: b9f2b51a512c49e4fa68bdad93ad38da, type: 3}
+  - {fileID: 21300000, guid: 1ce939baa85fe55408159f8f77068419, type: 3}
+  - {fileID: 21300000, guid: b47a727b3f543c04c99d8736fc0cc9b4, type: 3}
+  - {fileID: 21300000, guid: 1a0d898bd9784734aa9601a0b95ea4ee, type: 3}
+  - {fileID: 21300000, guid: bab31a1d9e5e2f941addfe7490b467ac, type: 3}
+  - {fileID: 21300000, guid: 897832fd004ea2347ad22751c354206f, type: 3}
+  - {fileID: 21300000, guid: 10322fbec67d8ea43a15148f1f44e8ee, type: 3}
+  - {fileID: 21300000, guid: 8359d4de6b749e149a0c418b88a8eae3, type: 3}
+  - {fileID: 21300000, guid: beeae00fd889ce14189b6f178fcaab35, type: 3}
+  - {fileID: 21300000, guid: bfbe4e2f430f4984cbb7abeb0868b1cf, type: 3}
+  - {fileID: 21300000, guid: 020dcb3f7514696458e4b0f40626e2f3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bottom
+  - SpringFrame_15
+  - SpringFrame_1
+  - SpringFrame_3
+  - top
+  - SpringFrame_8
+  - SpringFrame_2
+  - SpringFrame_17
+  - neon_glasses
+  - SpringFrame_14
+  - SpringFrame_9
+  - SpringFrame_5
+  - SpringFrame_7
+  - SpringFrame_19
+  - SpringFrame_20
+  - bot_bg
+  - top_bg
+  - SpringFrame_4
+  - SpringFrame_0
+  - SpringFrame_12
+  - SpringFrame_18
+  - SpringFrame_13
+  - SpringFrame_6
+  - SpringFrame_16
+  m_RenderDataMap: {}
+  m_Tag: NeonAtlas
+  m_IsVariant: 0

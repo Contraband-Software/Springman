@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChargedAqua
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 458d93428d76c9f489c19512d34bc1d2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4ab633b28dfafe248a999d7c07e3168d, type: 3}
+  - {fileID: 21300000, guid: 1154eee6e70ab3f4088ac29a8fc975b3, type: 3}
+  - {fileID: 21300000, guid: 33bdf8b80c168c349be0a5b78161800e, type: 3}
+  - {fileID: 21300000, guid: 27a5a02f69b3545499db6f51f19976a3, type: 3}
+  - {fileID: 21300000, guid: a5b834ff1481e414ab08809a6c2e1c66, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - aqua-(2)
+  - aqua-(3)
+  - aqua-(5)
+  - aqua-(4)
+  - aqua-(1)
+  m_RenderDataMap: {}
+  m_Tag: ChargedAqua
+  m_IsVariant: 0

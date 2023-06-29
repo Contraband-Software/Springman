@@ -69,11 +69,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c873cc71ce478e54e83f97083b57fb79, type: 3}
   - {fileID: 21300000, guid: e6e19cb13aba53b4cb2e909e2132e4a6, type: 3}
   - {fileID: 21300000, guid: 3df891e1e1e14904b848c192f5c24449, type: 3}
-  - {fileID: 21300000, guid: 4409b722458e9e4488d5a038f3d21a14, type: 3}
   - {fileID: 21300000, guid: e08648c271bab334dafb84c250999626, type: 3}
   - {fileID: 21300000, guid: 62efb9d269f0c6c478bf26a55bfecb82, type: 3}
   - {fileID: 21300000, guid: 9b188cd2a7de5494eb957d69cd3ce184, type: 3}
-  - {fileID: 21300000, guid: f2e3220302dd2ed4985e07ab335d5e30, type: 3}
   - {fileID: 21300000, guid: 3f112893965d8ab498fd2991e65db1a5, type: 3}
   - {fileID: 21300000, guid: bc142c936eb5db849ba4170785da5ee0, type: 3}
   - {fileID: 21300000, guid: 967a5dd369cf70f4eaf4d88ed11ae856, type: 3}
@@ -97,7 +95,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ca4fa887e73374942a341d5b07d11b6c, type: 3}
   - {fileID: 21300000, guid: 3231b5f7574cc9849bda48148a1a88b9, type: 3}
   - {fileID: 21300000, guid: 695598f712a75d0419e6a5c15d3bf51e, type: 3}
-  - {fileID: 21300000, guid: 22ab7bf7cb0a2834fa0b2570e54203ac, type: 3}
   - {fileID: 21300000, guid: e1fd0c085d52d4a47a66fdd977bbd930, type: 3}
   - {fileID: 21300000, guid: 8f316318611fb3740ab554cb066be9ef, type: 3}
   - {fileID: 21300000, guid: 0b2196184c9c3c94595a3a84fde96eaf, type: 3}
@@ -163,11 +160,9 @@ SpriteAtlas:
   - TopFrame
   - ColourChoiceBG
   - XButton
-  - MuteButton
   - LanguageTextTab
   - Frame
   - barBG
-  - MuteButtonMuted
   - Toggle
   - ReplayButton
   - SilverScrew
@@ -191,7 +186,6 @@ SpriteAtlas:
   - BuyButton
   - loadingScreenBG 1
   - ResumeButtonPressed
-  - MuteButtonPressed
   - TickIcon
   - SquareFrameBG
   - loadingScreenBanner

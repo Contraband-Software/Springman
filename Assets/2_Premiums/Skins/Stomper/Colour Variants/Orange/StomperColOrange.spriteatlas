@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StomperColOrange
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3e807a3561c8ea84bbf6015d9ef77460, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 06b56e5062c7b64458f2e033bde78d3f, type: 3}
+  - {fileID: 21300000, guid: c6f01ab2ebb3a70478f85ddd07977514, type: 3}
+  - {fileID: 21300000, guid: eac77894e3702d24c827b5e281e2d9b2, type: 3}
+  - {fileID: 21300000, guid: 076b2535ab4fb364f9bd6e951c6bd39e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - left_orange
+  - eye_orange
+  - socket_orange
+  - right_orange
+  m_RenderDataMap: {}
+  m_Tag: StomperColOrange
+  m_IsVariant: 0

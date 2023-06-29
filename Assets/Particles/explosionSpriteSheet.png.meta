@@ -407,7 +407,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -493,11 +493,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3072
-        width: 1024
-        height: 1024
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -513,12 +513,12 @@ TextureImporter:
       name: explosionSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -534,12 +534,12 @@ TextureImporter:
       name: explosionSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -555,12 +555,12 @@ TextureImporter:
       name: explosionSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -576,12 +576,12 @@ TextureImporter:
       name: explosionSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 4096
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 2048
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -597,12 +597,12 @@ TextureImporter:
       name: explosionSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 5120
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 2560
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -618,12 +618,12 @@ TextureImporter:
       name: explosionSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 6144
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 3072
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -639,12 +639,12 @@ TextureImporter:
       name: explosionSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 7168
-        y: 3072
-        width: 1024
-        height: 1024
+        x: 3584
+        y: 1536
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -661,11 +661,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2048
-        width: 1024
-        height: 1024
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -681,12 +681,12 @@ TextureImporter:
       name: explosionSpriteSheet_9
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -702,12 +702,12 @@ TextureImporter:
       name: explosionSpriteSheet_10
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -723,12 +723,12 @@ TextureImporter:
       name: explosionSpriteSheet_11
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -744,12 +744,12 @@ TextureImporter:
       name: explosionSpriteSheet_12
       rect:
         serializedVersion: 2
-        x: 4096
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 2048
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -765,12 +765,12 @@ TextureImporter:
       name: explosionSpriteSheet_13
       rect:
         serializedVersion: 2
-        x: 5120
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 2560
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -786,12 +786,12 @@ TextureImporter:
       name: explosionSpriteSheet_14
       rect:
         serializedVersion: 2
-        x: 6144
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 3072
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -807,12 +807,12 @@ TextureImporter:
       name: explosionSpriteSheet_15
       rect:
         serializedVersion: 2
-        x: 7168
-        y: 2048
-        width: 1024
-        height: 1024
+        x: 3584
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -829,11 +829,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 1024
-        height: 1024
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -849,12 +849,12 @@ TextureImporter:
       name: explosionSpriteSheet_17
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 512
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -870,12 +870,12 @@ TextureImporter:
       name: explosionSpriteSheet_18
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -891,12 +891,12 @@ TextureImporter:
       name: explosionSpriteSheet_19
       rect:
         serializedVersion: 2
-        x: 3072
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -912,12 +912,12 @@ TextureImporter:
       name: explosionSpriteSheet_20
       rect:
         serializedVersion: 2
-        x: 4096
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 2048
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -933,12 +933,12 @@ TextureImporter:
       name: explosionSpriteSheet_21
       rect:
         serializedVersion: 2
-        x: 5120
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 2560
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -954,12 +954,12 @@ TextureImporter:
       name: explosionSpriteSheet_22
       rect:
         serializedVersion: 2
-        x: 6144
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 3072
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -975,12 +975,12 @@ TextureImporter:
       name: explosionSpriteSheet_23
       rect:
         serializedVersion: 2
-        x: 7168
-        y: 1024
-        width: 1024
-        height: 1024
+        x: 3584
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -998,10 +998,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1017,12 +1017,12 @@ TextureImporter:
       name: explosionSpriteSheet_25
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 512
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1038,12 +1038,12 @@ TextureImporter:
       name: explosionSpriteSheet_26
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 1024
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1059,12 +1059,12 @@ TextureImporter:
       name: explosionSpriteSheet_27
       rect:
         serializedVersion: 2
-        x: 3072
+        x: 1536
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1080,12 +1080,12 @@ TextureImporter:
       name: explosionSpriteSheet_28
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 2048
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1101,12 +1101,12 @@ TextureImporter:
       name: explosionSpriteSheet_29
       rect:
         serializedVersion: 2
-        x: 5120
+        x: 2560
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1122,12 +1122,12 @@ TextureImporter:
       name: explosionSpriteSheet_30
       rect:
         serializedVersion: 2
-        x: 6144
+        x: 3072
         y: 0
-        width: 1024
-        height: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

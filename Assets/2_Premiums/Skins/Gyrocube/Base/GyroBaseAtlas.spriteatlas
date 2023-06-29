@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GyroBaseAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: a7b2108f46ae7d24a84aa53261376021, type: 3}
+    - {fileID: 102900000, guid: 0fb9344df0644d24a991df7ebe47e02b, type: 3}
+    - {fileID: 102900000, guid: 2d740bd1df783b147bc578cbb6d3aa06, type: 3}
+    - {fileID: 102900000, guid: a7639c9f7d850354fa383353f146cf6a, type: 3}
+    - {fileID: 102900000, guid: c9a9f0ef1c562c748892a8bad7475f74, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 10a5a1b2fde4a6d40ad415a46c23f8bd, type: 3}
+  - {fileID: 21300000, guid: c330ed73b6c4b4844bd8e44923669b86, type: 3}
+  - {fileID: 21300000, guid: 1ffad5e580a00564bae9af6ad2b73fb4, type: 3}
+  - {fileID: 21300000, guid: aecd5ae8cb6437742b9a6207fbf50952, type: 3}
+  - {fileID: 21300000, guid: ade8e0f8b028c724c8dd98b0c5a80869, type: 3}
+  - {fileID: 21300000, guid: 64a29e29a9d7c86428c641dc9153d2dd, type: 3}
+  - {fileID: 21300000, guid: 2453fef97a5b4b74b8ec794b1d84829a, type: 3}
+  - {fileID: 21300000, guid: 7991dd9b9a48ca84382cffd6366405d5, type: 3}
+  - {fileID: 21300000, guid: d7e4c83c7f0461c47b83a8e4d3ac36f0, type: 3}
+  - {fileID: 21300000, guid: 1b92995c726670b488de8b76fb2d1e94, type: 3}
+  - {fileID: 21300000, guid: ddaddc7cc15d78b4c9d461f83a69fe46, type: 3}
+  - {fileID: 21300000, guid: a7b2108f46ae7d24a84aa53261376021, type: 3}
+  - {fileID: 21300000, guid: 5fbe138f5e977d94a8e2c79464ebcfd0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - connect_BL
+  - tribase_BL
+  - tri_BR
+  - tribase_BR
+  - tri_TR
+  - tribase_TL
+  - tri_TL
+  - connect_TR
+  - Tri_BL
+  - connect_TL
+  - tribase_TR
+  - centre_circle
+  - connect_BR
+  m_RenderDataMap: {}
+  m_Tag: GyroBaseAtlas
+  m_IsVariant: 0

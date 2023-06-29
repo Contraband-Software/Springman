@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AlienAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c2b9ba1f51b932c498f0414643a7277d, type: 3}
+    - {fileID: 102900000, guid: 3fd8552ef200d5643a54cb1b007392f7, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 56a2d1227ee334f41b503eb6771d2baf, type: 3}
+  - {fileID: 21300000, guid: c119f3321b7f68543bd44d3ad216f976, type: 3}
+  - {fileID: 21300000, guid: a168ee54a0350834c91b6541266ef97f, type: 3}
+  - {fileID: 21300000, guid: e1af73b8c4d85204ca22aab9232e936a, type: 3}
+  - {fileID: 21300000, guid: 50ee21fb49b8c4e4d95189f37e77808a, type: 3}
+  - {fileID: 21300000, guid: e22fd12ef02f608418d92c5076ba222c, type: 3}
+  - {fileID: 21300000, guid: 3875f65e8e6541e448c0d0261a796dba, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bottom
+  - glow_backgroun
+  - broken_glass
+  - alien_dude
+  - glow_foreground
+  - glassy_overlay
+  - body
+  m_RenderDataMap: {}
+  m_Tag: AlienAtlas
+  m_IsVariant: 0

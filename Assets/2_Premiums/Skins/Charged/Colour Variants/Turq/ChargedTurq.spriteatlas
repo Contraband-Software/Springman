@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChargedTurq
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7a55ea0925e2c3d40a664b2afe34c8f2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2c6c3b513116bc348aa60d5b46290704, type: 3}
+  - {fileID: 21300000, guid: eab332b68059665449f5b917234fbd7a, type: 3}
+  - {fileID: 21300000, guid: 7f9ffba98f4f2dd4dac112e8d1c1a4ec, type: 3}
+  - {fileID: 21300000, guid: e2bffb2eb5ce37646ad3d2e5108bb6f0, type: 3}
+  - {fileID: 21300000, guid: 4081485f9772f3c4f8bf2926779799a5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - turq-(2)
+  - turq-(4)
+  - turq-(5)
+  - turq-(1)
+  - turq-(3)
+  m_RenderDataMap: {}
+  m_Tag: ChargedTurq
+  m_IsVariant: 0

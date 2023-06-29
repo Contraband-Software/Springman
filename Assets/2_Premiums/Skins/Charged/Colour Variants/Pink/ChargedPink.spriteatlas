@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChargedPink
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: d9a24818e782dba4890235fe5c628ac9, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: caaae160a5614a14688d405809bddbf5, type: 3}
+  - {fileID: 21300000, guid: 13379bc05ae241b4e8621936881208d0, type: 3}
+  - {fileID: 21300000, guid: 23a73913b499c3e438c3276b1be1f279, type: 3}
+  - {fileID: 21300000, guid: 98591da8570054c4f83126fab98ab592, type: 3}
+  - {fileID: 21300000, guid: bacfe0bba50aad34caa99baa48eeb913, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - pink-(2)
+  - pink-(1)
+  - pink-(5)
+  - pink-(4)
+  - pink-(3)
+  m_RenderDataMap: {}
+  m_Tag: ChargedPink
+  m_IsVariant: 0

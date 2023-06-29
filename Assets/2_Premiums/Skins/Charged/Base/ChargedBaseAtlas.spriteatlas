@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChargedBaseAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ceb77b4e7817fce45b544ea521fa3370, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b73e3ca2534c5144e96c906e4f7c8eac, type: 3}
+  - {fileID: 21300000, guid: ba33c545b7882f546b8075231e3ddb03, type: 3}
+  - {fileID: 21300000, guid: 2ac7886558ebe774da8b92dffca82e02, type: 3}
+  - {fileID: 21300000, guid: ca6fa0b785c14eb49b51b7c783e62710, type: 3}
+  - {fileID: 21300000, guid: 88cf2999109798b43aac4eb17e93dd78, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Top_Screen
+  - Top_Background
+  - battery_screen
+  - Top_Skin_Overlay
+  - Bottom
+  m_RenderDataMap: {}
+  m_Tag: ChargedBaseAtlas
+  m_IsVariant: 0

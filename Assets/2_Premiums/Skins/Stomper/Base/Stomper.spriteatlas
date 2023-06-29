@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Stomper
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 4bc8865abc824994e9dfdea8de229c73, type: 3}
+    - {fileID: 2800000, guid: 1168a6a916e48194f94d6f7a40162ad0, type: 3}
+    - {fileID: 102900000, guid: de893f681f1e93440bbe656f3120a334, type: 3}
+    - {fileID: 102900000, guid: 53c88e3ca3714b3448f16d332fe6ba17, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 3d479cd037c07344a9bd070ab6905b6a, type: 3}
+  - {fileID: 21300000, guid: 966dea62eb8028d43afdc8ed07295eed, type: 3}
+  - {fileID: 21300000, guid: e68a38b2ec9d7d543be473292c93b85d, type: 3}
+  - {fileID: 21300000, guid: e78224b38b4f53e4286b65f9d70c90d9, type: 3}
+  - {fileID: 21300000, guid: 8b5592c35e59acb488e12fdaa3c53ba4, type: 3}
+  - {fileID: 21300000, guid: b11714159fbacc44da2a30ea39db1657, type: 3}
+  - {fileID: 21300000, guid: ab943b8561edfac439653e2b10e9c73b, type: 3}
+  - {fileID: 21300000, guid: 176c20e55ca532b42b3ea515f96a276d, type: 3}
+  - {fileID: 21300000, guid: 4963f17889a602c439ae2710817bb7af, type: 3}
+  - {fileID: 21300000, guid: dcf98c989da984e4384e7a82da6f72dd, type: 3}
+  - {fileID: 21300000, guid: a918e62917a45714d96e75876314fc75, type: 3}
+  - {fileID: 21300000, guid: 1168a6a916e48194f94d6f7a40162ad0, type: 3}
+  - {fileID: 21300000, guid: 98d1c11b64eacae418fe7dc4e3f27a4f, type: 3}
+  - {fileID: 21300000, guid: d237b21cb41ff464c8add594e2012986, type: 3}
+  - {fileID: 21300000, guid: 8f09997d59fc8a0469953a573806763b, type: 3}
+  - {fileID: 21300000, guid: 7852371e4e86886478df3a629277280c, type: 3}
+  - {fileID: 21300000, guid: 767d2e4ed3e474a4c8dc2c73be312897, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - arc_frame2
+  - arcWhite_frame5
+  - arc_frame1
+  - right_leg
+  - left_leg
+  - arc_frame6
+  - eye_socket
+  - arc_frame5
+  - arc_frame4
+  - body
+  - arcWhite_frame6
+  - coil
+  - arcWhite_frame2
+  - arcWhite_frame1
+  - arcWhite_frame3
+  - arcWhite_frame4
+  - arc_frame3
+  m_RenderDataMap: {}
+  m_Tag: Stomper
+  m_IsVariant: 0
