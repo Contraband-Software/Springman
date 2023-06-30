@@ -278,6 +278,7 @@ MonoBehaviour:
   tryButton: {fileID: 1044693192}
   purchaseButton: {fileID: 1353552688}
   premiumNameText: {fileID: 1262877970}
+  priceText: {fileID: 207468859}
   previousSkinWasPremium: 0
 --- !u!1 &7293940
 GameObject:

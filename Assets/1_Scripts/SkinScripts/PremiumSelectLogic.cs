@@ -31,6 +31,7 @@ public class PremiumSelectLogic : MonoBehaviour
     [SerializeField] GameObject tryButton;
     [SerializeField] GameObject purchaseButton;
     [SerializeField] TextMeshProUGUI premiumNameText;
+    [SerializeField] TextMeshProUGUI priceText;
 
     [Header("States (Mutables I know, cringe)")]
     [SerializeField] bool previousSkinWasPremium = false;
@@ -63,6 +64,7 @@ public class PremiumSelectLogic : MonoBehaviour
         if (!ff.filterImage.raycastTarget)
         {
             DisplayBuyingTab(skinName);
+            SetProductPriceForBuyButton(productid);
             SetProductIDForBuyButton(productid);
 
             tryButton.SetActive(true);
@@ -163,6 +165,12 @@ public class PremiumSelectLogic : MonoBehaviour
     private void SetProductIDForBuyButton(string productid)
     {
         purchaseButton.GetComponent<BuyPremiumButton>().productID = productid;
+    }
+
+    private void SetProductPriceForBuyButton(string productid)
+    {
+        float price = PlatformIntegrations.IntegrationsManager.Instance.iapHandler.GetProductPrice(productid);
+        priceText.text = "$" + price.ToString();
     }
 
     public void ClosingBuyingTab()

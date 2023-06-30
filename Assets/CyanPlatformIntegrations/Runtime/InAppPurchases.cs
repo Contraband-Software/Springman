@@ -102,7 +102,7 @@ namespace PlatformIntegrations
         /// <param name="productID"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public string GetProductPrice(string productID)
+        public float GetProductPrice(string productID)
         {
             ProductCatalog pc = ProductCatalog.LoadDefaultCatalog();
             foreach (ProductCatalogItem item in pc.allProducts)
@@ -110,9 +110,11 @@ namespace PlatformIntegrations
                 if (item.id == productID)
                 {
 #if UNITY_ANDROID
-                    return item.googlePrice.ToString();
+                    return (float)item.googlePrice.value;
+#elif UNITY_EDITOR
+                    return (float)item.googlePrice.value;
 #elif UNITY_IOS
-                    return item.applePriceTier.ToString();
+                    return (float)item.applePriceTier - 0.01f;
 #else
                     throw new InvalidOperationException(logDecorator + "[ERROR] Invalid platform.");
 #endif
@@ -163,9 +165,9 @@ namespace PlatformIntegrations
                 return false;
             }
         }
-        #endregion
+#endregion
 
-        #region PRIVATE_INTERFACE
+#region PRIVATE_INTERFACE
         private async void InitializeServices()
         {
             try
@@ -198,9 +200,9 @@ namespace PlatformIntegrations
 
             UnityPurchasing.Initialize(this, builder);
         }
-        #endregion
+#endregion
 
-        #region ISTORELISTENER_IMPLEMENTATION
+#region ISTORELISTENER_IMPLEMENTATION
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
             this.controller = controller;
@@ -250,6 +252,6 @@ namespace PlatformIntegrations
 
             purchaseProcessingCallbacks[product.definition.id](false, failureReason, null);
         }
-        #endregion
+#endregion
     }
 }
