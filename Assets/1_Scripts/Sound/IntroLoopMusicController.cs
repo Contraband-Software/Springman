@@ -24,7 +24,7 @@ namespace Architecture.Audio
 
         public void Play()
         {
-            IntroSource.Play();
+            StartCoroutine(PlayLoopedMusic());
 
             playing = true;
         }
@@ -50,16 +50,28 @@ namespace Architecture.Audio
 
         //Using fixed update avoids the delay between the intro section ending and the loop section playing
         //this can be replaced with the normal update function if there are any problems
-        private void FixedUpdate()
+/*        private void FixedUpdate()
         {
+            print("inttrloopmusic update");
             if (playing)
             {
                 if (IntroSource.isPlaying == false && switched == false)
                 {
                     switched = true;
+                    print("Playing LOOP");
                     LoopSource.Play();
                 }
             }
+        }*/
+
+        private IEnumerator PlayLoopedMusic()
+        {
+            // Play the intro music
+            IntroSource.Play();
+            yield return new WaitForSecondsRealtime(IntroSource.clip.length);
+
+            // Once the intro is finished, play the loop music
+            LoopSource.Play();
         }
     }
 }
