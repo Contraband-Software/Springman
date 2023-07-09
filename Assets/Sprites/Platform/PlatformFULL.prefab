@@ -428,6 +428,9 @@ MonoBehaviour:
   bottomLeft: {x: 0, y: 0, z: 0}
   thisPlatLength: 0
   arrangeScript: {fileID: 5314883216047346532}
+  arrangeHoleScript: {fileID: 0}
+  isHolePlatform: 0
+  disableMovement: 0
   flashesLeft: 3
   flashTime: 0.06
 --- !u!50 &-8152115161200138284
@@ -446,7 +449,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: aeefee2bba1521c459565f9bacdaf4ec, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

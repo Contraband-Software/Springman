@@ -35,7 +35,7 @@ public class PauseButton : MonoBehaviour
         {
             if (audios[i].isPlaying)
             {
-                audios[i].Pause();
+                //audios[i].Pause();
             }
         }
     }
@@ -82,7 +82,7 @@ public class PauseButton : MonoBehaviour
         {
             if (Architecture.Managers.UserGameData.Instance.soundsOn)
             {
-                audios[i].UnPause();
+                //audios[i].UnPause();
             }
         }
     }
