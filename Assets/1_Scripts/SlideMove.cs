@@ -153,7 +153,7 @@ public class SlideMove : MonoBehaviour {
 
 				if (moving == false)
 				{
-					if (touchPosition.y > ((transform.position.y + halfPlatHeight) - (platDistance - (halfPlatHeight * 2))) && touchPosition.y < transform.position.y + halfPlatHeight)
+					if (touchPosition.y > (transform.position.y - platDistance) + halfPlatHeight && touchPosition.y < transform.position.y + halfPlatHeight)
 					{
 						Move(touch, touchPosition);
 					}
