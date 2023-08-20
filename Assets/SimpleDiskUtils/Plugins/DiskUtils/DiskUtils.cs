@@ -36,6 +36,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using UnityEngine;
+using static System.IO.DriveInfo;
 
 namespace SimpleDiskUtils
 {
@@ -140,8 +141,9 @@ namespace SimpleDiskUtils
 	    /// Checks the available space.
 	    /// </summary>
 	    /// <returns>The available space in MB.</returns>
-	    public static int CheckAvailableSpace(){
-		    DriveInfo drive = GetDrive (DEFAULT_DRIVE);
+	    public static int CheckAvailableSpace()
+	    {
+		    DriveInfo drive = new DriveInfo(DEFAULT_DRIVE);
 		    if (drive == null)
 			    return -1;
 		    return int.Parse((drive.AvailableFreeSpace / MEGA_BYTE).ToString());
@@ -152,7 +154,7 @@ namespace SimpleDiskUtils
 	    /// </summary>
 	    /// <returns>The total space in MB.</returns>
 	    public static int CheckTotalSpace(){
-		    DriveInfo drive = GetDrive (DEFAULT_DRIVE);
+		    DriveInfo drive = new DriveInfo(DEFAULT_DRIVE);
 		    if (drive == null)
 			    return -1;
 		    return int.Parse ((drive.TotalSize / MEGA_BYTE).ToString());
@@ -163,7 +165,7 @@ namespace SimpleDiskUtils
 	    /// </summary>
 	    /// <returns>The busy space in MB.</returns>
 	    public static int CheckBusySpace(){
-		    DriveInfo drive = GetDrive (DEFAULT_DRIVE);
+		    DriveInfo drive = new DriveInfo(DEFAULT_DRIVE);
 		    if (drive == null)
 			    return -1;
 
