@@ -252,6 +252,11 @@ namespace PlatformIntegrations
 
             purchaseProcessingCallbacks[product.definition.id](false, failureReason, null);
         }
-#endregion
+
+        public void OnInitializeFailed(InitializationFailureReason error, string message)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
