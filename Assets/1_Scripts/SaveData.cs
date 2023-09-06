@@ -17,6 +17,7 @@ public class SaveData
     public bool eulaAccepted = false;
     public bool tutorialComplete = false;
     public int ads;
+    public int ageLevel;
 
     //COSMETICS DATA
     public string themeColour;
@@ -53,6 +54,7 @@ public class SaveData
         bool eulaAccepted,
         bool tutorialComplete, 
         int ads,
+        int ageLevel,
         string themeColour,
         string tcol, 
         string bcol, 
@@ -80,6 +82,7 @@ public class SaveData
         this.eulaAccepted = eulaAccepted;
         this.tutorialComplete = tutorialComplete;
         this.ads = ads;
+        this.ageLevel = ageLevel;
 
         //COSMETICS
         this.themeColour = themeColour;

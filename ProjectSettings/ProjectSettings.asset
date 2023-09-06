@@ -867,6 +867,7 @@ PlayerSettings:
     ErrorHub: 0
     Hub: 0
     UNet: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 

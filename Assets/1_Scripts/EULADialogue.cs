@@ -27,7 +27,6 @@ namespace Architecture
 
         public void Accept()
         {
-            UserGameData.Instance.EULA_Accepted = true;
             gameObject.SetActive(false);
         }
 
