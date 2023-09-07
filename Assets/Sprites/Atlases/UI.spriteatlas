@@ -75,7 +75,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3f112893965d8ab498fd2991e65db1a5, type: 3}
   - {fileID: 21300000, guid: bc142c936eb5db849ba4170785da5ee0, type: 3}
   - {fileID: 21300000, guid: 967a5dd369cf70f4eaf4d88ed11ae856, type: 3}
-  - {fileID: 21300000, guid: 716d7104eea5dca4abb08462c59d38f9, type: 3}
   - {fileID: 21300000, guid: ca8a68348ab52db40b0243e0207756a8, type: 3}
   - {fileID: 21300000, guid: 3d6d8d64afbcb0a449e5dc9c1da2dd4b, type: 3}
   - {fileID: 21300000, guid: fe5070e4adf3d4e41a4df7677b9c1262, type: 3}
@@ -140,6 +139,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 155a474e46739ea40abe616622230142, type: 3}
   - {fileID: 21300000, guid: c8af62dec560f0d429ecf02b96e45bb7, type: 3}
   - {fileID: 21300000, guid: 8b97810f071f04d4abd49b07052072e6, type: 3}
+  - {fileID: 21300000, guid: f8d8201f4177ea341b740584d9459fd0, type: 3}
   - {fileID: 21300000, guid: 71118c3f4454cf547a4319c40e19cccf, type: 3}
   - {fileID: 21300000, guid: 43bb355fb4cd1ee4596906f3298ce491, type: 3}
   - {fileID: 21300000, guid: 10ba659f58f0ac54697b84b8211350c5, type: 3}
@@ -166,7 +166,6 @@ SpriteAtlas:
   - Toggle
   - ReplayButton
   - SilverScrew
-  - ReviveButton_Unpressed
   - LockIcon
   - PremiumTab
   - CosmeticsButtonPressed
@@ -231,6 +230,7 @@ SpriteAtlas:
   - ExitButton
   - ReviveButton_Pressed
   - StartButton
+  - ReviveButton_Unpressed
   - PageButtonPressed
   - CosmeticsButton
   - prem_glow_col_bg
