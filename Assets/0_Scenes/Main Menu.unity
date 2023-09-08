@@ -98873,6 +98873,7 @@ GameObject:
   - component: {fileID: 1968604826}
   - component: {fileID: 1968604829}
   - component: {fileID: 1968604828}
+  - component: {fileID: 1968604830}
   m_Layer: 5
   m_Name: WatersText
   m_TagString: Untagged
@@ -98998,6 +98999,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968604825}
   m_CullTransparentMesh: 0
+--- !u!114 &1968604830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968604825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f2bc2bae8518d49b3bc12cd7f639f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  language: 
+  defaultStyle: 0
+  key: water_title
+  Optional2ndKey: 
 --- !u!1 &1970301778
 GameObject:
   m_ObjectHideFlags: 0

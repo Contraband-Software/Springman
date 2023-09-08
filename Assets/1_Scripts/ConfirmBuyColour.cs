@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 using Architecture.Localisation;
 using Architecture;
+using Architecture.Managers;
 
 public class ConfirmBuyColour : MonoBehaviour
 {
@@ -91,7 +92,11 @@ public class ConfirmBuyColour : MonoBehaviour
     {
         if (!pressedOnce)
         {
-            purchase_sound.Play();
+            if (UserGameData.Instance.soundsOn)
+            {
+                purchase_sound.Play();
+            }
+
             pressedOnce = true;
 
             System.Random rnd = new System.Random();
