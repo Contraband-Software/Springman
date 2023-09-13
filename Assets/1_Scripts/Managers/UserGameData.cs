@@ -65,9 +65,9 @@ namespace Architecture.Managers
             }
         }
         #endregion
-        public int gold { get; set; } = 0;
-        public int silver { get; set; } = 0;
-        public int ads { get; set; } = 0;
+        public int gold;
+        public int silver;
+        public int ads;
         public bool tutorialComplete { get; set; } = false;
         public bool EULA_Accepted { get; set; } = false;
         public int allTimeHighscore { get; set; } = 0;
@@ -118,7 +118,7 @@ namespace Architecture.Managers
         string gameDataPath = "";
 
         //saving
-        private UnityAction<bool, object> saveDataLoadCallback;
+        private UnityAction<bool> saveDataWriteCallback;
         private enum DataSaveOnExitStatus { NOTSTARTED, STARTED, COMPLETED}
         private DataSaveOnExitStatus dataSaveOnExitStatus = DataSaveOnExitStatus.NOTSTARTED;
 
@@ -137,11 +137,7 @@ namespace Architecture.Managers
                 allPremiumCodes.Add(item.id);
             }
 
-#if UNITY_EDITOR
             gameDataPath = Path.Combine(Application.persistentDataPath, "gamedatafile.gd");
-            DoUnityEditorLocalFallbackSave();
-            return;
-#endif
 
             socialManager = IntegrationsManager.Instance.socialManager;
             socialManager.SaveDataWriteCallback.AddListener((bool status) =>
@@ -160,10 +156,26 @@ namespace Architecture.Managers
 #pragma warning disable S5773
             if (data == null)
             {
-                Debug.Log("UserGameData: CREATED FIRST GAME DATA FILE (cloud)");
-                DefaultDataFileSettings();
-                SaveGameData();
-                EULA_Accepted = false;
+                if (socialManager.IsSignedIn())
+                {
+                    //first lets check if a local file exists we can grab from
+                    if (File.Exists(gameDataPath))
+                    {
+                        ReadSaveGameDataLocal();
+                    }
+                    //otherwise we initialise a new file we will save via cloud
+                    else
+                    {
+                        DefaultDataFileSettings();
+                    }
+                    Debug.Log("UserGameData: CREATED FIRST GAME DATA FILE (cloud)");
+                    SaveGameData();
+                    EULA_Accepted = false;
+                }
+                else
+                {
+                    DoLocalFallbackInitOrRead();
+                }
             }
             else
             {
@@ -174,37 +186,9 @@ namespace Architecture.Managers
                 UnpackLoadedSaveDataFile(saveData);
             }
 #pragma warning restore S5773
-
-/*            socialManager.SaveDataLoadCallback.AddListener((bool status, object data) =>
-            {
-                if (status)
-                {
-#pragma warning disable S5773
-                    if (data == null)
-                    {
-                        Debug.Log("UserGameData: CREATED FIRST GAME DATA FILE (cloud)");
-                        DefaultDataFileSettings();
-                        SaveGameData();
-                        EULA_Accepted = false;
-                    }
-                    else
-                    {
-                        Debug.Log("UserGameData: READ GAME DATA FILE");
-                        UnpackLoadedSaveDataFile(data as SaveData);
-                    }
-#pragma warning restore S5773
-
-                    // FURTHER INIT, ALL GAME DATA AVAILIBLE NOW
-
-                }
-                else
-                {
-                    Debug.Log("UserGameData: no connection to cloud!");
-                }
-            });*/
         }
 
-        private void DoUnityEditorLocalFallbackSave()
+        private void DoLocalFallbackInitOrRead()
         {
             // This code allows the game to be tested in the editor
             // without it, we start a fresh save every run (annoying).
@@ -240,18 +224,7 @@ namespace Architecture.Managers
 
             #region READ_FILE
 
-            File.SetAttributes(gameDataPath, FileAttributes.Normal);
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(gameDataPath, FileMode.Open);
-
-#pragma warning disable S5773
-            // is actually safe
-            SaveData data = formatter.Deserialize(stream) as SaveData;
-#pragma warning restore S5773
-
-            stream.Close();
-            UnpackLoadedSaveDataFile(data);
-
+            ReadSaveGameDataLocal();
             #endregion
 
             #endregion
@@ -261,10 +234,10 @@ namespace Architecture.Managers
         {
             #region SUBSCRIBE_LISTENERS
             dataSaveOnExitStatus = DataSaveOnExitStatus.NOTSTARTED;
-            saveDataLoadCallback = (status, data) =>
+            saveDataWriteCallback = (status) =>
             {
                 dataSaveOnExitStatus = DataSaveOnExitStatus.COMPLETED;
-                socialManager.SaveDataLoadCallback.RemoveListener(saveDataLoadCallback);
+                socialManager.SaveDataWriteCallback.RemoveListener(saveDataWriteCallback);
             };
             #endregion
         }
@@ -274,7 +247,7 @@ namespace Architecture.Managers
             if(dataSaveOnExitStatus == DataSaveOnExitStatus.NOTSTARTED)
             {
                 Debug.Log("Starting EXIT AUTOSAVE from OnAppQuit");
-                socialManager.SaveDataLoadCallback.AddListener(saveDataLoadCallback);
+                socialManager.SaveDataWriteCallback.AddListener(saveDataWriteCallback);
                 StartCoroutine(ShutdownCoroutine());
             }
             else
@@ -289,7 +262,7 @@ namespace Architecture.Managers
             if (dataSaveOnExitStatus == DataSaveOnExitStatus.NOTSTARTED)
             {
                 Debug.Log("Starting EXIT AUTOSAVE from OnAppPause");
-                socialManager.SaveDataLoadCallback.AddListener(saveDataLoadCallback);
+                socialManager.SaveDataWriteCallback.AddListener(saveDataWriteCallback);
                 StartCoroutine(ShutdownCoroutine());
             }
             else
@@ -455,6 +428,30 @@ namespace Architecture.Managers
 
 #if UNITY_EDITOR
             // Editor local save fallback
+            WriteSaveGameDataLocal(data);
+#else
+            if (socialManager.IsSignedIn() && socialManager.HasConnectedToCloud())
+            {
+                socialManager.WriteToCloudSave(data);
+            }
+            else if(!socialManager.IsSignedIn())
+            {
+                WriteSaveGameDataLocal(data);
+            }
+            else
+            {
+                ErrorEvent.Invoke();
+                Debug.Log("Social integration not availible");
+                throw new System.NotImplementedException("GOOGLE CANNOT BE REACHED, WE SHOULD ERROR OUT AND KILL THE APP HERE");
+                //killing an app without saving could be dangerous. Potential of losing a premium purchase
+            }
+#endif
+        }
+        /// <summary>
+        /// Saves the game onto the device rather than the cloud integration
+        /// </summary>
+        public void WriteSaveGameDataLocal(SaveData data)
+        {
             float availableSpace = SimpleDiskUtils.DiskUtils.CheckAvailableSpace();
             if (availableSpace > 10)
             {
@@ -468,25 +465,28 @@ namespace Architecture.Managers
                 formatter.Serialize(stream, data);
                 stream.Close();
 
-                Debug.Log("MenuData: Save data written to local fallback");
+                Debug.Log("Save data written to LOCAL FALLBACK");
             }
             else
             {
                 ErrorEvent.Invoke();
             }
-#else
-            if (socialManager.IsSignedIn() && socialManager.HasConnectedToCloud())
-            {
-                socialManager.WriteToCloudSave(data);
-            }
-            else
-            {
-                ErrorEvent.Invoke();
-                Debug.Log("Social integration not availible");
-                throw new System.NotImplementedException("GOOGLE CANNOT BE REACHED, WE SHOULD ERROR OUT AND KILL THE APP HERE");
-                //killing an app without saving could be dangerous. Potential of losing a premium purchase
-            }
-#endif
+        }
+
+        public void ReadSaveGameDataLocal()
+        {
+
+            File.SetAttributes(gameDataPath, FileAttributes.Normal);
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(gameDataPath, FileMode.Open);
+
+#pragma warning disable S5773
+            // is actually safe
+            SaveData data = formatter.Deserialize(stream) as SaveData;
+#pragma warning restore S5773
+
+            stream.Close();
+            UnpackLoadedSaveDataFile(data);
         }
 
         /// <summary>

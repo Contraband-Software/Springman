@@ -34,6 +34,7 @@ namespace PlatformIntegrations
         #region STATE
         bool userSignedIn = false;
         bool saveFileLoaded = false;
+        bool usingLocalFallback = false;
 
         byte[] cache;
         readonly TimeSpan sessionStart;
@@ -58,6 +59,11 @@ namespace PlatformIntegrations
                 {
                     attemptedManualAuth = true;
                     TrySignIn();
+                }
+                if(status == false && attemptedManualAuth)
+                {
+                    Debug.Log(logDecorator + "[STATUS] cloud sign-in failed or rejected, using local device storage");
+                    usingLocalFallback = true;
                 }
             });
             SaveDataLoadCallback = new SaveDataLoadEvent();
@@ -107,6 +113,11 @@ namespace PlatformIntegrations
         public bool IsSignedIn()
         {
             return userSignedIn;
+        }
+
+        public bool UsingLocalFallback()
+        {
+            return usingLocalFallback;
         }
 
         /// <summary>

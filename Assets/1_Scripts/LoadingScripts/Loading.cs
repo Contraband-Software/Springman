@@ -81,20 +81,26 @@ namespace Architecture
 
         IEnumerator WaitForSaveDataToLoad()
         {
-#if !UNITY_EDITOR
-            Debug.Log("LOADING: Waiting to load data from GPGS...");
-            Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+    
+            if (!IntegrationsManager.Instance.socialManager.UsingLocalFallback())
+            {
+                Debug.Log("LOADING: Waiting to load data from GPGS...");
+                Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
 
-            yield return new WaitUntil(() => IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+                yield return new WaitUntil(() => IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
 
-            Debug.Log("LOADING: Waiting to load data from GPGS...");
-            Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
+                Debug.Log("LOADING: Waiting to load data from GPGS...");
+                Debug.Log("LOADING: Data loaded: " + IntegrationsManager.Instance.socialManager.HasConnectedToCloud());
 
 
-            if(IntegrationsManager.Instance.socialManager.LoadedCloudSaveEmpty()){
-                Debug.Log("LOADING: LOADED FROM GPGS, FILE SEEMS EMPTY...");
+                if(IntegrationsManager.Instance.socialManager.LoadedCloudSaveEmpty()){
+                    Debug.Log("LOADING: LOADED FROM GPGS, FILE SEEMS EMPTY...");
+                }
             }
-#endif
+            else{
+                loadingText.text = "Retrieving Local Save...";
+            }
+            
             Debug.Log("LOADING: RECIEVED RESPONSE FROM LOAD");
             Debug.Log("LOADING: ALLOWING SCENE ACTIVATION");
             Debug.Log("LOADING: Scene Activation Allowed?: " + operation.allowSceneActivation);
