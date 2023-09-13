@@ -71,6 +71,7 @@ namespace Architecture.Managers
         public bool tutorialComplete { get; set; } = false;
         public bool EULA_Accepted { get; set; } = false;
         public int allTimeHighscore { get; set; } = 0;
+        public int ageLevel { get; set; } = 0;
         #endregion
 
         #region COSMETICS_DATA
@@ -322,6 +323,7 @@ namespace Architecture.Managers
             EULA_Accepted = data.eulaAccepted;
             tutorialComplete = data.tutorialComplete;
             ads = data.ads;
+            ageLevel = data.ageLevel;
 
             //COSMETICS DATA
             themeColour = Utilities.StringToColor(data.themeColour);
@@ -403,6 +405,7 @@ namespace Architecture.Managers
                 EULA_Accepted,
                 tutorialComplete,
                 this.ads,
+                this.ageLevel,
                 Utilities.ColorToString(themeColour),
                 Utilities.ColorToString(topColor),
                 Utilities.ColorToString(bottomColor),

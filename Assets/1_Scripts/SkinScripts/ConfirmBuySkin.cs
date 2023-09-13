@@ -96,7 +96,10 @@ public class ConfirmBuySkin : MonoBehaviour
     {
         if (!pressedOnce)
         {
-            purchase_sound.Play();
+            if (UserGameData.Instance.soundsOn)
+            {
+                purchase_sound.Play();
+            }
 
             pressedOnce = true;
 
