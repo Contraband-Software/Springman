@@ -8,7 +8,7 @@ An infinite vertical platformer game. Similar to doodle jump but cooler.
 
 A Unity game for Android and iOS, though iOS wasn't published due to the cost of doing so.
 
-EULA can be found [here](./Springman/Legal/EULA.md)
+EULA can be found [here](./Legal/EULA.md)
 
 Unity version: 2019.4.0f1 -> 2021.3.11f1
 
