@@ -8,8 +8,10 @@ An infinite vertical platformer game. Similar to doodle jump but cooler.
 
 A Unity game for Android and iOS, though iOS wasn't published due to the cost of doing so.
 
-EULA can be found [here](./Legal/EULA.md)
+Unity version: 2019.4.0f1 (original) -> 2021.3.11f1 (current)
 
-Unity version: 2019.4.0f1 -> 2021.3.11f1
+## About
+
+EULA can be found [here](./Legal/EULA.md).
 
 All rights are reserved by Contraband Software. You may build this app in Unity and play it to your hearts desire however.
