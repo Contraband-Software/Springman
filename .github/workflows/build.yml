@@ -41,6 +41,11 @@ jobs:
         with:
           targetPlatform: Android
           unityVersion: 2021.3.11f1
+          androidKeystoreName: springman # This file won't exist, but this property needs to exist.
+          androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          androidKeystorePass: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          androidKeyaliasName: ${{ secrets.ANDROID_KEYALIAS_NAME }}
+          androidKeyaliasPass: ${{ secrets.ANDROID_KEYALIAS_PASS }}
 
       # Output
       - uses: actions/upload-artifact@v3
