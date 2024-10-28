@@ -16,4 +16,4 @@ EULA can be found [here](./Legal/EULA.md).
 
 Privacy policy (though not applicable due to the game no longer being live) can be found [here](https://contraband.software/springman/privacy-policy).
 
-All rights are reserved by Contraband Software. You may build this app in Unity and play it to your hearts desire however.
+All rights are reserved by Contraband Software.
