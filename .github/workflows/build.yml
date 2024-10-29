@@ -6,7 +6,9 @@ jobs:
   build:
     name: Build Android Project
     runs-on: ubuntu-latest
-    steps:
+    steps:    
+      - uses: jlumbroso/free-disk-space@v1.3.1
+      
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,9 +43,14 @@ jobs:
         with:
           targetPlatform: Android
           unityVersion: 2021.3.11f1
+          androidKeystoreName: springman # This file won't exist, but this property needs to exist.
+          androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          androidKeystorePass: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          androidKeyaliasName: ${{ secrets.ANDROID_KEYALIAS_NAME }}
+          androidKeyaliasPass: ${{ secrets.ANDROID_KEYALIAS_PASS }}
 
       # Output
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Build
           path: build
