@@ -6,7 +6,9 @@ jobs:
   build:
     name: Build Android Project
     runs-on: ubuntu-latest
-    steps:
+    steps:    
+      - uses: jlumbroso/free-disk-space@v1.3.1
+      
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
