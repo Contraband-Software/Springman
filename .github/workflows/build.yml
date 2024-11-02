@@ -64,9 +64,15 @@ jobs:
           keystorePassword: ${{ secrets.ANDROID_KEYSTORE_PASS }}
           keystoreAlias: ${{ secrets.ANDROID_KEYALIAS_NAME }}
           keyPassword: ${{ secrets.ANDROID_KEYALIAS_PASS }}
+          apkPath: build/Android/Springman-Universal.apk
 
       - uses: actions/upload-artifact@v4
         with:
           name: springman-universal
-          path: ${{ steps.convert_aab.outputs.apkPath }}/Android.apk
+          path: ${{ steps.convert_aab.outputs.apkPath }}
 
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: build/Android/Springman-Universal.apk
