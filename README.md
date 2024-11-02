@@ -14,6 +14,6 @@ Unity version: 2019.4.0f1 (original) -> 2021.3.11f1 (current)
 
 EULA can be found [here](./Legal/EULA.md).
 
-Privacy policy (though not applicable due to the game no longer being live) can be found [here](https://contraband.software/springman/privacy-policy).
+Privacy policy can be found [here](https://contraband.software/springman/privacy-policy).
 
 All rights are reserved by Contraband Software.
