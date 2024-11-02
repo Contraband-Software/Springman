@@ -67,6 +67,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: release-apk
-          path: ${{ steps.convert_aab.outputs.apkPath }}
+          name: springman-universal
+          path: ${{ steps.convert_aab.outputs.apkPath }}/Android.apk
 
