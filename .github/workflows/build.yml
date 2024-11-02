@@ -42,6 +42,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: Android
+          androidExportType: 'androidAppBundle'
           unityVersion: 2021.3.11f1
           androidKeystoreName: springman # This file won't exist, but this property needs to exist.
           androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
@@ -49,8 +50,23 @@ jobs:
           androidKeyaliasName: ${{ secrets.ANDROID_KEYALIAS_NAME }}
           androidKeyaliasPass: ${{ secrets.ANDROID_KEYALIAS_PASS }}
 
-      # Output
       - uses: actions/upload-artifact@v4
         with:
           name: Build
           path: build
+
+      - name: Convert aab to apk
+        id: convert_aab
+        uses: mukeshsolanki/bundletool-action@v1.0.0
+        with:
+          aabFile: build/Android/Android.aab
+          base64Keystore: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          keystorePassword: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          keystoreAlias: ${{ secrets.ANDROID_KEYALIAS_NAME }}
+          keyPassword: ${{ secrets.ANDROID_KEYALIAS_PASS }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: ${{ steps.convert_aab.outputs.apkPath }}
+
