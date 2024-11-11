@@ -4,6 +4,8 @@ Originally listed on [Google Play (Dead Link)](https://play.google.com/store/app
 
 An infinite vertical platformer game. Similar to doodle jump but cooler.
 
+[Get a debug APK here](https://github.com/Contraband-Software/Springman/releases/download/v1.0.0/Springman-Universal.apk)
+
 ## Info
 
 A Unity game for Android and iOS, though iOS wasn't published due to the cost of doing so.
